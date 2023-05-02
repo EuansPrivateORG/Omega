@@ -121,6 +121,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
         type: 3}
+    - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -231,6 +236,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: D12
       objectReference: {fileID: 0}
+    - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: dice
+      value: 
+      objectReference: {fileID: 11400000, guid: 674ca6d649a4adb498df546f71932b40,
+        type: 2}
     - target: {fileID: 7755994659635652941, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -312,6 +323,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
         type: 3}
+    - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -422,6 +438,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: D10
       objectReference: {fileID: 0}
+    - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: dice
+      value: 
+      objectReference: {fileID: 11400000, guid: eb07e63d378fec94d9b1dc46bffcc1f9,
+        type: 2}
     - target: {fileID: 7755994659635652941, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -628,6 +650,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
         type: 3}
+    - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -737,6 +764,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: D4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7755994659635652941, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
@@ -949,6 +986,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
         type: 3}
+    - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1059,6 +1101,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: D20
       objectReference: {fileID: 0}
+    - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: dice
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e8a08a05b33fca4497b8d8916458379,
+        type: 2}
     - target: {fileID: 7755994659635652941, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1140,6 +1188,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
         type: 3}
+    - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1250,6 +1303,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: D6
       objectReference: {fileID: 0}
+    - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: dice
+      value: 
+      objectReference: {fileID: 11400000, guid: 18fafd10078132b4396aa931c58996cc,
+        type: 2}
     - target: {fileID: 7755994659635652941, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1331,6 +1390,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
         type: 3}
+    - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 31.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1441,6 +1505,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: D8
       objectReference: {fileID: 0}
+    - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: dice
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ce914428407dec4c917cd6c77c4e5c3,
+        type: 2}
     - target: {fileID: 7755994659635652941, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_AnchorMax.y

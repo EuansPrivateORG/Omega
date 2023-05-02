@@ -8,6 +8,8 @@ namespace Omega.Status
     {
         [HideInInspector] public int health;
 
+        [HideInInspector] public int maxHealth;
+
         public void AddHealth(int addition)
         {
             health += addition;

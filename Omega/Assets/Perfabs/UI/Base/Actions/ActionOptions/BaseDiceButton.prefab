@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 5431429372830662823}
   - component: {fileID: 2688067633033054420}
   - component: {fileID: 7789068158212485525}
+  - component: {fileID: 7070323096810810019}
   m_Layer: 0
   m_Name: BaseDiceButton
   m_TagString: Untagged
@@ -222,7 +223,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 983680871426072526}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7070323096810810019}
+        m_TargetAssemblyTypeName: Omega.UI.AttackButtonHandler, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2688067633033054420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +276,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectableToFocus: {fileID: 0}
   gameobjectToDisable: {fileID: 0}
+--- !u!114 &7070323096810810019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655850348577028283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8945d4c5c1f4c49a1e24f9634b63fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dice: {fileID: 11400000, guid: e1187e2048ddfef47b5eaee8e7b696ab, type: 2}
 --- !u!1 &7080735846856358568
 GameObject:
   m_ObjectHideFlags: 0
