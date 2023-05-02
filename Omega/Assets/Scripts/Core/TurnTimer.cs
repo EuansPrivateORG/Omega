@@ -42,6 +42,7 @@ namespace Omega.Core
         public void ResetTimer()
         {
             timeOn = true;
+            timeLeft = 0;
         }
     }
 
