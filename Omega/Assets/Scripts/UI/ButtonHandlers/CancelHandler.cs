@@ -25,7 +25,7 @@ namespace Omega.UI
         {
             cancelAction.Disable();
             cancelAction.performed -= OnCancelPressed;
-            if (lastSelectedGameObject != null)
+            if (lastSelectedGameObject == null)
             {
                 EventSystem.current.SetSelectedGameObject(lastSelectedGameObject);
             }
