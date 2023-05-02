@@ -1,21 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Omega.UI
 {
     public class PlayerSelectionHandler : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        public void SetSelectedElement(GameObject playerToSelect)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            EventSystem.current.SetSelectedGameObject(gameObject.gameObject);
         }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 using Omega.Actions;
 using Omega.Core;
 using Omega.Status;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Omega.UI
 {
@@ -37,8 +39,22 @@ namespace Omega.UI
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
             int damage = dice.roll();
-
+            List<GameObject> attackablePlayers = new List<GameObject>();
             playerEnergy.energy -= dice.cost;
+            foreach (var item in playerIdentifier.playerIndex)
+            {
+                if(item != playerIdentifier.currentPlayer)
+                {
+                    gameObject.GetComponent<Selectable>().enabled = true;
+                    gameObject.GetComponent<Outline>().enabled = true;
+                    attackablePlayers.Add(item);
+                }
+
+            }
+            EventSystem eventSystem = EventSystem.current;
+            eventSystem.SetSelectedGameObject(attackablePlayers[0]);
+            attackablePlayers[0].GetComponent<Outline>().OutlineColor = Color.red;
+
         }
     }
 }
