@@ -18,8 +18,24 @@ namespace Omega.UI
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
         }
 
+        private void OnEnable()
+        {
+            Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+
+            if(playerEnergy.energy < dice.cost)
+            {
+                button.interactable = false;
+            }
+            else
+            {
+                button.interactable = true;
+            }
+        }
+        
         public void ButtonPressed()
         {
+            Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+
             int extraHealth = dice.roll();
             Health playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>();
             if (playerHealth.health + extraHealth >= playerHealth.maxHealth)
@@ -30,6 +46,8 @@ namespace Omega.UI
             {
                 playerHealth.AddHealth(extraHealth);
             }
+
+            playerEnergy.energy -= dice.cost;
         }
     }
 }

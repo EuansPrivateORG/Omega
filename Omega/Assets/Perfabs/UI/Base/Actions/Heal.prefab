@@ -840,6 +840,18 @@ PrefabInstance:
     - {fileID: 2592401124967322035, guid: 1ff5d9b461eadf749938f968bf780bc1, type: 3}
     - {fileID: 7477980700780247219, guid: 1ff5d9b461eadf749938f968bf780bc1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ff5d9b461eadf749938f968bf780bc1, type: 3}
+--- !u!114 &260015340361189572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8157493117121249230, guid: 1ff5d9b461eadf749938f968bf780bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8263822011622831882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605581964998586584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &605581964998586584 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8847756602712426450, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -858,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e9debc45a24b848adaccbe655d104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 260015340361189572}
   dice: {fileID: 11400000, guid: 71eec37e273f08044b03c563910921c9, type: 2}
 --- !u!1 &642681671164973889 stripped
 GameObject:
@@ -883,7 +896,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e9debc45a24b848adaccbe655d104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 1743077606146218966}
   dice: {fileID: 11400000, guid: c9b023891b9ae2a4fa7eaac6735bf1fd, type: 2}
+--- !u!114 &1743077606146218966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7682676484982287580, guid: 1ff5d9b461eadf749938f968bf780bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8263822011622831882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426533724521407434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4029547224198585761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4991445857868032683, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -902,7 +928,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e9debc45a24b848adaccbe655d104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 4330040464481363389}
   dice: {fileID: 11400000, guid: bec744e53f93dad46a418acebb93f0c0, type: 2}
+--- !u!114 &4330040464481363389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5672735124852019895, guid: 1ff5d9b461eadf749938f968bf780bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8263822011622831882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4029547224198585761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6956997946164092247 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1306825179605674589, guid: 1ff5d9b461eadf749938f968bf780bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8263822011622831882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7741845814385157451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7741845814385157451 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1864052184997466689, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -921,6 +972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e9debc45a24b848adaccbe655d104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 6956997946164092247}
   dice: {fileID: 11400000, guid: 9bf7e4fc0ebcba147aff9c85f806df68, type: 2}
 --- !u!1 &8347073486992127137 stripped
 GameObject:
@@ -940,7 +992,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e9debc45a24b848adaccbe655d104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 8658860884938001597}
   dice: {fileID: 11400000, guid: 158bbf01337f99048b53a41e416a5778, type: 2}
+--- !u!114 &8507103114581106695 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 333745088640112397, guid: 1ff5d9b461eadf749938f968bf780bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8263822011622831882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075872760030812187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8658860884938001597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 757882709876161463, guid: 1ff5d9b461eadf749938f968bf780bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8263822011622831882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347073486992127137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9075872760030812187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1107045921441640209, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -959,4 +1036,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e9debc45a24b848adaccbe655d104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 8507103114581106695}
   dice: {fileID: 11400000, guid: cf194ad621684d5438ccedc2b21d2d5c, type: 2}

@@ -8,6 +8,8 @@ namespace Omega.UI
 {
     public class ActionButtonHandler : MonoBehaviour
     {
+        public Button button;
+
         public void SetSelectedElement(Selectable selectable)
         {
             EventSystem.current.SetSelectedGameObject(selectable.gameObject);

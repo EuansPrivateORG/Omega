@@ -15,4 +15,4 @@ MonoBehaviour:
   minimumRoll: 1
   maximumRoll: 20
   rollBonus: 6
-  cost: 0
+  cost: 12

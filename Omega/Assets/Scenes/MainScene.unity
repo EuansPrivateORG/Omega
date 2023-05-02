@@ -464,6 +464,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &321048999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8308399843480006488, guid: d29fc24822bfc8241a517ea8b3088b5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7905966732837235605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &781620681
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +771,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 862083187091220066, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1257330702235669235, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -889,6 +906,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6499777259306304860, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 321048999}
     - target: {fileID: 7029218019054830343, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_Pivot.x
