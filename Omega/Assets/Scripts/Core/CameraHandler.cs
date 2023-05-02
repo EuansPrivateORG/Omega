@@ -7,12 +7,19 @@ namespace Omega.Core
 {
     public class CameraHandler : MonoBehaviour
     {
+        [HideInInspector]
         [SerializeField] List<CinemachineVirtualCamera> playerCameras;
 
+        [HideInInspector]
         public CinemachineVirtualCamera firstPlayerCamera;
         private CinemachineVirtualCamera currentPlayerCamera;
 
-        [SerializeField] public PlayerIdentifier playerIdentifier;
+        PlayerIdentifier playerIdentifier;
+
+        private void Awake()
+        {
+            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+        }
 
         public void SetupCameras()
         {

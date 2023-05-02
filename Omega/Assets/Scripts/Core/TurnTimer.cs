@@ -7,8 +7,8 @@ namespace Omega.Core
     public class TurnTimer : MonoBehaviour
     {
         [SerializeField] public float turnTimeLimit = 10f;
-        [SerializeField] private float timeLeft;
 
+        private float timeLeft;
         private bool timeOn = false;
         PlayerIdentifier playerIdentifier;
 

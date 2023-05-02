@@ -33,6 +33,11 @@ namespace Omega.UI
                 button.interactable = true;
             }
         }
+        private void OnDisable()
+        {
+            List<GameObject> attackablePlayers = new List<GameObject>();
+            DisableBaseSelection(attackablePlayers);
+        }
 
         public void ButtonPressed()
         {
@@ -41,9 +46,20 @@ namespace Omega.UI
             int damage = dice.roll();
             List<GameObject> attackablePlayers = new List<GameObject>();
             playerEnergy.energy -= dice.cost;
+            EnableBaseSelection(attackablePlayers);
+
+            EventSystem eventSystem = EventSystem.current;
+            eventSystem.SetSelectedGameObject(attackablePlayers[playerIdentifier.currentPlayerIndex]);
+            //Debug.Log(attackablePlayers[0]);
+
+
+        }
+
+        private void EnableBaseSelection(List<GameObject> attackablePlayers)
+        {
             foreach (GameObject item in playerIdentifier.playerIndex)
             {
-                if(item != playerIdentifier.currentPlayer)
+                if (item != playerIdentifier.currentPlayer)
                 {
                     item.GetComponent<Selectable>().enabled = true;
                     item.GetComponent<Outline>().enabled = true;
@@ -52,13 +68,23 @@ namespace Omega.UI
                 }
 
             }
-            EventSystem eventSystem = EventSystem.current;
-            eventSystem.SetSelectedGameObject(attackablePlayers[0]);
-            Debug.Log(attackablePlayers[0]);
-            attackablePlayers[0].GetComponent<Outline>().OutlineColor = Color.red;
-            //PlayerSelectionHandler playerSelectionHandler = attackablePlayers[0].GetComponent<PlayerSelectionHandler>();
-            //playerSelectionHandler.ChangeSelection();
+        }
 
+        private void DisableBaseSelection(List<GameObject> attackablePlayers)
+        {
+            foreach (GameObject item in playerIdentifier.playerIndex)
+            {
+                if (item != playerIdentifier.currentPlayer)
+                {
+                    if(item != null)
+                    {
+                        item.GetComponent<Selectable>().enabled = false;
+                        item.GetComponent<Outline>().enabled = false;
+                        attackablePlayers.Add(item);
+                    }
+                }
+
+            }
         }
     }
 }
