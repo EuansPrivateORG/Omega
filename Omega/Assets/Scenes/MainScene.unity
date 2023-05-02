@@ -525,6 +525,8 @@ MonoBehaviour:
   basePlayerPrefab: {fileID: 8134083268925729400, guid: e94698817926d2343a600094da61fe88,
     type: 3}
   numberOfPlayers: 5
+  health: 20
+  energy: 3
   radius: 5
   players: {fileID: 1902693845}
   playerList: []

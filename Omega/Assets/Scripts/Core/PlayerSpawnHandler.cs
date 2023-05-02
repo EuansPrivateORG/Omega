@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Omega.Status;
 
 
 namespace Omega.Core
@@ -14,6 +15,14 @@ namespace Omega.Core
         [Header("PlayerCount")]
         [Tooltip("Current number of players in game session")]
         [SerializeField] public int numberOfPlayers;                    //Need to linked into the main menu where we assign the amount of players in the game
+
+        [Header("Stats")]
+
+        [Tooltip("Health all players will spawn with")]
+        [SerializeField] private int health;
+
+        [Tooltip("Energy all players will spawn with")]
+        [SerializeField] private int energy;
 
         [Header("Spawning Radius")]
         [Tooltip("the size of the circle the players are spawned on")]
@@ -53,6 +62,8 @@ namespace Omega.Core
                 playerList.Add(spawnedObject);
                 playerIdentifier.SetIndex(playerList);
 
+                spawnedObject.GetComponent<Health>().maxHealth = health;
+                spawnedObject.GetComponent<Energy>().energy = energy;
             }
         }
     }
