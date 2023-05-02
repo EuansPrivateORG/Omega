@@ -23,6 +23,7 @@ namespace Omega.Core
         [Tooltip("Where in the hierachy the players are spawned")]
         [SerializeField] Transform players;
 
+        [HideInInspector]
         [SerializeField] private List<GameObject> playerList = new List<GameObject>();
 
         PlayerIdentifier playerIdentifier;
