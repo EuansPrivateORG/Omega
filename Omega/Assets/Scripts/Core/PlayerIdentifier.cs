@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,6 +34,8 @@ namespace Omega.Core
                 currentPlayerIndex = 0;
             }
             currentPlayer = playerIndex[currentPlayerIndex];
+            CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
+            cameraHandler.SwitchCamera(currentPlayer.GetComponentInChildren<CinemachineVirtualCamera>());
             turnTimer.ResetTimer();
         }
     }

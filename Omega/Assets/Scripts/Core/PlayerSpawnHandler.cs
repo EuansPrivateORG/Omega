@@ -53,19 +53,22 @@ namespace Omega.Core
 
             for (int i = 0; i < numberOfPlayers; i++)
             {
-                float angle = i * angleBetweenPoints;
+                float angle = 360f - i * angleBetweenPoints; // change angle calculation to clockwise
                 Vector3 position = new Vector3(radius * Mathf.Cos(angle * Mathf.Deg2Rad), 0f, radius * Mathf.Sin(angle * Mathf.Deg2Rad));
-                GameObject spawnedObject = Instantiate(basePlayerPrefab, position, Quaternion.identity);
-                spawnedObject.transform.SetParent(players);
-                spawnedObject.transform.LookAt(centerPosition);
-                spawnedObject.name = ("Player " + (i+1)).ToString(); 
-                playerList.Add(spawnedObject);
+                GameObject instantiatedPlayer = Instantiate(basePlayerPrefab, position, Quaternion.identity);
+                instantiatedPlayer.transform.SetParent(players);
+                instantiatedPlayer.transform.LookAt(centerPosition);
+                instantiatedPlayer.name = ("Player " + (i + 1)).ToString();
+                playerList.Add(instantiatedPlayer);
                 playerIdentifier.SetIndex(playerList);
 
-                spawnedObject.GetComponent<Health>().maxHealth = health;
-                spawnedObject.GetComponent<Energy>().energy = energy;
+                instantiatedPlayer.GetComponent<Health>().maxHealth = health;
+                instantiatedPlayer.GetComponent<Energy>().energy = energy;
             }
+            CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
+            cameraHandler.SetupCameras();
         }
+
     }
 }
 

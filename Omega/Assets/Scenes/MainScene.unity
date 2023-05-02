@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 85744701}
   - component: {fileID: 85744704}
   - component: {fileID: 85744705}
+  - component: {fileID: 85744706}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -277,6 +278,21 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &85744706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85744700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46000805f0c3bc14bbe42550b90819c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCameras: []
+  firstPlayerCamera: {fileID: 0}
+  playerIdentifier: {fileID: 781620684}
 --- !u!1 &153677248
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePlayerPrefab: {fileID: 8134083268925729400, guid: e94698817926d2343a600094da61fe88,
     type: 3}
-  numberOfPlayers: 5
+  numberOfPlayers: 6
   health: 20
   energy: 3
   radius: 5
