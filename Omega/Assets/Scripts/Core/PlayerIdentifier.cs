@@ -12,7 +12,9 @@ namespace Omega.Core
     {
         [HideInInspector]
         public List<GameObject> playerIndex = new List<GameObject>();
-        public GameObject currentPlayer = null;
+
+        [SerializeField] public GameObject currentPlayer = null;
+
         [HideInInspector]
         public int currentPlayerIndex = 0;
         TurnTimer turnTimer;
