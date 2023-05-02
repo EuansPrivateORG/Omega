@@ -19,6 +19,18 @@ namespace Omega.Core
         [Tooltip("the size of the circle the players are spawned on")]
         [SerializeField] public float radius;                           //conistant for map size
 
+        [Header("Hierachy Control")]
+        [Tooltip("Where in the hierachy the players are spawned")]
+        [SerializeField] Transform players;
+
+        [SerializeField] private List<GameObject> playerList = new List<GameObject>();
+
+        PlayerIdentifier playerIdentifier;
+
+        private void Awake()
+        {
+            playerIdentifier = GetComponent<PlayerIdentifier>();
+        }
         void Start()
         {
             SpawnPlayers();
@@ -34,7 +46,11 @@ namespace Omega.Core
                 float angle = i * angleBetweenPoints;
                 Vector3 position = new Vector3(radius * Mathf.Cos(angle * Mathf.Deg2Rad), 0f, radius * Mathf.Sin(angle * Mathf.Deg2Rad));
                 GameObject spawnedObject = Instantiate(basePlayerPrefab, position, Quaternion.identity);
+                spawnedObject.transform.SetParent(players);
                 spawnedObject.transform.LookAt(centerPosition);
+                spawnedObject.name = ("Player " + (i+1)).ToString(); 
+                playerList.Add(spawnedObject);
+                playerIdentifier.SetIndex(playerList);
 
             }
         }
