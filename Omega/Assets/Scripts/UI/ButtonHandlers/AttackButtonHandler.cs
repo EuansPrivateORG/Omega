@@ -41,19 +41,23 @@ namespace Omega.UI
             int damage = dice.roll();
             List<GameObject> attackablePlayers = new List<GameObject>();
             playerEnergy.energy -= dice.cost;
-            foreach (var item in playerIdentifier.playerIndex)
+            foreach (GameObject item in playerIdentifier.playerIndex)
             {
                 if(item != playerIdentifier.currentPlayer)
                 {
-                    gameObject.GetComponent<Selectable>().enabled = true;
-                    gameObject.GetComponent<Outline>().enabled = true;
+                    item.GetComponent<Selectable>().enabled = true;
+                    item.GetComponent<Outline>().enabled = true;
+                    item.GetComponent<Outline>().OutlineColor = Color.white;
                     attackablePlayers.Add(item);
                 }
 
             }
             EventSystem eventSystem = EventSystem.current;
             eventSystem.SetSelectedGameObject(attackablePlayers[0]);
+            Debug.Log(attackablePlayers[0]);
             attackablePlayers[0].GetComponent<Outline>().OutlineColor = Color.red;
+            //PlayerSelectionHandler playerSelectionHandler = attackablePlayers[0].GetComponent<PlayerSelectionHandler>();
+            //playerSelectionHandler.ChangeSelection();
 
         }
     }

@@ -236,6 +236,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: D12
       objectReference: {fileID: 0}
+    - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: dice
@@ -437,6 +442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: D10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
@@ -764,6 +774,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: D4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
@@ -1101,6 +1116,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: D20
       objectReference: {fileID: 0}
+    - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: dice
@@ -1303,6 +1323,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: D6
       objectReference: {fileID: 0}
+    - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: dice
@@ -1504,6 +1529,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: D8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5431429372830662823, guid: 351212a0d47807948a1607f4350f676c,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7070323096810810019, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}

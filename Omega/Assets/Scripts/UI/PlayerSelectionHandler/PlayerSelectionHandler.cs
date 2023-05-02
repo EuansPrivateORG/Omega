@@ -8,9 +8,29 @@ namespace Omega.UI
 {
     public class PlayerSelectionHandler : MonoBehaviour
     {
-        public void SetSelectedElement(GameObject playerToSelect)
+        [SerializeField] public Outline outline;
+        private void Update()
         {
-            EventSystem.current.SetSelectedGameObject(gameObject.gameObject);
+            //if (outline.enabled == true)
+            //{
+            //    ChangeSelection();
+            //}
         }
+        public void ChangeSelection()
+        {
+            if (!EventSystem.current.currentSelectedGameObject == this)
+            {
+                Debug.Log(EventSystem.current.currentSelectedGameObject + "RED");
+                outline.OutlineColor = Color.white;
+            }
+            else
+            {
+                outline.OutlineColor = Color.red;
+                Debug.Log(EventSystem.current.currentSelectedGameObject + "WHITE");
+            }
+        }
+
+
+
     }
 }
