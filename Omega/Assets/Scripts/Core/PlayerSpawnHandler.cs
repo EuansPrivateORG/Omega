@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Omega.Status;
 using UnityEngine.UI;
+using Omega.UI;
 
 namespace Omega.Core
 {
@@ -75,6 +76,8 @@ namespace Omega.Core
             playerIdentifier.SetIndex(playerList);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             cameraHandler.SetupCameras();
+            TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
+            StartCoroutine(turnTransition.FadeInHUD());
         }
 
         private void SpawnPlayerTurnOrder()

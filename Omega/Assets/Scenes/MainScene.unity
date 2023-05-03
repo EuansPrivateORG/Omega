@@ -939,7 +939,7 @@ PrefabInstance:
     - target: {fileID: 196270197128853225, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_Name
-      value: HUD
+      value: GameUI
       objectReference: {fileID: 0}
     - target: {fileID: 417529705200584608, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
@@ -991,6 +991,11 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 149165880}
+    - target: {fileID: 1177682203517326635, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: fadeTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1257330702235669235, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1024,6 +1029,11 @@ PrefabInstance:
     - target: {fileID: 1391606760948873403, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_Navigation.m_WrapAround
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680998548690183852, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1789776443201698380, guid: d29fc24822bfc8241a517ea8b3088b5d,
@@ -1139,6 +1149,11 @@ PrefabInstance:
     - target: {fileID: 6424721584880835447, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937500809801019283, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7029218019054830343, guid: d29fc24822bfc8241a517ea8b3088b5d,
