@@ -15,6 +15,8 @@ namespace Omega.UI
 
         private PlayerIdentifier playerIdentifier;
 
+        private int currentDamage;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
@@ -41,17 +43,18 @@ namespace Omega.UI
 
         public void ButtonPressed()
         {
-            Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
-
             int damage = dice.roll();
+            currentDamage = damage;
+
             List<GameObject> attackablePlayers = new List<GameObject>();
-            playerEnergy.SpendEnergy(dice.cost);
+
             EnableBaseSelection(attackablePlayers);
 
             EventSystem eventSystem = EventSystem.current;
             eventSystem.SetSelectedGameObject(attackablePlayers[playerIdentifier.currentPlayerIndex]);
 
-
+            PlayerSelectionHandler playerSelection = FindObjectOfType<PlayerSelectionHandler>();
+            playerSelection.GetCurrentAction(this);
         }
 
         private void EnableBaseSelection(List<GameObject> attackablePlayers)
@@ -83,6 +86,19 @@ namespace Omega.UI
                     }
                 }
 
+            }
+        }
+
+        public void PerformAttack(GameObject toDamage)
+        {
+            if(toDamage.TryGetComponent<Health>(out Health health))
+            {
+                health.TakeDamage(currentDamage);
+                Debug.Log(currentDamage.ToString() + " Damage Dealt");
+
+                Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+
+                playerEnergy.SpendEnergy(dice.cost);
             }
         }
     }
