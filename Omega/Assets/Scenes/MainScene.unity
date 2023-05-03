@@ -510,7 +510,7 @@ MonoBehaviour:
     type: 3}
   basePlayerTurnOrderPrefab: {fileID: 1381391798786512143, guid: 483129d195a34124482f965dd4925fd2,
     type: 3}
-  numberOfPlayers: 6
+  numberOfPlayers: 5
   playerStartingHealth: 20
   playerStartingEnergy: 3
   radius: 10

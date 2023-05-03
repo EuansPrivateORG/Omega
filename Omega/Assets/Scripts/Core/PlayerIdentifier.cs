@@ -11,12 +11,13 @@ namespace Omega.Core
 {
     public class PlayerIdentifier : MonoBehaviour
     {
+        [HideInInspector]
         public List<GameObject> playerIndex = new List<GameObject>();
-
+        [HideInInspector]
         public List<GameObject> turnOrderIndex = new List<GameObject>();
-
+        [HideInInspector]
         public List<GameObject> currentlyAlivePlayersInTurn = new List<GameObject>();
-
+        [HideInInspector]
         public List<GameObject> currentlyAlivePlayers = new List<GameObject>();
 
         [SerializeField] public GameObject currentPlayer = null;
