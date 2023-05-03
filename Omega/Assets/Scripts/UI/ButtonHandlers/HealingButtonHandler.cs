@@ -31,7 +31,7 @@ namespace Omega.UI
                 button.interactable = true;
             }
         }
-        
+
         public void ButtonPressed()
         {
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
@@ -48,6 +48,8 @@ namespace Omega.UI
             }
 
             playerEnergy.SpendEnergy(dice.cost);
+
+            playerIdentifier.NextPlayer();
         }
     }
 }

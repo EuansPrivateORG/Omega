@@ -6,6 +6,7 @@ using Omega.Core;
 using Omega.Status;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 namespace Omega.UI
 {
@@ -16,6 +17,8 @@ namespace Omega.UI
         private PlayerIdentifier playerIdentifier;
 
         private int currentDamage;
+
+        private GameObject nextAvailablePlayer;
 
         private void Awake()
         {
@@ -51,7 +54,9 @@ namespace Omega.UI
             EnableBaseSelection(attackablePlayers);
 
             EventSystem eventSystem = EventSystem.current;
-            eventSystem.SetSelectedGameObject(attackablePlayers[playerIdentifier.currentPlayerIndex]);
+
+            Debug.Log(nextAvailablePlayer);
+            eventSystem.SetSelectedGameObject(nextAvailablePlayer);
 
             PlayerSelectionHandler playerSelection = FindObjectOfType<PlayerSelectionHandler>();
             playerSelection.GetCurrentAction(this);
@@ -59,16 +64,30 @@ namespace Omega.UI
 
         private void EnableBaseSelection(List<GameObject> attackablePlayers)
         {
-            foreach (GameObject item in playerIdentifier.playerIndex)
-            {
-                if (item != playerIdentifier.currentPlayer)
-                {
-                    item.GetComponent<Selectable>().enabled = true;
-                    item.GetComponent<Outline>().enabled = true;
-                    item.GetComponent<Outline>().OutlineColor = Color.white;
-                    attackablePlayers.Add(item);
-                }
+            bool foundNextPlayer = false;
 
+            for (int i = 0; i < playerIdentifier.turnOrderIndex.Count; i++)
+            {
+                GameObject playerObject = playerIdentifier.turnOrderIndex[i];
+
+                if (playerObject != playerIdentifier.currentPlayer && !playerObject.GetComponent<Health>().isDead)
+                {
+                    playerObject.GetComponent<Selectable>().enabled = true;
+                    playerObject.GetComponent<Outline>().enabled = true;
+                    playerObject.GetComponent<Outline>().OutlineColor = Color.white;
+                    attackablePlayers.Add(playerObject);
+
+                    if (!foundNextPlayer)
+                    {
+                        nextAvailablePlayer = playerObject;
+                        foundNextPlayer = true;
+                    }
+                }
+            }
+
+            if (!foundNextPlayer)
+            {
+                nextAvailablePlayer = null;
             }
         }
 
@@ -76,16 +95,12 @@ namespace Omega.UI
         {
             foreach (GameObject item in playerIdentifier.playerIndex)
             {
-                if (item != playerIdentifier.currentPlayer)
+                if(item != null)
                 {
-                    if(item != null)
-                    {
-                        item.GetComponent<Selectable>().enabled = false;
-                        item.GetComponent<Outline>().enabled = false;
-                        attackablePlayers.Add(item);
-                    }
+                    item.GetComponent<Selectable>().enabled = false;
+                    item.GetComponent<Outline>().enabled = false;
+                    attackablePlayers.Add(item);
                 }
-
             }
         }
 
@@ -99,6 +114,8 @@ namespace Omega.UI
                 Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
                 playerEnergy.SpendEnergy(dice.cost);
+
+                playerIdentifier.NextPlayer();
             }
         }
     }

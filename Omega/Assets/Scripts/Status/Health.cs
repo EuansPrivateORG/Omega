@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Omega.Core;
 
 namespace Omega.Status
 {
@@ -10,6 +11,8 @@ namespace Omega.Status
 
         [HideInInspector] public int maxHealth;
 
+        [HideInInspector] public bool isDead = false;
+
         public void AddHealth(int addition)
         {
             currentHealth += addition;
@@ -18,6 +21,11 @@ namespace Omega.Status
         public void TakeDamage(int loss)
         {
             currentHealth -= loss;
+
+            if(currentHealth <= 0)
+            {
+                isDead = true;
+            }
         }
 
         public void SetHealth()

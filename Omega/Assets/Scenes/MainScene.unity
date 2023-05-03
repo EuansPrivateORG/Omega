@@ -542,6 +542,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: []
+  turnOrderIndex: []
+  currentlyAlivePlayers: []
   currentPlayer: {fileID: 0}
   energyGainPerTurn: 2
   currentPlayerIndex: 0

@@ -33,6 +33,11 @@ namespace Omega.UI
 
         private void OnCancelPressed(InputAction.CallbackContext context)
         {
+            ResetUI();
+        }
+
+        public void ResetUI()
+        {
             lastSelectedGameObject = EventSystem.current.currentSelectedGameObject;
             if (gameobjectToDisable != null)
             {

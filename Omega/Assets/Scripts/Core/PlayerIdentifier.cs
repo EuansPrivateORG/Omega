@@ -1,6 +1,7 @@
 using Cinemachine;
 using Omega.Status;
 using Omega.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,11 @@ namespace Omega.Core
         [HideInInspector]
         public List<GameObject> playerIndex = new List<GameObject>();
 
+        [HideInInspector]
+        public List<GameObject> turnOrderIndex = new List<GameObject>();
+
+        public List<GameObject> currentlyAlivePlayers = new List<GameObject>();
+
         [SerializeField] public GameObject currentPlayer = null;
         public int energyGainPerTurn = 2;
         [HideInInspector]
@@ -24,22 +30,50 @@ namespace Omega.Core
             turnTimer = GetComponent<TurnTimer>();
         }
 
+        public void SetupTurnOrderIndex()
+        {
+            turnOrderIndex.Clear();
+            int numPlayers = playerIndex.Count;
+            if (currentPlayerIndex < 0 || currentPlayerIndex >= numPlayers)
+            {
+                throw new ArgumentOutOfRangeException("currentPlayerIndex", "currentPlayerIndex is out of range.");
+            }
+            for (int i = currentPlayerIndex; i < numPlayers; i++)
+            {
+                turnOrderIndex.Add(playerIndex[i]);
+            }
+            for (int i = 0; i < currentPlayerIndex; i++)
+            {
+                turnOrderIndex.Add(playerIndex[i]);
+            }
+        }
+
         public void SetIndex(List<GameObject> playerList)
         {
             playerIndex = playerList;
             currentPlayer = playerIndex[0];
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
+            SetupTurnOrderIndex();
 
+            SetupCurrentlyAlivePlayerIndex();
         }
+
 
         public void NextPlayer()
         {
-            currentPlayerIndex++;
+            SetupCurrentlyAlivePlayerIndex();
+
+                        currentPlayerIndex++;
             if (currentPlayerIndex >= playerIndex.Count)
             {
                 currentPlayerIndex = 0;
             }
             currentPlayer = playerIndex[currentPlayerIndex];
+            if (currentPlayer.GetComponent<Health>().isDead)
+            {
+                currentPlayerIndex++;
+                currentPlayer = playerIndex[currentPlayerIndex];
+            }
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
@@ -47,6 +81,14 @@ namespace Omega.Core
             cameraHandler.SwitchCamera(currentPlayer.GetComponentInChildren<CinemachineVirtualCamera>());
             StartCoroutine(DelayedHUDFadeIn(turnTransition));
             turnTimer.ResetTimer();
+
+            CancelHandler handler = FindObjectOfType<CancelHandler>();
+            if(handler != null) 
+            {
+                handler.ResetUI();
+            }
+
+            SetupTurnOrderIndex();
         }
 
         private IEnumerator DelayedHUDFadeIn(TurnTransition turnTransition)
@@ -70,6 +112,30 @@ namespace Omega.Core
                     break;
                 }
             }
+        }
+
+        private void SetupCurrentlyAlivePlayerIndex()
+        {
+            currentlyAlivePlayers.Clear();
+            foreach (GameObject player in turnOrderIndex)
+            {
+                if (!player.GetComponent<Health>().isDead)
+                {
+                    currentlyAlivePlayers.Add(player);
+                }
+            }
+        }
+
+        public int GetPlaceInIndex(GameObject obj)
+        {
+            for (int i = 0; i < currentlyAlivePlayers.Count; i++)
+            {
+                if(obj == currentlyAlivePlayers[i])
+                {
+                    return i;
+                }
+            }
+            return 0;
         }
     }
 }
