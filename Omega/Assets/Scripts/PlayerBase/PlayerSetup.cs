@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Omega.Core
 {
@@ -10,6 +11,8 @@ namespace Omega.Core
 
         [HideInInspector] public GameObject playerPreFab;
 
+        [HideInInspector] public int playerID = 0;
+
         void Start()
         {
             playerPreFab = playerBase.baseVarientPrefabList[Random.Range(0, playerBase.baseVarientPrefabList.Count)];
@@ -17,6 +20,10 @@ namespace Omega.Core
 
             MeshRenderer playerMesh = instantiated.GetComponent<MeshRenderer>();
             playerMesh.material = playerBase.materialVarientOverrite;
+
+            PlayerSpawnHandler playerSpawner = FindObjectOfType<PlayerSpawnHandler>();
+            GameObject icon = playerSpawner.playerImageList[playerID - 1];
+            icon.GetComponent<Image>().color = playerBase.materialVarientOverrite.color;
         }
 
     }

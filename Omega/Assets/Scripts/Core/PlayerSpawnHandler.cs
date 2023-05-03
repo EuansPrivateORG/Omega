@@ -43,6 +43,8 @@ namespace Omega.Core
 
         PlayerIdentifier playerIdentifier;
 
+        public List<GameObject> playerImageList;
+
         private void Awake()
         {
             playerIdentifier = GetComponent<PlayerIdentifier>();
@@ -68,6 +70,7 @@ namespace Omega.Core
                 int ranPlayer = Random.Range(0, playerVarients.Count);
                 GameObject instantiatedPlayer = Instantiate(playerVarients[ranPlayer], position, Quaternion.identity);
                 playerVarients.Remove(playerVarients[ranPlayer]);
+                instantiatedPlayer.GetComponent<PlayerSetup>().playerID = i + 1;
                 instantiatedPlayer.transform.SetParent(players);
                 instantiatedPlayer.transform.LookAt(centerPosition);
                 instantiatedPlayer.name = ("Player " + (i + 1)).ToString();
@@ -91,10 +94,18 @@ namespace Omega.Core
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 GameObject instantiatedPlayerIcon = Instantiate(basePlayerTurnOrderPrefab, playersTurnOrder);
+                foreach(Transform child in instantiatedPlayerIcon.transform)
+                {
+                    if(child.tag == "PlayerIcon")
+                    {
+                        playerImageList.Add(child.gameObject);
+                    }
+                }
                 //this should be moved to its own script where we handle the turn order transitions based on the currenly player from the identifier
                 if(i == playerIdentifier.currentPlayerIndex)
                 {
                     instantiatedPlayerIcon.GetComponent<Image>().enabled = true;
+
                 }
             }
         }

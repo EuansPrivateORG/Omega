@@ -1,6 +1,7 @@
 using Cinemachine;
 using Omega.Status;
 using Omega.UI;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -86,6 +87,8 @@ namespace Omega.Core
             }
 
             SetupTurnOrderIndex();
+
+            UpdatePlayerIcon();
         }
 
         private IEnumerator DelayedHUDFadeIn(TurnTransition turnTransition)
@@ -142,6 +145,22 @@ namespace Omega.Core
                 }
             }
             return 0;
+        }
+
+        private void UpdatePlayerIcon()
+        {
+            PlayerSpawnHandler playerSpawner = FindObjectOfType<PlayerSpawnHandler>();
+            for (int i = 0; i < playerSpawner.playerImageList.Count; i++)
+            {
+                if (i  == currentPlayerIndex)
+                {
+                    playerSpawner.playerImageList[i].transform.parent.GetComponent<Image>().enabled = true;
+                }
+                else
+                {
+                    playerSpawner.playerImageList[i].transform.parent.GetComponent<Image>().enabled = false;
+                }
+            }
         }
     }
 }

@@ -515,13 +515,14 @@ MonoBehaviour:
   - {fileID: 3675312638052042385, guid: 5df946d25a1a6d24ea90393ab09bc48d, type: 3}
   basePlayerTurnOrderPrefab: {fileID: 1381391798786512143, guid: 483129d195a34124482f965dd4925fd2,
     type: 3}
-  numberOfPlayers: 3
+  numberOfPlayers: 5
   playerStartingHealth: 20
   playerStartingEnergy: 3
   radius: 10
   players: {fileID: 1902693845}
   playersTurnOrder: {fileID: 1914578938}
   playerList: []
+  playerImageList: []
 --- !u!114 &781620684
 MonoBehaviour:
   m_ObjectHideFlags: 0
