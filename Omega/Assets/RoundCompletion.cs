@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Omega.UI
@@ -71,8 +72,6 @@ namespace Omega.UI
         public void ResetGame()
         {
             print("Resetting Game");
-            roundCompletionCanvasGroup.interactable = false;
-            StartCoroutine(FadeOutHUD(roundCompletionCanvasGroup));
         }
 
     }
