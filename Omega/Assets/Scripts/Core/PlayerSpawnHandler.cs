@@ -45,12 +45,15 @@ namespace Omega.Core
         private void Awake()
         {
             playerIdentifier = GetComponent<PlayerIdentifier>();
+
         }
-        void Start()
+
+        private void Start()
         {
             SpawnPlayers();
             SpawnPlayerTurnOrder();
         }
+
 
         private void SpawnPlayers()
         {

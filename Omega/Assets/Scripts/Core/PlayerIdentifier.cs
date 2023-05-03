@@ -51,11 +51,11 @@ namespace Omega.Core
         public void SetIndex(List<GameObject> playerList)
         {
             playerIndex = playerList;
-            currentPlayer = playerIndex[0];
-            currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
             SetupTurnOrderIndex();
-
             SetupCurrentlyAlivePlayerIndex();
+
+            currentPlayer = currentlyAlivePlayers[0];
+            currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
         }
 
 
@@ -64,16 +64,12 @@ namespace Omega.Core
             SetupCurrentlyAlivePlayerIndex();
 
             currentPlayerIndex++;
-            if (currentPlayerIndex >= playerIndex.Count)
+            if (currentPlayerIndex >= currentlyAlivePlayers.Count)
             {
                 currentPlayerIndex = 0;
             }
-            currentPlayer = playerIndex[currentPlayerIndex];
-            if (currentPlayer.GetComponent<Health>().isDead)
-            {
-                currentPlayerIndex++;
-                currentPlayer = playerIndex[currentPlayerIndex];
-            }
+            currentPlayer = currentlyAlivePlayers[currentPlayerIndex];
+
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
@@ -100,15 +96,15 @@ namespace Omega.Core
 
         public void SetNextSelectedObjectInEventSystem(EventSystem eventSystem)
         {
-            int currentIndex = playerIndex.IndexOf(currentPlayer);
+            int currentIndex = currentlyAlivePlayers.IndexOf(currentPlayer);
 
-            for (int i = 1; i < playerIndex.Count; i++)
+            for (int i = 1; i < currentlyAlivePlayers.Count; i++)
             {
-                int nextIndex = (currentIndex + i) % playerIndex.Count;
+                int nextIndex = (currentIndex + i) % currentlyAlivePlayers.Count;
 
-                if (playerIndex[nextIndex] != currentPlayer)
+                if (currentlyAlivePlayers[nextIndex] != currentPlayer)
                 {
-                    eventSystem.SetSelectedGameObject(playerIndex[nextIndex]);
+                    eventSystem.SetSelectedGameObject(currentlyAlivePlayers[nextIndex]);
                     break;
                 }
             }
@@ -130,7 +126,7 @@ namespace Omega.Core
             {
                 if (!player.GetComponent<Health>().isDead)
                 {
-                    currentlyAlivePlayersInTurn.Add(player);
+                    currentlyAlivePlayers.Add(player);
                 }
             }
         }

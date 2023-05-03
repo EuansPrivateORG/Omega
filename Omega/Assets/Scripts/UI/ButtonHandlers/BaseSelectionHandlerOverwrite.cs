@@ -30,6 +30,7 @@ namespace Omega.UI
 
         void OnEnable()
         {
+
             // Subscribe to the "Select on Left" and "Select on Right" actions of the Input System
             InputSystemUIInputModule inputModule = FindObjectOfType<InputSystemUIInputModule>();
             inputModule.actionsAsset.FindAction("UI/Navigate").performed += OnNavigatePerformed;
@@ -70,7 +71,7 @@ namespace Omega.UI
         int WrapIndex(int index)
         {
             // Helper function to wrap an index around the start and end of the list
-            return (index + playerIdentifier.currentlyAlivePlayersInTurn.Count) % playerIdentifier.currentlyAlivePlayersInTurn.Count;
+            return (index + playerIdentifier.currentlyAlivePlayers.Count) % playerIdentifier.currentlyAlivePlayers.Count;
         }
     }
 }
