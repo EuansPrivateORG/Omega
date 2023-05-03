@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Omega.Core;
+using Omega.Status;
 
-namespace Omega.Status
+namespace Omega.UI
 {
     public class PlayerHealthDisplay : MonoBehaviour
     {
@@ -32,7 +33,7 @@ namespace Omega.Status
         {
             if (playerIdentifier.currentPlayer != null)
             {
-                playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>().health;
+                playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>().currentHealth;
             }
             DisplayText.text = playerHealth.ToString();
         }

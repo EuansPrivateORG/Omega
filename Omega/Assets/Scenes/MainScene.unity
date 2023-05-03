@@ -523,8 +523,8 @@ MonoBehaviour:
   basePlayerTurnOrderPrefab: {fileID: 1381391798786512143, guid: 483129d195a34124482f965dd4925fd2,
     type: 3}
   numberOfPlayers: 6
-  health: 20
-  energy: 3
+  playerStartingHealth: 20
+  playerStartingEnergy: 3
   radius: 10
   players: {fileID: 1902693845}
   playersTurnOrder: {fileID: 1914578938}
@@ -543,6 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: []
   currentPlayer: {fileID: 0}
+  energyGainPerTurn: 2
   currentPlayerIndex: 0
 --- !u!114 &781620685
 MonoBehaviour:

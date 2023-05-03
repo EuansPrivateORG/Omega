@@ -20,10 +20,10 @@ namespace Omega.Core
 
         [Header("Stats")]
         [Tooltip("Health all players will spawn with")]
-        [SerializeField] private int health;
+        [SerializeField] private int playerStartingHealth;
 
         [Tooltip("Energy all players will spawn with")]
-        [SerializeField] private int energy;
+        [SerializeField] private int playerStartingEnergy;
 
         [Header("Spawning Radius")]
         [Tooltip("the size of the circle the players are spawned on")]
@@ -65,13 +65,14 @@ namespace Omega.Core
                 instantiatedPlayer.transform.LookAt(centerPosition);
                 instantiatedPlayer.name = ("Player " + (i + 1)).ToString();
                 playerList.Add(instantiatedPlayer);
-                playerIdentifier.SetIndex(playerList);
 
-                instantiatedPlayer.GetComponent<Health>().maxHealth = health;
-                instantiatedPlayer.GetComponent<Energy>().energy = energy;
+                instantiatedPlayer.GetComponent<Health>().maxHealth = playerStartingHealth;
+                instantiatedPlayer.GetComponent<Health>().SetHealth();
+                instantiatedPlayer.GetComponent<Energy>().energy = playerStartingEnergy;
 
                 
             }
+            playerIdentifier.SetIndex(playerList);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             cameraHandler.SetupCameras();
         }

@@ -1,7 +1,5 @@
 using Cinemachine;
-using Omega.UI;
-using System;
-using System.Collections;
+using Omega.Status;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,7 +12,7 @@ namespace Omega.Core
         public List<GameObject> playerIndex = new List<GameObject>();
 
         [SerializeField] public GameObject currentPlayer = null;
-
+        public int energyGainPerTurn = 2;
         [HideInInspector]
         public int currentPlayerIndex = 0;
         TurnTimer turnTimer;
@@ -28,6 +26,7 @@ namespace Omega.Core
         {
             playerIndex = playerList;
             currentPlayer = playerIndex[0];
+            currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
 
         }
 
@@ -39,6 +38,7 @@ namespace Omega.Core
                 currentPlayerIndex = 0;
             }
             currentPlayer = playerIndex[currentPlayerIndex];
+            currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             cameraHandler.SwitchCamera(currentPlayer.GetComponentInChildren<CinemachineVirtualCamera>());
             turnTimer.ResetTimer();

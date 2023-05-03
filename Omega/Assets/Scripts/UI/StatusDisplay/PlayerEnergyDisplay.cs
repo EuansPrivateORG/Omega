@@ -1,10 +1,11 @@
 using Omega.Core;
+using Omega.Status;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Omega.Status
+namespace Omega.UI
 {
     public class PlayerEnergyDisplay : MonoBehaviour
     {

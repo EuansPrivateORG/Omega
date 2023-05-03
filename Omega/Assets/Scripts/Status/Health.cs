@@ -6,18 +6,23 @@ namespace Omega.Status
 {
     public class Health : MonoBehaviour
     {
-        [HideInInspector] public int health;
+        [HideInInspector] public int currentHealth;
 
         [HideInInspector] public int maxHealth;
 
         public void AddHealth(int addition)
         {
-            health += addition;
+            currentHealth += addition;
         }
 
         public void TakeDamage(int loss)
         {
-            health -= loss;
+            currentHealth -= loss;
+        }
+
+        public void SetHealth()
+        {
+            currentHealth = maxHealth;
         }
     }
 }

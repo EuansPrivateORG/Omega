@@ -8,6 +8,7 @@ namespace Omega.UI
 {
     public class ActionButtonHandler : MonoBehaviour
     {
+        [HideInInspector]
         public Button button;
 
         public void SetSelectedElement(Selectable selectable)

@@ -35,19 +35,19 @@ namespace Omega.UI
         public void ButtonPressed()
         {
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+            Health playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>();
 
             int extraHealth = dice.roll();
-            Health playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>();
-            if (playerHealth.health + extraHealth >= playerHealth.maxHealth)
+            if (playerHealth.currentHealth + extraHealth >= playerHealth.maxHealth)
             {
-                playerHealth.health = playerHealth.maxHealth;
+                playerHealth.currentHealth = playerHealth.maxHealth;
             }
             else
             {
                 playerHealth.AddHealth(extraHealth);
             }
 
-            playerEnergy.energy -= dice.cost;
+            playerEnergy.SpendEnergy(dice.cost);
         }
     }
 }

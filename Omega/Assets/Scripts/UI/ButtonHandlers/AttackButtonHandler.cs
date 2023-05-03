@@ -45,12 +45,11 @@ namespace Omega.UI
 
             int damage = dice.roll();
             List<GameObject> attackablePlayers = new List<GameObject>();
-            playerEnergy.energy -= dice.cost;
+            playerEnergy.SpendEnergy(dice.cost);
             EnableBaseSelection(attackablePlayers);
 
             EventSystem eventSystem = EventSystem.current;
             eventSystem.SetSelectedGameObject(attackablePlayers[playerIdentifier.currentPlayerIndex]);
-            //Debug.Log(attackablePlayers[0]);
 
 
         }

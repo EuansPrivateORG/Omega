@@ -8,14 +8,15 @@ namespace Omega.Status
     {
         [HideInInspector] public int energy;
 
-        public void AddHealth(int addition)
+        public void GainEnergy(int addition)
         {
             energy += addition;
         }
 
-        public void TakeDamage(int loss)
+        public void SpendEnergy(int loss)
         {
             energy -= loss;
+            //if (energy <= 0) energy = 0;
         }
     }
 }
