@@ -11,13 +11,14 @@ namespace Omega.Core
     {
         [Header("Spawnable")]
         [Tooltip("Base Player Object")]
-        [SerializeField] public GameObject basePlayerPrefab;
+        [SerializeField] public List<GameObject> playerVarients;
         [SerializeField] public GameObject basePlayerTurnOrderPrefab;
 
 
         [Header("PlayerCount")]
+        [Range(3,6)]
         [Tooltip("Current number of players in game session")]
-        [SerializeField] public int numberOfPlayers;                                     //Need to linked into the main menu where we assign the amount of players in the game
+        [SerializeField] public int numberOfPlayers ;                                     //Need to linked into the main menu where we assign the amount of players in the game
 
         [Header("Stats")]
         [Tooltip("Health all players will spawn with")]
@@ -64,7 +65,9 @@ namespace Omega.Core
             {
                 float angle = 360f - i * angleBetweenPoints; // change angle calculation to clockwise
                 Vector3 position = new Vector3(radius * Mathf.Cos(angle * Mathf.Deg2Rad), 0f, radius * Mathf.Sin(angle * Mathf.Deg2Rad));
-                GameObject instantiatedPlayer = Instantiate(basePlayerPrefab, position, Quaternion.identity);
+                int ranPlayer = Random.Range(0, playerVarients.Count);
+                GameObject instantiatedPlayer = Instantiate(playerVarients[ranPlayer], position, Quaternion.identity);
+                playerVarients.Remove(playerVarients[ranPlayer]);
                 instantiatedPlayer.transform.SetParent(players);
                 instantiatedPlayer.transform.LookAt(centerPosition);
                 instantiatedPlayer.name = ("Player " + (i + 1)).ToString();

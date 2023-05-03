@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Typherion Dominion
   m_EditorClassIdentifier: 
   factionName: Typherion Dominion
-  BaseVarientPrefabList: []
-  materialvarientOverrite: {fileID: 0}
+  baseVarientPrefabList:
+  - {fileID: 3228152141517751861, guid: 86aef477d70feea44a594f5097547689, type: 3}
+  materialVarientOverrite: {fileID: 2100000, guid: d8d2f3f50cbb3994890efb4f14b67423,
+    type: 2}
   turnOrderVarientIcon: {fileID: 0}

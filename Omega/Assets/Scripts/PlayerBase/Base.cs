@@ -9,14 +9,8 @@ namespace Omega.Core
     public class Base : ScriptableObject
     {
         [SerializeField] public string factionName;
-        [SerializeField] List<GameObject> BaseVarientPrefabList;
-        [SerializeField] public Material materialvarientOverrite;
+        [SerializeField] public List<GameObject> baseVarientPrefabList;
+        [SerializeField] public Material materialVarientOverrite;
         [SerializeField] public Image turnOrderVarientIcon;
-
-        public GameObject GetBaseVarientPrefab()
-        {
-            return BaseVarientPrefabList[Random.Range(0, BaseVarientPrefabList.Count)];
-        }
-
     }
 }

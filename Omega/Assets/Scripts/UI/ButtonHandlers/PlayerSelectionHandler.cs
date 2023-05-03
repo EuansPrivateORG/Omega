@@ -45,11 +45,11 @@ namespace Omega.UI
         {
             if(eventSystem.currentSelectedGameObject == gameObject)
             {
-                GetComponent<Outline>().OutlineColor = Color.red;
+                GetComponentInChildren<Outline>().OutlineColor = Color.red;
             }
             else
             {
-                GetComponent<Outline>().OutlineColor = Color.white;
+                GetComponentInChildren<Outline>().OutlineColor = Color.white;
             }
         }
 

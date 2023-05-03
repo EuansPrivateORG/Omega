@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Mechanists
   m_EditorClassIdentifier: 
   factionName: Mechanists
-  BaseVarientPrefabList: []
-  materialvarientOverrite: {fileID: 0}
+  baseVarientPrefabList:
+  - {fileID: 3228152141517751861, guid: 86aef477d70feea44a594f5097547689, type: 3}
+  materialVarientOverrite: {fileID: 2100000, guid: 65b4afbe2a3b52d48a285734df29651e,
+    type: 2}
   turnOrderVarientIcon: {fileID: 0}

@@ -73,8 +73,8 @@ namespace Omega.UI
                 if (playerObject != playerIdentifier.currentPlayer && !playerObject.GetComponent<Health>().isDead)
                 {
                     playerObject.GetComponent<Selectable>().enabled = true;
-                    playerObject.GetComponent<Outline>().enabled = true;
-                    playerObject.GetComponent<Outline>().OutlineColor = Color.white;
+                    playerObject.GetComponentInChildren<Outline>().enabled = true;
+                    playerObject.GetComponentInChildren<Outline>().OutlineColor = Color.white;
                     attackablePlayers.Add(playerObject);
 
                     if (!foundNextPlayer)
@@ -98,7 +98,7 @@ namespace Omega.UI
                 if(item != null)
                 {
                     item.GetComponent<Selectable>().enabled = false;
-                    item.GetComponent<Outline>().enabled = false;
+                    item.GetComponentInChildren<Outline>().enabled = false;
                     attackablePlayers.Add(item);
                 }
             }

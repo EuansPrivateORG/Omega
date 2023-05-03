@@ -204,7 +204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85744700}
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 6, z: -13.3}
+  m_LocalPosition: {x: 16.702587, y: 5.500005, z: -19.313118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -506,11 +506,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3983537d0d2321f46845f18cf9e2dbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePlayerPrefab: {fileID: 8134083268925729400, guid: e94698817926d2343a600094da61fe88,
-    type: 3}
+  playerVarients:
+  - {fileID: 3675312638052042385, guid: 9b9429a5794070348a42996fe8777dae, type: 3}
+  - {fileID: 3675312638052042385, guid: 824319b5b2b506947b42d297eacf2f6d, type: 3}
+  - {fileID: 3675312638052042385, guid: 88692c3adcaeafe4aa0a97d3b5db2d15, type: 3}
+  - {fileID: 3675312638052042385, guid: aedc82e74503d6c419c6589e4ba2b3e6, type: 3}
+  - {fileID: 3675312638052042385, guid: 698080fde304c2742a90b2273c443341, type: 3}
+  - {fileID: 3675312638052042385, guid: 5df946d25a1a6d24ea90393ab09bc48d, type: 3}
   basePlayerTurnOrderPrefab: {fileID: 1381391798786512143, guid: 483129d195a34124482f965dd4925fd2,
     type: 3}
-  numberOfPlayers: 5
+  numberOfPlayers: 3
   playerStartingHealth: 20
   playerStartingEnergy: 3
   radius: 10
