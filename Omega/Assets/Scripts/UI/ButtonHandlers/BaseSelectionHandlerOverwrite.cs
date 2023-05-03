@@ -21,8 +21,8 @@ namespace Omega.UI
             var selectable = GetComponent<Selectable>();
             Navigation nav = selectable.navigation;
             nav.mode = Navigation.Mode.Explicit;
-            nav.selectOnLeft = playerIdentifier.currentlyAlivePlayers[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
-            nav.selectOnRight = playerIdentifier.currentlyAlivePlayers[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
+            nav.selectOnLeft = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
+            nav.selectOnRight = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
             selectable.navigation = nav;
         }
 
@@ -56,11 +56,11 @@ namespace Omega.UI
             Navigation nav = selectable.navigation;
             if (context.ReadValue<Vector2>().x < 0)
             {
-                nav.selectOnLeft = playerIdentifier.currentlyAlivePlayers[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
+                nav.selectOnLeft = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
             }
             else if (context.ReadValue<Vector2>().x > 0)
             {
-                nav.selectOnRight = playerIdentifier.currentlyAlivePlayers[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
+                nav.selectOnRight = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
             }
             selectable.navigation = nav;
         }
@@ -70,7 +70,7 @@ namespace Omega.UI
         int WrapIndex(int index)
         {
             // Helper function to wrap an index around the start and end of the list
-            return (index + playerIdentifier.currentlyAlivePlayers.Count) % playerIdentifier.currentlyAlivePlayers.Count;
+            return (index + playerIdentifier.currentlyAlivePlayersInTurn.Count) % playerIdentifier.currentlyAlivePlayersInTurn.Count;
         }
     }
 }

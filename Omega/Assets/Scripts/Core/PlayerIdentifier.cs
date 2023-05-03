@@ -11,11 +11,11 @@ namespace Omega.Core
 {
     public class PlayerIdentifier : MonoBehaviour
     {
-        [HideInInspector]
         public List<GameObject> playerIndex = new List<GameObject>();
 
-        [HideInInspector]
         public List<GameObject> turnOrderIndex = new List<GameObject>();
+
+        public List<GameObject> currentlyAlivePlayersInTurn = new List<GameObject>();
 
         public List<GameObject> currentlyAlivePlayers = new List<GameObject>();
 
@@ -63,7 +63,7 @@ namespace Omega.Core
         {
             SetupCurrentlyAlivePlayerIndex();
 
-                        currentPlayerIndex++;
+            currentPlayerIndex++;
             if (currentPlayerIndex >= playerIndex.Count)
             {
                 currentPlayerIndex = 0;
@@ -116,21 +116,30 @@ namespace Omega.Core
 
         private void SetupCurrentlyAlivePlayerIndex()
         {
-            currentlyAlivePlayers.Clear();
+            currentlyAlivePlayersInTurn.Clear();
             foreach (GameObject player in turnOrderIndex)
             {
                 if (!player.GetComponent<Health>().isDead)
                 {
-                    currentlyAlivePlayers.Add(player);
+                    currentlyAlivePlayersInTurn.Add(player);
+                }
+            }
+
+            currentlyAlivePlayers.Clear();
+            foreach (GameObject player in playerIndex)
+            {
+                if (!player.GetComponent<Health>().isDead)
+                {
+                    currentlyAlivePlayersInTurn.Add(player);
                 }
             }
         }
 
         public int GetPlaceInIndex(GameObject obj)
         {
-            for (int i = 0; i < currentlyAlivePlayers.Count; i++)
+            for (int i = 0; i < currentlyAlivePlayersInTurn.Count; i++)
             {
-                if(obj == currentlyAlivePlayers[i])
+                if(obj == currentlyAlivePlayersInTurn[i])
                 {
                     return i;
                 }
