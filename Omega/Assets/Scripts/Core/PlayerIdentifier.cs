@@ -1,5 +1,7 @@
 using Cinemachine;
 using Omega.Status;
+using Omega.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -40,8 +42,18 @@ namespace Omega.Core
             currentPlayer = playerIndex[currentPlayerIndex];
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
+            TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
+            StartCoroutine(turnTransition.FadeOutHUD());
             cameraHandler.SwitchCamera(currentPlayer.GetComponentInChildren<CinemachineVirtualCamera>());
+            StartCoroutine(DelayedHUDFadeIn(turnTransition));
             turnTimer.ResetTimer();
+        }
+
+        private IEnumerator DelayedHUDFadeIn(TurnTransition turnTransition)
+        {
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(turnTransition.FadeInHUD());
+
         }
 
         public void SetNextSelectedObjectInEventSystem(EventSystem eventSystem)
