@@ -529,7 +529,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9127639829421726942}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -738,8 +738,13 @@ PrefabInstance:
     - target: {fileID: 333582813682490109, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: m_Navigation.m_Mode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 333582813682490109, guid: 1ff5d9b461eadf749938f968bf780bc1,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 862083187091220066}
     - target: {fileID: 333582813682490109, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -814,6 +819,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.UI.Selectable, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 764766225052433215, guid: 1ff5d9b461eadf749938f968bf780bc1,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 764766225052433215, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
@@ -1524,6 +1534,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1860835665325114244}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2121789025641339257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 333582813682490109, guid: 1ff5d9b461eadf749938f968bf780bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1860835665325114244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2328132399543946142 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4151250374502762522, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -1820,8 +1842,13 @@ PrefabInstance:
     - target: {fileID: 8800780952227713573, guid: 80a523f1ba897d14fbc34e52ff5063e8,
         type: 3}
       propertyPath: m_Navigation.m_Mode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8800780952227713573, guid: 80a523f1ba897d14fbc34e52ff5063e8,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 862083187091220066}
     - target: {fileID: 8800780952227713573, guid: 80a523f1ba897d14fbc34e52ff5063e8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1920,6 +1947,18 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5124969177584959682, guid: 80a523f1ba897d14fbc34e52ff5063e8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 80a523f1ba897d14fbc34e52ff5063e8, type: 3}
+--- !u!114 &167411343001751261 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8800780952227713573, guid: 80a523f1ba897d14fbc34e52ff5063e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8678546568354405624}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1789776443201698380 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6964522353138411188, guid: 80a523f1ba897d14fbc34e52ff5063e8,
@@ -2671,8 +2710,18 @@ PrefabInstance:
     - target: {fileID: 8507266277925809655, guid: 146ca560200926b428fcb39bce3629ca,
         type: 3}
       propertyPath: m_Navigation.m_Mode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8507266277925809655, guid: 146ca560200926b428fcb39bce3629ca,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 2121789025641339257}
+    - target: {fileID: 8507266277925809655, guid: 146ca560200926b428fcb39bce3629ca,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 167411343001751261}
     - target: {fileID: 8507266277925809655, guid: 146ca560200926b428fcb39bce3629ca,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2747,6 +2796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.UI.Selectable, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660985593571986485, guid: 146ca560200926b428fcb39bce3629ca,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8660985593571986485, guid: 146ca560200926b428fcb39bce3629ca,
         type: 3}
