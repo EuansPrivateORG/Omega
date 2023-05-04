@@ -38,6 +38,8 @@ namespace Omega.UI
             for (int i = 0; i < playerSpawnHandler.numberOfPlayers; i++) 
             {
                 GameObject instantiatedIcon = Instantiate(playerFactionIconPrefab, iconSpawnPosition);
+                RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
+                iconRect.sizeDelta = new Vector2(50, 50);
                 iconList.Add(instantiatedIcon);
             }
         }
@@ -78,6 +80,8 @@ namespace Omega.UI
 
             playerSpawnHandler.numberOfPlayers++;
             GameObject instantiatedIcon = Instantiate(playerFactionIconPrefab, iconSpawnPosition);
+            RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
+            iconRect.sizeDelta = new Vector2(50, 50);
             iconList.Add(instantiatedIcon);
 
         }

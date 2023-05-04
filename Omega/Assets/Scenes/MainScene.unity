@@ -1239,6 +1239,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6118553683369342967, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: playerFactionIconPrefab
+      value: 
+      objectReference: {fileID: 1381391798786512143, guid: 01533bb7f78bd0d45b92559954d47a9b,
+        type: 3}
     - target: {fileID: 6608328595517092761, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMax.y
