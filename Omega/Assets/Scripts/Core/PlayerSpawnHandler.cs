@@ -4,8 +4,6 @@ using UnityEngine;
 using Omega.Status;
 using UnityEngine.UI;
 using Omega.UI;
-using Omega.Core;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Omega.Core
 {
