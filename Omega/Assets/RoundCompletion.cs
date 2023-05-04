@@ -1,6 +1,7 @@
 using Omega.Core;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,7 @@ namespace Omega.UI
     {
         [SerializeField] public CanvasGroup playerHUDCanvasGroup;
         [SerializeField] public Button nextRoundButton;
+        [SerializeField] public TextMeshProUGUI winningPlayerText;
         private CanvasGroup roundCompletionCanvasGroup;
         private float fadeTime = 1f;
 
@@ -30,6 +32,7 @@ namespace Omega.UI
         {
             if (playerIdentifier.currentlyAlivePlayers.Count == 1)
             {
+                winningPlayerText.text = playerIdentifier.currentlyAlivePlayers[0].gameObject.GetComponent<PlayerSetup>().playerBase.factionName + " Has claimed the outpost"; 
                 StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
                 roundCompletionCanvasGroup.interactable = true;
                 EventSystem.current.SetSelectedGameObject(nextRoundButton.gameObject);

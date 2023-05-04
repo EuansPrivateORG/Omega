@@ -15,6 +15,7 @@ namespace Omega.UI
 
         [SerializeField] TextMeshProUGUI numberOfPlayers;
         [SerializeField] Button startRoundButton;
+        [SerializeField] Button healButton;
 
         [Header("Faction Icons")]
         [SerializeField] GameObject playerFactionIconPrefab;
@@ -122,6 +123,7 @@ namespace Omega.UI
             CanvasGroup canvas = GetComponent<CanvasGroup>();
             canvas.alpha = 0;
             canvas.interactable = false;
+            eventSystem.SetSelectedGameObject(healButton.gameObject);
         }
     }
 }

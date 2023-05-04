@@ -417,6 +417,7 @@ MonoBehaviour:
   plusButton: {fileID: 5633530059560321388}
   iconList: []
   GameHUD: {fileID: 6208295855242214988}
+  playerTypesListToSpawn: []
 --- !u!1 &1581247365359146775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHUDCanvasGroup: {fileID: 6208295855242214988}
   nextRoundButton: {fileID: 440036585247241762}
+  winningPlayerText: {fileID: 6225278760473787833}
 --- !u!225 &7367963223737934327
 CanvasGroup:
   m_ObjectHideFlags: 0

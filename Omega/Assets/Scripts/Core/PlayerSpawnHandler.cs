@@ -54,16 +54,15 @@ namespace Omega.Core
 
         private PlayerSetup playersSetup;
 
+        private int playerCounter;
+
         private void Awake()
         {
             playerIdentifier = GetComponent<PlayerIdentifier>();
 
         }
 
-        private void Start()
-        {
 
-        }
 
 
         public void SpawnPlayers(List<Base> playersToSpawn)
@@ -72,22 +71,20 @@ namespace Omega.Core
             float angleBetweenPoints = 360f / numberOfPlayers;
             Vector3 centerPosition = transform.position;
 
-            Debug.Log(playersToSpawnIn.Count);
 
             for (int i = playersToSpawnIn.Count - 1; i >= 0; i--)
             {
-                Debug.Log(playersToSpawnIn.Count);
-                Debug.Log(i);
-                float angle = 360f - i * angleBetweenPoints; // change angle calculation to clockwise
+                playerCounter++;
+                float angle = i * angleBetweenPoints; // change angle calculation to anti-clockwise
                 Vector3 position = new Vector3(radius * Mathf.Cos(angle * Mathf.Deg2Rad), 0f, radius * Mathf.Sin(angle * Mathf.Deg2Rad));
 
                 instantiatedPlayer = Instantiate(playersToSpawnIn[i].emptyPreFab, position, Quaternion.identity);
                 playersSetup = instantiatedPlayer.GetComponent<PlayerSetup>();
-                playersSetup.playerID = i + 1;
+                playersSetup.playerID = playerCounter;
                 CreatIcon(i);
                 instantiatedPlayer.transform.SetParent(players);
                 instantiatedPlayer.transform.LookAt(centerPosition);
-                instantiatedPlayer.name = ("Player " + (i + 1)).ToString();
+                instantiatedPlayer.name = ("Player " + (playerCounter)).ToString();
                 playerList.Add(instantiatedPlayer);
 
                 instantiatedPlayer.GetComponent<Health>().maxHealth = playerStartingHealth;

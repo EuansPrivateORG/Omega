@@ -77,6 +77,7 @@ namespace Omega.Core
             UpdatePlayerIcon();
 
             currentPlayer = currentlyAlivePlayers[currentPlayerIndex];
+            Debug.Log("Current Player: " + currentPlayer);
 
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
