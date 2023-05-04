@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7190997333167396171}
   - component: {fileID: 3319063009413626950}
   - component: {fileID: 6789389691489395621}
+  - component: {fileID: 1918294547284729627}
   m_Layer: 5
   m_Name: BaseTurnOrderIcon
   m_TagString: Untagged
@@ -80,6 +81,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1918294547284729627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381391798786512143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5d02d169b2efa44821b32070e9b450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIcon: {fileID: 3832434045106454272}
+  iconBackground: {fileID: 8257676293795366713}
+  playerDeadText: {fileID: 3683925706037518693}
 --- !u!1 &3683925706037518693
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,8 +189,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -209,7 +225,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -5.6069336, y: 0, z: -4.885193, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -228,7 +244,7 @@ GameObject:
   - component: {fileID: 6092583148424141623}
   m_Layer: 5
   m_Name: PlayerIcon
-  m_TagString: PlayerIcon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

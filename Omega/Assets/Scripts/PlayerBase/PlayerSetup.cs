@@ -1,3 +1,4 @@
+using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Omega.Core
 
         [HideInInspector] public int playerID = 0;
 
+        private PlayerSpawnHandler playerSpawnHandler;
+
         void Start()
         {
             playerPreFab = playerBase.baseVarientPrefabList[Random.Range(0, playerBase.baseVarientPrefabList.Count)];
@@ -21,11 +24,18 @@ namespace Omega.Core
             MeshRenderer playerMesh = instantiated.GetComponent<MeshRenderer>();
             playerMesh.material = playerBase.materialVarientOverrite;
 
-            PlayerSpawnHandler playerSpawner = FindObjectOfType<PlayerSpawnHandler>();
-            GameObject icon = playerSpawner.playerImageList[playerID - 1];
+            playerSpawnHandler = FindObjectOfType<PlayerSpawnHandler>();
+            GameObject icon = playerSpawnHandler.playerImageList[playerID - 1].GetComponent<PlayerIconID>().playerIcon;
             icon.GetComponent<Image>().color = playerBase.materialVarientOverrite.color;
         }
 
+        public void SetPlayerIconDead()
+        {
+            PlayerIconID playerIconID = playerSpawnHandler.playerImageList[playerID - 1].GetComponent<PlayerIconID>();
+            playerIconID.playerDeadText.SetActive(true);
+            Image iconBackground = playerIconID.iconBackground.GetComponent<Image>();
+            iconBackground.color = new Color(iconBackground.color.r, iconBackground.color.g, iconBackground.color.b, iconBackground.color.a / 2);
+            playerSpawnHandler.playerImageList.Remove(playerSpawnHandler.playerImageList[playerID - 1]);
+        }
     }
-
 }

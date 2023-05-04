@@ -154,11 +154,11 @@ namespace Omega.Core
             {
                 if (i  == currentPlayerIndex)
                 {
-                    playerSpawner.playerImageList[i].transform.parent.GetComponent<Image>().enabled = true;
+                    playerSpawner.playerImageList[i].GetComponent<Image>().enabled = true;
                 }
                 else
                 {
-                    playerSpawner.playerImageList[i].transform.parent.GetComponent<Image>().enabled = false;
+                    playerSpawner.playerImageList[i].GetComponent<Image>().enabled = false;
                 }
             }
         }

@@ -25,6 +25,7 @@ namespace Omega.Status
             if(currentHealth <= 0)
             {
                 isDead = true;
+                GetComponent<PlayerSetup>().SetPlayerIconDead();
             }
         }
 
