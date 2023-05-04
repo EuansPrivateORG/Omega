@@ -28,8 +28,6 @@ namespace Omega.Core
 
             MeshRenderer playerMesh = instantiated.GetComponent<MeshRenderer>();
             playerMesh.material = playerBase.materialVarientOverrite;
-
-
         }
 
         public void SetPlayerIconDead()

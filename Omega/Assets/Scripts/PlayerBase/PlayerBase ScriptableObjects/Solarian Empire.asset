@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Solarian Empire
   m_EditorClassIdentifier: 
   factionName: Solarian Empire
+  emptyPreFab: {fileID: 3675312638052042385, guid: 88692c3adcaeafe4aa0a97d3b5db2d15,
+    type: 3}
   baseVarientPrefabList:
   - {fileID: 3228152141517751861, guid: 86aef477d70feea44a594f5097547689, type: 3}
   materialVarientOverrite: {fileID: 2100000, guid: a456e3be4ef52644b9cd6a9a5e2347d3,

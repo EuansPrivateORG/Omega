@@ -4,6 +4,8 @@ using UnityEngine;
 using Omega.Status;
 using UnityEngine.UI;
 using Omega.UI;
+using Omega.Core;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Omega.Core
 {
@@ -11,7 +13,8 @@ namespace Omega.Core
     {
         [Header("Spawnable")]
         [Tooltip("Base Player Object")]
-        [SerializeField] public List<GameObject> playerVarients;
+
+
         [SerializeField] public GameObject basePlayerTurnOrderPrefab;
 
 
@@ -41,6 +44,8 @@ namespace Omega.Core
         [HideInInspector]
         [SerializeField] private List<GameObject> playerList = new List<GameObject>();
 
+        public List<Base> playersToSpawnIn = new List<Base>();
+
         PlayerIdentifier playerIdentifier;
 
         public List<GameObject> playerImageList;
@@ -57,22 +62,26 @@ namespace Omega.Core
 
         private void Start()
         {
-            SpawnPlayers();
+
         }
 
 
-        private void SpawnPlayers()
+        public void SpawnPlayers(List<Base> playersToSpawn)
         {
+            playersToSpawnIn = playersToSpawn;
             float angleBetweenPoints = 360f / numberOfPlayers;
             Vector3 centerPosition = transform.position;
 
-            for (int i = 0; i < numberOfPlayers; i++)
+            Debug.Log(playersToSpawnIn.Count);
+
+            for (int i = playersToSpawnIn.Count - 1; i >= 0; i--)
             {
+                Debug.Log(playersToSpawnIn.Count);
+                Debug.Log(i);
                 float angle = 360f - i * angleBetweenPoints; // change angle calculation to clockwise
                 Vector3 position = new Vector3(radius * Mathf.Cos(angle * Mathf.Deg2Rad), 0f, radius * Mathf.Sin(angle * Mathf.Deg2Rad));
-                int ranPlayer = Random.Range(0, playerVarients.Count);
-                instantiatedPlayer = Instantiate(playerVarients[ranPlayer], position, Quaternion.identity);
-                playerVarients.Remove(playerVarients[ranPlayer]);
+
+                instantiatedPlayer = Instantiate(playersToSpawnIn[i].emptyPreFab, position, Quaternion.identity);
                 playersSetup = instantiatedPlayer.GetComponent<PlayerSetup>();
                 playersSetup.playerID = i + 1;
                 CreatIcon(i);
@@ -85,7 +94,7 @@ namespace Omega.Core
                 instantiatedPlayer.GetComponent<Health>().SetHealth();
                 instantiatedPlayer.GetComponent<Energy>().energy = playerStartingEnergy;
 
-                
+                playersToSpawnIn.RemoveAt(i);
             }
             playerIdentifier.SetIndex(playerList);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
@@ -102,4 +111,3 @@ namespace Omega.Core
         }
     }
 }
-

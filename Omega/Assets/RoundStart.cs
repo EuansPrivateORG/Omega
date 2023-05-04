@@ -2,6 +2,7 @@ using Omega.Core;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ namespace Omega.UI
 {
     public class RoundStart : MonoBehaviour
     {
+        public List<Base> playerTypesList = new List<Base>();
+
         [SerializeField] TextMeshProUGUI numberOfPlayers;
         [SerializeField] Button startRoundButton;
 
@@ -25,6 +28,10 @@ namespace Omega.UI
 
         PlayerSpawnHandler playerSpawnHandler;
         EventSystem eventSystem;
+
+        public List<Base> playerTypesListToSpawn = new List<Base>();
+
+
         private void Awake()
         {
             eventSystem = FindObjectOfType<EventSystem>();
@@ -37,9 +44,12 @@ namespace Omega.UI
             GameHUD.interactable = false;
             for (int i = 0; i < playerSpawnHandler.numberOfPlayers; i++) 
             {
-                GameObject instantiatedIcon = Instantiate(playerFactionIconPrefab, iconSpawnPosition);
+                int ran = Random.Range(0, playerTypesList.Count);
+                GameObject instantiatedIcon = Instantiate(playerTypesList[ran].turnOrderVarientIcon, iconSpawnPosition);
                 RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
                 iconRect.sizeDelta = new Vector2(50, 50);
+                playerTypesListToSpawn.Add(playerTypesList[ran]);
+                playerTypesList.RemoveAt(ran);
                 iconList.Add(instantiatedIcon);
             }
         }
@@ -79,11 +89,13 @@ namespace Omega.UI
         {
 
             playerSpawnHandler.numberOfPlayers++;
-            GameObject instantiatedIcon = Instantiate(playerFactionIconPrefab, iconSpawnPosition);
+            int ran = Random.Range(0, playerTypesList.Count);
+            GameObject instantiatedIcon = Instantiate(playerTypesList[ran].turnOrderVarientIcon, iconSpawnPosition);
             RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
             iconRect.sizeDelta = new Vector2(50, 50);
+            playerTypesListToSpawn.Add(playerTypesList[ran]);
+            playerTypesList.RemoveAt(ran);
             iconList.Add(instantiatedIcon);
-
         }
         public void removePlayer()
         {
@@ -91,11 +103,25 @@ namespace Omega.UI
             playerSpawnHandler.numberOfPlayers--;
             if(iconList.Count > 0)
             {
-                GameObject lastIcon = iconList[iconList.Count - 1];
+                GameObject lastPlayer = iconList[iconList.Count - 1];
 
-                iconList.Remove(lastIcon);
-                Destroy(lastIcon);
+                playerTypesList.Add(playerTypesListToSpawn[playerTypesListToSpawn.Count - 1]);
+                playerTypesListToSpawn.RemoveAt(playerTypesListToSpawn.Count - 1);
+                iconList.Remove(lastPlayer);
+                Destroy(lastPlayer);
             }   
+        }
+
+        public void StartRound()
+        {
+            playerSpawnHandler.SpawnPlayers(playerTypesListToSpawn);
+
+            GameHUD.alpha = 1;
+            GameHUD.interactable = true;
+
+            CanvasGroup canvas = GetComponent<CanvasGroup>();
+            canvas.alpha = 0;
+            canvas.interactable = false;
         }
     }
 }

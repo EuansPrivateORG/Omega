@@ -401,6 +401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8eae6a67c4ebd439520245b4d4d290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTypesList:
+  - {fileID: 11400000, guid: ab00dd9f86089de44ab05d3494d20652, type: 2}
+  - {fileID: 11400000, guid: 8dabdebf00a696449ba36f8ec1c01c9b, type: 2}
+  - {fileID: 11400000, guid: af5fcce4318c7c34586e3ea6f675791b, type: 2}
+  - {fileID: 11400000, guid: 4fffb61c7911a5c488dea7fff240b969, type: 2}
+  - {fileID: 11400000, guid: f40f46182520bce48bff068448b91383, type: 2}
+  - {fileID: 11400000, guid: b871bfebcb76df746b859cc2a24fd036, type: 2}
   numberOfPlayers: {fileID: 4608285100514219538}
   startRoundButton: {fileID: 6052576888062386244}
   playerFactionIconPrefab: {fileID: 6154570421834933074, guid: 256e32d53e91fd241a3acb9c81636a37,
@@ -2676,7 +2683,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7614235232079700608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6118553683369342967}
+        m_TargetAssemblyTypeName: Omega.UI.RoundStart, Assembly-CSharp
+        m_MethodName: StartRound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &731404691159671544
 MonoBehaviour:
   m_ObjectHideFlags: 0

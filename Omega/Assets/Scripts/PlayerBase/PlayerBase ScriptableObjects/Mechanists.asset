@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Mechanists
   m_EditorClassIdentifier: 
   factionName: Mechanists
+  emptyPreFab: {fileID: 3675312638052042385, guid: 824319b5b2b506947b42d297eacf2f6d,
+    type: 3}
   baseVarientPrefabList:
   - {fileID: 3228152141517751861, guid: 86aef477d70feea44a594f5097547689, type: 3}
   materialVarientOverrite: {fileID: 2100000, guid: 65b4afbe2a3b52d48a285734df29651e,

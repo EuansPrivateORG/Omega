@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: The Imperium
   m_EditorClassIdentifier: 
   factionName: Imperium
+  emptyPreFab: {fileID: 3675312638052042385, guid: 9b9429a5794070348a42996fe8777dae,
+    type: 3}
   baseVarientPrefabList:
   - {fileID: 3228152141517751861, guid: 86aef477d70feea44a594f5097547689, type: 3}
   materialVarientOverrite: {fileID: 2100000, guid: 08e6fbc72f2de4744b668d429648988e,
