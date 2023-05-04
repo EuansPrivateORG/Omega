@@ -16,6 +16,11 @@ namespace Omega.Core
 
         private PlayerSpawnHandler playerSpawnHandler;
 
+        private void Awake()
+        {
+            playerSpawnHandler = FindObjectOfType<PlayerSpawnHandler>();
+        }
+
         void Start()
         {
             playerPreFab = playerBase.baseVarientPrefabList[Random.Range(0, playerBase.baseVarientPrefabList.Count)];
@@ -24,9 +29,7 @@ namespace Omega.Core
             MeshRenderer playerMesh = instantiated.GetComponent<MeshRenderer>();
             playerMesh.material = playerBase.materialVarientOverrite;
 
-            playerSpawnHandler = FindObjectOfType<PlayerSpawnHandler>();
-            GameObject icon = playerSpawnHandler.playerImageList[playerID - 1].GetComponent<PlayerIconID>().playerIcon;
-            icon.GetComponent<Image>().color = playerBase.materialVarientOverrite.color;
+
         }
 
         public void SetPlayerIconDead()
@@ -39,6 +42,11 @@ namespace Omega.Core
                 iconBackground.color = new Color(iconBackground.color.r, iconBackground.color.g, iconBackground.color.b, iconBackground.color.a / 2);
                 playerSpawnHandler.playerImageList.Remove(playerSpawnHandler.playerImageList[playerID - 1]);
             }
+        }
+
+        public void UpdatePlayerID()
+        {
+            playerID -= 1;
         }
     }
 }

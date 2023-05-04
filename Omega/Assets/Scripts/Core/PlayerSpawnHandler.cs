@@ -45,6 +45,10 @@ namespace Omega.Core
 
         public List<GameObject> playerImageList;
 
+        private GameObject instantiatedPlayer;
+
+        private PlayerSetup playersSetup;
+
         private void Awake()
         {
             playerIdentifier = GetComponent<PlayerIdentifier>();
@@ -54,7 +58,6 @@ namespace Omega.Core
         private void Start()
         {
             SpawnPlayers();
-            SpawnPlayerTurnOrder();
         }
 
 
@@ -68,9 +71,11 @@ namespace Omega.Core
                 float angle = 360f - i * angleBetweenPoints; // change angle calculation to clockwise
                 Vector3 position = new Vector3(radius * Mathf.Cos(angle * Mathf.Deg2Rad), 0f, radius * Mathf.Sin(angle * Mathf.Deg2Rad));
                 int ranPlayer = Random.Range(0, playerVarients.Count);
-                GameObject instantiatedPlayer = Instantiate(playerVarients[ranPlayer], position, Quaternion.identity);
+                instantiatedPlayer = Instantiate(playerVarients[ranPlayer], position, Quaternion.identity);
                 playerVarients.Remove(playerVarients[ranPlayer]);
-                instantiatedPlayer.GetComponent<PlayerSetup>().playerID = i + 1;
+                playersSetup = instantiatedPlayer.GetComponent<PlayerSetup>();
+                playersSetup.playerID = i + 1;
+                CreatIcon(i);
                 instantiatedPlayer.transform.SetParent(players);
                 instantiatedPlayer.transform.LookAt(centerPosition);
                 instantiatedPlayer.name = ("Player " + (i + 1)).ToString();
@@ -89,21 +94,12 @@ namespace Omega.Core
             StartCoroutine(turnTransition.FadeInHUD());
         }
 
-        private void SpawnPlayerTurnOrder()
+        private void CreatIcon(int i)
         {
-            for (int i = 0; i < numberOfPlayers; i++)
-            {
-                GameObject instantiatedPlayerIcon = Instantiate(basePlayerTurnOrderPrefab, playersTurnOrder);
-                instantiatedPlayerIcon.name = ("Player Icon" + (i + 1));
-                playerImageList.Add(instantiatedPlayerIcon);
-                //this should be moved to its own script where we handle the turn order transitions based on the currenly player from the identifier
-                if(i == playerIdentifier.currentPlayerIndex)
-                {
-                    instantiatedPlayerIcon.GetComponent<Image>().enabled = true;
-                }
-            }
+            GameObject instantiatedPlayerIcon = Instantiate(playersSetup.playerBase.turnOrderVarientIcon, playersTurnOrder);
+            instantiatedPlayerIcon.name = ("Player Icon" + (playersSetup.playerID));
+            playerImageList.Add(instantiatedPlayerIcon);
         }
-
     }
 }
 

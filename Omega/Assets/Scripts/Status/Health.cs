@@ -25,7 +25,17 @@ namespace Omega.Status
             if(currentHealth <= 0)
             {
                 isDead = true;
-                GetComponent<PlayerSetup>().SetPlayerIconDead();
+                PlayerSetup playerSetup = GetComponent<PlayerSetup>();
+                playerSetup.SetPlayerIconDead();
+
+                int playerID = playerSetup.playerID;
+                foreach(GameObject player in FindObjectOfType<PlayerIdentifier>().currentlyAlivePlayers)
+                {
+                    if(player.GetComponent<PlayerSetup>().playerID > playerID)
+                    {
+                        player.GetComponent<PlayerSetup>().UpdatePlayerID();
+                    }
+                }
             }
         }
 

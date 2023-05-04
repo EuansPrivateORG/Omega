@@ -17,4 +17,5 @@ MonoBehaviour:
   - {fileID: 3228152141517751861, guid: 86aef477d70feea44a594f5097547689, type: 3}
   materialVarientOverrite: {fileID: 2100000, guid: 65b4afbe2a3b52d48a285734df29651e,
     type: 2}
-  turnOrderVarientIcon: {fileID: 0}
+  turnOrderVarientIcon: {fileID: 1171632018803582639, guid: 2ceeedfcd772a91488b328473dc02310,
+    type: 3}

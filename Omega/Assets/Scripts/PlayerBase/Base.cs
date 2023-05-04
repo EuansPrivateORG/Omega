@@ -11,6 +11,6 @@ namespace Omega.Core
         [SerializeField] public string factionName;
         [SerializeField] public List<GameObject> baseVarientPrefabList;
         [SerializeField] public Material materialVarientOverrite;
-        [SerializeField] public Image turnOrderVarientIcon;
+        [SerializeField] public GameObject turnOrderVarientIcon;
     }
 }

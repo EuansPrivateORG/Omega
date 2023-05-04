@@ -58,6 +58,8 @@ namespace Omega.Core
 
             currentPlayer = currentlyAlivePlayers[0];
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
+
+            UpdatePlayerIcon();
         }
 
 
@@ -71,7 +73,9 @@ namespace Omega.Core
             {
                 currentPlayerIndex = 0;
             }
+
             UpdatePlayerIcon();
+
             currentPlayer = currentlyAlivePlayers[currentPlayerIndex];
 
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
