@@ -94,12 +94,12 @@ namespace Omega.Core
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 GameObject instantiatedPlayerIcon = Instantiate(basePlayerTurnOrderPrefab, playersTurnOrder);
+                instantiatedPlayerIcon.name = ("Player Icon" + (i + 1));
                 playerImageList.Add(instantiatedPlayerIcon);
                 //this should be moved to its own script where we handle the turn order transitions based on the currenly player from the identifier
                 if(i == playerIdentifier.currentPlayerIndex)
                 {
                     instantiatedPlayerIcon.GetComponent<Image>().enabled = true;
-
                 }
             }
         }

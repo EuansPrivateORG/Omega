@@ -63,6 +63,7 @@ namespace Omega.Core
 
         public void NextPlayer()
         {
+            SetupTurnOrderIndex();
             SetupCurrentlyAlivePlayerIndex();
 
             currentPlayerIndex++;
@@ -70,6 +71,7 @@ namespace Omega.Core
             {
                 currentPlayerIndex = 0;
             }
+            UpdatePlayerIcon();
             currentPlayer = currentlyAlivePlayers[currentPlayerIndex];
 
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
@@ -86,9 +88,7 @@ namespace Omega.Core
                 handler.ResetUI();
             }
 
-            SetupTurnOrderIndex();
 
-            UpdatePlayerIcon();
         }
 
         private IEnumerator DelayedHUDFadeIn(TurnTransition turnTransition)
