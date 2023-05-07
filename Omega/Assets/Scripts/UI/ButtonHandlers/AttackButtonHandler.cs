@@ -55,7 +55,6 @@ namespace Omega.UI
 
             EventSystem eventSystem = EventSystem.current;
 
-            Debug.Log("Next avalible Player: " + nextAvailablePlayer);
             eventSystem.SetSelectedGameObject(nextAvailablePlayer);
 
             PlayerSelectionHandler playerSelection = FindObjectOfType<PlayerSelectionHandler>();

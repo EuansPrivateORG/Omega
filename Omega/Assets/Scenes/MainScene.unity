@@ -518,11 +518,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3983537d0d2321f46845f18cf9e2dbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePlayerTurnOrderPrefab: {fileID: 1381391798786512143, guid: 483129d195a34124482f965dd4925fd2,
-    type: 3}
   numberOfPlayers: 5
   playerStartingHealth: 20
-  playerStartingEnergy: 3
+  playerStartingEnergy: 25
   radius: 10
   players: {fileID: 1902693845}
   playersTurnOrder: {fileID: 1914578938}
@@ -1244,6 +1242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844322487726966925, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50.000122
       objectReference: {fileID: 0}
     - target: {fileID: 5844146148538376812, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}

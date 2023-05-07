@@ -9,13 +9,6 @@ namespace Omega.Core
 {
     public class PlayerSpawnHandler : MonoBehaviour
     {
-        [Header("Spawnable")]
-        [Tooltip("Base Player Object")]
-
-
-        [SerializeField] public GameObject basePlayerTurnOrderPrefab;
-
-
         [Header("PlayerCount")]
         [Range(3,6)]
         [Tooltip("Current number of players in game session")]

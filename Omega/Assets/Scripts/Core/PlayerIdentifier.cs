@@ -18,14 +18,13 @@ namespace Omega.Core
         public List<GameObject> turnOrderIndex = new List<GameObject>();
         [HideInInspector]
         public List<GameObject> currentlyAlivePlayersInTurn = new List<GameObject>();
-        [HideInInspector]
         public List<GameObject> currentlyAlivePlayers = new List<GameObject>();
 
         [SerializeField] public GameObject currentPlayer = null;
         public int energyGainPerTurn = 2;
-        [HideInInspector]
         public int currentPlayerIndex = 0;
         TurnTimer turnTimer;
+        private int playerWhoHasDied;
 
         private void Awake()
         {
@@ -60,24 +59,34 @@ namespace Omega.Core
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
 
             UpdatePlayerIcon();
+
+            playerWhoHasDied = playerIndex.Count + 1;
         }
 
 
         public void NextPlayer()
         {
             SetupTurnOrderIndex();
+
             SetupCurrentlyAlivePlayerIndex();
 
-            currentPlayerIndex++;
-            if (currentPlayerIndex >= currentlyAlivePlayers.Count)
-            {
-                currentPlayerIndex = 0;
-            }
+            CalculateCurrentPlayerIndex();
 
             UpdatePlayerIcon();
 
+            SettingUpNextPlayer();
+
+            CancelHandler handler = FindObjectOfType<CancelHandler>();
+            if (handler != null)
+            {
+                handler.ResetUI();
+            }
+        }
+
+        private void SettingUpNextPlayer()
+        {
             currentPlayer = currentlyAlivePlayers[currentPlayerIndex];
-            Debug.Log("Current Player: " + currentPlayer);
+            Debug.Log("This Players Turn: " + currentPlayer);
 
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
@@ -86,14 +95,21 @@ namespace Omega.Core
             cameraHandler.SwitchCamera(currentPlayer.GetComponentInChildren<CinemachineVirtualCamera>());
             StartCoroutine(DelayedHUDFadeIn(turnTransition));
             turnTimer.ResetTimer();
+        }
 
-            CancelHandler handler = FindObjectOfType<CancelHandler>();
-            if(handler != null) 
+        private void CalculateCurrentPlayerIndex()
+        {
+            if (currentPlayerIndex < playerWhoHasDied)
             {
-                handler.ResetUI();
+                currentPlayerIndex++;
             }
 
+            playerWhoHasDied = playerIndex.Count + 1;
 
+            if (currentPlayerIndex >= currentlyAlivePlayers.Count)
+            {
+                currentPlayerIndex = 0;
+            }
         }
 
         private IEnumerator DelayedHUDFadeIn(TurnTransition turnTransition)
@@ -130,12 +146,24 @@ namespace Omega.Core
                 }
             }
 
+            List<GameObject> oldCurrentlyAlivePlayers = new List<GameObject>();
+            foreach (GameObject player in currentlyAlivePlayers)
+            {
+                oldCurrentlyAlivePlayers.Add(player);
+            }
             currentlyAlivePlayers.Clear();
             foreach (GameObject player in playerIndex)
             {
                 if (!player.GetComponent<Health>().isDead)
                 {
                     currentlyAlivePlayers.Add(player);
+                }
+            }
+            for(int i = 0; i < oldCurrentlyAlivePlayers.Count; ++i) 
+            {
+                if (!currentlyAlivePlayers.Contains(oldCurrentlyAlivePlayers[i]))
+                {
+                    playerWhoHasDied = i;
                 }
             }
         }
