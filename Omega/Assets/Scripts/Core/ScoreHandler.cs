@@ -45,19 +45,33 @@ namespace Omega.Core
 
         public void CalculatePlayerPlacement(int placement, int playerID)
         {
-            if(placement == playerIdentifier.playerIndex.Count - 1)
+            GameObject player = playerIdentifier.currentlyAlivePlayers[playerID];
+            int newPlayerID = playerID;
+
+            for(int i = 0; i < playerIdentifier.playerIndex.Count; i++)
             {
-                Debug.Log("Second Place");
-                playerScores[playerID - 1].placementScore = (placement - 1) + secondPlayerBonus;
+                if (playerIdentifier.playerIndex[i] == player)
+                {
+                    newPlayerID = i;
+                }
+            }
+
+
+            if (placement == playerIdentifier.playerIndex.Count)
+            {
+                playerScores[newPlayerID].placementScore += (placement - 1) + firstPlayerBonus;
+            }
+            else if (placement == playerIdentifier.playerIndex.Count - 1)
+            {
+                playerScores[newPlayerID].placementScore += (placement - 1) + secondPlayerBonus;
             }
             else if (placement == playerIdentifier.playerIndex.Count - 2)
             {
-                Debug.Log("Third Place");
-                playerScores[playerID - 1].placementScore = (placement - 1) + thirdPlayerBonus;
+                playerScores[newPlayerID].placementScore += (placement - 1) + thirdPlayerBonus;
             }
             else
             {
-                playerScores[playerID - 1].placementScore = (placement - 1);
+                playerScores[newPlayerID].placementScore += (placement - 1);
             }
         }
     }

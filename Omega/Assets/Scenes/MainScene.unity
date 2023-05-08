@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1a02b77fcc0ef459fb720c1cf351ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPlayerBonus: 4
+  firstPlayerBonus: 3
   secondPlayerBonus: 2
   thirdPlayerBonus: 1
   playerScores: []
