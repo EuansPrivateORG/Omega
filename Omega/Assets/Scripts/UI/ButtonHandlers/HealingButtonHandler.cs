@@ -6,6 +6,7 @@ using Omega.Core;
 using Omega.Status;
 using TMPro;
 using Unity.Mathematics;
+using System;
 
 namespace Omega.UI
 {
@@ -15,6 +16,8 @@ namespace Omega.UI
 
         private PlayerIdentifier playerIdentifier;
         [SerializeField] public GameObject healingNumbersPrefab;
+        [SerializeField] public Gradient colourGradient;
+
 
         private void Awake()
         {
@@ -49,14 +52,22 @@ namespace Omega.UI
             {
                 playerHealth.AddHealth(extraHealth);
             }
+            int minColour = dice.minimumRoll;
+            int maxColour = dice.maximumRoll;
             GameObject numbersPrefab = Instantiate(healingNumbersPrefab, playerIdentifier.currentPlayer.transform.position, quaternion.identity);
-            numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = Color.green;
+            numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(extraHealth, minColour, maxColour, colourGradient);
             NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
             numbersDisplay.SpawnNumbers(extraHealth);
 
             playerEnergy.SpendEnergy(dice.cost);
 
             playerIdentifier.NextPlayer();
+        }
+
+        public Color GetColorOnGradient(int value, int minValue, int maxValue, Gradient colorGradient)
+        {
+            float position = (float)(value - minValue) / (maxValue - minValue);
+            return colorGradient.Evaluate(position);
         }
     }
 }

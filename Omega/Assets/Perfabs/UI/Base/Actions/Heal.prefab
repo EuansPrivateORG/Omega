@@ -874,6 +874,35 @@ MonoBehaviour:
   dice: {fileID: 11400000, guid: 71eec37e273f08044b03c563910921c9, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
+  colourGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &642681671164973889 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8810656900508312651, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -902,6 +931,35 @@ MonoBehaviour:
   dice: {fileID: 11400000, guid: c9b023891b9ae2a4fa7eaac6735bf1fd, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
+  colourGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!114 &1743077606146218966 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7682676484982287580, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -936,6 +994,35 @@ MonoBehaviour:
   dice: {fileID: 11400000, guid: bec744e53f93dad46a418acebb93f0c0, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
+  colourGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 0.8691486, b: 0, a: 1}
+    key2: {r: 1, g: 0.03875834, b: 0, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 578
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
 --- !u!114 &4330040464481363389 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5672735124852019895, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -982,6 +1069,35 @@ MonoBehaviour:
   dice: {fileID: 11400000, guid: 9bf7e4fc0ebcba147aff9c85f806df68, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
+  colourGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &8347073486992127137 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 105901981895885739, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -1004,6 +1120,35 @@ MonoBehaviour:
   dice: {fileID: 11400000, guid: 158bbf01337f99048b53a41e416a5778, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
+  colourGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!114 &8507103114581106695 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 333745088640112397, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -1050,3 +1195,32 @@ MonoBehaviour:
   dice: {fileID: 11400000, guid: cf194ad621684d5438ccedc2b21d2d5c, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
+  colourGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2

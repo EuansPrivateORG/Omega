@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumRoll: 1
   maximumRoll: 10
-  rollBonus: 4
+  rollBonus: 0
   cost: 6

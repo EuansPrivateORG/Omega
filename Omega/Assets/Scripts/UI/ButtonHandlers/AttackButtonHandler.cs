@@ -23,6 +23,7 @@ namespace Omega.UI
 
         private GameObject nextAvailablePlayer;
         [SerializeField] public GameObject damageNumbersPrefab;
+        [SerializeField] public Gradient colourGradient;
 
         private ScoreHandler scoreHandler;
 
@@ -127,12 +128,26 @@ namespace Omega.UI
                     scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
                 }
 
-                playerIdentifier.NextPlayer();
+
+                int minColour = dice.minimumRoll;
+                int maxColour = dice.maximumRoll;
+
                 GameObject numbersPrefab = Instantiate(damageNumbersPrefab, toDamage.transform.position, quaternion.identity);
-                numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+                numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(currentDamage, minColour, maxColour, colourGradient);
                 NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
                 numbersDisplay.SpawnNumbers(currentDamage);
+
+
+                playerIdentifier.NextPlayer();
+
+
             }
+
+        }
+        public Color GetColorOnGradient(int value, int minValue, int maxValue, Gradient colorGradient)
+        {
+            float position = (float)(value - minValue) / (maxValue - minValue);
+            return colorGradient.Evaluate(position);
         }
     }
 }
