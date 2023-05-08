@@ -16,6 +16,8 @@ namespace Omega.Core
 
         public int thirdPlayerBonus;
 
+        private PlayerIdentifier playerIdentifier;
+
         [System.Serializable]
         public class ScoreValues
         {
@@ -28,6 +30,10 @@ namespace Omega.Core
 
         public List<ScoreValues> playerScores = new List<ScoreValues>();
 
+        private void Awake()
+        {
+            playerIdentifier = GetComponent<PlayerIdentifier>();
+        }
 
         public void AddScorer(Base players, int playerNum)
         {
@@ -35,6 +41,38 @@ namespace Omega.Core
             playerScore.playerFaction = players.factionName;
             playerScore.playerNumReference = playerNum;
             playerScores.Add(playerScore);
+        }
+
+        public void CalculatePlayerPlacement(int placement, int playerID)
+        {
+            GameObject player = playerIdentifier.currentlyAlivePlayers[playerID];
+            int newPlayerID = playerID;
+
+            for(int i = 0; i < playerIdentifier.playerIndex.Count; i++)
+            {
+                if (playerIdentifier.playerIndex[i] == player)
+                {
+                    newPlayerID = i;
+                }
+            }
+
+
+            if (placement == playerIdentifier.playerIndex.Count)
+            {
+                playerScores[newPlayerID].placementScore += (placement - 1) + firstPlayerBonus;
+            }
+            else if (placement == playerIdentifier.playerIndex.Count - 1)
+            {
+                playerScores[newPlayerID].placementScore += (placement - 1) + secondPlayerBonus;
+            }
+            else if (placement == playerIdentifier.playerIndex.Count - 2)
+            {
+                playerScores[newPlayerID].placementScore += (placement - 1) + thirdPlayerBonus;
+            }
+            else
+            {
+                playerScores[newPlayerID].placementScore += (placement - 1);
+            }
         }
     }
 }

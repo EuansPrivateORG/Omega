@@ -16,9 +16,11 @@ namespace Omega.UI
         [SerializeField] public TextMeshProUGUI winningPlayerText;
         private CanvasGroup roundCompletionCanvasGroup;
         private float fadeTime = 1f;
+        private bool hasEndedRound = false;
 
         EventSystem eventSystem;
         PlayerIdentifier playerIdentifier;
+        ScoreHandler scoreHandler;
 
         private void Awake()
         {
@@ -26,13 +28,16 @@ namespace Omega.UI
             roundCompletionCanvasGroup = GetComponent<CanvasGroup>();
             roundCompletionCanvasGroup.interactable = false;
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+            scoreHandler = FindObjectOfType<ScoreHandler>();
         }
 
         private void Update()
         {
-            if (playerIdentifier.currentlyAlivePlayers.Count == 1)
+            if (playerIdentifier.currentlyAlivePlayers.Count == 1 && !hasEndedRound)
             {
-                winningPlayerText.text = playerIdentifier.currentlyAlivePlayers[0].gameObject.GetComponent<PlayerSetup>().playerBase.factionName + " Has claimed the outpost"; 
+                hasEndedRound = true;
+                scoreHandler.CalculatePlayerPlacement(playerIdentifier.playerIndex.Count, playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerID - 1);
+                winningPlayerText.text = playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerBase.factionName + " Has claimed the outpost"; 
                 StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
                 roundCompletionCanvasGroup.interactable = true;
                 EventSystem.current.SetSelectedGameObject(nextRoundButton.gameObject);
@@ -75,6 +80,7 @@ namespace Omega.UI
         public void ResetGame()
         {
             print("Resetting Game");
+            hasEndedRound = false;
         }
 
     }
