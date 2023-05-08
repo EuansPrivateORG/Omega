@@ -117,37 +117,29 @@ namespace Omega.UI
         {
             if(toDamage.TryGetComponent<Health>(out Health health))
             {
-                health.TakeDamage(currentDamage);
-                Debug.Log(currentDamage.ToString() + " Damage Dealt");
+                int minColour = dice.minimumRoll;
+                int maxColour = dice.maximumRoll;
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(currentDamage, toDamage.gameObject, minColour, maxColour, GetComponent<AttackButtonHandler>()); ;
 
                 Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
-
                 playerEnergy.SpendEnergy(dice.cost);
-
                 scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += currentDamage;
                 if (health.isDead)
                 {
                     scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
                 }
-
-                
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(currentDamage, toDamage.gameObject);
-
-                int minColour = dice.minimumRoll;
-                int maxColour = dice.maximumRoll;
-
-                GameObject numbersPrefab = Instantiate(damageNumbersPrefab, toDamage.transform.position, quaternion.identity);
-                numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(currentDamage, minColour, maxColour, colourGradient);
-                NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
-                numbersDisplay.SpawnNumbers(currentDamage);
-
-
-                playerIdentifier.NextPlayer();
-
-
             }
 
         }
+
+        public void SpawnDamageNumbers(GameObject toDamage, int minColour, int maxColour)
+        {
+            GameObject numbersPrefab = Instantiate(damageNumbersPrefab, toDamage.transform.position, quaternion.identity);
+            numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(currentDamage, minColour, maxColour, colourGradient);
+            NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
+            numbersDisplay.SpawnNumbers(currentDamage);
+        }
+
         public Color GetColorOnGradient(int value, int minValue, int maxValue, Gradient colorGradient)
         {
             float position = (float)(value - minValue) / (maxValue - minValue);

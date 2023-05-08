@@ -1,5 +1,6 @@
 using Omega.Core;
 using Omega.Status;
+using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,10 +18,11 @@ namespace Omega.Combat
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
         }
 
-        public void SpawnProjectile(int damage, GameObject target)
+        public void SpawnProjectile(int damage, GameObject target, int minColour, int maxColour, AttackButtonHandler attackButtonHandler)
         {
+            
             GameObject projectileInstance = Instantiate(projectile, playerIdentifier.currentPlayer.transform.position, Quaternion.identity);
-            projectileInstance.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage);
+            projectileInstance.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler);
         }
     }
 }

@@ -1,4 +1,6 @@
+using Omega.Core;
 using Omega.Status;
+using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +9,6 @@ namespace Omega.Combat
 {
     public class Projectile : MonoBehaviour
     {
-        [HideInInspector]
         public int damage;
 
         public float projectileLifetime = 3f;
@@ -16,7 +17,16 @@ namespace Omega.Combat
         GameObject instigator = null;
         GameObject target = null;
 
+        int minColour;
+        int maxColour;
 
+        PlayerIdentifier playerIdentifier;
+        AttackButtonHandler attackButtonHandler;
+
+        private void Awake()
+        {
+            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+        }
         private void Update()
         {
             if (target == null) return;
@@ -25,24 +35,28 @@ namespace Omega.Combat
             transform.position += direction * projectileSpeed * Time.deltaTime;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider enemyCollider)
         {
-            if (other.gameObject == target)
+            if (enemyCollider != instigator.GetComponentInChildren<Collider>())
             {
-                //Health targetHealth = target.GetComponent<Health>();
-                //if (targetHealth != null)
-                //{
-                //    targetHealth.TakeDamage(damage);
-                //}
+                Debug.Log(enemyCollider);
+                target.GetComponent<Health>().TakeDamage(damage);
+                Debug.Log(damage.ToString() + " Damage Dealt");
+                attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour);
                 Destroy(gameObject);
+                playerIdentifier.NextPlayer();
             }
         }
 
-        public void SetTarget(GameObject target, GameObject instigator, int damage)
+        public void SetTarget(GameObject target, GameObject instigator, int damage, int min, int max, AttackButtonHandler origin)
         {
             this.target = target;
-            this.damage = damage;
             this.instigator = instigator;
+            this.damage = damage;
+            minColour = min;
+            maxColour = max;
+            attackButtonHandler = origin;
         }
+
     }
 }
