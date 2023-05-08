@@ -130,7 +130,8 @@ namespace Omega.UI
                     scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
                 }
 
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(currentDamage, toDamage.gameObject.transform);
+                
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(currentDamage, toDamage.gameObject);
 
                 int minColour = dice.minimumRoll;
                 int maxColour = dice.maximumRoll;

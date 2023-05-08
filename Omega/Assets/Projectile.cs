@@ -2,7 +2,6 @@ using Omega.Status;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace Omega.Combat
 {
@@ -10,15 +9,40 @@ namespace Omega.Combat
     {
         [HideInInspector]
         public int damage;
+
+        public float projectileLifetime = 3f;
+        public float projectileSpeed = 10f;
+
+        GameObject instigator = null;
+        GameObject target = null;
+
+
+        private void Update()
+        {
+            if (target == null) return;
+
+            Vector3 direction = (target.transform.position - transform.position).normalized;
+            transform.position += direction * projectileSpeed * Time.deltaTime;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            other.GetComponent<Health>().TakeDamage(damage);
+            if (other.gameObject == target)
+            {
+                //Health targetHealth = target.GetComponent<Health>();
+                //if (targetHealth != null)
+                //{
+                //    targetHealth.TakeDamage(damage);
+                //}
+                Destroy(gameObject);
+            }
         }
 
-        public void SetDamage(int damage)
+        public void SetTarget(GameObject target, GameObject instigator, int damage)
         {
+            this.target = target;
             this.damage = damage;
+            this.instigator = instigator;
         }
-
     }
 }
