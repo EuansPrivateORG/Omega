@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBase: {fileID: 0}
   playerPreFab: {fileID: 0}
+  playerID: 0
 --- !u!1 &8764320784115240562
 GameObject:
   m_ObjectHideFlags: 0

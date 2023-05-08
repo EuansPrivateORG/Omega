@@ -204,7 +204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85744700}
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 37.40284, y: 5.499998, z: -36.976913}
+  m_LocalPosition: {x: 0, y: 6, z: -13.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 781620683}
   - component: {fileID: 781620684}
   - component: {fileID: 781620685}
+  - component: {fileID: 781620686}
   m_Layer: 0
   m_Name: GameSetup
   m_TagString: Untagged
@@ -559,6 +560,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnTimeLimit: 50
+--- !u!114 &781620686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781620681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1a02b77fcc0ef459fb720c1cf351ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstPlayerBonus: 0
+  secondPlayerBonus: 0
+  thirdPlayerBonus: 0
+  playerScores: []
 --- !u!1 &1003559000
 GameObject:
   m_ObjectHideFlags: 0
