@@ -55,5 +55,11 @@ namespace Omega.Core
             spawnHandler.ResetPlayers();
             playerId.roundOver = true;
         }
+
+        public void EndGame(GameObject endScreen)
+        {
+            spawnHandler.ResetPlayers();
+            playerId.roundOver = true;
+        }
     }
 }

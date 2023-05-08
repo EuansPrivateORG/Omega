@@ -2601,6 +2601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHUDCanvasGroup: {fileID: 0}
+  endScreen: {fileID: 0}
   nextRoundButton: {fileID: 6218599140710422913}
   winningPlayerText: {fileID: 446725000525550106}
 --- !u!225 &3897856175064272468
@@ -3090,6 +3091,7 @@ GameObject:
   - component: {fileID: 2893270320922822914}
   - component: {fileID: 3294082685900697405}
   - component: {fileID: 7228760927473863302}
+  - component: {fileID: 735654313685156399}
   m_Layer: 0
   m_Name: MenuContent
   m_TagString: Untagged
@@ -3199,6 +3201,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &735654313685156399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4673022528582902570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768749f5f8917634995a46f0bd417f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstPlayerPos: {fileID: 5100154420070927257}
+  secondAndThirdPlayerPos: {fileID: 5129713154867533417}
+  resetButton: {fileID: 5691496252662753166}
 --- !u!1 &4827261515485139613
 GameObject:
   m_ObjectHideFlags: 0

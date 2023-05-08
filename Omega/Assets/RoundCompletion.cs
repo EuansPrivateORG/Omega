@@ -12,6 +12,7 @@ namespace Omega.UI
     public class RoundCompletion : MonoBehaviour
     {
         [SerializeField] public CanvasGroup playerHUDCanvasGroup;
+        [SerializeField] public CanvasGroup endScreen;
         [SerializeField] public Button nextRoundButton;
         [SerializeField] public TextMeshProUGUI winningPlayerText;
         private CanvasGroup roundCompletionCanvasGroup;
@@ -37,15 +38,24 @@ namespace Omega.UI
         {
             if (playerIdentifier.currentlyAlivePlayers.Count == 1 && !hasEndedRound)
             {
-                Debug.Log("Here");
                 hasEndedRound = true;
-                scoreHandler.CalculatePlayerPlacement(playerIdentifier.playerIndex.Count, playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerID - 1);
-                winningPlayerText.text = playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerBase.factionName + " Has claimed the outpost"; 
-                StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
-                roundCompletionCanvasGroup.interactable = true;
-                EventSystem.current.SetSelectedGameObject(nextRoundButton.gameObject);
-                StartCoroutine(FadeInHUD(roundCompletionCanvasGroup));
-                roundHandler.EndRound();
+
+                if (roundHandler.numOfRounds == roundHandler.currentRound)
+                {
+                    StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
+                    StartCoroutine(FadeInHUD(endScreen));
+                    roundHandler.EndGame(endScreen.gameObject);
+                }
+                else
+                {
+                    scoreHandler.CalculatePlayerPlacement(playerIdentifier.playerIndex.Count, playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerID - 1);
+                    winningPlayerText.text = playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerBase.factionName + " Has claimed the outpost";
+                    StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
+                    roundCompletionCanvasGroup.interactable = true;
+                    EventSystem.current.SetSelectedGameObject(nextRoundButton.gameObject);
+                    StartCoroutine(FadeInHUD(roundCompletionCanvasGroup));
+                    roundHandler.EndRound();
+                }
                 hasEndedRound = false;
             }
         }
