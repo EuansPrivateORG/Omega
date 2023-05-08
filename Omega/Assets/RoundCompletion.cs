@@ -21,6 +21,7 @@ namespace Omega.UI
         EventSystem eventSystem;
         PlayerIdentifier playerIdentifier;
         ScoreHandler scoreHandler;
+        RoundHandler roundHandler;
 
         private void Awake()
         {
@@ -29,12 +30,14 @@ namespace Omega.UI
             roundCompletionCanvasGroup.interactable = false;
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
+            roundHandler = FindObjectOfType<RoundHandler>();
         }
 
         private void Update()
         {
             if (playerIdentifier.currentlyAlivePlayers.Count == 1 && !hasEndedRound)
             {
+                Debug.Log("Here");
                 hasEndedRound = true;
                 scoreHandler.CalculatePlayerPlacement(playerIdentifier.playerIndex.Count, playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerID - 1);
                 winningPlayerText.text = playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerBase.factionName + " Has claimed the outpost"; 
@@ -42,6 +45,8 @@ namespace Omega.UI
                 roundCompletionCanvasGroup.interactable = true;
                 EventSystem.current.SetSelectedGameObject(nextRoundButton.gameObject);
                 StartCoroutine(FadeInHUD(roundCompletionCanvasGroup));
+                roundHandler.EndRound();
+                hasEndedRound = false;
             }
         }
 
@@ -80,7 +85,7 @@ namespace Omega.UI
         public void ResetGame()
         {
             print("Resetting Game");
-            hasEndedRound = false;
+            
         }
 
     }

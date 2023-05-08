@@ -39,7 +39,9 @@ namespace Omega.Core
 
         PlayerIdentifier playerIdentifier;
 
-        public List<GameObject> playerImageList;
+        public List<GameObject> playerImageList = new List<GameObject>();
+
+        private List<GameObject> playerImageListPrivate = new List<GameObject>();
 
         private GameObject instantiatedPlayer;
 
@@ -53,15 +55,17 @@ namespace Omega.Core
 
         }
 
-
-
-
-        public void SpawnPlayers(List<Base> playersToSpawn)
+        public void StartFirstRound(List<Base> playersToSpawn)
         {
-            playersToSpawnIn = playersToSpawn;
+            foreach (Base player in playersToSpawn)
+            {
+                playersToSpawnIn.Add(player);
+            }
+
             float angleBetweenPoints = 360f / numberOfPlayers;
             Vector3 centerPosition = transform.position;
 
+            ShuffleList(playersToSpawnIn);
 
             for (int i = playersToSpawnIn.Count - 1; i >= 0; i--)
             {
@@ -72,7 +76,7 @@ namespace Omega.Core
                 instantiatedPlayer = Instantiate(playersToSpawnIn[i].emptyPreFab, position, Quaternion.identity);
                 playersSetup = instantiatedPlayer.GetComponent<PlayerSetup>();
                 playersSetup.playerID = playerCounter;
-                CreatIcon(i);
+                CreatIcon();
                 GetComponent<ScoreHandler>().AddScorer(playersToSpawn[i], playerCounter);
                 instantiatedPlayer.transform.SetParent(players);
                 instantiatedPlayer.transform.LookAt(centerPosition);
@@ -92,11 +96,85 @@ namespace Omega.Core
             StartCoroutine(turnTransition.FadeInHUD());
         }
 
-        private void CreatIcon(int i)
+        public void StartNextRound(List<Base> playersToSpawn)
+        {
+            foreach(Base player in playersToSpawn)
+            {
+                playersToSpawnIn.Add(player);
+            }
+            float angleBetweenPoints = 360f / numberOfPlayers;
+            Vector3 centerPosition = transform.position;
+
+            ShuffleList(playersToSpawnIn);
+
+            Debug.Log("Amount of Players: " + playersToSpawnIn.Count);
+
+            for (int i = playersToSpawnIn.Count - 1; i >= 0; i--)
+            {
+                playerCounter++;
+                float angle = i * angleBetweenPoints; // change angle calculation to anti-clockwise
+                Vector3 position = new Vector3(radius * Mathf.Cos(angle * Mathf.Deg2Rad), 0f, radius * Mathf.Sin(angle * Mathf.Deg2Rad));
+
+                instantiatedPlayer = Instantiate(playersToSpawnIn[i].emptyPreFab, position, Quaternion.identity);
+                playersSetup = instantiatedPlayer.GetComponent<PlayerSetup>();
+                playersSetup.playerID = playerCounter;
+                CreatIcon();
+                instantiatedPlayer.transform.SetParent(players);
+                instantiatedPlayer.transform.LookAt(centerPosition);
+                instantiatedPlayer.name = ("Player " + (playerCounter)).ToString();
+                playerList.Add(instantiatedPlayer);
+
+                instantiatedPlayer.GetComponent<Health>().maxHealth = playerStartingHealth;
+                instantiatedPlayer.GetComponent<Health>().SetHealth();
+                instantiatedPlayer.GetComponent<Energy>().energy = playerStartingEnergy;
+
+                playersToSpawnIn.RemoveAt(i);
+            }
+            playerIdentifier.SetIndex(playerList);
+            CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
+            cameraHandler.SetupCameras();
+            TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
+            StartCoroutine(turnTransition.FadeInHUD());
+        }
+
+        private void CreatIcon()
         {
             GameObject instantiatedPlayerIcon = Instantiate(playersSetup.playerBase.turnOrderVarientIcon, playersTurnOrder);
             instantiatedPlayerIcon.name = ("Player Icon" + (playersSetup.playerID));
             playerImageList.Add(instantiatedPlayerIcon);
+            playerImageListPrivate.Add(instantiatedPlayerIcon);
+        }
+
+        public static void ShuffleList<T>(List<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = UnityEngine.Random.Range(0, n + 1);
+                T temp = list[k];
+                list[k] = list[n];
+                list[n] = temp;
+            }
+        }
+
+        public void ResetPlayers()
+        {
+            foreach(GameObject player in playerList)
+            {
+                Destroy(player);
+            }
+
+            foreach (GameObject icon in playerImageListPrivate)
+            {
+                Destroy(icon);
+            }
+
+            playerCounter = 0;
+            playerImageListPrivate.Clear();
+            playerImageList.Clear();
+            playerList.Clear();
+            playerIdentifier.ResetIndex();
         }
     }
 }
