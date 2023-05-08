@@ -73,6 +73,7 @@ namespace Omega.Core
                 playersSetup = instantiatedPlayer.GetComponent<PlayerSetup>();
                 playersSetup.playerID = playerCounter;
                 CreatIcon(i);
+                GetComponent<ScoreHandler>().AddScorer(playersToSpawn[i], playerCounter);
                 instantiatedPlayer.transform.SetParent(players);
                 instantiatedPlayer.transform.LookAt(centerPosition);
                 instantiatedPlayer.name = ("Player " + (playerCounter)).ToString();

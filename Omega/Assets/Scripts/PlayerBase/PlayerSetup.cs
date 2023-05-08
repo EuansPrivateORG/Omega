@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Omega.Status;
 
 namespace Omega.Core
 {
     public class PlayerSetup : MonoBehaviour
     {
+        public Score playerScore;
+
         public Base playerBase;
 
         [HideInInspector] public GameObject playerPreFab;

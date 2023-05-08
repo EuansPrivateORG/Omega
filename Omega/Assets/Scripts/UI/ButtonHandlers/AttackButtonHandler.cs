@@ -24,9 +24,12 @@ namespace Omega.UI
         private GameObject nextAvailablePlayer;
         [SerializeField] public GameObject damageNumbersPrefab;
 
+        private ScoreHandler scoreHandler;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+            scoreHandler = FindObjectOfType<ScoreHandler>();
         }
 
         private void OnEnable()
@@ -117,6 +120,12 @@ namespace Omega.UI
                 Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
                 playerEnergy.SpendEnergy(dice.cost);
+
+                scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += currentDamage;
+                if (health.isDead)
+                {
+                    scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
+                }
 
                 playerIdentifier.NextPlayer();
                 GameObject numbersPrefab = Instantiate(damageNumbersPrefab, toDamage.transform.position, quaternion.identity);
