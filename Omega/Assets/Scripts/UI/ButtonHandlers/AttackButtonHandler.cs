@@ -7,6 +7,9 @@ using Omega.Status;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using Unity.Mathematics;
+using Cinemachine;
+using TMPro;
 
 namespace Omega.UI
 {
@@ -19,6 +22,7 @@ namespace Omega.UI
         private int currentDamage;
 
         private GameObject nextAvailablePlayer;
+        [SerializeField] public GameObject damageNumbersPrefab;
 
         private void Awake()
         {
@@ -115,6 +119,10 @@ namespace Omega.UI
                 playerEnergy.SpendEnergy(dice.cost);
 
                 playerIdentifier.NextPlayer();
+                GameObject numbersPrefab = Instantiate(damageNumbersPrefab, toDamage.transform.position, quaternion.identity);
+                numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+                NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
+                numbersDisplay.SpawnNumbers(currentDamage);
             }
         }
     }

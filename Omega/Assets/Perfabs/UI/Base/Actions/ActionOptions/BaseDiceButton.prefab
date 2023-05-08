@@ -291,6 +291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   dice: {fileID: 11400000, guid: e1187e2048ddfef47b5eaee8e7b696ab, type: 2}
+  damageNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
+    type: 3}
 --- !u!114 &1158487553130311906
 MonoBehaviour:
   m_ObjectHideFlags: 0

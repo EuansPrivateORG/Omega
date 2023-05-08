@@ -4,6 +4,8 @@ using UnityEngine;
 using Omega.Actions;
 using Omega.Core;
 using Omega.Status;
+using TMPro;
+using Unity.Mathematics;
 
 namespace Omega.UI
 {
@@ -12,6 +14,7 @@ namespace Omega.UI
         public Dice dice;
 
         private PlayerIdentifier playerIdentifier;
+        [SerializeField] public GameObject healingNumbersPrefab;
 
         private void Awake()
         {
@@ -46,6 +49,10 @@ namespace Omega.UI
             {
                 playerHealth.AddHealth(extraHealth);
             }
+            GameObject numbersPrefab = Instantiate(healingNumbersPrefab, playerIdentifier.currentPlayer.transform.position, quaternion.identity);
+            numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = Color.green;
+            NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
+            numbersDisplay.SpawnNumbers(extraHealth);
 
             playerEnergy.SpendEnergy(dice.cost);
 

@@ -872,6 +872,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 260015340361189572}
   dice: {fileID: 11400000, guid: 71eec37e273f08044b03c563910921c9, type: 2}
+  healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
+    type: 3}
 --- !u!1 &642681671164973889 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8810656900508312651, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -898,6 +900,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1743077606146218966}
   dice: {fileID: 11400000, guid: c9b023891b9ae2a4fa7eaac6735bf1fd, type: 2}
+  healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
+    type: 3}
 --- !u!114 &1743077606146218966 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7682676484982287580, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -930,6 +934,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 4330040464481363389}
   dice: {fileID: 11400000, guid: bec744e53f93dad46a418acebb93f0c0, type: 2}
+  healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
+    type: 3}
 --- !u!114 &4330040464481363389 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5672735124852019895, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -974,6 +980,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 6956997946164092247}
   dice: {fileID: 11400000, guid: 9bf7e4fc0ebcba147aff9c85f806df68, type: 2}
+  healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
+    type: 3}
 --- !u!1 &8347073486992127137 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 105901981895885739, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -994,6 +1002,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 8658860884938001597}
   dice: {fileID: 11400000, guid: 158bbf01337f99048b53a41e416a5778, type: 2}
+  healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
+    type: 3}
 --- !u!114 &8507103114581106695 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 333745088640112397, guid: 1ff5d9b461eadf749938f968bf780bc1,
@@ -1038,3 +1048,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 8507103114581106695}
   dice: {fileID: 11400000, guid: cf194ad621684d5438ccedc2b21d2d5c, type: 2}
+  healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
+    type: 3}
