@@ -10,6 +10,7 @@ using Unity.VisualScripting;
 using Unity.Mathematics;
 using Cinemachine;
 using TMPro;
+using Omega.Combat;
 
 namespace Omega.UI
 {
@@ -19,7 +20,8 @@ namespace Omega.UI
 
         private PlayerIdentifier playerIdentifier;
 
-        private int currentDamage;
+        [HideInInspector]
+        public int currentDamage;
 
         private GameObject nextAvailablePlayer;
         [SerializeField] public GameObject damageNumbersPrefab;
@@ -128,6 +130,7 @@ namespace Omega.UI
                     scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
                 }
 
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(currentDamage, toDamage.gameObject.transform);
 
                 int minColour = dice.minimumRoll;
                 int maxColour = dice.maximumRoll;
