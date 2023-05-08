@@ -14,6 +14,7 @@ namespace Omega.UI
         public List<Base> playerTypesList = new List<Base>();
 
         [SerializeField] TextMeshProUGUI numberOfPlayers;
+        [SerializeField] TextMeshProUGUI numberOfRounds;
         [SerializeField] Button startRoundButton;
         [SerializeField] Button healButton;
 
@@ -21,20 +22,26 @@ namespace Omega.UI
         [SerializeField] GameObject playerFactionIconPrefab;
         [SerializeField] RectTransform iconSpawnPosition;
 
+        [Header("RoundCounter Buttons")]
+        [SerializeField] Button minusRoundsButton;
+        [SerializeField] Button plusRoundsButton;
+
         [Header("PlayerCounter Buttons")]
-        [SerializeField] Button minusButton;
-        [SerializeField] Button plusButton;
+        [SerializeField] Button minusPlayerButton;
+        [SerializeField] Button plusPlayerButton;
         public List<GameObject> iconList = new List<GameObject>();
         public CanvasGroup GameHUD;
 
         PlayerSpawnHandler playerSpawnHandler;
         EventSystem eventSystem;
+        RoundHandler roundHandler;
 
         public List<Base> playerTypesListToSpawn = new List<Base>();
 
 
         private void Awake()
         {
+            roundHandler = FindObjectOfType<RoundHandler>();
             eventSystem = FindObjectOfType<EventSystem>();
             playerSpawnHandler = FindObjectOfType<PlayerSpawnHandler>();
         }
@@ -59,32 +66,61 @@ namespace Omega.UI
         {
             numberOfPlayers.text = playerSpawnHandler.numberOfPlayers.ToString();
 
-            if(eventSystem.currentSelectedGameObject == null)
+            numberOfRounds.text = roundHandler.numOfRounds.ToString();
+
+            if (eventSystem.currentSelectedGameObject == null)
             {
-                if(plusButton.interactable == false)
+                if(plusPlayerButton.interactable == false)
                 {
-                    eventSystem.SetSelectedGameObject(minusButton.gameObject);
+                    eventSystem.SetSelectedGameObject(minusPlayerButton.gameObject);
                 }
-                else if (minusButton.interactable == false)
+                else if (minusPlayerButton.interactable == false)
                 {
-                    eventSystem.SetSelectedGameObject(plusButton.gameObject);
+                    eventSystem.SetSelectedGameObject(plusPlayerButton.gameObject);
+                }
+                else if (plusRoundsButton.interactable == false)
+                {
+                    eventSystem.SetSelectedGameObject(minusRoundsButton.gameObject);
+                }
+                else if (minusRoundsButton.interactable == false)
+                {
+                    eventSystem.SetSelectedGameObject(plusRoundsButton.gameObject);
                 }
                 else eventSystem.SetSelectedGameObject(startRoundButton.gameObject);
             }
+
+
             if (playerSpawnHandler.numberOfPlayers == 6)
             {
-                plusButton.interactable = false;
+                plusPlayerButton.interactable = false;
                 return;
             }
-            else plusButton.interactable = true;
+            else plusPlayerButton.interactable = true;
 
             if (playerSpawnHandler.numberOfPlayers == 3)
             {
-                minusButton.interactable = false;
+                minusPlayerButton.interactable = false;
 
                 return;
             }
-            else minusButton.interactable = true;
+            else minusPlayerButton.interactable = true;
+
+
+
+            if (roundHandler.numOfRounds == 9)
+            {
+                plusRoundsButton.interactable = false;
+                return;
+            }
+            else plusRoundsButton.interactable = true;
+
+            if (roundHandler.numOfRounds == 1)
+            {
+                minusRoundsButton.interactable = false;
+
+                return;
+            }
+            else minusRoundsButton.interactable = true;
         }
         public void addPlayer()
         {
@@ -98,6 +134,16 @@ namespace Omega.UI
             playerTypesList.RemoveAt(ran);
             iconList.Add(instantiatedIcon);
         }
+
+        public void AddRound()
+        {
+            roundHandler.numOfRounds++;
+        }
+        public void RemoveRound()
+        {
+            roundHandler.numOfRounds--;
+        }
+
         public void removePlayer()
         {
 
@@ -113,9 +159,10 @@ namespace Omega.UI
             }   
         }
 
+
         public void StartRound()
         {
-            playerSpawnHandler.SpawnPlayers(playerTypesListToSpawn);
+            roundHandler.StartFirstRound(playerTypesListToSpawn);
 
             GameHUD.alpha = 1;
             GameHUD.interactable = true;

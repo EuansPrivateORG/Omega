@@ -25,6 +25,7 @@ namespace Omega.Core
         public int currentPlayerIndex = 0;
         TurnTimer turnTimer;
         private int playerWhoHasDied;
+        [HideInInspector] public bool roundOver = false;
 
         private void Awake()
         {
@@ -63,23 +64,39 @@ namespace Omega.Core
             playerWhoHasDied = playerIndex.Count + 1;
         }
 
+        public void ResetIndex()
+        {
+            playerIndex.Clear();
+            turnOrderIndex.Clear();
+            currentlyAlivePlayers.Clear();
+            currentlyAlivePlayersInTurn.Clear();
+            currentPlayerIndex = 0; 
+
+            currentPlayer = null;
+
+            playerWhoHasDied = 0;
+        }
+
 
         public void NextPlayer()
         {
-            SetupTurnOrderIndex();
-
-            SetupCurrentlyAlivePlayerIndex();
-
-            CalculateCurrentPlayerIndex();
-
-            UpdatePlayerIcon();
-
-            SettingUpNextPlayer();
-
-            CancelHandler handler = FindObjectOfType<CancelHandler>();
-            if (handler != null)
+            if (!roundOver)
             {
-                handler.ResetUI();
+                SetupTurnOrderIndex();
+
+                SetupCurrentlyAlivePlayerIndex();
+
+                CalculateCurrentPlayerIndex();
+
+                UpdatePlayerIcon();
+
+                SettingUpNextPlayer();
+
+                CancelHandler handler = FindObjectOfType<CancelHandler>();
+                if (handler != null)
+                {
+                    handler.ResetUI();
+                }
             }
         }
 

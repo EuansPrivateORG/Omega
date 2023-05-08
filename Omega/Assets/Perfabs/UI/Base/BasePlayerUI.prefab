@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 8267723485251351661}
     m_SelectOnDown: {fileID: 6052576888062386244}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 5935002575880120021}
@@ -563,7 +563,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6118553683369342967}
         m_TargetAssemblyTypeName: Omega.UI.RoundStart, Assembly-CSharp
-        m_MethodName: removePlayer
+        m_MethodName: RemoveRound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 1886590967159886710}
     m_SelectOnDown: {fileID: 6052576888062386244}
     m_SelectOnLeft: {fileID: 156864204792185318}
     m_SelectOnRight: {fileID: 0}
@@ -1081,7 +1081,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6118553683369342967}
         m_TargetAssemblyTypeName: Omega.UI.RoundStart, Assembly-CSharp
-        m_MethodName: addPlayer
+        m_MethodName: AddRound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1328,13 +1328,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f40f46182520bce48bff068448b91383, type: 2}
   - {fileID: 11400000, guid: b871bfebcb76df746b859cc2a24fd036, type: 2}
   numberOfPlayers: {fileID: 5420166864994031767}
+  numberOfRounds: {fileID: 1572591895726966138}
   startRoundButton: {fileID: 6052576888062386244}
   healButton: {fileID: 862083187091220066}
   playerFactionIconPrefab: {fileID: 1381391798786512143, guid: 01533bb7f78bd0d45b92559954d47a9b,
     type: 3}
   iconSpawnPosition: {fileID: 8191656768286016520}
-  minusButton: {fileID: 0}
-  plusButton: {fileID: 0}
+  minusRoundsButton: {fileID: 156864204792185318}
+  plusRoundsButton: {fileID: 5935002575880120021}
+  minusPlayerButton: {fileID: 8267723485251351661}
+  plusPlayerButton: {fileID: 1886590967159886710}
   iconList: []
   GameHUD: {fileID: 6208295855242214988}
   playerTypesListToSpawn: []
@@ -2878,8 +2881,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 6052576888062386244}
+    m_SelectOnUp: {fileID: 6052576888062386244}
+    m_SelectOnDown: {fileID: 156864204792185318}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 1886590967159886710}
   m_Transition: 1
@@ -4232,8 +4235,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 6052576888062386244}
+    m_SelectOnUp: {fileID: 6052576888062386244}
+    m_SelectOnDown: {fileID: 5935002575880120021}
     m_SelectOnLeft: {fileID: 8267723485251351661}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
