@@ -13,6 +13,17 @@ namespace Omega.Status
 
         [HideInInspector] public bool isDead = false;
 
+        private PlayerIdentifier playerIdenti;
+
+        private ScoreHandler scoreHandler;
+
+        private void Awake()
+        {
+            playerIdenti = FindObjectOfType<PlayerIdentifier>();
+            scoreHandler = FindObjectOfType<ScoreHandler>();
+
+        }
+
         public void AddHealth(int addition)
         {
             currentHealth += addition;
@@ -28,8 +39,13 @@ namespace Omega.Status
                 PlayerSetup playerSetup = GetComponent<PlayerSetup>();
                 playerSetup.SetPlayerIconDead();
 
+                int placement = playerIdenti.playerIndex.Count - (playerIdenti.currentlyAlivePlayers.Count - 1);
+                
                 int playerID = playerSetup.playerID;
-                foreach(GameObject player in FindObjectOfType<PlayerIdentifier>().currentlyAlivePlayers)
+
+                scoreHandler.CalculatePlayerPlacement(placement, playerID);
+
+                foreach(GameObject player in playerIdenti.currentlyAlivePlayers)
                 {
                     if(player.GetComponent<PlayerSetup>().playerID > playerID)
                     {
