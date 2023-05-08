@@ -94,6 +94,8 @@ namespace Omega.Core
             cameraHandler.SetupCameras();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
             StartCoroutine(turnTransition.FadeInHUD());
+            TurnTimer turnTimer = GetComponent<TurnTimer>();
+            turnTimer.SetTimeOn();
         }
 
         public void StartNextRound(List<Base> playersToSpawn)

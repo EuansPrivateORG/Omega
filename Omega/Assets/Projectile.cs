@@ -39,7 +39,6 @@ namespace Omega.Combat
         {
             if (enemyCollider != instigator.GetComponentInChildren<Collider>())
             {
-                Debug.Log(enemyCollider);
                 target.GetComponent<Health>().TakeDamage(damage);
                 Debug.Log(damage.ToString() + " Damage Dealt");
                 attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour);
