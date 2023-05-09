@@ -124,7 +124,7 @@ PrefabInstance:
     - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_fontSize
-      value: 31.3
+      value: 29.85
       objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
@@ -358,7 +358,7 @@ PrefabInstance:
     - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_fontSize
-      value: 31.3
+      value: 29.85
       objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
@@ -712,7 +712,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
+      objectReference: {fileID: 21300000, guid: f76b09edc776c4d448d5484167aaff55,
         type: 3}
     - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
@@ -1108,7 +1108,7 @@ PrefabInstance:
     - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_fontSize
-      value: 31.3
+      value: 29.85
       objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
@@ -1337,7 +1337,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
+      objectReference: {fileID: 21300000, guid: d0cd44a06088dea449f808022fcd05bc,
         type: 3}
     - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
@@ -1576,7 +1576,7 @@ PrefabInstance:
     - target: {fileID: 2672454758484101856, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
       propertyPath: m_fontSize
-      value: 31.3
+      value: 29.85
       objectReference: {fileID: 0}
     - target: {fileID: 4256859879239347302, guid: 351212a0d47807948a1607f4350f676c,
         type: 3}
