@@ -124,10 +124,6 @@ namespace Omega.UI
                 Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
                 playerEnergy.SpendEnergy(dice.cost);
                 scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += currentDamage;
-                if (health.isDead)
-                {
-                    scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
-                }
             }
 
         }

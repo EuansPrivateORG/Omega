@@ -147,6 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7101562923246237669}
   - component: {fileID: 6167842714582312571}
+  - component: {fileID: 5075786460036553276}
   m_Layer: 0
   m_Name: BaseLeaderboardItem
   m_TagString: Untagged
@@ -196,7 +197,7 @@ MonoBehaviour:
     m_Right: 10
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
+  m_ChildAlignment: 4
   m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -205,6 +206,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5075786460036553276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111170154692516729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36feb48d15521dd4e9af7425ddf78e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leaderboardPosition: {fileID: 8410515448096672951}
+  factionIcon: {fileID: 7632771481169983574}
+  factionName: {fileID: 3136156995698007629}
+  pointsGained: {fileID: 6171364890210538245}
+  totalPoints: {fileID: 939754312513284813}
 --- !u!1 &2640820718952766150
 GameObject:
   m_ObjectHideFlags: 0

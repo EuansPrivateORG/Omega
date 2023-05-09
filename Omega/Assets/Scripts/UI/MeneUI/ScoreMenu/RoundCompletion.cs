@@ -55,6 +55,7 @@ namespace Omega.UI
                     roundCompletionCanvasGroup.interactable = true;
                     EventSystem.current.SetSelectedGameObject(nextRoundButton.gameObject);
                     StartCoroutine(FadeInHUD(roundCompletionCanvasGroup));
+                    scoreHandler.DisplayLeadboardScores();
                     roundHandler.EndRound();
                 }
                 hasEndedRound = false;
@@ -86,10 +87,10 @@ namespace Omega.UI
                 elapsedTime += Time.deltaTime;
                 float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeTime);
                 group.alpha = alpha;
-                group.interactable = true;
                 yield return null;
             }
 
+            group.interactable = true;
             group.alpha = 1f;
         }
 

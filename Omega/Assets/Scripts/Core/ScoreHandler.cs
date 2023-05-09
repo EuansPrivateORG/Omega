@@ -12,6 +12,11 @@ namespace Omega.Core
 {
     public class ScoreHandler : MonoBehaviour
     {
+        [HideInInspector] public List<GameObject> leaderboardPlayers = new List<GameObject>(); 
+
+        public Transform leaderboardSpawnPos;
+        public GameObject leaderboardPreFab;
+
         public int firstPlayerBonus;
 
         public int secondPlayerBonus;
@@ -29,6 +34,7 @@ namespace Omega.Core
             public  int damageDealt = 0;
             public int pointsHealed = 0;
             public  int playerNumReference = 0;
+            public int pointsGainedThisRound = 0;
         }
 
         public List<ScoreValues> playerScores = new List<ScoreValues>();
@@ -68,18 +74,22 @@ namespace Omega.Core
             if (placement == playerIdentifier.playerIndex.Count)
             {
                 playerScores[newPlayerID].placementScore += (placement - 1) + firstPlayerBonus;
+                playerScores[newPlayerID].pointsGainedThisRound += (placement - 1) + firstPlayerBonus;
             }
             else if (placement == playerIdentifier.playerIndex.Count - 1)
             {
                 playerScores[newPlayerID].placementScore += (placement - 1) + secondPlayerBonus;
+                playerScores[newPlayerID].pointsGainedThisRound += (placement - 1) + secondPlayerBonus;
             }
             else if (placement == playerIdentifier.playerIndex.Count - 2)
             {
                 playerScores[newPlayerID].placementScore += (placement - 1) + thirdPlayerBonus;
+                playerScores[newPlayerID].pointsGainedThisRound += (placement - 1) + thirdPlayerBonus;
             }
             else
             {
                 playerScores[newPlayerID].placementScore += (placement - 1);
+                playerScores[newPlayerID].pointsGainedThisRound += (placement - 1);
             }
         }
 
@@ -133,7 +143,7 @@ namespace Omega.Core
                     endScreen.player2Icon.color = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
                 }
 
-                if (player.factionName == playerScoresInOrder[2].playerFaction)
+                else if (player.factionName == playerScoresInOrder[2].playerFaction)
                 {
                     Debug.Log("Set Player 3");
                     endScreen.player3Icon.sprite = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
@@ -158,6 +168,47 @@ namespace Omega.Core
             endScreen.killAmountPlayer3.text = playerScoresInOrder[2].playersKilled.ToString();
             endScreen.damageAmountPlayer3.text = playerScoresInOrder[2].damageDealt.ToString();
             endScreen.healAmountPlayer3.text = playerScoresInOrder[2].pointsHealed.ToString();
+        }
+
+        public void DisplayLeadboardScores()
+        {
+            ReOrderPlacementList();
+
+            for (int i = 0; i < playerScoresInOrder.Count; i++)
+            {
+                Base currentPlayer = null;
+                GameObject instantiated = Instantiate(leaderboardPreFab, leaderboardSpawnPos, leaderboardSpawnPos.transform);
+
+                LeaderboardCollection leadboardCollection = instantiated.GetComponent<LeaderboardCollection>();
+
+                leadboardCollection.leaderboardPosition.text = (i + 1).ToString();
+                foreach(Base player in roundHandler.players)
+                {
+                    if(player.factionName == playerScoresInOrder[i].playerFaction)
+                    {
+                        currentPlayer = player;
+                    }
+                }
+
+                leadboardCollection.factionIcon.GetComponent<Image>().sprite = currentPlayer.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
+                leadboardCollection.factionIcon.GetComponent<Image>().color = currentPlayer.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
+
+                leadboardCollection.factionName.text = playerScoresInOrder[i].playerFaction;
+
+                leadboardCollection.pointsGained.text = "+" + playerScoresInOrder[i].pointsGainedThisRound.ToString();
+
+                leadboardCollection.totalPoints.text = playerScoresInOrder[i].placementScore.ToString();
+
+                leaderboardPlayers.Add(instantiated);
+            }
+        }
+
+        public void ResetScoreThisRound()
+        {
+            foreach(ScoreValues score in playerScores)
+            {
+                score.pointsGainedThisRound = 0;
+            }
         }
     }
 }

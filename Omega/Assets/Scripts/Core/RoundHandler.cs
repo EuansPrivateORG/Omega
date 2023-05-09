@@ -23,6 +23,7 @@ namespace Omega.Core
         public Button healButton;
         private ScoreHandler scoreHandler;
         TurnTimer turnTimer;
+        TurnTransition turnTransition;
 
         private void Awake()
         {
@@ -30,6 +31,7 @@ namespace Omega.Core
             playerId = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
             turnTimer = FindObjectOfType<TurnTimer>();
+            turnTransition = FindObjectOfType<TurnTransition>();
         }
 
         public void StartFirstRound(List<Base> playersToSpawn)
@@ -38,24 +40,33 @@ namespace Omega.Core
             spawnHandler.StartFirstRound(players);
             playerId.roundOver = false;
             turnTimer.SetTimeOn();
+            foreach(GameObject player in scoreHandler.leaderboardPlayers)
+            {
+                Destroy(player);
+            }
+            scoreHandler.leaderboardPlayers.Clear();
         }
 
         public void StartNextRound()
         {
-
-            currentRound++;
-            spawnHandler.StartNextRound(players);
-            Debug.Log("Here 3");
-
             roundResults.alpha = 0;
             roundResults.interactable = false;
 
             gameHUD.alpha = 1;
             gameHUD.interactable = true;
+            turnTransition.FadeInHUD();
+            currentRound++;
+            spawnHandler.StartNextRound(players);
             EventSystem.current.SetSelectedGameObject(healButton.gameObject);
 
             playerId.roundOver = false;
             turnTimer.SetTimeOn();
+
+            foreach (GameObject player in scoreHandler.leaderboardPlayers)
+            {
+                Destroy(player);
+            }
+            scoreHandler.leaderboardPlayers.Clear();
         }
 
         public void EndRound()
@@ -66,6 +77,7 @@ namespace Omega.Core
             gameHUD.alpha = 0;
             gameHUD.interactable = false;
             turnTimer.SetTimeOff();
+            scoreHandler.ResetScoreThisRound();
         }
 
         public void EndGame(GameObject endScreen)
@@ -78,11 +90,12 @@ namespace Omega.Core
             gameHUD.alpha = 0;
             gameHUD.interactable = false;
             turnTimer.SetTimeOff();
-        }
+            scoreHandler.ResetScoreThisRound();
 
-        public void ResetGame()
-        {
+            currentRound = 0;
 
+            scoreHandler.playerScores.Clear();
+            scoreHandler.playerScoresInOrder.Clear();
         }
     }
 }
