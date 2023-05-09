@@ -18,10 +18,12 @@ namespace Omega.UI
         [SerializeField] public GameObject healingNumbersPrefab;
         [SerializeField] public Gradient colourGradient;
 
+        private ScoreHandler scoreHandler;
 
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+            scoreHandler = FindObjectOfType<ScoreHandler>();
         }
 
         private void OnEnable()
@@ -46,11 +48,14 @@ namespace Omega.UI
             int extraHealth = dice.roll();
             if (playerHealth.currentHealth + extraHealth >= playerHealth.maxHealth)
             {
+                scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].pointsHealed += (playerHealth.maxHealth - playerHealth.currentHealth);
+
                 playerHealth.currentHealth = playerHealth.maxHealth;
             }
             else
             {
                 playerHealth.AddHealth(extraHealth);
+                scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].pointsHealed += extraHealth;
             }
             int minColour = dice.minimumRoll;
             int maxColour = dice.maximumRoll;

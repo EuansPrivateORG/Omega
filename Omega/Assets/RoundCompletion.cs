@@ -13,6 +13,7 @@ namespace Omega.UI
     {
         [SerializeField] public CanvasGroup playerHUDCanvasGroup;
         [SerializeField] public CanvasGroup endScreen;
+        [SerializeField] public CanvasGroup startScreen;
         [SerializeField] public Button nextRoundButton;
         [SerializeField] public TextMeshProUGUI winningPlayerText;
         private CanvasGroup roundCompletionCanvasGroup;
@@ -39,12 +40,12 @@ namespace Omega.UI
             if (playerIdentifier.currentlyAlivePlayers.Count == 1 && !hasEndedRound)
             {
                 hasEndedRound = true;
-
-                if (roundHandler.numOfRounds == roundHandler.currentRound)
+                if (roundHandler.numOfRounds == roundHandler.currentRound + 1)
                 {
                     StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
                     StartCoroutine(FadeInHUD(endScreen));
                     roundHandler.EndGame(endScreen.gameObject);
+                    EventSystem.current.SetSelectedGameObject(endScreen.GetComponent<EndScreenCollection>().resetButton.gameObject);
                 }
                 else
                 {
@@ -94,8 +95,9 @@ namespace Omega.UI
 
         public void ResetGame()
         {
-            print("Resetting Game");
-            
+            StartCoroutine(FadeOutHUD(endScreen));
+            StartCoroutine(FadeInHUD(startScreen));
+            EventSystem.current.SetSelectedGameObject(startScreen.GetComponent<RoundStart>().startRoundButton.gameObject);
         }
 
     }

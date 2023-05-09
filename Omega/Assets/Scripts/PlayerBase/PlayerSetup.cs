@@ -9,8 +9,6 @@ namespace Omega.Core
 {
     public class PlayerSetup : MonoBehaviour
     {
-        public Score playerScore;
-
         public Base playerBase;
 
         [HideInInspector] public GameObject playerPreFab;

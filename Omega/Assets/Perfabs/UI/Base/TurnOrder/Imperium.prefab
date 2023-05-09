@@ -10,7 +10,12 @@ PrefabInstance:
     - target: {fileID: 1381391798786512143, guid: 01533bb7f78bd0d45b92559954d47a9b,
         type: 3}
       propertyPath: m_Name
-      value: Imperium 1
+      value: Imperium
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789389691489395621, guid: 01533bb7f78bd0d45b92559954d47a9b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7043910752211290093, guid: 01533bb7f78bd0d45b92559954d47a9b,
         type: 3}

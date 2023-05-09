@@ -15,7 +15,7 @@ namespace Omega.UI
 
         [SerializeField] TextMeshProUGUI numberOfPlayers;
         [SerializeField] TextMeshProUGUI numberOfRounds;
-        [SerializeField] Button startRoundButton;
+        [SerializeField] public Button startRoundButton;
         [SerializeField] Button healButton;
 
         [Header("Faction Icons")]

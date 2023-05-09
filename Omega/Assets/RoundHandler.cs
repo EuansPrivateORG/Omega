@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Omega.UI;
 
 namespace Omega.Core
 {
@@ -20,17 +21,20 @@ namespace Omega.Core
         private PlayerSpawnHandler spawnHandler;
         private PlayerIdentifier playerId;
         public Button healButton;
+        private ScoreHandler scoreHandler;
 
         private void Awake()
         {
             spawnHandler = FindObjectOfType<PlayerSpawnHandler>();
             playerId = FindObjectOfType<PlayerIdentifier>();
+            scoreHandler = FindObjectOfType<ScoreHandler>();
         }
 
         public void StartFirstRound(List<Base> playersToSpawn)
         {
             players = playersToSpawn;
             spawnHandler.StartFirstRound(players);
+            playerId.roundOver = false;
         }
 
         public void StartNextRound()
@@ -54,12 +58,25 @@ namespace Omega.Core
         {
             spawnHandler.ResetPlayers();
             playerId.roundOver = true;
+
+            gameHUD.alpha = 0;
+            gameHUD.interactable = false;
         }
 
         public void EndGame(GameObject endScreen)
         {
             spawnHandler.ResetPlayers();
             playerId.roundOver = true;
+
+            scoreHandler.DisplayEndGameScores(endScreen.GetComponent<EndScreenCollection>());
+
+            gameHUD.alpha = 0;
+            gameHUD.interactable = false;
+        }
+
+        public void ResetGame()
+        {
+
         }
     }
 }
