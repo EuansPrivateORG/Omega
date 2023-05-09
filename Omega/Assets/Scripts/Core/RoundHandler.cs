@@ -22,12 +22,14 @@ namespace Omega.Core
         private PlayerIdentifier playerId;
         public Button healButton;
         private ScoreHandler scoreHandler;
+        TurnTimer turnTimer;
 
         private void Awake()
         {
             spawnHandler = FindObjectOfType<PlayerSpawnHandler>();
             playerId = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
+            turnTimer = FindObjectOfType<TurnTimer>();
         }
 
         public void StartFirstRound(List<Base> playersToSpawn)
@@ -35,6 +37,7 @@ namespace Omega.Core
             players = playersToSpawn;
             spawnHandler.StartFirstRound(players);
             playerId.roundOver = false;
+            turnTimer.SetTimeOn();
         }
 
         public void StartNextRound()
@@ -52,6 +55,7 @@ namespace Omega.Core
             EventSystem.current.SetSelectedGameObject(healButton.gameObject);
 
             playerId.roundOver = false;
+            turnTimer.SetTimeOn();
         }
 
         public void EndRound()
@@ -61,6 +65,7 @@ namespace Omega.Core
 
             gameHUD.alpha = 0;
             gameHUD.interactable = false;
+            turnTimer.SetTimeOff();
         }
 
         public void EndGame(GameObject endScreen)
@@ -72,6 +77,7 @@ namespace Omega.Core
 
             gameHUD.alpha = 0;
             gameHUD.interactable = false;
+            turnTimer.SetTimeOff();
         }
 
         public void ResetGame()

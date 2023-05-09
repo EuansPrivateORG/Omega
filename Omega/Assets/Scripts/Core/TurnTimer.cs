@@ -49,6 +49,12 @@ namespace Omega.Core
         {
             timeOn = true;
         }
+
+        public void SetTimeOff()
+        {
+            timeOn = false;
+            timeLeft = 0;
+        }
     }
 
 }

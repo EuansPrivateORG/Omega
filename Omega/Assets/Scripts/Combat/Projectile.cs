@@ -22,10 +22,12 @@ namespace Omega.Combat
 
         PlayerIdentifier playerIdentifier;
         AttackButtonHandler attackButtonHandler;
+        ScoreHandler scoreHandler;
 
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+            scoreHandler = FindObjectOfType<ScoreHandler>();
         }
         private void Update()
         {
@@ -42,6 +44,10 @@ namespace Omega.Combat
                 target.GetComponent<Health>().TakeDamage(damage);
                 Debug.Log(damage.ToString() + " Damage Dealt");
                 attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour);
+                if (target.GetComponent<Health>().isDead)
+                {
+                    scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
+                }
                 playerIdentifier.NextPlayer();
                 Destroy(transform.parent.gameObject);
             }

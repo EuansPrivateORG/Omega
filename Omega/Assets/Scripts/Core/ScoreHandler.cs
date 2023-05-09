@@ -141,16 +141,19 @@ namespace Omega.Core
                 }
             }
 
+            endScreen.player1FactionName.text = playerScoresInOrder[0].playerFaction;
             endScreen.totalScorePlayer1.text = playerScoresInOrder[0].placementScore.ToString();
             endScreen.killAmountPlayer1.text = playerScoresInOrder[0].playersKilled.ToString();
             endScreen.damageAmountPlayer1.text = playerScoresInOrder[0].damageDealt.ToString();
             endScreen.healAmountPlayer1.text = playerScoresInOrder[0].pointsHealed.ToString();
 
+            endScreen.player2FactionName.text = playerScoresInOrder[1].playerFaction;
             endScreen.totalScorePlayer2.text = playerScoresInOrder[1].placementScore.ToString();
             endScreen.killAmountPlayer2.text = playerScoresInOrder[1].playersKilled.ToString();
             endScreen.damageAmountPlayer2.text = playerScoresInOrder[1].damageDealt.ToString();
             endScreen.healAmountPlayer2.text = playerScoresInOrder[1].pointsHealed.ToString();
 
+            endScreen.player3FactionName.text = playerScoresInOrder[2].playerFaction;
             endScreen.totalScorePlayer3.text = playerScoresInOrder[2].placementScore.ToString();
             endScreen.killAmountPlayer3.text = playerScoresInOrder[2].playersKilled.ToString();
             endScreen.damageAmountPlayer3.text = playerScoresInOrder[2].damageDealt.ToString();

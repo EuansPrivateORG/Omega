@@ -12,6 +12,7 @@ namespace Omega.UI
 
         [Header("First Player")]
         public Image player1Icon;
+        public TextMeshProUGUI player1FactionName;
         public TextMeshProUGUI totalScorePlayer1;
         public TextMeshProUGUI killAmountPlayer1;
         public TextMeshProUGUI damageAmountPlayer1;
@@ -19,6 +20,7 @@ namespace Omega.UI
 
         [Header("Second Player")]
         public Image player2Icon;
+        public TextMeshProUGUI player2FactionName;
         public TextMeshProUGUI totalScorePlayer2;
         public TextMeshProUGUI killAmountPlayer2;
         public TextMeshProUGUI damageAmountPlayer2;
@@ -26,6 +28,7 @@ namespace Omega.UI
 
         [Header("Third Player")]
         public Image player3Icon;
+        public TextMeshProUGUI player3FactionName;
         public TextMeshProUGUI totalScorePlayer3;
         public TextMeshProUGUI killAmountPlayer3;
         public TextMeshProUGUI damageAmountPlayer3;
