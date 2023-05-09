@@ -42,8 +42,8 @@ namespace Omega.Combat
                 target.GetComponent<Health>().TakeDamage(damage);
                 Debug.Log(damage.ToString() + " Damage Dealt");
                 attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour);
-                Destroy(gameObject);
                 playerIdentifier.NextPlayer();
+                Destroy(transform.parent.gameObject);
             }
         }
 

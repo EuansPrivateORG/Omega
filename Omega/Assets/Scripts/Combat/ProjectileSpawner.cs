@@ -22,6 +22,7 @@ namespace Omega.Combat
         {
             
             GameObject projectileInstance = Instantiate(projectile, playerIdentifier.currentPlayer.transform.position, Quaternion.identity);
+            projectileInstance.transform.parent = transform;
             projectileInstance.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler);
         }
     }
