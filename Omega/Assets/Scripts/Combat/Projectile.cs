@@ -1,3 +1,4 @@
+using Cinemachine;
 using Omega.Core;
 using Omega.Status;
 using Omega.UI;
@@ -23,6 +24,7 @@ namespace Omega.Combat
         PlayerIdentifier playerIdentifier;
         AttackButtonHandler attackButtonHandler;
         ScoreHandler scoreHandler;
+
 
         private void Awake()
         {
@@ -62,6 +64,8 @@ namespace Omega.Combat
             maxColour = max;
             attackButtonHandler = origin;
         }
+
+
 
     }
 }
