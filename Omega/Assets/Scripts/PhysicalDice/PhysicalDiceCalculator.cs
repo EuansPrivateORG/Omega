@@ -54,5 +54,13 @@ namespace Omega.Actions
             }
         }
 
+        public void ClearDice()
+        {
+            foreach(GameObject dice in actionDices)
+            {
+                Destroy(dice);
+            }
+            actionDices.Clear();
+        }
     }
 }

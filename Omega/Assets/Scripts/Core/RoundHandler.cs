@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Omega.UI;
+using Omega.Actions;
 
 namespace Omega.Core
 {
@@ -24,6 +25,7 @@ namespace Omega.Core
         private ScoreHandler scoreHandler;
         TurnTimer turnTimer;
         TurnTransition turnTransition;
+        private PhysicalDiceCalculator diceCalculator;
 
         private void Awake()
         {
@@ -32,6 +34,7 @@ namespace Omega.Core
             scoreHandler = FindObjectOfType<ScoreHandler>();
             turnTimer = FindObjectOfType<TurnTimer>();
             turnTransition = FindObjectOfType<TurnTransition>();
+            diceCalculator = FindObjectOfType<PhysicalDiceCalculator>();
         }
 
         public void StartFirstRound(List<Base> playersToSpawn)
@@ -78,6 +81,8 @@ namespace Omega.Core
             gameHUD.interactable = false;
             turnTimer.SetTimeOff();
             scoreHandler.ResetScoreThisRound();
+
+            diceCalculator.ClearDice();
         }
 
         public void EndGame(GameObject endScreen)
@@ -96,6 +101,7 @@ namespace Omega.Core
 
             scoreHandler.playerScores.Clear();
             scoreHandler.playerScoresInOrder.Clear();
+            diceCalculator.ClearDice();
         }
     }
 }

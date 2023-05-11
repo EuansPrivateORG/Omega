@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Omega.Actions;
 
 namespace Omega.Core
 {
@@ -26,9 +27,12 @@ namespace Omega.Core
         private int playerWhoHasDied;
         [HideInInspector] public bool roundOver = false;
 
+        private PhysicalDiceCalculator physicalDiceCalculator;
+
         private void Awake()
         {
             turnTimer = GetComponent<TurnTimer>();
+            physicalDiceCalculator = GetComponent<PhysicalDiceCalculator>();
         }
 
         public void SetupTurnOrderIndex()
@@ -81,6 +85,8 @@ namespace Omega.Core
         {
             if (!roundOver)
             {
+                physicalDiceCalculator.ClearDice();
+
                 SetupTurnOrderIndex();
 
                 SetupCurrentlyAlivePlayerIndex();

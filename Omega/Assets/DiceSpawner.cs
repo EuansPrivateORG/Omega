@@ -38,6 +38,7 @@ namespace Omega.Actions
             {
                 d.GetComponent<PhysicalDice>().RollDice(playerSetup.diceTarget);
             }
+            dice.Clear();
         }
 
         private void SpawnDice(int numOfDice, PlayerSetup playerSetup, GameObject diceToSpawn)
