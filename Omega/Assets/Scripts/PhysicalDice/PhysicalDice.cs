@@ -42,6 +42,7 @@ namespace Omega.Actions
             }
             else if(diceRigidbody.IsSleeping() && hasLanded && diceValue == 0)
             {
+                diceRigidbody.AddForce(3, 2, 3, ForceMode.Impulse);
                 Debug.Log("Did not land correctly");
             }
         }

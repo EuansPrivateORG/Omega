@@ -30,6 +30,7 @@ namespace Omega.UI
         private ScoreHandler scoreHandler;
         private DiceSpawner diceSpawner;
         private GameObject playerToDamage;
+        public List<GameObject> attackablePlayers = new List<GameObject>();
 
         private void Awake()
         {
@@ -53,7 +54,8 @@ namespace Omega.UI
         }
         private void OnDisable()
         {
-
+            List<GameObject> attackablePlayers = new List<GameObject>();
+            DisableBaseSelection(attackablePlayers);
         }
 
         public void ButtonPressed()

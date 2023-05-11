@@ -512,8 +512,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPlayers: 5
-  playerStartingHealth: 20
-  playerStartingEnergy: 3
+  playerStartingHealth: 150
+  playerStartingEnergy: 0
   radius: 10
   players: {fileID: 1902693845}
   playersTurnOrder: {fileID: 1914578938}
@@ -536,6 +536,7 @@ MonoBehaviour:
   turnOrderIndex: []
   currentlyAlivePlayersInTurn: []
   currentlyAlivePlayers: []
+  currentAttack: {fileID: 0}
   currentPlayer: {fileID: 0}
   energyGainPerTurn: 2
   currentPlayerIndex: 0
@@ -552,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11edbd5c3998a9f478a4ef8202397fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnTimeLimit: 50
+  turnTimeLimit: 10
   timeFace: {fileID: 1260213818}
 --- !u!114 &781620686
 MonoBehaviour:
@@ -607,6 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceTotal: 0
   actionDices: []
+  passedInfo: 0
 --- !u!114 &781620689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,6 +1366,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1194291665280241704, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f76b09edc776c4d448d5484167aaff55,
+        type: 3}
     - target: {fileID: 1242054564857295894, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMax.y
