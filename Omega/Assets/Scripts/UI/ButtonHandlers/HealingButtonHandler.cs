@@ -12,7 +12,7 @@ namespace Omega.UI
 {
     public class HealingButtonHandler : ActionButtonHandler
     {
-        public Dice dice;
+        public Actions.Action dice;
 
         private PlayerIdentifier playerIdentifier;
         [SerializeField] public GameObject healingNumbersPrefab;

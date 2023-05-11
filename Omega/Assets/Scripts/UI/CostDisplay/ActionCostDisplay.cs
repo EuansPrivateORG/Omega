@@ -11,7 +11,7 @@ namespace Omega.UI
         public TextMeshProUGUI DisplayText;
         AttackButtonHandler attackButtonHandler = null;
         HealingButtonHandler healingButtonHandler = null;
-        Dice dice;
+        Action dice;
 
         private void Awake()
         {

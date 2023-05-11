@@ -16,7 +16,7 @@ namespace Omega.UI
 {
     public class AttackButtonHandler : ActionButtonHandler
     {
-        public Dice dice;
+        public Action dice;
 
         private PlayerIdentifier playerIdentifier;
 
