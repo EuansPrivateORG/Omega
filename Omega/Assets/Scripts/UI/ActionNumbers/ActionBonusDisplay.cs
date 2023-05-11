@@ -16,7 +16,7 @@ namespace Omega.UI
         private void Awake()
         {
             attackButtonHandler = GetComponent<AttackButtonHandler>();
-            dice = attackButtonHandler.dice;
+            dice = attackButtonHandler.attack;
         }
 
         private void Start()

@@ -20,7 +20,6 @@ namespace Omega.Combat
 
         public void SpawnProjectile(int damage, GameObject target, int minColour, int maxColour, AttackButtonHandler attackButtonHandler)
         {
-            
             GameObject projectileInstance = Instantiate(projectile, playerIdentifier.currentPlayer.transform.position, Quaternion.identity);
             projectileInstance.transform.parent = transform;
             projectileInstance.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler);

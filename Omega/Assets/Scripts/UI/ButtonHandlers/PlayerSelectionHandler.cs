@@ -32,7 +32,8 @@ namespace Omega.UI
         {
             if(currentAction != null)
             {
-                currentAction.PerformAttack(eventSystem.currentSelectedGameObject);
+                currentAction.RollDice(eventSystem.currentSelectedGameObject);
+                currentAction = null;
             }
         }
 

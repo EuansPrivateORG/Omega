@@ -37,6 +37,7 @@ namespace Omega.Combat
 
             Vector3 direction = (target.transform.position - transform.position).normalized;
             transform.position += direction * projectileSpeed * Time.deltaTime;
+            Debug.Log(transform.position);
         }
 
         private void OnTriggerEnter(Collider enemyCollider)

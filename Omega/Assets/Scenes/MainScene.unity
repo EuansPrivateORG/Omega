@@ -607,7 +607,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceTotal: 0
   actionDices: []
-  diceDisplayValue: {fileID: 0}
 --- !u!114 &781620689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,12 +616,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 781620681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 784227ff1ae91c24eabc462240029e3d, type: 3}
+  m_Script: {fileID: 11500000, guid: eeae26f5678ca004dba2c93e6ec6f0c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   D4: {fileID: 5805966195657595825, guid: e4c87af6370e0864488e541100dae1e9, type: 3}
   D6: {fileID: 383831972081085974, guid: 6d2f037eff8adcd48a322be48a6b6552, type: 3}
   D20: {fileID: 7984288943373649543, guid: 0ffabc0152d2ebc4892a51ee50e3dfd0, type: 3}
+  spawnRadius: 3
 --- !u!224 &988630729 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9116772868844883241, guid: d29fc24822bfc8241a517ea8b3088b5d,

@@ -1,6 +1,9 @@
+using Omega.Core;
+using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace Omega.Actions
@@ -11,12 +14,20 @@ namespace Omega.Actions
         public List<GameObject> actionDices = new List<GameObject>();
         private int diceCounter = 0;
 
-        public TextMeshProUGUI diceDisplayValue;
+        private PlayerIdentifier playerIdentifier = null;
+
+        [HideInInspector]public bool passedInfo = false;
+
+        private void Awake()
+        {
+            playerIdentifier = GetComponent<PlayerIdentifier>();
+        }
 
         private void Update()
         {
-         GetDiceTotal(); 
+            GetDiceTotal(); 
         }
+
         [ContextMenu("GetDiceTotal")]
         public void GetDiceTotal()
         {
@@ -25,18 +36,20 @@ namespace Omega.Actions
                 foreach (GameObject dice in actionDices)
                 {
                     PhysicalDice physicalDice = dice.GetComponent<PhysicalDice>();
-                    if (physicalDice.thrown && physicalDice.hasLanded)
+                    if (physicalDice.thrown && physicalDice.hasLanded && physicalDice.GetComponent<Rigidbody>().IsSleeping())
                     {
                         diceTotal += physicalDice.diceValue;
                         diceCounter++;
                     }
                 
                 }
-                if(diceCounter == actionDices.Count)
+                if(diceCounter == actionDices.Count && !passedInfo)
                 {
-                    //Call functions once we know final value
-                    diceDisplayValue.text = "Dice Total: " + diceTotal.ToString();
+                    Debug.Log("here");
+                    playerIdentifier.currentAttack.PerformAttack(diceTotal);
+                    passedInfo = true;
                 }
+                diceTotal = 0;
                 diceCounter = 0;
             }
         }

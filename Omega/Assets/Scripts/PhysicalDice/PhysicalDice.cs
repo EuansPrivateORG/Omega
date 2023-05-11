@@ -50,18 +50,30 @@ namespace Omega.Actions
         [ContextMenu("RollDice")]
         public void RollDice(Transform target)
         {
-            if(!hasLanded && !thrown)
+            if (!hasLanded && !thrown)
             {
                 thrown = true;
                 diceRigidbody.useGravity = true;
-                diceRigidbody.AddForce((target.position - transform.position) * Random.Range(minRange, maxRange), ForceMode.Impulse);
+
+                // Calculate the direction towards the target
+                Vector3 direction = (target.position - transform.position).normalized;
+
+                // Calculate the force magnitude based on the distance from the target
+                float distance = Vector3.Distance(transform.position, target.position);
+                float forceMagnitude = Mathf.Clamp(distance, minRange, maxRange);
+
+                // Apply the force towards the target
+                diceRigidbody.AddForce(direction * forceMagnitude, ForceMode.Impulse);
+
+                // Add random torque to make the dice spin
                 diceRigidbody.AddTorque(Random.Range(0, 300), Random.Range(0, 300), Random.Range(0, 300));
             }
-            else if(thrown && hasLanded)
+            else if (thrown && hasLanded)
             {
                 ResetDice();
             }
         }
+
 
         public void ResetDice()
         {

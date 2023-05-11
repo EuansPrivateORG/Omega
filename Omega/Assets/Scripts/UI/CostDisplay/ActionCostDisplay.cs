@@ -28,7 +28,7 @@ namespace Omega.UI
             }
             if (healingButtonHandler == null)
             {
-                dice = GetComponent<AttackButtonHandler>().dice;
+                dice = GetComponent<AttackButtonHandler>().attack;
             }
 
             
