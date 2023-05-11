@@ -76,7 +76,6 @@ namespace Omega.Core
                 instantiatedPlayer = Instantiate(playersToSpawnIn[i].emptyPreFab, position, Quaternion.identity);
                 playersSetup = instantiatedPlayer.GetComponent<PlayerSetup>();
                 playersSetup.playerID = playerCounter;
-                Debug.Log(playerCounter);
                 CreatIcon();
                 GetComponent<ScoreHandler>().AddScorer(playersToSpawn[i], playerCounter);
                 instantiatedPlayer.transform.SetParent(players);

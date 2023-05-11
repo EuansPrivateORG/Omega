@@ -17,6 +17,8 @@ namespace Omega.Core
         public List<GameObject> currentlyAlivePlayersInTurn = new List<GameObject>();
         public List<GameObject> currentlyAlivePlayers = new List<GameObject>();
 
+        [HideInInspector] public AttackButtonHandler currentAttack;
+
         [SerializeField] public GameObject currentPlayer = null;
         public int energyGainPerTurn = 2;
         public int currentPlayerIndex = 0;

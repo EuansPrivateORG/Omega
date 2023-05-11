@@ -45,7 +45,7 @@ namespace Omega.UI
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
             Health playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>();
 
-            int extraHealth = dice.roll();
+            int extraHealth = 0;
             if (playerHealth.currentHealth + extraHealth >= playerHealth.maxHealth)
             {
                 scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].pointsHealed += (playerHealth.maxHealth - playerHealth.currentHealth);
@@ -57,10 +57,10 @@ namespace Omega.UI
                 playerHealth.AddHealth(extraHealth);
                 scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].pointsHealed += extraHealth;
             }
-            int minColour = dice.minimumRoll;
-            int maxColour = dice.maximumRoll;
+            //int minColour = dice.minimumRoll;
+            //int maxColour = dice.maximumRoll;
             GameObject numbersPrefab = Instantiate(healingNumbersPrefab, playerIdentifier.currentPlayer.transform.position, quaternion.identity);
-            numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(extraHealth, minColour, maxColour, colourGradient);
+            //numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(extraHealth, minColour, maxColour, colourGradient);
             NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
             numbersDisplay.SpawnNumbers(extraHealth);
 
