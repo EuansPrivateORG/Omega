@@ -116,19 +116,19 @@ namespace Omega.UI
 
         public void PerformAttack(int damageToDeal)
         {
+            damageToDeal += attack.rollBonus;
             currentDamage = damageToDeal;
-            if(playerToDamage.TryGetComponent<Health>(out Health health))
-            {
-                int minColour = attack.minDamageFromDice();
-                int maxColour = attack.maxDamageFromDice();
+
+            int minColour = attack.minDamageFromDice();
+            int maxColour = attack.maxDamageFromDice();
 
 
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, playerToDamage, minColour, maxColour, this);
+            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, playerToDamage, minColour, maxColour, this);
 
-                Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
-                playerEnergy.SpendEnergy(attack.cost);
-                scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += damageToDeal;
-            }
+            Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+            playerEnergy.SpendEnergy(attack.cost);
+            scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += damageToDeal;
+            
         }
 
         public void RollDice(GameObject toDamage)
