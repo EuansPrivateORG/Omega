@@ -38,6 +38,7 @@ namespace Omega.Actions
                 hasLanded = true;
                 diceRigidbody.useGravity = false;
                 diceRigidbody.isKinematic = true;
+
             }
             else if(diceRigidbody.IsSleeping() && hasLanded && diceValue == 0)
             {
