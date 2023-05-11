@@ -16,7 +16,8 @@ namespace Omega.Core
         public int playerID = 0;
 
         private PlayerSpawnHandler playerSpawnHandler;
-
+        public Transform diceTarget;
+        public Transform diceSpawn;
         private void Awake()
         {
             playerSpawnHandler = FindObjectOfType<PlayerSpawnHandler>();

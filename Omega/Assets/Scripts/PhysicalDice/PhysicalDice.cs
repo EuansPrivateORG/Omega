@@ -16,6 +16,9 @@ namespace Omega.Actions
         [HideInInspector]
         public bool thrown;
 
+        public float minRange = 100f;
+        public float maxRange = 300f;
+
         PhysicalDiceCalculator PhysicalDiceCalculator;
 
         private void Awake()
@@ -44,13 +47,13 @@ namespace Omega.Actions
 
 
         [ContextMenu("RollDice")]
-        public void RollDice()
+        public void RollDice(Transform target)
         {
             if(!hasLanded && !thrown)
             {
                 thrown = true;
                 diceRigidbody.useGravity = true;
-                diceRigidbody.AddForce(Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10), ForceMode.Impulse);
+                diceRigidbody.AddForce((target.position - transform.position) * Random.Range(minRange, maxRange), ForceMode.Impulse);
                 diceRigidbody.AddTorque(Random.Range(0, 300), Random.Range(0, 300), Random.Range(0, 300));
             }
             else if(thrown && hasLanded)

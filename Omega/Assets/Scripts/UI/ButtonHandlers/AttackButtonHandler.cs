@@ -119,7 +119,9 @@ namespace Omega.UI
             {
                 int minColour = dice.minimumRoll;
                 int maxColour = dice.maximumRoll;
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(currentDamage, toDamage.gameObject, minColour, maxColour, GetComponent<AttackButtonHandler>()); ;
+                
+
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(currentDamage, toDamage.gameObject, minColour, maxColour, GetComponent<AttackButtonHandler>());
 
                 Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
                 playerEnergy.SpendEnergy(dice.cost);
