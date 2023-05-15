@@ -33,15 +33,25 @@ namespace Omega.UI
         private GameObject playerToDamage;
         public List<GameObject> attackablePlayers = new List<GameObject>();
 
+        public CanvasGroup playerHUD = null;
+
+        private CancelHandler cancelHandler;
+
+        public bool currentlySelectingPlayer = false;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
             diceSpawner = FindObjectOfType<DiceSpawner>();
+            playerHUD = FindObjectOfType<RoundHandler>().playerHUD;
+            cancelHandler = GetComponent<CancelHandler>();
+
         }
 
         private void OnEnable()
         {
+
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
             if (playerEnergy.energy < attack.cost)
@@ -79,6 +89,16 @@ namespace Omega.UI
 
         private void EnableBaseSelection(List<GameObject> attackablePlayers)
         {
+            currentlySelectingPlayer = true;
+            playerHUD.alpha = 0.25f;
+            cancelHandler.cannotCancel = true;
+            foreach (GameObject player in playerIdentifier.playerIndex)
+            {
+                PlayerSelectionHandler playerSelectionHandler = player.GetComponent<PlayerSelectionHandler>();
+                playerSelectionHandler.enabled = true;
+
+            }
+
             bool foundNextPlayer = false;
 
             for (int i = 0; i < playerIdentifier.turnOrderIndex.Count; i++)
@@ -105,13 +125,18 @@ namespace Omega.UI
                 nextAvailablePlayer = null;
             }
 
-            PlayerSelectionHandler playerSelectionHandler = playerIdentifier.currentPlayer.GetComponent<PlayerSelectionHandler>();
 
-            playerSelectionHandler
         }
 
         private void DisableBaseSelection(List<GameObject> attackablePlayers)
         {
+            currentlySelectingPlayer = false;
+            foreach (GameObject player in playerIdentifier.playerIndex)
+            {
+            PlayerSelectionHandler playerSelectionHandler = player.GetComponent<PlayerSelectionHandler>();
+            playerSelectionHandler.enabled = false;
+
+            }
             foreach (GameObject item in playerIdentifier.playerIndex)
             {
                 if(item != null)
@@ -122,10 +147,6 @@ namespace Omega.UI
                 }
             }
 
-            PlayerSelectionHandler playerSelectionHandler = playerIdentifier.currentPlayer.GetComponent<PlayerSelectionHandler>();
-
-            playerSelectionHandler.attackAction.Disable();
-            playerSelectionHandler.attackAction.performed -= playerSelectionHandler.OnPlayerPressed;
         }
 
         public void PerformAttack(int damageToDeal)

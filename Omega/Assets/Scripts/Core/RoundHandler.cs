@@ -16,6 +16,7 @@ namespace Omega.Core
 
         public CanvasGroup roundResults;
         public CanvasGroup gameHUD;
+        public CanvasGroup playerHUD;
 
         public List<Base> players;
 
@@ -57,7 +58,7 @@ namespace Omega.Core
 
             gameHUD.alpha = 1;
             gameHUD.interactable = true;
-            turnTransition.FadeInHUD();
+            StartCoroutine(turnTransition.FadeInHUD());
             currentRound++;
             spawnHandler.StartNextRound(players);
             EventSystem.current.SetSelectedGameObject(healButton.gameObject);

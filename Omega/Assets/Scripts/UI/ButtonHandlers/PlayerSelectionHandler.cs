@@ -21,6 +21,15 @@ namespace Omega.UI
 
         private TurnTimer turnTimer;
 
+        private CanvasGroup playerHUD;
+
+        private void Awake()
+        {
+            eventSystem = FindObjectOfType<EventSystem>();
+            numberRoller = FindObjectOfType<NumberRoller>();
+            turnTimer = FindObjectOfType<TurnTimer>();
+            playerHUD = FindObjectOfType<RoundHandler>().playerHUD;
+        }
         private void OnEnable()
         {
             attackAction = new InputAction("Submit", InputActionType.Button, "<Gamepad>/buttonSouth");
@@ -36,6 +45,7 @@ namespace Omega.UI
 
         public void OnPlayerPressed(InputAction.CallbackContext context)
         {
+
             if(currentAction != null)
             {
                 currentAction.RollDice(eventSystem.currentSelectedGameObject);
@@ -43,19 +53,15 @@ namespace Omega.UI
                 numberRoller.rollers.gameObject.SetActive(true);
                 numberRoller.StartRolling();
                 numberRoller.AddBonusNumbers(currentAction.attack.rollBonus);
-
+                playerHUD.interactable = false;
+                playerHUD.alpha = 0;
                 turnTimer.SetTimeOff();
 
                 currentAction = null;
             }
         }
 
-        private void Awake()
-        {
-            eventSystem = FindObjectOfType<EventSystem>();
-            numberRoller = FindObjectOfType<NumberRoller>();
-            turnTimer = FindObjectOfType<TurnTimer>();
-        }
+
 
         private void Update()
         {
@@ -73,5 +79,6 @@ namespace Omega.UI
         {
             currentAction = action;
         }
+
     }
 }

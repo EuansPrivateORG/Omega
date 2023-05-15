@@ -17,7 +17,7 @@ namespace Omega.UI
         public IEnumerator FadeOutHUD()
         {
             float elapsedTime = 0f;
-
+            if (playerHUDGroup.alpha == 0) yield return null;
             while (elapsedTime < fadeTime)
             {
                 elapsedTime += Time.deltaTime;
@@ -32,6 +32,7 @@ namespace Omega.UI
 
         public IEnumerator FadeInHUD()
         {
+
             float elapsedTime = 0f;
             while (elapsedTime < fadeTime)
             {

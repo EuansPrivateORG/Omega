@@ -16,9 +16,14 @@ namespace Omega.UI
         private InputAction cancelAction;
         private GameObject lastSelectedGameObject;
 
+        public bool cannotCancel = false;
+
+        private CanvasGroup playerHUD;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+            playerHUD = FindObjectOfType<RoundHandler>().playerHUD;
         }
 
         private void OnEnable()
@@ -41,7 +46,12 @@ namespace Omega.UI
 
         private void OnCancelPressed(InputAction.CallbackContext context)
         {
+            if (cannotCancel) return;
+            if (playerIdentifier.currentAttack != null && !playerIdentifier.currentAttack.currentlySelectingPlayer) return;
+            playerHUD.interactable = true;
+            playerHUD.alpha = 1;
             ResetUI();
+
         }
 
         public void ResetUI()
@@ -54,6 +64,7 @@ namespace Omega.UI
             if (selectableToFocus != null)
             {
                 EventSystem.current.SetSelectedGameObject(selectableToFocus.gameObject);
+
             }
         }
     }

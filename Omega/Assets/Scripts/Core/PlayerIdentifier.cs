@@ -138,7 +138,7 @@ namespace Omega.Core
 
         private IEnumerator DelayedHUDFadeIn(TurnTransition turnTransition)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.5f);
             StartCoroutine(turnTransition.FadeInHUD());
 
         }
