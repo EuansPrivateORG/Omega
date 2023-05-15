@@ -11,7 +11,7 @@ namespace Omega.UI
         public TextMeshProUGUI DisplayText;
         AttackButtonHandler attackButtonHandler = null;
         HealingButtonHandler healingButtonHandler = null;
-        Action dice;
+        PlayerAction dice;
 
         private void Awake()
         {
@@ -24,7 +24,7 @@ namespace Omega.UI
 
             if(attackButtonHandler == null)
             {
-                dice = healingButtonHandler.dice;
+                dice = healingButtonHandler.heal;
             }
             if (healingButtonHandler == null)
             {

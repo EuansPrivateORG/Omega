@@ -24,7 +24,7 @@ namespace Omega.Actions
             diceCalculator = GetComponent<PhysicalDiceCalculator>();
         }
 
-        public void ActivateDice(Action action)
+        public void ActivateDice(PlayerAction action)
         {
             diceCalculator.passedInfo = false;
 

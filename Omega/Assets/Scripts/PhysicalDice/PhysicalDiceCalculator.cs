@@ -14,12 +14,15 @@ namespace Omega.Actions
         public List<GameObject> actionDices = new List<GameObject>();
         private int diceCounter = 0;
 
-        private PlayerIdentifier playerIdentifier = null;
+        private NumberRoller numberRoller;
+
+        private PlayerIdentifier playerIdentifier;
 
         [HideInInspector]public bool passedInfo = false;
 
         private void Awake()
         {
+            numberRoller = GetComponent<NumberRoller>();
             playerIdentifier = GetComponent<PlayerIdentifier>();
         }
 
@@ -36,7 +39,7 @@ namespace Omega.Actions
                 foreach (GameObject dice in actionDices)
                 {
                     PhysicalDice physicalDice = dice.GetComponent<PhysicalDice>();
-                    if (physicalDice.thrown && physicalDice.hasLanded && physicalDice.GetComponent<Rigidbody>().IsSleeping())
+                    if (physicalDice.thrown && physicalDice.hasLanded && physicalDice.GetComponent<Rigidbody>().IsSleeping() && physicalDice.diceValue != 0)
                     {
                         diceTotal += physicalDice.diceValue;
                         diceCounter++;
@@ -45,8 +48,8 @@ namespace Omega.Actions
                 }
                 if(diceCounter == actionDices.Count && !passedInfo)
                 {
-                    Debug.Log("here");
-                    playerIdentifier.currentAttack.PerformAttack(diceTotal);
+                    numberRoller.StopRolling(diceTotal,playerIdentifier.isAttacking);
+    
                     passedInfo = true;
                 }
                 diceTotal = 0;

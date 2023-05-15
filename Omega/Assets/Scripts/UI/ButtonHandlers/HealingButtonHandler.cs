@@ -12,25 +12,27 @@ namespace Omega.UI
 {
     public class HealingButtonHandler : ActionButtonHandler
     {
-        public Actions.Action dice;
+        public PlayerAction heal;
 
         private PlayerIdentifier playerIdentifier;
         [SerializeField] public GameObject healingNumbersPrefab;
         [SerializeField] public Gradient colourGradient;
 
         private ScoreHandler scoreHandler;
+        private DiceSpawner diceSpawner;
 
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
+            diceSpawner = FindObjectOfType<DiceSpawner>();
         }
 
         private void OnEnable()
         {
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
-            if(playerEnergy.energy < dice.cost)
+            if(playerEnergy.energy < heal.cost)
             {
                 button.interactable = false;
             }
@@ -42,7 +44,22 @@ namespace Omega.UI
 
         public void ButtonPressed()
         {
+            playerIdentifier.isAttacking = false;
+
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+
+            playerEnergy.SpendEnergy(heal.cost);
+
+            RollDice(gameObject);
+        }
+
+        public void RollDice(GameObject toHeal)
+        {
+            diceSpawner.ActivateDice(heal);
+        }
+
+        public void PerformHealing()
+        {
             Health playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>();
 
             int extraHealth = 0;
@@ -57,14 +74,14 @@ namespace Omega.UI
                 playerHealth.AddHealth(extraHealth);
                 scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].pointsHealed += extraHealth;
             }
-            //int minColour = dice.minimumRoll;
-            //int maxColour = dice.maximumRoll;
+
+            int minColour = heal.minDamageFromDice();
+            int maxColour = heal.maxDamageFromDice();
+
             GameObject numbersPrefab = Instantiate(healingNumbersPrefab, playerIdentifier.currentPlayer.transform.position, quaternion.identity);
-            //numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(extraHealth, minColour, maxColour, colourGradient);
+            numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(extraHealth, minColour, maxColour, colourGradient);
             NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
             numbersDisplay.SpawnNumbers(extraHealth);
-
-            playerEnergy.SpendEnergy(dice.cost);
 
             playerIdentifier.NextPlayer();
         }

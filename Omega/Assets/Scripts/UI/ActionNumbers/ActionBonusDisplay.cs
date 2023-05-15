@@ -10,7 +10,7 @@ namespace Omega.UI
     {
         [SerializeField] public TextMeshProUGUI bonusText;
         AttackButtonHandler attackButtonHandler = null;
-        Action dice = null;
+        PlayerAction dice = null;
 
 
         private void Awake()

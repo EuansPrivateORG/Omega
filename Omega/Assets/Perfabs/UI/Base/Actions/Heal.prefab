@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1743077606146218966}
-  dice: {fileID: 11400000, guid: 734787acc25c87d4381a54406602f888, type: 2}
+  heal: {fileID: 11400000, guid: 734787acc25c87d4381a54406602f888, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
   colourGradient:
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4330040464481363389}
-  dice: {fileID: 11400000, guid: 59c21a821f6d40d40ac1d01167d13caf, type: 2}
+  heal: {fileID: 11400000, guid: 59c21a821f6d40d40ac1d01167d13caf, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
   colourGradient:
@@ -991,7 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 8658860884938001597}
-  dice: {fileID: 11400000, guid: 5c116f56e9f138e4e8e6b3a30c16ad5a, type: 2}
+  heal: {fileID: 11400000, guid: 5c116f56e9f138e4e8e6b3a30c16ad5a, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
   colourGradient:
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 8507103114581106695}
-  dice: {fileID: 11400000, guid: 771a02c8479f2164c9b607cdd1c5a4a2, type: 2}
+  heal: {fileID: 11400000, guid: 771a02c8479f2164c9b607cdd1c5a4a2, type: 2}
   healingNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
     type: 3}
   colourGradient:

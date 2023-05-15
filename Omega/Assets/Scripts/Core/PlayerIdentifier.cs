@@ -26,6 +26,8 @@ namespace Omega.Core
         TurnTimer turnTimer;
         private int playerWhoHasDied;
         [HideInInspector] public bool roundOver = false;
+        [HideInInspector] public bool isAttacking = false;
+
 
         private PhysicalDiceCalculator physicalDiceCalculator;
 

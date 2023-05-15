@@ -1,3 +1,5 @@
+using Omega.Core;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -9,9 +11,15 @@ namespace Omega.UI
     {
         [SerializeField] private Selectable selectableToFocus;
         [SerializeField] private GameObject gameobjectToDisable;
+        private PlayerIdentifier playerIdentifier;
 
         private InputAction cancelAction;
         private GameObject lastSelectedGameObject;
+
+        private void Awake()
+        {
+            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+        }
 
         private void OnEnable()
         {

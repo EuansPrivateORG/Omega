@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Omega.Actions
 {
-    [CreateAssetMenu(fileName = "New Action", menuName = "Create New Action")]
+    [CreateAssetMenu(fileName = "New PlayerAction", menuName = "Create New PlayerAction")]
 
-    public class Action : ScriptableObject
+    public class PlayerAction : ScriptableObject
     {
         [Header("Rolling")]
         public int numOfD4;

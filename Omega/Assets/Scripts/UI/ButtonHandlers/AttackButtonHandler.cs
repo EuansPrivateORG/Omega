@@ -8,15 +8,16 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using Unity.Mathematics;
-using Cinemachine;
 using TMPro;
 using Omega.Combat;
+using UnityEditor.Timeline.Actions;
+using UnityEngine.InputSystem;
 
 namespace Omega.UI
 {
     public class AttackButtonHandler : ActionButtonHandler
     {
-        public Action attack;
+        public PlayerAction attack;
 
         private PlayerIdentifier playerIdentifier;
 
@@ -60,6 +61,8 @@ namespace Omega.UI
 
         public void ButtonPressed()
         {
+            playerIdentifier.isAttacking = true;
+
             PlayerSelectionHandler playerSelection = FindObjectOfType<PlayerSelectionHandler>();
 
             List<GameObject> attackablePlayers = new List<GameObject>();
@@ -101,6 +104,12 @@ namespace Omega.UI
             {
                 nextAvailablePlayer = null;
             }
+
+            PlayerSelectionHandler playerSelectionHandler = playerIdentifier.currentPlayer.GetComponent<PlayerSelectionHandler>();
+
+            playerSelectionHandler.attackAction = new InputAction("Submit", InputActionType.Button, "<Gamepad>/buttonSouth");
+            playerSelectionHandler.attackAction.performed += playerSelectionHandler.OnPlayerPressed;
+            playerSelectionHandler.attackAction.Enable();
         }
 
         private void DisableBaseSelection(List<GameObject> attackablePlayers)
@@ -114,10 +123,16 @@ namespace Omega.UI
                     attackablePlayers.Add(item);
                 }
             }
+
+            PlayerSelectionHandler playerSelectionHandler = playerIdentifier.currentPlayer.GetComponent<PlayerSelectionHandler>();
+
+            playerSelectionHandler.attackAction.Disable();
+            playerSelectionHandler.attackAction.performed -= playerSelectionHandler.OnPlayerPressed;
         }
 
         public void PerformAttack(int damageToDeal)
         {
+            Debug.Log(damageToDeal);
             damageToDeal += attack.rollBonus;
             currentDamage = damageToDeal;
 

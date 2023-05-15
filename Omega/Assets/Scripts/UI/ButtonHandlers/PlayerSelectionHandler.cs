@@ -1,3 +1,5 @@
+using Omega.Actions;
+using Omega.Core;
 using Omega.Status;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,9 +13,13 @@ namespace Omega.UI
     {
         EventSystem eventSystem;
 
-        private InputAction attackAction;
+        [HideInInspector] public InputAction attackAction;
 
         private AttackButtonHandler currentAction;
+
+        private NumberRoller numberRoller;
+
+        private TurnTimer turnTimer;
 
         private void OnEnable()
         {
@@ -28,11 +34,18 @@ namespace Omega.UI
             attackAction.performed -= OnPlayerPressed;
         }
 
-        private void OnPlayerPressed(InputAction.CallbackContext context)
+        public void OnPlayerPressed(InputAction.CallbackContext context)
         {
             if(currentAction != null)
             {
                 currentAction.RollDice(eventSystem.currentSelectedGameObject);
+
+                numberRoller.rollers.gameObject.SetActive(true);
+                numberRoller.StartRolling();
+                numberRoller.AddBonusNumbers(currentAction.attack.rollBonus);
+
+                turnTimer.SetTimeOff();
+
                 currentAction = null;
             }
         }
@@ -40,6 +53,8 @@ namespace Omega.UI
         private void Awake()
         {
             eventSystem = FindObjectOfType<EventSystem>();
+            numberRoller = FindObjectOfType<NumberRoller>();
+            turnTimer = FindObjectOfType<TurnTimer>();
         }
 
         private void Update()

@@ -36,14 +36,17 @@ namespace Omega.Actions
             if(diceRigidbody.IsSleeping() && !hasLanded && thrown)
             {
                 hasLanded = true;
-                diceRigidbody.useGravity = false;
-                diceRigidbody.isKinematic = true;
-
             }
             else if(diceRigidbody.IsSleeping() && hasLanded && diceValue == 0)
             {
-                diceRigidbody.AddForce(3, 2, 3, ForceMode.Impulse);
+                diceRigidbody.AddForce(20f, 0f, 20f, ForceMode.Impulse);
                 Debug.Log("Did not land correctly");
+                hasLanded = false;
+            }
+            if(diceRigidbody.IsSleeping() && !hasLanded && thrown && diceValue != 0)
+            {
+                diceRigidbody.useGravity = false;
+                diceRigidbody.isKinematic = true;
             }
         }
 

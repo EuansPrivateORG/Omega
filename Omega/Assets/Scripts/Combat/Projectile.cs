@@ -1,4 +1,5 @@
 using Cinemachine;
+using Omega.Actions;
 using Omega.Core;
 using Omega.Status;
 using Omega.UI;
@@ -24,12 +25,14 @@ namespace Omega.Combat
         PlayerIdentifier playerIdentifier;
         AttackButtonHandler attackButtonHandler;
         ScoreHandler scoreHandler;
+        NumberRoller numberRoller;
 
 
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
+            numberRoller = FindObjectOfType<NumberRoller>();
         }
         private void Update()
         {
@@ -37,7 +40,6 @@ namespace Omega.Combat
 
             Vector3 direction = (target.transform.position - transform.position).normalized;
             transform.position += direction * projectileSpeed * Time.deltaTime;
-            Debug.Log(transform.position);
         }
 
         private void OnTriggerEnter(Collider enemyCollider)
@@ -52,6 +54,7 @@ namespace Omega.Combat
                 {
                     scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
                 }
+                numberRoller.TurnOffNumberRoller();
                 playerIdentifier.NextPlayer();
                 Destroy(transform.parent.gameObject);
             }
