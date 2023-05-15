@@ -107,9 +107,7 @@ namespace Omega.UI
 
             PlayerSelectionHandler playerSelectionHandler = playerIdentifier.currentPlayer.GetComponent<PlayerSelectionHandler>();
 
-            playerSelectionHandler.attackAction = new InputAction("Submit", InputActionType.Button, "<Gamepad>/buttonSouth");
-            playerSelectionHandler.attackAction.performed += playerSelectionHandler.OnPlayerPressed;
-            playerSelectionHandler.attackAction.Enable();
+            playerSelectionHandler
         }
 
         private void DisableBaseSelection(List<GameObject> attackablePlayers)
