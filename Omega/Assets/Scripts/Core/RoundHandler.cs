@@ -40,6 +40,10 @@ namespace Omega.Core
 
         public void StartFirstRound(List<Base> playersToSpawn)
         {
+            roundResults.alpha = 0;
+            roundResults.interactable = false;
+            Debug.Log(roundResults.alpha);
+
             players = playersToSpawn;
             spawnHandler.StartFirstRound(players);
             playerId.roundOver = false;
@@ -55,7 +59,7 @@ namespace Omega.Core
         {
             roundResults.alpha = 0;
             roundResults.interactable = false;
-
+            Debug.Log(roundResults.alpha);
             gameHUD.alpha = 1;
             gameHUD.interactable = true;
             StartCoroutine(turnTransition.FadeInHUD());

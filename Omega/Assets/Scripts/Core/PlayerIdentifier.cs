@@ -16,7 +16,7 @@ namespace Omega.Core
         public List<GameObject> playerIndex = new List<GameObject>();
         public List<GameObject> turnOrderIndex = new List<GameObject>();
         public List<GameObject> currentlyAlivePlayersInTurn = new List<GameObject>();
-        public List<GameObject> currentlyAlivePlayers = new List<GameObject>();
+        public List<GameObject> currentlyAlivePlayers = new List<GameObject>(); 
 
         [HideInInspector] public AttackButtonHandler currentAttack;
 
@@ -28,13 +28,14 @@ namespace Omega.Core
         [HideInInspector] public bool roundOver = false;
         [HideInInspector] public bool isAttacking = false;
 
-
+        private RoundHandler roundHandler;
         private PhysicalDiceCalculator physicalDiceCalculator;
 
         private void Awake()
         {
             turnTimer = GetComponent<TurnTimer>();
             physicalDiceCalculator = GetComponent<PhysicalDiceCalculator>();
+            roundHandler = GetComponent<RoundHandler>();
         }
 
         public void SetupTurnOrderIndex()
@@ -57,6 +58,9 @@ namespace Omega.Core
 
         public void SetIndex(List<GameObject> playerList)
         {
+            roundHandler.roundResults.alpha = 0;
+            roundHandler.roundResults.interactable = false;
+
             playerIndex = playerList;
             SetupTurnOrderIndex();
             SetupCurrentlyAlivePlayerIndex();
@@ -104,6 +108,9 @@ namespace Omega.Core
                 {
                     handler.ResetUI();
                 }
+
+                roundHandler.roundResults.alpha = 0;
+                roundHandler.roundResults.interactable = false;
             }
         }
 
