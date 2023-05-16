@@ -15,6 +15,7 @@ MonoBehaviour:
   CardUIPreFab: {fileID: 0}
   CardWorldPreFab: {fileID: 0}
   CardName: HOT
+  cardCategory: 1
   cardOdds: 1
   activationType: 1
   cardType: 4

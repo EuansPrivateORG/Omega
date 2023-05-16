@@ -14,7 +14,7 @@ namespace Omega.Actions
 
         private List<Card> highChanceCards;
 
-        private void Start()
+        private void Awake()
         {
             foreach(Card card in cards)
             {
@@ -33,13 +33,24 @@ namespace Omega.Actions
             }
         }
 
-        public void DrawCard()
+        public void DrawCard(GameObject player)
         {
-            int ran = Random.Range(1, 100);
+            int ran = Random.Range(0, 100);
 
-            if(ran > 84)
+            if(ran > 83.33)
             {
-                
+                int rand = Random.Range(0, lowChanceCards.Count);
+                player.GetComponent<PlayerCards>().cardsInHand.Add(lowChanceCards[rand]);
+            }
+            else if (ran < 83.33 && ran > 50)
+            {
+                int rand = Random.Range(0, mediumChanceCards.Count);
+                player.GetComponent<PlayerCards>().cardsInHand.Add(mediumChanceCards[rand]);
+            }
+            else
+            {
+                int rand = Random.Range(0, highChanceCards.Count);
+                player.GetComponent<PlayerCards>().cardsInHand.Add(highChanceCards[rand]);
             }
         }
     }

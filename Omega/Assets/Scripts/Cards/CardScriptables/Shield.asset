@@ -15,6 +15,7 @@ MonoBehaviour:
   CardUIPreFab: {fileID: 0}
   CardWorldPreFab: {fileID: 0}
   CardName: Shield
+  cardCategory: 1
   cardOdds: 0
   activationType: 1
   cardType: 3

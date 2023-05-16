@@ -15,6 +15,7 @@ MonoBehaviour:
   CardUIPreFab: {fileID: 0}
   CardWorldPreFab: {fileID: 0}
   CardName: Double
+  cardCategory: 2
   cardOdds: 0
   activationType: 2
   cardType: 6

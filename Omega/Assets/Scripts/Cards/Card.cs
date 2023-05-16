@@ -17,6 +17,15 @@ namespace Omega.Actions
         [Header("Card Info")]
         public string CardName;
 
+        public enum CardCategory
+        {
+            Attack,
+            Heal,
+            Utility
+        }
+
+        public CardCategory cardCategory;
+
         public enum CardOdds
         {
             Low,

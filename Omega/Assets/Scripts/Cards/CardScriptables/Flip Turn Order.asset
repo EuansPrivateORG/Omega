@@ -15,6 +15,7 @@ MonoBehaviour:
   CardUIPreFab: {fileID: 0}
   CardWorldPreFab: {fileID: 0}
   CardName: Flip Turn Order
+  cardCategory: 2
   cardOdds: 1
   activationType: 3
   cardType: 9

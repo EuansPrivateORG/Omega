@@ -15,6 +15,7 @@ MonoBehaviour:
   CardUIPreFab: {fileID: 0}
   CardWorldPreFab: {fileID: 0}
   CardName: Chaos Dice
+  cardCategory: 2
   cardOdds: 2
   activationType: 2
   cardType: 7

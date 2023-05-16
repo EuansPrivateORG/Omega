@@ -15,6 +15,7 @@ MonoBehaviour:
   CardUIPreFab: {fileID: 0}
   CardWorldPreFab: {fileID: 0}
   CardName: Overcharge
+  cardCategory: 2
   cardOdds: 2
   activationType: 3
   cardType: 5
