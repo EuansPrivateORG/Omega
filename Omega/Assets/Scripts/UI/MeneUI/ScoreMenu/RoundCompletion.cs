@@ -17,7 +17,7 @@ namespace Omega.UI
         [SerializeField] public Button nextRoundButton;
         [SerializeField] public TextMeshProUGUI winningPlayerText;
         private CanvasGroup roundCompletionCanvasGroup;
-        private float fadeTime = 1f;
+        private float fadeTime = 0.5f;
         private bool hasEndedRound = false;
 
         EventSystem eventSystem;
@@ -42,19 +42,18 @@ namespace Omega.UI
                 hasEndedRound = true;
                 if (roundHandler.numOfRounds == roundHandler.currentRound + 1)
                 {
-                    StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
                     StartCoroutine(FadeInHUD(endScreen));
+                    StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
                     roundHandler.EndGame(endScreen.gameObject);
                     EventSystem.current.SetSelectedGameObject(endScreen.GetComponent<EndScreenCollection>().resetButton.gameObject);
                 }
                 else
                 {
+                    StartCoroutine(FadeInHUD(roundCompletionCanvasGroup));
                     scoreHandler.CalculatePlayerPlacement(playerIdentifier.playerIndex.Count, playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerID - 1);
                     winningPlayerText.text = playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerBase.factionName + " Has claimed the outpost";
                     StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
-                    roundCompletionCanvasGroup.interactable = true;
                     EventSystem.current.SetSelectedGameObject(nextRoundButton.gameObject);
-                    StartCoroutine(FadeInHUD(roundCompletionCanvasGroup));
                     scoreHandler.DisplayLeadboardScores();
                     roundHandler.EndRound();
                 }

@@ -27,22 +27,22 @@ namespace Omega.Core
         TurnTimer turnTimer;
         TurnTransition turnTransition;
         private PhysicalDiceCalculator diceCalculator;
+        private RoundCompletion roundCompletion;
 
         private void Awake()
         {
-            spawnHandler = FindObjectOfType<PlayerSpawnHandler>();
-            playerId = FindObjectOfType<PlayerIdentifier>();
-            scoreHandler = FindObjectOfType<ScoreHandler>();
-            turnTimer = FindObjectOfType<TurnTimer>();
+            roundCompletion = FindObjectOfType<RoundCompletion>();
+            spawnHandler = GetComponent<PlayerSpawnHandler>();
+            playerId = GetComponent<PlayerIdentifier>();
+            scoreHandler = GetComponent<ScoreHandler>();
+            turnTimer = GetComponent<TurnTimer>();
             turnTransition = FindObjectOfType<TurnTransition>();
-            diceCalculator = FindObjectOfType<PhysicalDiceCalculator>();
+            diceCalculator = GetComponent<PhysicalDiceCalculator>();
         }
 
         public void StartFirstRound(List<Base> playersToSpawn)
         {
-            roundResults.alpha = 0;
-            roundResults.interactable = false;
-            Debug.Log(roundResults.alpha);
+            roundCompletion.FadeOutHUD(roundResults);
 
             players = playersToSpawn;
             spawnHandler.StartFirstRound(players);
@@ -57,9 +57,8 @@ namespace Omega.Core
 
         public void StartNextRound()
         {
-            roundResults.alpha = 0;
-            roundResults.interactable = false;
-            Debug.Log(roundResults.alpha);
+            roundCompletion.FadeOutHUD(roundResults);
+
             gameHUD.alpha = 1;
             gameHUD.interactable = true;
             StartCoroutine(turnTransition.FadeInHUD());

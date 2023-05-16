@@ -48,6 +48,7 @@ namespace Omega.UI
         {
             if (cannotCancel) return;
             if (playerIdentifier.currentAttack != null && !playerIdentifier.currentAttack.currentlySelectingPlayer) return;
+            if (playerIdentifier.currentHeal != null && !playerIdentifier.currentHeal.currentlySelectingPlayer) return;
             playerHUD.interactable = true;
             playerHUD.alpha = 1;
             ResetUI();

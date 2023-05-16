@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
+  m_Name: Double
+  m_EditorClassIdentifier: 
+  CardUIPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 0}
+  CardName: Double
+  cardOdds: 0
+  activationType: 2
+  cardType: 6
+  amountOfRounds: 0
+  damagePerTurn: 0
+  shieldPrefab: {fileID: 0}
+  healingPerTurn: 0
+  energyAmount: 0
+  rollBonusValue: 0
+  effectOverTime: 0

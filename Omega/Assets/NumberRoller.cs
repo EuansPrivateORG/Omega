@@ -46,7 +46,6 @@ namespace Omega.Actions
         private Color oldNumberColour;
 
         [HideInInspector] public bool isAttacking;
-        [HideInInspector] public HealingButtonHandler healing;
 
         private void Awake()
         {
@@ -163,7 +162,7 @@ namespace Omega.Actions
                 }
                 else
                 {
-                    healing.PerformHealing();
+                    playerIdentifier.currentHeal.PerformHealing(diceTotal);
                 }
 
                 hasFinishedTens = false;

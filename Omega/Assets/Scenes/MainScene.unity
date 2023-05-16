@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 781620688}
   - component: {fileID: 781620689}
   - component: {fileID: 781620690}
+  - component: {fileID: 781620691}
   m_Layer: 0
   m_Name: GameSetup
   m_TagString: Untagged
@@ -637,6 +638,7 @@ MonoBehaviour:
   currentlyAlivePlayersInTurn: []
   currentlyAlivePlayers: []
   currentAttack: {fileID: 0}
+  currentHeal: {fileID: 0}
   currentPlayer: {fileID: 0}
   energyGainPerTurn: 2
   currentPlayerIndex: 0
@@ -748,7 +750,19 @@ MonoBehaviour:
   tensNumToStop: 0
   unitsNumToStop: 0
   isAttacking: 0
-  healing: {fileID: 0}
+--- !u!114 &781620691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781620681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d82dcedeb43589e49937ce137f994386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cards: []
 --- !u!1 &909315762
 GameObject:
   m_ObjectHideFlags: 0

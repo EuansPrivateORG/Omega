@@ -15,7 +15,9 @@ namespace Omega.UI
 
         [HideInInspector] public InputAction attackAction;
 
-        private AttackButtonHandler currentAction;
+        private AttackButtonHandler currentAttack;
+
+        private HealingButtonHandler currentHeal;
 
         private NumberRoller numberRoller;
 
@@ -46,18 +48,31 @@ namespace Omega.UI
         public void OnPlayerPressed(InputAction.CallbackContext context)
         {
 
-            if(currentAction != null)
+            if(currentAttack != null)
             {
-                currentAction.RollDice(eventSystem.currentSelectedGameObject);
+                currentAttack.RollDice(eventSystem.currentSelectedGameObject);
 
                 numberRoller.rollers.gameObject.SetActive(true);
                 numberRoller.StartRolling();
-                numberRoller.AddBonusNumbers(currentAction.attack.rollBonus);
+                numberRoller.AddBonusNumbers(currentAttack.attack.rollBonus);
                 playerHUD.interactable = false;
                 playerHUD.alpha = 0;
                 turnTimer.SetTimeOff();
 
-                currentAction = null;
+                currentAttack = null;
+            }
+            else
+            {
+                currentHeal.RollDice(eventSystem.currentSelectedGameObject);
+
+                numberRoller.rollers.gameObject.SetActive(true);
+                numberRoller.StartRolling();
+                numberRoller.AddBonusNumbers(currentHeal.heal.rollBonus);
+                playerHUD.interactable = false;
+                playerHUD.alpha = 0;
+                turnTimer.SetTimeOff();
+
+                currentHeal = null;
             }
         }
 
@@ -65,9 +80,13 @@ namespace Omega.UI
 
         private void Update()
         {
-            if(eventSystem.currentSelectedGameObject == gameObject)
+            if(eventSystem.currentSelectedGameObject == gameObject && currentAttack != null)
             {
                 GetComponentInChildren<Outline>().OutlineColor = Color.red;
+            }
+            else if(eventSystem.currentSelectedGameObject == gameObject && currentAttack == null)
+            {
+                GetComponentInChildren<Outline>().OutlineColor = Color.green;
             }
             else
             {
@@ -75,10 +94,18 @@ namespace Omega.UI
             }
         }
 
-        public void GetCurrentAction(AttackButtonHandler action)
+        public void GetCurrentAction(AttackButtonHandler attack, HealingButtonHandler heal)
         {
-            currentAction = action;
+            if(attack == null)
+            {
+                currentAttack = null;
+                currentHeal = heal;
+            }
+            else
+            {
+                currentAttack = attack;
+                currentHeal = null;
+            }
         }
-
     }
 }

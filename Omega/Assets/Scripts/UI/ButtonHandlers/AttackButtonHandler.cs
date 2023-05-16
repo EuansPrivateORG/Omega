@@ -37,7 +37,7 @@ namespace Omega.UI
 
         private CancelHandler cancelHandler;
 
-        public bool currentlySelectingPlayer = false;
+        [HideInInspector] public bool currentlySelectingPlayer = false;
 
         private void Awake()
         {
@@ -73,11 +73,12 @@ namespace Omega.UI
         {
             playerIdentifier.isAttacking = true;
 
-            PlayerSelectionHandler playerSelection = FindObjectOfType<PlayerSelectionHandler>();
+            foreach (GameObject player in playerIdentifier.playerIndex)
+            {
+                player.GetComponent<PlayerSelectionHandler>().GetCurrentAction(this, null);
+            }
 
             List<GameObject> attackablePlayers = new List<GameObject>();
-
-            playerSelection.GetCurrentAction(this);
 
             EnableBaseSelection(attackablePlayers);
 
@@ -96,7 +97,6 @@ namespace Omega.UI
             {
                 PlayerSelectionHandler playerSelectionHandler = player.GetComponent<PlayerSelectionHandler>();
                 playerSelectionHandler.enabled = true;
-
             }
 
             bool foundNextPlayer = false;
@@ -124,8 +124,6 @@ namespace Omega.UI
             {
                 nextAvailablePlayer = null;
             }
-
-
         }
 
         private void DisableBaseSelection(List<GameObject> attackablePlayers)
@@ -151,7 +149,6 @@ namespace Omega.UI
 
         public void PerformAttack(int damageToDeal)
         {
-            Debug.Log(damageToDeal);
             damageToDeal += attack.rollBonus;
             currentDamage = damageToDeal;
 
