@@ -10,9 +10,17 @@ namespace Omega.Actions
         public List<Card> cardsPlayed = new List<Card>();
         public List<Card> cardsPlayedAgainst = new List<Card>();
 
+        private CardHandler cardHandler;
+
+        private void Awake()
+        {
+            FindObjectOfType<CardHandler>();
+        }
+
         void Start()
         {
-
+            cardHandler.DrawCard(gameObject);
+            cardHandler.DrawCard(gameObject);
         }
 
         void Update()

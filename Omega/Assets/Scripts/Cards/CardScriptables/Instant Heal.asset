@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
-  m_Name: Chaos Dice
+  m_Name: Instant Heal
   m_EditorClassIdentifier: 
-  CardUIPreFab: {fileID: 1982473160651351736, guid: 3fb912d3ec499424ea8c887aa152d209,
+  CardUIPreFab: {fileID: 7717577386591133453, guid: f4e7264f234122845a903174e1b56cca,
     type: 3}
   CardWorldPreFab: {fileID: 0}
-  CardName: Chaos Dice
-  cardCategory: 2
-  cardOdds: 2
-  activationType: 2
-  cardType: 7
-  amountOfRounds: 0
+  CardName: Instant Heal
+  cardCategory: 1
+  cardOdds: 1
+  activationType: 3
+  cardType: 10
+  amountOfRounds: 1
   damagePerTurn: 0
   shieldPrefab: {fileID: 0}
   healingPerTurn: 0
   energyAmount: 0
   rollBonusValue: 0
+  instantHealAmount: 20
+  damageReductionPercentage: 0
   effectOverTime: 0

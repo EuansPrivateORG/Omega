@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
   m_Name: AOE
   m_EditorClassIdentifier: 
-  CardUIPreFab: {fileID: 0}
+  CardUIPreFab: {fileID: 77622902810890107, guid: ceb14a9af3f163642a9993839a425f19,
+    type: 3}
   CardWorldPreFab: {fileID: 0}
   CardName: AOE
+  cardCategory: 0
   cardOdds: 1
   activationType: 0
   cardType: 0

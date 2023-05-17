@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
   m_Name: Flip Turn Order
   m_EditorClassIdentifier: 
-  CardUIPreFab: {fileID: 0}
+  CardUIPreFab: {fileID: 5884519262694819233, guid: 024f821707135f14a9c52317aed60118,
+    type: 3}
   CardWorldPreFab: {fileID: 0}
   CardName: Flip Turn Order
   cardCategory: 2

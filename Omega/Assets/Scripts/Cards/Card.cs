@@ -41,6 +41,7 @@ namespace Omega.Actions
             onHeal,
             onDiceRoll,
             instantActivation,
+            onAttacked
         }
 
         public ActivationType activationType;
@@ -56,7 +57,9 @@ namespace Omega.Actions
             doubleRoll,
             chaosDice,
             rollBonus,
-            flipTurn
+            flipTurn,
+            instantHeal,
+            damageReduction
         }
 
         public CardType cardType;
@@ -69,6 +72,8 @@ namespace Omega.Actions
         [HideInInspector] public int healingPerTurn; // for hot cards
         [HideInInspector] public int energyAmount; // for overcharge cards
         [HideInInspector] public int rollBonusValue; // for rollBonus cards
+        [HideInInspector] public int instantHealAmount; // for instantHeal cards
+        [HideInInspector] public int damageReductionPercentage; // for instantHeal cards
 
         public bool effectOverTime;
 
@@ -104,6 +109,12 @@ namespace Omega.Actions
                         break;
                     case CardType.rollBonus:
                         card.rollBonusValue = EditorGUILayout.IntField("Bonus Roll Value", card.rollBonusValue);
+                        break;
+                    case CardType.instantHeal:
+                        card.instantHealAmount = EditorGUILayout.IntField("Amount to Instant Heal", card.instantHealAmount);
+                        break;
+                    case CardType.damageReduction:
+                        card.damageReductionPercentage = EditorGUILayout.IntField("Percentage of Reduction", card.damageReductionPercentage);
                         break;
                 }
             }

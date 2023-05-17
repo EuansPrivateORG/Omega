@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
   m_Name: Roll Bonus
   m_EditorClassIdentifier: 
-  CardUIPreFab: {fileID: 0}
+  CardUIPreFab: {fileID: 753073516047436258, guid: de4f6827739aab542b48b5336f3990d8,
+    type: 3}
   CardWorldPreFab: {fileID: 0}
   CardName: Roll Bonus
   cardCategory: 2

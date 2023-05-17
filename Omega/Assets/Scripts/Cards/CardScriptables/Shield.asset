@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  CardUIPreFab: {fileID: 0}
+  CardUIPreFab: {fileID: 7717577386591133453, guid: b022709f64269cc4588d51fec026562c,
+    type: 3}
   CardWorldPreFab: {fileID: 0}
   CardName: Shield
   cardCategory: 1
