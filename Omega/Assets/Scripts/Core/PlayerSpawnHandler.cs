@@ -47,12 +47,16 @@ namespace Omega.Core
 
         private PlayerSetup playersSetup;
 
+        private CameraHandler cameraHandler;
+        private TurnTransition turnTransition;
+
         private int playerCounter;
 
         private void Awake()
         {
             playerIdentifier = GetComponent<PlayerIdentifier>();
-
+            cameraHandler = FindObjectOfType<CameraHandler>();
+            turnTransition = FindObjectOfType<TurnTransition>();
         }
 
         public void StartFirstRound(List<Base> playersToSpawn)
@@ -133,9 +137,7 @@ namespace Omega.Core
                 playersToSpawnIn.RemoveAt(i);
             }
             playerIdentifier.SetIndex(playerList);
-            CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             cameraHandler.SetupCameras();
-            TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
             StartCoroutine(turnTransition.FadeInHUD());
         }
 

@@ -42,8 +42,6 @@ namespace Omega.Core
 
         public void StartFirstRound(List<Base> playersToSpawn)
         {
-            roundCompletion.FadeOutHUD(roundResults);
-
             players = playersToSpawn;
             spawnHandler.StartFirstRound(players);
             playerId.roundOver = false;
@@ -57,7 +55,7 @@ namespace Omega.Core
 
         public void StartNextRound()
         {
-            roundCompletion.FadeOutHUD(roundResults);
+            StartCoroutine(roundCompletion.FadeOutHUD(roundResults));
 
             gameHUD.alpha = 1;
             gameHUD.interactable = true;
@@ -73,7 +71,6 @@ namespace Omega.Core
             {
                 Destroy(player);
             }
-            scoreHandler.leaderboardPlayers.Clear();
         }
 
         public void EndRound()

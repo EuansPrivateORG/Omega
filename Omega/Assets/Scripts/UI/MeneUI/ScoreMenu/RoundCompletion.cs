@@ -17,7 +17,7 @@ namespace Omega.UI
         [SerializeField] public Button nextRoundButton;
         [SerializeField] public TextMeshProUGUI winningPlayerText;
         private CanvasGroup roundCompletionCanvasGroup;
-        private float fadeTime = 0.5f;
+        private float fadeTime = 0.25f;
         private bool hasEndedRound = false;
 
         EventSystem eventSystem;
@@ -73,6 +73,11 @@ namespace Omega.UI
                 group.alpha = alpha;
                 group.interactable = false;
                 yield return null;
+            }
+
+            if (group == roundCompletionCanvasGroup)
+            {
+                scoreHandler.leaderboardPlayers.Clear();
             }
 
             group.alpha = 0f;

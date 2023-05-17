@@ -104,6 +104,9 @@ namespace Omega.Core
                 {
                     handler.ResetUI();
                 }
+
+                currentAttack = null;
+                currentHeal = null;
             }
         }
 
