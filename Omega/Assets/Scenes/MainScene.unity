@@ -664,7 +664,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82dcedeb43589e49937ce137f994386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards: []
+  cards:
+  - {fileID: 11400000, guid: c410b378cfa18fb4e908823120d1505a, type: 2}
+  - {fileID: 11400000, guid: 26559576aeaa0ab44bc430df665624d8, type: 2}
+  - {fileID: 11400000, guid: 39cfc8f8788826c458049fd06ee6ab44, type: 2}
+  - {fileID: 11400000, guid: 0ed745de5da59b249bf52b4689e8dc5a, type: 2}
+  - {fileID: 11400000, guid: 51bee7347feab0943abbc26845696163, type: 2}
+  - {fileID: 11400000, guid: 1cc4ad8f208abc542983d0cf2b514514, type: 2}
+  - {fileID: 11400000, guid: efd7284cda123c949aedec97633fb54b, type: 2}
+  - {fileID: 11400000, guid: af75f58bc0dd5b549894717e9a44c0be, type: 2}
+  - {fileID: 11400000, guid: e2d9dbe4a9d87ad4cbd965f675a81570, type: 2}
+  - {fileID: 11400000, guid: 1cb68a6c42635ed4795889796af5aa3e, type: 2}
+  - {fileID: 11400000, guid: d04260b0c6ab6e64f888416257e445cc, type: 2}
+  - {fileID: 11400000, guid: 750d713986c8a7144b4325c182c93112, type: 2}
 --- !u!224 &988630729 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9116772868844883241, guid: d29fc24822bfc8241a517ea8b3088b5d,

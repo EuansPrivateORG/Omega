@@ -40,8 +40,7 @@ namespace Omega.Actions
             onAttack,
             onHeal,
             onDiceRoll,
-            instantActivation,
-            onAttacked
+            instantActivation
         }
 
         public ActivationType activationType;
@@ -74,8 +73,11 @@ namespace Omega.Actions
         [HideInInspector] public int rollBonusValue; // for rollBonus cards
         [HideInInspector] public int instantHealAmount; // for instantHeal cards
         [HideInInspector] public int damageReductionPercentage; // for instantHeal cards
+        [HideInInspector] public GameObject damageReductionPreFab;
 
         public bool effectOverTime;
+
+        public bool hasEffectWhenAttacked = false;
 
 #if UNITY_EDITOR
         [CustomEditor(typeof(Card))]
@@ -115,6 +117,7 @@ namespace Omega.Actions
                         break;
                     case CardType.damageReduction:
                         card.damageReductionPercentage = EditorGUILayout.IntField("Percentage of Reduction", card.damageReductionPercentage);
+                        card.damageReductionPreFab = (GameObject)EditorGUILayout.ObjectField("-Damage PreFab", card.damageReductionPreFab, typeof(GameObject), false);
                         break;
                 }
             }
