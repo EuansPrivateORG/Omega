@@ -308,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 7415052839103012664, guid: 492c603a5a1ff014fa4d08e3e485abdf,
         type: 3}
       propertyPath: m_text
-      value: 'Activation: When Attacked'
+      value: 'Activation: Instant'
       objectReference: {fileID: 0}
     - target: {fileID: 8226782438909232338, guid: 492c603a5a1ff014fa4d08e3e485abdf,
         type: 3}

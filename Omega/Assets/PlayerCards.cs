@@ -14,7 +14,7 @@ namespace Omega.Actions
 
         private void Awake()
         {
-            FindObjectOfType<CardHandler>();
+            cardHandler = FindObjectOfType<CardHandler>();
         }
 
         void Start()

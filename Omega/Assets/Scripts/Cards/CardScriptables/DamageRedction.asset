@@ -18,7 +18,7 @@ MonoBehaviour:
   CardName: Damage Reduction
   cardCategory: 1
   cardOdds: 1
-  activationType: 4
+  activationType: 3
   cardType: 11
   amountOfRounds: 1
   damagePerTurn: 0
@@ -28,4 +28,6 @@ MonoBehaviour:
   rollBonusValue: 0
   instantHealAmount: 20
   damageReductionPercentage: 50
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 0
+  hasEffectWhenAttacked: 1

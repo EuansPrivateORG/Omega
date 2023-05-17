@@ -8,11 +8,11 @@ namespace Omega.Actions
     {
         public List<Card> cards;
 
-        private List<Card> lowChanceCards;
+        private List<Card> lowChanceCards = new List<Card>();
 
-        private List<Card> mediumChanceCards;
+        private List<Card> mediumChanceCards = new List<Card>();
 
-        private List<Card> highChanceCards;
+        private List<Card> highChanceCards = new List<Card>();
 
         private void Awake()
         {
