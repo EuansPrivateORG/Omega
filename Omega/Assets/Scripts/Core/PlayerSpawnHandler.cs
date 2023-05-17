@@ -4,6 +4,7 @@ using UnityEngine;
 using Omega.Status;
 using UnityEngine.UI;
 using Omega.UI;
+using Omega.Actions;
 
 namespace Omega.Core
 {
@@ -47,6 +48,8 @@ namespace Omega.Core
 
         private PlayerSetup playersSetup;
 
+        private CardSpawner cardSpawner;
+
         private CameraHandler cameraHandler;
         private TurnTransition turnTransition;
 
@@ -57,6 +60,7 @@ namespace Omega.Core
             playerIdentifier = GetComponent<PlayerIdentifier>();
             cameraHandler = FindObjectOfType<CameraHandler>();
             turnTransition = FindObjectOfType<TurnTransition>();
+            cardSpawner = FindObjectOfType<CardSpawner>();
         }
 
         public void StartFirstRound(List<Base> playersToSpawn)
@@ -94,6 +98,11 @@ namespace Omega.Core
                 playersToSpawnIn.RemoveAt(i);
             }
             playerIdentifier.SetIndex(playerList);
+            foreach (var player in playerList)
+            {
+                player.GetComponent<PlayerCards>().StartingCards();
+            }
+            cardSpawner.SpawnCards(playerIdentifier.currentPlayer.GetComponent<PlayerCards>().cardsInHand);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             cameraHandler.SetupCameras();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();

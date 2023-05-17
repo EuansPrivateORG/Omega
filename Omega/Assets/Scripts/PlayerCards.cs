@@ -19,8 +19,12 @@ namespace Omega.Actions
 
         void Start()
         {
-            cardHandler.DrawCard(gameObject);
-            cardHandler.DrawCard(gameObject);
+
+        }
+
+        public void StartingCards()
+        {
+            cardHandler.DrawCardNoUI(gameObject, 2);
         }
 
         void Update()

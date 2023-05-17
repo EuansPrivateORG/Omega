@@ -30,11 +30,15 @@ namespace Omega.Core
         [HideInInspector] public bool isAttacking = false;
 
         private PhysicalDiceCalculator physicalDiceCalculator;
+        private CardSpawner cardSpawner;
+        private DrawCardHandler drawCardHandler;
 
         private void Awake()
         {
             turnTimer = GetComponent<TurnTimer>();
             physicalDiceCalculator = GetComponent<PhysicalDiceCalculator>();
+            cardSpawner = GetComponent<CardSpawner>();
+            drawCardHandler = FindObjectOfType<DrawCardHandler>();
         }
 
         public void SetupTurnOrderIndex()
@@ -65,6 +69,10 @@ namespace Omega.Core
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
 
             UpdatePlayerIcon();
+
+            cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
+
+            drawCardHandler.CheckEnergy();
 
             playerWhoHasDied = playerIndex.Count + 1;
         }
@@ -107,6 +115,12 @@ namespace Omega.Core
 
                 currentAttack = null;
                 currentHeal = null;
+
+                drawCardHandler.CheckEnergy();
+
+                cardSpawner.ClearActiveCards();
+
+                cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
             }
         }
 
