@@ -1,4 +1,4 @@
-using Autodesk.Fbx;
+
 using Omega.Actions;
 using System;
 using System.Collections;

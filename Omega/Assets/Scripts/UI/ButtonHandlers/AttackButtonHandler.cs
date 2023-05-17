@@ -6,12 +6,10 @@ using Omega.Core;
 using Omega.Status;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting;
 using Unity.Mathematics;
 using TMPro;
 using Omega.Combat;
-using UnityEditor.Timeline.Actions;
-using UnityEngine.InputSystem;
+
 
 namespace Omega.UI
 {

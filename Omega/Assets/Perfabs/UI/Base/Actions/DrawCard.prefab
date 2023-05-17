@@ -124,9 +124,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4876265858261616206}
+      - m_Target: {fileID: 8431386482005675106}
         m_TargetAssemblyTypeName: Omega.UI.ActionButtonHandler, Assembly-CSharp
-        m_MethodName: SetSelectedElement
+        m_MethodName: ButtonPressed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -161,6 +161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
+  healingButton: {fileID: 0}
+  skipButton: {fileID: 0}
+  attackButton: {fileID: 0}
 --- !u!114 &4876265858261616206
 MonoBehaviour:
   m_ObjectHideFlags: 0

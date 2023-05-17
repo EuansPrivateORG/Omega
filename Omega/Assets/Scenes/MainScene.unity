@@ -516,9 +516,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPlayers: 5
-  playerStartingHealth: 2
+  playerStartingHealth: 150
   playerStartingEnergy: 0
-  radius: 14
+  radius: 12
   players: {fileID: 1902693845}
   playersTurnOrder: {fileID: 1914578938}
   playerList: []
@@ -1670,6 +1670,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1653697422603447251, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 781620684}
     - target: {fileID: 1752807890285697555, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMax.y
