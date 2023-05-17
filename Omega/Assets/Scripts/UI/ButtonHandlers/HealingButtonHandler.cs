@@ -100,6 +100,7 @@ namespace Omega.UI
 
                 if (!playerObject.GetComponent<Health>().isDead)
                 {
+                    playerObject.GetComponent<PlayerSelectionHandler>().enabled = true;
                     playerObject.GetComponent<Selectable>().enabled = true;
                     playerObject.GetComponentInChildren<Outline>().enabled = true;
                     playerObject.GetComponentInChildren<Outline>().OutlineColor = Color.white;
@@ -128,13 +129,14 @@ namespace Omega.UI
                 playerSelectionHandler.enabled = false;
 
             }
-            foreach (GameObject item in playerIdentifier.playerIndex)
+            foreach (GameObject player in playerIdentifier.playerIndex)
             {
-                if (item != null)
+                if (player != null)
                 {
-                    item.GetComponent<Selectable>().enabled = false;
-                    item.GetComponentInChildren<Outline>().enabled = false;
-                    healablePlayers.Add(item);
+                    player.GetComponent<PlayerSelectionHandler>().enabled = false;
+                    player.GetComponent<Selectable>().enabled = false;
+                    player.GetComponentInChildren<Outline>().enabled = false;
+                    healablePlayers.Add(player);
                 }
             }
 
