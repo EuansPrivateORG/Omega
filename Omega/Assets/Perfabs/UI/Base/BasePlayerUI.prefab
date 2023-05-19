@@ -6131,6 +6131,11 @@ PrefabInstance:
       propertyPath: gameobjectToDisable
       value: 
       objectReference: {fileID: 7176127464923506639}
+    - target: {fileID: 2592401124967322035, guid: 1ff5d9b461eadf749938f968bf780bc1,
+        type: 3}
+      propertyPath: weaponClass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2622000241384488679, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6197,6 +6202,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 90a9e49b5ef067a46abeee758fcbacaf,
         type: 3}
+    - target: {fileID: 3305420275918109961, guid: 1ff5d9b461eadf749938f968bf780bc1,
+        type: 3}
+      propertyPath: weaponClass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3313679879889373829, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: selectableToFocus
@@ -6384,6 +6394,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d44ea7e3a9faa76429eb3c8a682fed42,
         type: 3}
+    - target: {fileID: 4891152012727125720, guid: 1ff5d9b461eadf749938f968bf780bc1,
+        type: 3}
+      propertyPath: weaponClass
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5358401468716320054, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: m_AnchorMax.y
