@@ -106,7 +106,7 @@ Material:
     - _Dissolve: 0
     - _DstBlend: 0
     - _EdgeColorIntensity: 1
-    - _EdgeWidth: 0.05
+    - _EdgeWidth: 0.075
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
