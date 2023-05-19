@@ -177,8 +177,6 @@ namespace Omega.UI
         {
             yield return StartCoroutine(SlerpAttackWeapon(attackWeapon));
 
-            // Once SlerpAttackWeapon coroutine has finished, proceed with the rest of the code
-
             playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerToDamage, minColour, maxColour, this);
 
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
@@ -218,7 +216,7 @@ namespace Omega.UI
             Quaternion targetRotation = Quaternion.LookRotation(targetPosition - attackWeapon.transform.position);
 
             float elapsedTime = 0f;
-            float rotationTime = 1f; // Time taken to rotate the weapon
+            float rotationTime = 1f;
 
             while (elapsedTime < rotationTime)
             {
@@ -226,8 +224,6 @@ namespace Omega.UI
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-
-            // Restore the initial rotation
             //attackWeapon.transform.rotation = initialRotation;
         }
     }
