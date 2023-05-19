@@ -103,7 +103,6 @@ namespace Omega.Core
                 player.GetComponent<PlayerCards>().StartingCards();
             }
             cardSpawner.SpawnCards(playerIdentifier.currentPlayer.GetComponent<PlayerCards>().cardsInHand);
-            //playerIdentifier.SetupCurrentPlayerWeapons(playerIdentifier.currentPlayer);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             cameraHandler.SetupCameras();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();

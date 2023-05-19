@@ -151,6 +151,7 @@ namespace Omega.UI
 
         public void PerformAttack(int damageToDeal)
         {
+            playerIdentifier.SetupCurrentPlayerWeapons(playerIdentifier.currentPlayer);
             damageToDeal += attack.rollBonus;
             currentDamage = damageToDeal;
 

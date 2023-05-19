@@ -24,6 +24,7 @@ namespace Omega.Core
 
         [SerializeField] public GameObject currentPlayer = null;
         public List<GameObject> currentPlayerWeapons = new List<GameObject>();
+
         public int energyGainPerTurn = 2;
         public int currentPlayerIndex = 0;
         TurnTimer turnTimer;
@@ -77,7 +78,7 @@ namespace Omega.Core
             drawCardHandler.CheckEnergy();
 
             playerWhoHasDied = playerIndex.Count + 1;
-            
+
         }
 
         public void ResetIndex()
@@ -110,7 +111,7 @@ namespace Omega.Core
 
                 SettingUpNextPlayer();
 
-                SetupCurrentPlayerWeapons(currentPlayer);
+                //SetupCurrentPlayerWeapons(currentPlayer);
 
                 CancelHandler handler = FindObjectOfType<CancelHandler>();
                 if (handler != null)
