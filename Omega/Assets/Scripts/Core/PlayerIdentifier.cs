@@ -32,6 +32,7 @@ namespace Omega.Core
         private PhysicalDiceCalculator physicalDiceCalculator;
         private CardSpawner cardSpawner;
         private DrawCardHandler drawCardHandler;
+        private CardTween cardTween;
 
         private void Awake()
         {
@@ -39,6 +40,7 @@ namespace Omega.Core
             physicalDiceCalculator = GetComponent<PhysicalDiceCalculator>();
             cardSpawner = GetComponent<CardSpawner>();
             drawCardHandler = FindObjectOfType<DrawCardHandler>();
+            cardTween = FindObjectOfType<CardTween>();
         }
 
         public void SetupTurnOrderIndex()
@@ -70,7 +72,7 @@ namespace Omega.Core
 
             UpdatePlayerIcon();
 
-            cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
+            //cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
 
             drawCardHandler.CheckEnergy();
 
@@ -121,6 +123,8 @@ namespace Omega.Core
                 cardSpawner.ClearActiveCards();
 
                 cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
+
+                cardTween.RefreshCardList();
             }
         }
 

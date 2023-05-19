@@ -383,6 +383,18 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &395585818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7246069955291778188, guid: d29fc24822bfc8241a517ea8b3088b5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7905966732837235605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &421011332
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11edbd5c3998a9f478a4ef8202397fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnTimeLimit: 30
+  turnTimeLimit: 100
   timeFace: {fileID: 1260213818}
 --- !u!114 &781620686
 MonoBehaviour:
@@ -1780,6 +1792,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2121789025641339257, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 395585818}
     - target: {fileID: 2338689735517756353, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2858,6 +2875,11 @@ PrefabInstance:
     - target: {fileID: 7169302242799524971, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246069955291778188, guid: d29fc24822bfc8241a517ea8b3088b5d,
+        type: 3}
+      propertyPath: m_Navigation.m_WrapAround
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7281862092170513366, guid: d29fc24822bfc8241a517ea8b3088b5d,

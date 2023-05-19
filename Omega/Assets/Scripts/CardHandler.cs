@@ -97,6 +97,7 @@ namespace Omega.Actions
                     if (card == newCard)
                     {
                         i--;
+                        Debug.Log("Has Card");
                         hasCard = true;
                     }
                 }

@@ -4080,8 +4080,8 @@ MonoBehaviour:
   card5: {fileID: 996593262715307810}
   cardUpPos: {fileID: 3059792494129948034}
   cardUpScale: {x: 1.3, y: 1.3, z: 1.3}
-  cardUpTime: 1
-  cardMoveTime: 0.2
+  cardUpTime: 0.1
+  cardMoveTime: 0.05
   cards: []
   cardPositions: []
 --- !u!1 &6755860980543393465
@@ -7702,11 +7702,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1859059409992922103, guid: 693978fd8dd3ef94880a2e6ae97755eb,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1859059409992922103, guid: 693978fd8dd3ef94880a2e6ae97755eb,
         type: 3}

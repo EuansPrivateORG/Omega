@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707448776756905377}
   - component: {fileID: 5695416998026153261}
+  - component: {fileID: 5391057811636911723}
   m_Layer: 5
   m_Name: Card 1
   m_TagString: Untagged
@@ -81,6 +82,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5391057811636911723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185252451479325746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6d80039330b7c48ba7d5e8e3aafe61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCardHighlight: {fileID: 0}
 --- !u!1 &2487773778953577585
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8845143642325590480}
   - component: {fileID: 7721845247888783374}
+  - component: {fileID: 5590440942078119756}
   m_Layer: 5
   m_Name: Card 3
   m_TagString: Untagged
@@ -162,6 +177,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5590440942078119756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487773778953577585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6d80039330b7c48ba7d5e8e3aafe61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCardHighlight: {fileID: 0}
 --- !u!1 &2761135264887703171
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,6 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7625400112679782431}
   - component: {fileID: 6617649543548978730}
+  - component: {fileID: 992948101790069418}
   m_Layer: 5
   m_Name: Card 5
   m_TagString: Untagged
@@ -243,6 +272,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &992948101790069418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2761135264887703171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6d80039330b7c48ba7d5e8e3aafe61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCardHighlight: {fileID: 0}
 --- !u!1 &2979459342687613167
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 270}
+  m_AnchoredPosition: {x: 29, y: 363}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3250471068342958106
@@ -289,6 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3856569013806431729}
   - component: {fileID: 1859059409992922103}
+  - component: {fileID: 19965468104508403}
   m_Layer: 5
   m_Name: Card 4
   m_TagString: Untagged
@@ -329,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -360,6 +403,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &19965468104508403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250471068342958106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6d80039330b7c48ba7d5e8e3aafe61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCardHighlight: {fileID: 0}
 --- !u!1 &4447774799282103747
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5691762286956561891}
   - component: {fileID: 2166234716857995112}
+  - component: {fileID: 7115942446009271600}
   m_Layer: 5
   m_Name: Card 2
   m_TagString: Untagged
@@ -441,6 +498,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7115942446009271600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447774799282103747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6d80039330b7c48ba7d5e8e3aafe61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCardHighlight: {fileID: 0}
 --- !u!1 &9150363736230558414
 GameObject:
   m_ObjectHideFlags: 0

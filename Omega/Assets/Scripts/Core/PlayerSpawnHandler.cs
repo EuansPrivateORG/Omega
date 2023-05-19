@@ -53,6 +53,8 @@ namespace Omega.Core
         private CameraHandler cameraHandler;
         private TurnTransition turnTransition;
 
+        private CardTween cardTween;
+
         private int playerCounter;
 
         private void Awake()
@@ -61,6 +63,7 @@ namespace Omega.Core
             cameraHandler = FindObjectOfType<CameraHandler>();
             turnTransition = FindObjectOfType<TurnTransition>();
             cardSpawner = FindObjectOfType<CardSpawner>();
+            cardTween = FindObjectOfType<CardTween>();
         }
 
         public void StartFirstRound(List<Base> playersToSpawn)
@@ -103,6 +106,7 @@ namespace Omega.Core
                 player.GetComponent<PlayerCards>().StartingCards();
             }
             cardSpawner.SpawnCards(playerIdentifier.currentPlayer.GetComponent<PlayerCards>().cardsInHand);
+            cardTween.RefreshCardList();
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             cameraHandler.SetupCameras();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
@@ -146,6 +150,12 @@ namespace Omega.Core
                 playersToSpawnIn.RemoveAt(i);
             }
             playerIdentifier.SetIndex(playerList);
+            foreach (var player in playerList)
+            {
+                player.GetComponent<PlayerCards>().StartingCards();
+            }
+            cardSpawner.SpawnCards(playerIdentifier.currentPlayer.GetComponent<PlayerCards>().cardsInHand);
+            cardTween.RefreshCardList();
             cameraHandler.SetupCameras();
             StartCoroutine(turnTransition.FadeInHUD());
         }
