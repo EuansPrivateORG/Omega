@@ -57,13 +57,47 @@ namespace Omega.Actions
             }
         }
 
+
+        // We should probably move where this function is called to when the projectile is launched as the attack data/ damage is already locked in.
         public void ClearDice()
         {
-            foreach(GameObject dice in actionDices)
+            StartCoroutine(WaitForDestroy());
+
+        }
+
+
+        public IEnumerator WaitForDestroy()
+        {
+            yield return StartCoroutine(DissolveDice());
+            foreach (GameObject dice in actionDices)
             {
                 Destroy(dice);
             }
             actionDices.Clear();
+        }
+
+
+        private IEnumerator DissolveDice()
+        {
+            float dissolveDuration = 2f;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < dissolveDuration)
+            {
+                float t = elapsedTime / dissolveDuration;
+
+                foreach (GameObject dice in actionDices)
+                {
+                    dice.GetComponent<Renderer>().material.SetFloat("_Dissolve", t);
+                }
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            foreach (GameObject dice in actionDices)
+            {
+                dice.GetComponent<Renderer>().material.SetFloat("_Dissolve", 1f);
+            }
         }
     }
 }
