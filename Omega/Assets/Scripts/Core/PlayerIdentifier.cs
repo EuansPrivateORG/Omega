@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Omega.Actions;
+using Omega.Combat;
 
 namespace Omega.Core
 {
@@ -22,6 +23,8 @@ namespace Omega.Core
         [HideInInspector] public HealingButtonHandler currentHeal;
 
         [SerializeField] public GameObject currentPlayer = null;
+        public List<GameObject> currentPlayerWeapons = new List<GameObject>();
+
         public int energyGainPerTurn = 2;
         public int currentPlayerIndex = 0;
         TurnTimer turnTimer;
@@ -77,6 +80,7 @@ namespace Omega.Core
             drawCardHandler.CheckEnergy();
 
             playerWhoHasDied = playerIndex.Count + 1;
+
         }
 
         public void ResetIndex()
@@ -109,6 +113,8 @@ namespace Omega.Core
 
                 SettingUpNextPlayer();
 
+                //SetupCurrentPlayerWeapons(currentPlayer);
+
                 CancelHandler handler = FindObjectOfType<CancelHandler>();
                 if (handler != null)
                 {
@@ -121,7 +127,6 @@ namespace Omega.Core
                 drawCardHandler.CheckEnergy();
 
                 cardSpawner.ClearActiveCards();
-
                 cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
 
                 cardTween.RefreshCardList();
@@ -238,6 +243,19 @@ namespace Omega.Core
                 {
                     playerSpawner.playerImageList[i].GetComponent<Image>().enabled = false;
                 }
+            }
+        }
+
+        public void SetupCurrentPlayerWeapons(GameObject currentPlayer)
+        {
+            if(currentPlayerWeapons.Count > 0)
+            {
+            currentPlayerWeapons.Clear();
+            }
+            foreach (Weapon weapon in currentPlayer.GetComponentsInChildren<Weapon>())
+            {
+                currentPlayerWeapons.Add(weapon.gameObject);
+                //Debug.Log(currentPlayer.gameObject.name + weapon.name);
             }
         }
     }

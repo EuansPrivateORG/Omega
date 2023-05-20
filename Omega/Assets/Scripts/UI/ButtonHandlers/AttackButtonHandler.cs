@@ -15,6 +15,8 @@ namespace Omega.UI
 {
     public class AttackButtonHandler : ActionButtonHandler
     {
+
+        public Weapon.weaponClass weaponClass;
         public PlayerAction attack;
 
         private PlayerIdentifier playerIdentifier;
@@ -149,19 +151,38 @@ namespace Omega.UI
 
         public void PerformAttack(int damageToDeal)
         {
+            playerIdentifier.SetupCurrentPlayerWeapons(playerIdentifier.currentPlayer);
             damageToDeal += attack.rollBonus;
             currentDamage = damageToDeal;
 
             int minColour = attack.minDamageFromDice();
             int maxColour = attack.maxDamageFromDice();
 
+            GameObject attackWeapon = null;
 
-            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, playerToDamage, minColour, maxColour, this);
+            foreach (GameObject weapon in playerIdentifier.currentPlayerWeapons)
+            {
+                if (weapon.GetComponent<Weapon>().weaponType == weaponClass)
+                {
+                    attackWeapon = weapon;
+                }
+            }
+
+            Debug.Log("this attack uses this:" + attackWeapon.name);
+
+            // Start the coroutine and wait until it finishes
+            StartCoroutine(WaitForAttack(attackWeapon, damageToDeal, minColour, maxColour));
+        }
+
+        private IEnumerator WaitForAttack(GameObject attackWeapon, int damageToDeal, int minColour, int maxColour)
+        {
+            yield return StartCoroutine(SlerpAttackWeapon(attackWeapon));
+
+            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerToDamage, minColour, maxColour, this);
 
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
             playerEnergy.SpendEnergy(attack.cost);
             scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += damageToDeal;
-            
         }
 
         public void RollDice(GameObject toDamage)
@@ -186,6 +207,25 @@ namespace Omega.UI
         {
             float position = (float)(value - minValue) / (maxValue - minValue);
             return colorGradient.Evaluate(position);
+        }
+
+        private IEnumerator SlerpAttackWeapon(GameObject attackWeapon)
+        {
+            Quaternion initialRotation = attackWeapon.transform.rotation;
+
+            Vector3 targetPosition = playerToDamage.transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(targetPosition - attackWeapon.transform.position);
+
+            float elapsedTime = 0f;
+            float rotationTime = 1f;
+
+            while (elapsedTime < rotationTime)
+            {
+                attackWeapon.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / rotationTime);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            //attackWeapon.transform.rotation = initialRotation;
         }
     }
 }

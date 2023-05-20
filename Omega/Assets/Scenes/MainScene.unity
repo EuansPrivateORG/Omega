@@ -555,6 +555,7 @@ MonoBehaviour:
   currentAttack: {fileID: 0}
   currentHeal: {fileID: 0}
   currentPlayer: {fileID: 0}
+  currentPlayerWeapons: []
   energyGainPerTurn: 2
   currentPlayerIndex: 0
   roundOver: 0
