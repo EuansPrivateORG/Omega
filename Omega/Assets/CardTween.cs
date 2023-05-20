@@ -111,23 +111,27 @@ namespace Omega.UI
 
         public void CardDown(GameObject card)
         {
+            GameObject upCardTarget = null;
             LeanTween.scale(card, originalCardScale, cardUpTime);
 
             for(int i = 0; i < cards.Count; i++)
             {
                 if(i == cards.Count - 1)
                 {
-                    Debug.Log(i);
-                    LeanTween.move(card, cardOriginPositions[i], cardUpTime);
+                    upCardTarget = cardPositions[i];
+                    LeanTween.move(card, cardPositions[i].transform.position, cardUpTime);
+                    card.transform.SetParent(cardPositions[i].transform);
+                    cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                    cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight = card.GetComponent<CardCollection>().cardHighlight;
                 }
             }
 
-            upCard = card.transform.GetChild(0).gameObject;
+            upCard = card;
 
-            MoveCardsAlong();
+            MoveCardsAlong(upCardTarget);
         }
 
-        private void MoveCardsAlong()
+        private void MoveCardsAlong(GameObject upCardTarget)
         {
             GameObject cardInFirstPos = null;
             GameObject cardInSecondPos = null;
@@ -137,147 +141,48 @@ namespace Omega.UI
 
             for (int i = 0; i < cards.Count; i++)
             {
-                Debug.Log(cards.Count);
-
                 if (cards[i] == upCard)
                 {
-                    placedCard = cardPositions[i];
-                    cardPositions[i].transform.SetSiblingIndex(0);
+                    placedCard = cards[i];
+                    placedCard.transform.SetParent(upCardTarget.transform);
+                    upCardTarget.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                    upCardTarget.GetComponent<CardButtonHandler>().currentCardHighlight = placedCard.GetComponent<CardCollection>().cardHighlight;
                 }
 
                 else if (cards[i].transform.parent.position == secondCardPos)
                 {
-                    cardInFirstPos = cardPositions[i];
-                    LeanTween.move(cardPositions[i], firstCardPos, cardMoveTime);
-                    cardPositions[i].transform.SetSiblingIndex(5);
+                    cardInFirstPos = cards[i];
+                    LeanTween.move(cardInFirstPos, card1.transform.position, cardMoveTime);
+                    cardInFirstPos.transform.SetParent(card1.transform);
+                    card1.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                    card1.GetComponent<CardButtonHandler>().currentCardHighlight = cardInFirstPos.GetComponent<CardCollection>().cardHighlight;
                 }
 
                 else if (cards[i].transform.parent.position == thirdCardPos)
                 {
-                    cardInSecondPos = cardPositions[i];
-                    LeanTween.move(cardPositions[i], secondCardPos, cardMoveTime);
-                    cardPositions[i].transform.SetSiblingIndex(4);
+                    cardInSecondPos = cards[i];
+                    LeanTween.move(cardInSecondPos, card2.transform.position, cardMoveTime);
+                    cardInSecondPos.transform.SetParent(card2.transform);
+                    card2.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                    card2.GetComponent<CardButtonHandler>().currentCardHighlight = cardInSecondPos.GetComponent<CardCollection>().cardHighlight;
                 }
 
                 else if (cards[i].transform.parent.position == fourthCardPos)
                 {
-                    cardInThirdPos = cardPositions[i];
-                    LeanTween.move(cardPositions[i], thirdCardPos, cardMoveTime);
-                    cardPositions[i].transform.SetSiblingIndex(3);
+                    cardInThirdPos = cards[i];
+                    LeanTween.move(cardInThirdPos, card3.transform.position, cardMoveTime);
+                    cardInThirdPos.transform.SetParent(card3.transform);
+                    card3.GetComponent<CardButtonHandler>().currentCardHighlight = cardInThirdPos.GetComponent<CardCollection>().cardHighlight;
                 }
 
                 else if (cards[i].transform.parent.position == fifthCardPos)
                 {
-                    cardInFourthPos = cardPositions[i];
-                    LeanTween.move(cardPositions[i], fourthCardPos, cardMoveTime);
-                    cardPositions[i].transform.SetSiblingIndex(2);
+                    cardInFourthPos = cards[i];
+                    LeanTween.move(cardInFourthPos, card4.transform.position, cardMoveTime);
+                    cardInFourthPos.transform.SetParent(card4.transform);
+                    card4.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                    card4.GetComponent<CardButtonHandler>().currentCardHighlight = cardInFourthPos.GetComponent<CardCollection>().cardHighlight;
                 }
-            }
-
-            SetNavigation(cardInFirstPos, cardInSecondPos, cardInThirdPos, cardInFourthPos, placedCard);
-        }
-
-        private void SetNavigation(GameObject cardInFirstPos, GameObject cardInSecondPos, GameObject cardInThirdPos, GameObject cardInFourthPos, GameObject placedCard)
-        {
-            Button cardInFirstPosButton = null;
-            Button cardInSecondPosButton = null;
-            Button cardInThirdPosButtton = null;
-            Button cardInFourthPosButton = null;
-            Button placedCardButton = null;
-
-            if(cardInFirstPos != null)
-            {
-                cardInFirstPosButton = cardInFirstPos.GetComponent<Button>();
-            }
-            if(cardInSecondPos != null)
-            {
-                cardInSecondPosButton = cardInSecondPos.GetComponent<Button>();
-            }
-            if(cardInThirdPos != null)
-            {
-                cardInThirdPosButtton = cardInThirdPos.GetComponent<Button>();
-            }
-            if(cardInFourthPos != null)
-            {
-                cardInFourthPosButton = cardInFourthPos.GetComponent<Button>();
-            }
-            if(placedCard != null)
-            {
-                placedCardButton = placedCard.GetComponent<Button>();
-            }
-
-            if(cardInFirstPosButton != null)
-            {
-                Navigation newNav = new Navigation();
-                newNav.mode = Navigation.Mode.Explicit;
-                newNav.selectOnRight = drawCardHandler.healingButton;
-                newNav.selectOnLeft = cardInFirstPosButton;
-                drawCardHandler.attackButton.navigation = newNav;
-
-                Navigation newNav2 = new Navigation();
-                newNav2.mode = Navigation.Mode.Explicit;
-                newNav2.selectOnRight = drawCardHandler.attackButton;
-                if(cardInSecondPosButton != null) newNav2.selectOnLeft = cardInSecondPosButton;
-                else
-                {
-                    newNav2.selectOnLeft = placedCardButton;
-
-                    Navigation newNav3 = new Navigation();
-                    newNav3.mode = Navigation.Mode.Explicit;
-                    newNav3.selectOnRight = cardInFirstPosButton;
-                    placedCardButton.navigation = newNav3;
-                }
-                cardInFirstPosButton.navigation = newNav2;
-            }
-
-            else if(cardInSecondPosButton != null)
-            {
-                Navigation newNav = new Navigation();
-                newNav.mode = Navigation.Mode.Explicit;
-                newNav.selectOnRight = cardInFirstPosButton;
-                if (cardInThirdPosButtton != null) newNav.selectOnLeft = cardInThirdPosButtton;
-                else
-                {
-                    newNav.selectOnLeft = placedCardButton;
-
-                    Navigation newNav2 = new Navigation();
-                    newNav2.mode = Navigation.Mode.Explicit;
-                    newNav2.selectOnRight = cardInSecondPosButton;
-                    placedCardButton.navigation = newNav2;
-                }
-                cardInSecondPosButton.navigation = newNav;
-            }
-
-            else if(cardInThirdPosButtton != null)
-            {
-                Navigation newNav = new Navigation();
-                newNav.mode = Navigation.Mode.Explicit;
-                newNav.selectOnRight = cardInSecondPosButton;
-                if (cardInFourthPosButton != null) newNav.selectOnLeft = cardInFourthPosButton;
-                else
-                {
-                    newNav.selectOnLeft = placedCardButton;
-
-                    Navigation newNav2 = new Navigation();
-                    newNav2.mode = Navigation.Mode.Explicit;
-                    newNav2.selectOnRight = cardInThirdPosButtton;
-                    placedCardButton.navigation = newNav2;
-                }
-                cardInSecondPosButton.navigation = newNav;
-            }
-
-            else if (cardInFourthPosButton != null)
-            {
-                Navigation newNav = new Navigation();
-                newNav.mode = Navigation.Mode.Explicit;
-                newNav.selectOnRight = cardInThirdPosButtton;
-                newNav.selectOnLeft = placedCardButton;
-                cardInSecondPosButton.navigation = newNav;
-
-                Navigation newNav2 = new Navigation();
-                newNav2.mode = Navigation.Mode.Explicit;
-                newNav2.selectOnRight = cardInFourthPosButton;
-                placedCardButton.navigation = newNav2;
             }
         }
     }

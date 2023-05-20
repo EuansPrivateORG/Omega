@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace Omega.UI
 {
@@ -14,8 +15,9 @@ namespace Omega.UI
 
         private CardTween cardTween;
 
-        private bool cardSelected = false;
-        private bool hasUnSelectedCard = false;
+        private InputAction leftAction;
+
+        private bool hasEnabledInput = false;
 
 
         private void Awake()
@@ -28,11 +30,11 @@ namespace Omega.UI
         {
             if (eventSystem.currentSelectedGameObject == gameObject)
             {
-                if(!cardSelected)
+                if(!hasEnabledInput)
                 {
+                    EnableInput();
+                    hasEnabledInput = true;
                     SelectCard();
-                    cardSelected = true;
-                    hasUnSelectedCard = false;
                 }
 
                 if(currentCardHighlight != null)
@@ -42,10 +44,10 @@ namespace Omega.UI
             }
             else
             {
-                if(cardSelected && !hasUnSelectedCard)
+                if (hasEnabledInput)
                 {
-                    cardSelected = false;
-                    hasUnSelectedCard = true;
+                    DisableInput();
+                    hasEnabledInput = false;
                     UnSelectCard();
                 }
 
@@ -55,17 +57,36 @@ namespace Omega.UI
                 }
             }
         }
+        private void EnableInput()
+        {
+            Debug.Log("Input Enabled");
+            leftAction = new InputAction("ShuffleCards", InputActionType.Button, "<Gamepad>/dpad/left, <Gamepad>/leftStick/left"); 
+            leftAction.performed += OnLeftPressed;
+            leftAction.Enable();
+        }
+
+        private void DisableInput()
+        {
+            Debug.Log("Input Disabled");
+            leftAction.Disable();
+            leftAction.performed -= OnLeftPressed;
+        }
+
+        public void OnLeftPressed(InputAction.CallbackContext context)
+        {
+            Debug.Log("left Pressed");
+            UnSelectCard();
+            SelectCard();
+        }
 
         public void SelectCard()
         {
-            Debug.Log("selected card = " + gameObject);
-            cardTween.CardUp(gameObject);
+            cardTween.CardUp(transform.GetChild(0).gameObject);
         }
 
         public void UnSelectCard()
         {
-            Debug.Log("unselected card = " + gameObject);
-            cardTween.CardDown(gameObject);
+            cardTween.CardDown(transform.GetChild(0).gameObject);
         }
     }
 }
