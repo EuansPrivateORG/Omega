@@ -83,8 +83,6 @@ namespace Omega.UI
                 if(cardPosition.transform.childCount > 0)
                 {
                     cards.Add(cardPosition.transform.GetChild(0).gameObject);
-                    Debug.Log(cardPosition.transform.GetChild(0).gameObject);
-                    Debug.Log(cardPosition);
                 }
             }
 
