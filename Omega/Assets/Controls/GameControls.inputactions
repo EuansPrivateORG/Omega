@@ -807,7 +807,7 @@
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad;Keyboard&Mouse;Touch;Joystick;XR",
                     "action": "ShuffleCards",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -818,7 +818,7 @@
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad;XR;Joystick;Touch;Keyboard&Mouse",
                     "action": "ShuffleCards",
                     "isComposite": false,
                     "isPartOfComposite": false
