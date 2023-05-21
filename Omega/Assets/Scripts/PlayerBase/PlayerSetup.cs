@@ -18,6 +18,11 @@ namespace Omega.Core
         private PlayerSpawnHandler playerSpawnHandler;
         public Transform diceTarget;
         public Transform diceSpawn;
+
+        private GameObject playerShield = null;
+        private GameObject playerDamageReduction = null;
+
+
         private void Awake()
         {
             playerSpawnHandler = FindObjectOfType<PlayerSpawnHandler>();
@@ -47,6 +52,26 @@ namespace Omega.Core
         public void UpdatePlayerID()
         {
             playerID -= 1;
+        }
+
+        public void ActivateShield(GameObject shield)
+        {
+            playerShield = Instantiate(shield, transform);
+        }
+
+        public void ActivateDamageReduction(GameObject shield)
+        {
+            playerDamageReduction = Instantiate(shield, transform);
+        }
+
+        public void DeActivateShield()
+        {
+            Destroy(playerShield);
+        }
+
+        public void DeDamageReduction()
+        {
+            Destroy(playerDamageReduction);
         }
     }
 }

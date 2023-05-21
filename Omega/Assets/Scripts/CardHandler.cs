@@ -1,7 +1,11 @@
+using Newtonsoft.Json.Bson;
 using Omega.Core;
+using Omega.Status;
+using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Omega.Actions
@@ -133,6 +137,81 @@ namespace Omega.Actions
             {
                 int rand = Random.Range(0, highChanceCards.Count);
                 return highChanceCards[rand];
+            }
+        }
+
+        public void CardPlayed(GameObject card)
+        {
+            Card currentCard = card.GetComponent<CardCollection>().card;
+            PlayerCards playersCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+            playersCards.cardsInHand.Remove(currentCard);
+
+            switch (currentCard.activationType)
+            {
+                case Card.ActivationType.instantActivation:
+                    switch (currentCard.cardType)
+                    {
+                        case Card.CardType.overcharge:
+
+                            playerIdentifier.currentPlayer.GetComponent<Energy>().energy += currentCard.energyAmount;
+                            break;
+
+                        case Card.CardType.instantHeal:
+
+                            HealingButtonHandler h = FindObjectOfType<HealingButtonHandler>();
+                            h.playerToHeal = playerIdentifier.currentPlayer;
+                            h.PerformHealing(currentCard.instantHealAmount, true);
+                            break;
+
+                        case Card.CardType.damageReduction:
+
+                            playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().ActivateDamageReduction(currentCard.damageReductionPreFab);
+                            playersCards.cardsPlayed.Add(currentCard);
+                            break;
+
+                        case Card.CardType.shield:
+
+                            playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().ActivateShield(currentCard.shieldPrefab);
+                            playersCards.cardsPlayed.Add(currentCard);
+                            break;
+
+                        case Card.CardType.flipTurn:
+
+                            playerIdentifier.FlipTurnOrder();
+                            break;
+                    }
+                    break;
+                default:
+                    playersCards.cardsPlayed.Add(currentCard);
+                    break;
+            }
+
+        }
+
+        public void CheckPlayersCards()
+        {
+            PlayerCards playersCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+
+            List<Card> cardList = new List<Card>();
+            foreach(Card card in playersCards.cardsPlayed)
+            {
+                cardList.Add(card);
+            }
+
+            foreach(Card card in cardList)
+            {
+                if (card.effectOverTime)
+                {
+                    card.amountOfRounds--;
+
+                    if(card.cardType == Card.CardType.shield && card.amountOfRounds <= 0)
+                    {
+                        PlayerSetup playerSetup = playersCards.gameObject.GetComponent<PlayerSetup>();
+
+                        playerSetup.DeActivateShield();
+                        playersCards.cardsPlayed.Remove(card);
+                    }
+                }
             }
         }
     }

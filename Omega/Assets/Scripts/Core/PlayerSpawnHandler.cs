@@ -160,6 +160,27 @@ namespace Omega.Core
             StartCoroutine(turnTransition.FadeInHUD());
         }
 
+        public void ResetPlayerIcons()
+        {
+            foreach (GameObject icon in playerImageListPrivate)
+            {
+                Destroy(icon);
+            }
+
+            playerImageList.Clear();
+            playerImageListPrivate.Clear();
+
+            foreach (GameObject player in playerIdentifier.turnOrderIndex)
+            {
+                playersSetup = player.GetComponent<PlayerSetup>();
+                CreatIcon();
+                if (player.GetComponent<Health>().isDead)
+                {
+                    playersSetup.SetPlayerIconDead();
+                }
+            }
+        }
+
         private void CreatIcon()
         {
             GameObject instantiatedPlayerIcon = Instantiate(playersSetup.playerBase.turnOrderVarientIcon, playersTurnOrder);

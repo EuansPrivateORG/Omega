@@ -105,6 +105,21 @@ namespace Omega.UI
             {
                 GameObject playerObject = playerIdentifier.turnOrderIndex[i];
 
+                Card shieldCard = null;
+
+                foreach(Card card in playerObject.GetComponent<PlayerCards>().cardsPlayed)
+                {
+                    if(card.cardType == Card.CardType.shield)
+                    {
+                        shieldCard = card;
+                    }
+                }
+
+                if(shieldCard != null)
+                {
+                    continue;
+                }
+
                 if (playerObject != playerIdentifier.currentPlayer && !playerObject.GetComponent<Health>().isDead)
                 {
                     playerObject.GetComponent <PlayerSelectionHandler>().enabled = true;
@@ -132,8 +147,8 @@ namespace Omega.UI
             currentlySelectingPlayer = false;
             foreach (GameObject player in playerIdentifier.playerIndex)
             {
-            PlayerSelectionHandler playerSelectionHandler = player.GetComponent<PlayerSelectionHandler>();
-            playerSelectionHandler.enabled = false;
+                PlayerSelectionHandler playerSelectionHandler = player.GetComponent<PlayerSelectionHandler>();
+                playerSelectionHandler.enabled = false;
 
             }
             foreach (GameObject player in playerIdentifier.playerIndex)
@@ -152,7 +167,24 @@ namespace Omega.UI
         public void PerformAttack(int damageToDeal)
         {
             playerIdentifier.SetupCurrentPlayerWeapons(playerIdentifier.currentPlayer);
+
             damageToDeal += attack.rollBonus;
+
+            PlayerCards recieversCards = playerToDamage.GetComponent<PlayerCards>();
+
+            foreach (Card card in recieversCards.cardsPlayed)
+            {
+                if (card.hasEffectWhenAttacked)
+                {
+                    if (card.cardType == Card.CardType.damageReduction)
+                    {
+                        float _damageToDeal = damageToDeal;
+                        _damageToDeal *= card.damageReductionPercentage;
+                        damageToDeal = (int)_damageToDeal;
+                    }
+                }
+            }
+
             currentDamage = damageToDeal;
 
             int minColour = attack.minDamageFromDice();

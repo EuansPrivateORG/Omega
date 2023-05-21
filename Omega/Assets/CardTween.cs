@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Omega.UI
@@ -40,15 +41,17 @@ namespace Omega.UI
         public List<GameObject> cards = new List<GameObject>();
         public List<GameObject> cardPositions = new List<GameObject>();
 
-        private DrawCardHandler drawCardHandler;
+        private CardHandler cardHandler;
 
-        private PlayerIdentifier playerIdentifier;
+        private CardSpawner cardSpawner;
+
+        private DrawCardHandler drawCardHandler;
 
         private void Awake()
         {
+            cardHandler = FindObjectOfType<CardHandler>();
+            cardSpawner = FindObjectOfType<CardSpawner>();
             drawCardHandler = FindObjectOfType<DrawCardHandler>();
-
-            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
 
             cardPositions.Add(card1);
             cardPositions.Add(card2);
@@ -86,16 +89,14 @@ namespace Omega.UI
                 }
             }
 
-            for (int i = 0; i < cardPositions.Count; i++)
+            if (card1.transform.childCount > 0)
             {
-                cardPositions[i].transform.position = cardOriginPositions[i];
-                if (cardPositions[i].transform.localScale != originalCardScale)
-                {
-                    LeanTween.scale(cardPositions[i], originalCardScale, cardMoveTime);
-                }
+                Navigation newNav = new Navigation();
+                newNav.mode = Navigation.Mode.Explicit;
+                newNav.selectOnRight = drawCardHandler.healingButton;
+                newNav.selectOnLeft = card1.GetComponent<Button>();
+                drawCardHandler.attackButton.navigation = newNav;
             }
-
-
         }
 
         public void CardUp(GameObject card)
@@ -128,6 +129,29 @@ namespace Omega.UI
 
             MoveCardsAlong(upCardTarget);
         }
+
+        public void CardPlayed(GameObject card)
+        {
+            CardDown(card);
+            cards.Remove(card);
+            cardHandler.CardPlayed(card);
+            cardSpawner.RemoveCard(card);
+
+            if(cards.Count <= 0)
+            {
+                Navigation newNav = new Navigation();
+                newNav.mode = Navigation.Mode.Explicit;
+                newNav.selectOnRight = drawCardHandler.healingButton;
+                drawCardHandler.attackButton.navigation = newNav;
+
+                EventSystem.current.SetSelectedGameObject(drawCardHandler.attackButton.gameObject);
+            }
+            else
+            {
+                CardUp(card1.transform.GetChild(0).gameObject);
+            }
+        }
+
 
         private void MoveCardsAlong(GameObject upCardTarget)
         {

@@ -299,6 +299,12 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Activation: Instant'
       objectReference: {fileID: 0}
+    - target: {fileID: 7708400123071786837, guid: 492c603a5a1ff014fa4d08e3e485abdf,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: af75f58bc0dd5b549894717e9a44c0be,
+        type: 2}
     - target: {fileID: 8226782438909232338, guid: 492c603a5a1ff014fa4d08e3e485abdf,
         type: 3}
       propertyPath: m_AnchorMax.y

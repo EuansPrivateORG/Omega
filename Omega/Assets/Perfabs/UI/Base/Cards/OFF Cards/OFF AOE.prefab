@@ -415,5 +415,11 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Activation: On next action'
       objectReference: {fileID: 0}
+    - target: {fileID: 9068723235286485366, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: c410b378cfa18fb4e908823120d1505a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c049cc92b47b2b4691f2b9df1bc504d, type: 3}

@@ -72,7 +72,7 @@ namespace Omega.Actions
         [HideInInspector] public int energyAmount; // for overcharge cards
         [HideInInspector] public int rollBonusValue; // for rollBonus cards
         [HideInInspector] public int instantHealAmount; // for instantHeal cards
-        [HideInInspector] public int damageReductionPercentage; // for instantHeal cards
+        [HideInInspector] public float damageReductionPercentage; // for instantHeal cards
         [HideInInspector] public GameObject damageReductionPreFab;
 
         public bool effectOverTime;
@@ -116,7 +116,7 @@ namespace Omega.Actions
                         card.instantHealAmount = EditorGUILayout.IntField("Amount to Instant Heal", card.instantHealAmount);
                         break;
                     case CardType.damageReduction:
-                        card.damageReductionPercentage = EditorGUILayout.IntField("Percentage of Reduction", card.damageReductionPercentage);
+                        card.damageReductionPercentage = EditorGUILayout.FloatField("Percentage of Reduction", card.damageReductionPercentage);
                         card.damageReductionPreFab = (GameObject)EditorGUILayout.ObjectField("-Damage PreFab", card.damageReductionPreFab, typeof(GameObject), false);
                         break;
                 }

@@ -18,12 +18,17 @@ MonoBehaviour:
   CardName: Shield
   cardCategory: 1
   cardOdds: 0
-  activationType: 1
+  activationType: 3
   cardType: 3
-  amountOfRounds: 1
+  amountOfRounds: -1
   damagePerTurn: 0
-  shieldPrefab: {fileID: 0}
+  shieldPrefab: {fileID: 7774425719397589398, guid: 53464166dc135d746aa41ef1b971d3fe,
+    type: 3}
   healingPerTurn: 0
   energyAmount: 0
   rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 1
+  hasEffectWhenAttacked: 0

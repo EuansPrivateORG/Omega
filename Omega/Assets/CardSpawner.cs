@@ -66,5 +66,12 @@ namespace Omega.Core
 
             activeCards.Clear();
         }
+
+        public void RemoveCard(GameObject cardToRemove)
+        {
+            activeCards.Remove(cardToRemove);
+
+            Destroy(cardToRemove);
+        }
     }
 }

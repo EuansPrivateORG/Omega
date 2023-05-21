@@ -26,12 +26,14 @@ namespace Omega.UI
         private CanvasGroup playerHUD;
         private CancelHandler cancelHandler;
         private GameObject nextAvailablePlayer;
-        private GameObject playerToHeal;
+        [HideInInspector] public GameObject playerToHeal;
 
         [HideInInspector] public bool currentlySelectingPlayer = false;
         private bool healedMax = false;
         private int oldCurrentHealth;
         private NumberRoller numberRoller;
+
+        public bool isHealButton = false;
 
         private void Awake()
         {
@@ -45,15 +47,18 @@ namespace Omega.UI
 
         private void OnEnable()
         {
-            Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+            if (!isHealButton)
+            {
+                Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
-            if(playerEnergy.energy < heal.cost)
-            {
-                button.interactable = false;
-            }
-            else
-            {
-                button.interactable = true;
+                if (playerEnergy.energy < heal.cost)
+                {
+                    button.interactable = false;
+                }
+                else
+                {
+                    button.interactable = true;
+                }
             }
         }
 
@@ -153,7 +158,7 @@ namespace Omega.UI
             DisableBaseSelection(healablePlayers);
         }
 
-        public void PerformHealing(int extraHealth)
+        public void PerformHealing(int extraHealth, bool fromCard)
         {
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
@@ -187,8 +192,10 @@ namespace Omega.UI
                 SpawnHealingNumbers(extraHealth);
             }
 
-
-            StartCoroutine(DelayNextTurn());
+            if (!fromCard)
+            {
+                StartCoroutine(DelayNextTurn());
+            }
         }
 
         private void SpawnHealingNumbers(int healthHealed)

@@ -36,6 +36,8 @@ namespace Omega.Core
         private CardSpawner cardSpawner;
         private DrawCardHandler drawCardHandler;
         private CardTween cardTween;
+        private PlayerSpawnHandler playerSpawnHandler;
+        private CardHandler cardHandler;
 
         private void Awake()
         {
@@ -44,6 +46,8 @@ namespace Omega.Core
             cardSpawner = GetComponent<CardSpawner>();
             drawCardHandler = FindObjectOfType<DrawCardHandler>();
             cardTween = FindObjectOfType<CardTween>();
+            playerSpawnHandler = GetComponent<PlayerSpawnHandler>();
+            cardHandler = GetComponent<CardHandler>();
         }
 
         public void SetupTurnOrderIndex()
@@ -75,8 +79,6 @@ namespace Omega.Core
 
             UpdatePlayerIcon();
 
-            //cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
-
             drawCardHandler.CheckEnergy();
 
             playerWhoHasDied = playerIndex.Count + 1;
@@ -103,8 +105,6 @@ namespace Omega.Core
             {
                 physicalDiceCalculator.ClearDice();
 
-                SetupTurnOrderIndex();
-
                 SetupCurrentlyAlivePlayerIndex();
 
                 CalculateCurrentPlayerIndex();
@@ -130,12 +130,14 @@ namespace Omega.Core
                 cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
 
                 cardTween.RefreshCardList();
+
+                cardHandler.CheckPlayersCards();
             }
         }
 
         private void SettingUpNextPlayer()
         {
-            currentPlayer = currentlyAlivePlayers[currentPlayerIndex];
+            currentPlayer = currentlyAlivePlayersInTurn[currentPlayerIndex];
             Debug.Log("This Players Turn: " + currentPlayer);
 
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
@@ -184,6 +186,46 @@ namespace Omega.Core
                 }
             }
         }
+
+        public void FlipTurnOrder()
+        {
+            int currentPlayerIndexInOrder = 0;
+
+            for (int i = 0; i < turnOrderIndex.Count; ++i)
+            {
+                if (turnOrderIndex[i] == currentPlayer)
+                {
+                    currentPlayerIndexInOrder = i;
+                }
+            }
+
+            ReverseTurnOrder(turnOrderIndex, currentPlayerIndexInOrder);
+            ReverseTurnOrder(currentlyAlivePlayersInTurn, currentPlayerIndex);
+
+            currentPlayerIndex = 0;
+
+            playerSpawnHandler.ResetPlayerIcons();
+
+            UpdatePlayerIcon();
+        }
+
+        public static void ReverseTurnOrder(List<GameObject> turnOrder, int currentPlayerNum)
+        {
+            // Get the current player
+            GameObject currentPlayer = turnOrder[currentPlayerNum];
+
+            // Reverse the order of the turnOrder list
+            turnOrder.Reverse();
+
+            // Find the new index of the current player
+            int newCurrentPlayerIndex = turnOrder.IndexOf(currentPlayer);
+
+            // Move the players before the current player to the end of the list
+            List<GameObject> tempPlayers = turnOrder.GetRange(0, newCurrentPlayerIndex);
+            turnOrder.RemoveRange(0, newCurrentPlayerIndex);
+            turnOrder.AddRange(tempPlayers);
+        }
+
 
         private void SetupCurrentlyAlivePlayerIndex()
         {

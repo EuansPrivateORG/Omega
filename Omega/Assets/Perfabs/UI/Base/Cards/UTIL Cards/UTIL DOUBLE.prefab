@@ -300,6 +300,12 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Activation: on next action'
       objectReference: {fileID: 0}
+    - target: {fileID: 7915632799456698018, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: 51bee7347feab0943abbc26845696163,
+        type: 2}
     - target: {fileID: 8367543448818731563, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}
       propertyPath: m_AnchorMax.y
