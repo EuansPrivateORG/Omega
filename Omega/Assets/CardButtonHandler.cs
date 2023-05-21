@@ -26,6 +26,16 @@ namespace Omega.UI
             cardTween = FindObjectOfType<CardTween>();
         }
 
+        //private void OnEnable()
+        //{
+        //    EnableInput();
+        //}
+
+        //private void OnDisable()
+        //{
+        //    DisableInput();
+        //}
+
         void Update()
         {
             if (eventSystem.currentSelectedGameObject == gameObject)
@@ -59,6 +69,7 @@ namespace Omega.UI
         }
         private void EnableInput()
         {
+            Debug.Log("Enabled Input");
             leftAction = new InputAction("ShuffleCards", InputActionType.Button, "<Gamepad>/dpad/left, <Gamepad>/leftStick/left"); 
             leftAction.performed += OnLeftPressed;
             leftAction.Enable();
@@ -66,12 +77,14 @@ namespace Omega.UI
 
         private void DisableInput()
         {
+            Debug.Log("Disabled Input");
             leftAction.Disable();
             leftAction.performed -= OnLeftPressed;
         }
 
         public void OnLeftPressed(InputAction.CallbackContext context)
         {
+            Debug.Log("here");
             UnSelectCard();
             SelectCard();
         }

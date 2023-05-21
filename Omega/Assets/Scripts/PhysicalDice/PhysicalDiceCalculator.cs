@@ -79,7 +79,7 @@ namespace Omega.Actions
 
         private IEnumerator DissolveDice()
         {
-            float dissolveDuration = 1f;
+            float dissolveDuration = Random.Range(0.7f, 1.5f);
             float elapsedTime = 0f;
 
             while (elapsedTime < dissolveDuration)

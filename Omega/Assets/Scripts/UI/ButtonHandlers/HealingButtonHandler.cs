@@ -39,6 +39,8 @@ namespace Omega.UI
 
         public bool isHealButton = false;
 
+        PhysicalDiceCalculator physicalDiceCalculator;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
@@ -47,6 +49,7 @@ namespace Omega.UI
             playerHUD = FindObjectOfType<RoundHandler>().playerHUD;
             cancelHandler = GetComponent<CancelHandler>();
             numberRoller = FindObjectOfType<NumberRoller>();
+            physicalDiceCalculator = FindObjectOfType<PhysicalDiceCalculator>();
         }
 
         private void OnEnable()
@@ -135,6 +138,7 @@ namespace Omega.UI
             foreach (GameObject player in playerIdentifier.playerIndex)
             {
                 PlayerSelectionHandler playerSelectionHandler = player.GetComponent<PlayerSelectionHandler>();
+
                 playerSelectionHandler.enabled = false;
 
             }
@@ -205,6 +209,8 @@ namespace Omega.UI
 
             List<GameObject> healablePlayers = new List<GameObject>();
             DisableBaseSelection(healablePlayers);
+
+            physicalDiceCalculator.ClearDice();
         }
 
         public void PerformHealing(int extraHealth, bool fromCard)

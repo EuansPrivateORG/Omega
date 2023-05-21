@@ -103,8 +103,6 @@ namespace Omega.Core
         {
             if (!roundOver)
             {
-                physicalDiceCalculator.ClearDice();
-
                 SetupCurrentlyAlivePlayerIndex();
 
                 CalculateCurrentPlayerIndex();

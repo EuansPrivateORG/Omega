@@ -45,6 +45,8 @@ namespace Omega.UI
 
         [HideInInspector] public bool isDoubleRoll = false;
 
+        PhysicalDiceCalculator physicalDiceCalculator;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
@@ -53,6 +55,7 @@ namespace Omega.UI
             playerHUD = FindObjectOfType<RoundHandler>().playerHUD;
             cancelHandler = GetComponent<CancelHandler>();
             numberRoller = FindObjectOfType<NumberRoller>();
+            physicalDiceCalculator = FindObjectOfType<PhysicalDiceCalculator>();
         }
 
         private void OnEnable()
@@ -235,6 +238,8 @@ namespace Omega.UI
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
             playerEnergy.SpendEnergy(attack.cost);
             scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += damageToDeal;
+
+            physicalDiceCalculator.ClearDice();
         }
 
         public void RollDice(GameObject toDamage)
