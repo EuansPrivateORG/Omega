@@ -24,6 +24,13 @@ namespace Omega.Actions
             diceCalculator = GetComponent<PhysicalDiceCalculator>();
         }
 
+        public void ActivateChaosDice()
+        {
+            PlayerSetup playerSetup = playerIdentifier.currentPlayer.GetComponent<PlayerSetup>();
+
+            SpawnDice(1, playerSetup, D20);
+        }
+
         public void ActivateDice(PlayerAction action)
         {
             diceCalculator.passedInfo = false;

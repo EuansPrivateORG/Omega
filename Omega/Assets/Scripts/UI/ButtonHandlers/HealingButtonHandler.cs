@@ -33,6 +33,10 @@ namespace Omega.UI
         private int oldCurrentHealth;
         private NumberRoller numberRoller;
 
+        [HideInInspector] public bool isDoubleRoll = false;
+
+        [HideInInspector] public int rollBonus;
+
         public bool isHealButton = false;
 
         private void Awake()
@@ -150,6 +154,51 @@ namespace Omega.UI
 
         public void RollDice(GameObject toHeal)
         {
+            int currentRollBonus = heal.rollBonus;
+
+            PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+
+            List<Card> cardList = new List<Card>();
+            foreach (Card card in playerCards.cardsPlayed)
+            {
+                cardList.Add(card);
+            }
+
+            foreach (Card card in cardList)
+            {
+                if (card.activationType == Card.ActivationType.onDiceRoll)
+                {
+                    switch (card.cardType)
+                    {
+                        case Card.CardType.chaosDice:
+
+                            diceSpawner.ActivateChaosDice();
+                            playerCards.cardsPlayed.Remove(card);
+                            break;
+
+                        case Card.CardType.rollBonus:
+
+                            currentRollBonus += card.rollBonusValue;
+                            playerCards.cardsPlayed.Remove(card);
+                            break;
+
+                        case Card.CardType.doubleRoll:
+
+                            isDoubleRoll = true;
+                            playerCards.cardsPlayed.Remove(card);
+                            break;
+
+                    }
+                }
+            }
+
+            rollBonus = currentRollBonus;
+
+            numberRoller.rollers.gameObject.SetActive(true);
+            numberRoller.StartRolling();
+
+            numberRoller.AddBonusNumbers(rollBonus);
+
             playerIdentifier.currentHeal = this;
             playerToHeal = toHeal;
             diceSpawner.ActivateDice(heal);
@@ -165,6 +214,12 @@ namespace Omega.UI
             playerEnergy.SpendEnergy(heal.cost);
 
             Health playerHealth = playerToHeal.GetComponent<Health>();
+
+            if (isDoubleRoll) extraHealth *= 2;
+
+            isDoubleRoll = false;
+
+            extraHealth += rollBonus;
 
             if (playerHealth.currentHealth + extraHealth >= playerHealth.maxHealth)
             {
@@ -196,6 +251,8 @@ namespace Omega.UI
             {
                 StartCoroutine(DelayNextTurn());
             }
+
+            rollBonus = 0;
         }
 
         private void SpawnHealingNumbers(int healthHealed)

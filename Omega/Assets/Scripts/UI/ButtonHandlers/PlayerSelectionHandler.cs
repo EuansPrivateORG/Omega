@@ -19,16 +19,16 @@ namespace Omega.UI
 
         private HealingButtonHandler currentHeal;
 
-        private NumberRoller numberRoller;
-
         private TurnTimer turnTimer;
 
         private CanvasGroup playerHUD;
 
+        private PlayerIdentifier playerIdentifier;
+
         private void Awake()
         {
+            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             eventSystem = FindObjectOfType<EventSystem>();
-            numberRoller = FindObjectOfType<NumberRoller>();
             turnTimer = FindObjectOfType<TurnTimer>();
             playerHUD = FindObjectOfType<RoundHandler>().playerHUD;
         }
@@ -52,9 +52,6 @@ namespace Omega.UI
             {
                 currentAttack.RollDice(eventSystem.currentSelectedGameObject);
 
-                numberRoller.rollers.gameObject.SetActive(true);
-                numberRoller.StartRolling();
-                numberRoller.AddBonusNumbers(currentAttack.attack.rollBonus);
                 playerHUD.interactable = false;
                 playerHUD.alpha = 0;
                 turnTimer.SetTimeOff();
@@ -65,9 +62,6 @@ namespace Omega.UI
             {
                 currentHeal.RollDice(eventSystem.currentSelectedGameObject);
 
-                numberRoller.rollers.gameObject.SetActive(true);
-                numberRoller.StartRolling();
-                numberRoller.AddBonusNumbers(currentHeal.heal.rollBonus);
                 playerHUD.interactable = false;
                 playerHUD.alpha = 0;
                 turnTimer.SetTimeOff();

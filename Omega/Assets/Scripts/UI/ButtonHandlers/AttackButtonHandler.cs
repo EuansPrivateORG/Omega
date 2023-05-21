@@ -35,9 +35,15 @@ namespace Omega.UI
 
         public CanvasGroup playerHUD = null;
 
+        [HideInInspector] public int rollBonus;
+
         private CancelHandler cancelHandler;
 
         [HideInInspector] public bool currentlySelectingPlayer = false;
+
+        private NumberRoller numberRoller;
+
+        [HideInInspector] public bool isDoubleRoll = false;
 
         private void Awake()
         {
@@ -46,7 +52,7 @@ namespace Omega.UI
             diceSpawner = FindObjectOfType<DiceSpawner>();
             playerHUD = FindObjectOfType<RoundHandler>().playerHUD;
             cancelHandler = GetComponent<CancelHandler>();
-
+            numberRoller = FindObjectOfType<NumberRoller>();
         }
 
         private void OnEnable()
@@ -168,11 +174,21 @@ namespace Omega.UI
         {
             playerIdentifier.SetupCurrentPlayerWeapons(playerIdentifier.currentPlayer);
 
-            damageToDeal += attack.rollBonus;
+            if (isDoubleRoll) damageToDeal *= 2;
+
+            isDoubleRoll = false;
+
+            damageToDeal += rollBonus;
 
             PlayerCards recieversCards = playerToDamage.GetComponent<PlayerCards>();
 
+            List<Card> cardList = new List<Card>();
             foreach (Card card in recieversCards.cardsPlayed)
+            {
+                cardList.Add(card);
+            }
+
+            foreach (Card card in cardList)
             {
                 if (card.hasEffectWhenAttacked)
                 {
@@ -181,6 +197,8 @@ namespace Omega.UI
                         float _damageToDeal = damageToDeal;
                         _damageToDeal *= card.damageReductionPercentage;
                         damageToDeal = (int)_damageToDeal;
+                        recieversCards.cardsPlayed.Remove(card);
+                        playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();
                     }
                 }
             }
@@ -204,6 +222,8 @@ namespace Omega.UI
 
             // Start the coroutine and wait until it finishes
             StartCoroutine(WaitForAttack(attackWeapon, damageToDeal, minColour, maxColour));
+
+            rollBonus = 0;
         }
 
         private IEnumerator WaitForAttack(GameObject attackWeapon, int damageToDeal, int minColour, int maxColour)
@@ -219,6 +239,51 @@ namespace Omega.UI
 
         public void RollDice(GameObject toDamage)
         {
+            int currentRollBonus = attack.rollBonus;
+
+            PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+
+            List<Card> cardList = new List<Card>();
+            foreach (Card card in playerCards.cardsPlayed)
+            {
+                cardList.Add(card);
+            }
+
+            foreach (Card card in cardList)
+            {
+                if (card.activationType ==  Card.ActivationType.onDiceRoll)
+                {
+                    switch (card.cardType)
+                    {
+                        case Card.CardType.chaosDice:
+
+                            diceSpawner.ActivateChaosDice();
+                            playerCards.cardsPlayed.Remove(card);
+                            break;
+
+                        case Card.CardType.rollBonus:
+
+                            currentRollBonus += card.rollBonusValue;
+                            playerCards.cardsPlayed.Remove(card);
+                            break;
+
+                        case Card.CardType.doubleRoll:
+
+                            isDoubleRoll = true;
+                            playerCards.cardsPlayed.Remove(card);
+                            break;
+
+                    }
+                }
+            }
+
+            rollBonus = currentRollBonus;
+
+            numberRoller.rollers.gameObject.SetActive(true);
+            numberRoller.StartRolling();
+
+            numberRoller.AddBonusNumbers(rollBonus);
+
             playerIdentifier.currentAttack = this;
             playerToDamage = toDamage;
             diceSpawner.ActivateDice(attack);
