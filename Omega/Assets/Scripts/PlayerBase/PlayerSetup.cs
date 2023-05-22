@@ -22,6 +22,12 @@ namespace Omega.Core
         private GameObject playerShield = null;
         private GameObject playerDamageReduction = null;
 
+        [HideInInspector] public int amountOfRoundsDOT;
+        [HideInInspector] public int amountOfRoundsHOT;
+        [HideInInspector] public int amountOfRoundsShield;
+        [HideInInspector] public int amountOfRoundsStun;
+
+
 
         private void Awake()
         {

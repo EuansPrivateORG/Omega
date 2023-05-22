@@ -162,7 +162,7 @@ namespace Omega.Actions
                 }
                 else
                 {
-                    playerIdentifier.currentHeal.PerformHealing(diceTotal, false);
+                    playerIdentifier.currentHeal.PerformHealing(diceTotal, null, null);
                 }
 
                 hasFinishedTens = false;

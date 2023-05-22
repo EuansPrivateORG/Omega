@@ -129,7 +129,7 @@ namespace Omega.Core
 
                 cardTween.RefreshCardList();
 
-                cardHandler.CheckPlayersCards();
+                cardHandler.CheckPlayersCards(); //Must be last action
             }
         }
 

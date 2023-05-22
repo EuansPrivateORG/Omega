@@ -839,6 +839,7 @@ PrefabInstance:
     - {fileID: 3305420275918109961, guid: 1ff5d9b461eadf749938f968bf780bc1, type: 3}
     - {fileID: 2592401124967322035, guid: 1ff5d9b461eadf749938f968bf780bc1, type: 3}
     - {fileID: 7477980700780247219, guid: 1ff5d9b461eadf749938f968bf780bc1, type: 3}
+    - {fileID: 1560081641157058689, guid: 1ff5d9b461eadf749938f968bf780bc1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ff5d9b461eadf749938f968bf780bc1, type: 3}
 --- !u!1 &642681671164973889 stripped
 GameObject:
@@ -899,6 +900,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   playerToHeal: {fileID: 0}
   currentlySelectingPlayer: 0
+  isDoubleRoll: 0
+  rollBonus: 0
   isHealButton: 0
 --- !u!114 &1743077606146218966 stripped
 MonoBehaviour:
@@ -965,6 +968,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   playerToHeal: {fileID: 0}
   currentlySelectingPlayer: 0
+  isDoubleRoll: 0
+  rollBonus: 0
   isHealButton: 0
 --- !u!114 &4330040464481363389 stripped
 MonoBehaviour:
@@ -1031,6 +1036,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   playerToHeal: {fileID: 0}
   currentlySelectingPlayer: 0
+  isDoubleRoll: 0
+  rollBonus: 0
   isHealButton: 1
 --- !u!1 &8347073486992127137 stripped
 GameObject:
@@ -1085,6 +1092,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   playerToHeal: {fileID: 0}
   currentlySelectingPlayer: 0
+  isDoubleRoll: 0
+  rollBonus: 0
   isHealButton: 0
 --- !u!114 &8507103114581106695 stripped
 MonoBehaviour:
@@ -1163,4 +1172,6 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   playerToHeal: {fileID: 0}
   currentlySelectingPlayer: 0
+  isDoubleRoll: 0
+  rollBonus: 0
   isHealButton: 0

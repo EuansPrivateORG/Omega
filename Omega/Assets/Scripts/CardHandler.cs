@@ -30,6 +30,8 @@ namespace Omega.Actions
 
         private PlayerIdentifier playerIdentifier;
 
+        public float nextTurnDelayTime;
+
         private void Awake()
         {
             cardSpawner = GetComponent<CardSpawner>();
@@ -144,11 +146,13 @@ namespace Omega.Actions
         {
             Card currentCard = card.GetComponent<CardCollection>().card;
             PlayerCards playersCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+            PlayerSetup currentPlayersSetup = playerIdentifier.currentPlayer.GetComponent<PlayerSetup>();
             playersCards.cardsInHand.Remove(currentCard);
 
             switch (currentCard.activationType)
             {
                 case Card.ActivationType.instantActivation:
+
                     switch (currentCard.cardType)
                     {
                         case Card.CardType.overcharge:
@@ -160,18 +164,18 @@ namespace Omega.Actions
 
                             HealingButtonHandler h = FindObjectOfType<HealingButtonHandler>();
                             h.playerToHeal = playerIdentifier.currentPlayer;
-                            h.PerformHealing(currentCard.instantHealAmount, true);
+                            h.PerformHealing(currentCard.instantHealAmount, currentCard, playerIdentifier.currentPlayer);
                             break;
 
                         case Card.CardType.damageReduction:
 
-                            playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().ActivateDamageReduction(currentCard.damageReductionPreFab);
+                            currentPlayersSetup.ActivateDamageReduction(currentCard.damageReductionPreFab);
                             playersCards.cardsPlayed.Add(currentCard);
                             break;
 
                         case Card.CardType.shield:
 
-                            playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().ActivateShield(currentCard.shieldPrefab);
+                            currentPlayersSetup.ActivateShield(currentCard.shieldPrefab);
                             playersCards.cardsPlayed.Add(currentCard);
                             break;
 
@@ -181,7 +185,20 @@ namespace Omega.Actions
                             break;
                     }
                     break;
+
                 default:
+
+                    if (currentCard.effectOverTime)
+                    {
+                        switch (currentCard.cardType)
+                        {
+                            case Card.CardType.shield:
+
+                                currentPlayersSetup.amountOfRoundsShield = currentCard.amountOfRounds;
+                                break;
+                        }
+                    }
+
                     playersCards.cardsPlayed.Add(currentCard);
                     break;
             }
@@ -191,6 +208,8 @@ namespace Omega.Actions
         public void CheckPlayersCards()
         {
             PlayerCards playersCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+
+            PlayerSetup playerSetup = playerIdentifier.currentPlayer.GetComponent<PlayerSetup>();
 
             List<Card> cardList = new List<Card>();
             foreach(Card card in playersCards.cardsPlayed)
@@ -202,16 +221,94 @@ namespace Omega.Actions
             {
                 if (card.effectOverTime)
                 {
-                    card.amountOfRounds--;
 
                     if(card.cardType == Card.CardType.shield && card.amountOfRounds <= 0)
                     {
-                        PlayerSetup playerSetup = playersCards.gameObject.GetComponent<PlayerSetup>();
-
-                        playerSetup.DeActivateShield();
-                        playersCards.cardsPlayed.Remove(card);
+                        playerSetup.amountOfRoundsShield--;
+                        if(playerSetup.amountOfRoundsShield <= 0)
+                        {
+                            playerSetup.DeActivateShield();
+                            playersCards.cardsPlayed.Remove(card);
+                        }
                     }
                 }
+            }
+
+            List<Card> _cardList = new List<Card>();
+            foreach (Card card in playersCards.cardsPlayedAgainst)
+            {
+                _cardList.Add(card);
+            }
+
+            foreach (Card card in _cardList)
+            {
+                if (card.effectOverTime)
+                {
+                    if(card.cardType == Card.CardType.hot)
+                    {
+                        HealingButtonHandler heal = FindObjectOfType<HealingButtonHandler>();
+
+                        heal.PerformHealing(card.healingPerTurn, card, playerIdentifier.currentPlayer);
+                        StartCoroutine(DelayNums(null, card, heal));
+
+                        playerSetup.amountOfRoundsHOT--;
+
+                        if (playerSetup.amountOfRoundsHOT <= 0)
+                        {
+                            playersCards.cardsPlayedAgainst.Remove(card);
+                        }
+                    }
+
+                    if(card.cardType == Card.CardType.dot)
+                    {
+                        AttackButtonHandler attack = FindObjectOfType<AttackButtonHandler>();
+
+                        playerIdentifier.currentPlayer.GetComponent<Health>().currentHealth -= card.damagePerTurn;
+                        StartCoroutine(DelayNums(attack, card, null));
+
+                        playerSetup.amountOfRoundsDOT--;
+
+                        if (playerSetup.amountOfRoundsDOT <= 0)
+                        {
+                            playersCards.cardsPlayedAgainst.Remove(card);
+                        }
+                    }
+
+                    if (card.cardType == Card.CardType.stun)
+                    {
+
+                        playerSetup.amountOfRoundsStun--;
+
+                        if (playerSetup.amountOfRoundsStun <= 0)
+                        {
+                            playersCards.cardsPlayedAgainst.Remove(card);
+                            StartCoroutine(DelayNextTurn());
+                        }
+                    }
+
+
+                }
+
+            }
+        }
+
+        private IEnumerator DelayNextTurn()
+        {
+            yield return new WaitForSeconds(nextTurnDelayTime);
+            playerIdentifier.NextPlayer();
+        }
+
+        private IEnumerator DelayNums(AttackButtonHandler atk, Card card, HealingButtonHandler heal)
+        {
+            yield return new WaitForSeconds(nextTurnDelayTime * 0.8f);
+
+            if(atk != null)
+            {
+                atk.SpawnDamageNumbers(playerIdentifier.currentPlayer, card.damagePerTurn - 5, card.damagePerTurn + 5, true, card.damagePerTurn);
+            }
+            else
+            {
+                heal.SpawnHealingNumbers(card.healingPerTurn, playerIdentifier.currentPlayer, true);
             }
         }
     }

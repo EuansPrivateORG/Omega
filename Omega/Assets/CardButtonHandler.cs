@@ -15,7 +15,7 @@ namespace Omega.UI
 
         private CardTween cardTween;
 
-        private InputAction leftAction;
+        private PlayerInput playerInput;
 
         private bool hasEnabledInput = false;
 
@@ -24,17 +24,8 @@ namespace Omega.UI
         {
             eventSystem = EventSystem.current;
             cardTween = FindObjectOfType<CardTween>();
+            playerInput = FindObjectOfType<PlayerInput>();
         }
-
-        //private void OnEnable()
-        //{
-        //    EnableInput();
-        //}
-
-        //private void OnDisable()
-        //{
-        //    DisableInput();
-        //}
 
         void Update()
         {
@@ -69,22 +60,18 @@ namespace Omega.UI
         }
         private void EnableInput()
         {
-            Debug.Log("Enabled Input");
-            leftAction = new InputAction("ShuffleCards", InputActionType.Button, "<Gamepad>/dpad/left, <Gamepad>/leftStick/left"); 
-            leftAction.performed += OnLeftPressed;
-            leftAction.Enable();
+            playerInput.actions["ShuffleCards"].performed += OnLeftPressed;
+            playerInput.actions["ShuffleCards"].Enable();
         }
 
         private void DisableInput()
         {
-            Debug.Log("Disabled Input");
-            leftAction.Disable();
-            leftAction.performed -= OnLeftPressed;
+            playerInput.actions["ShuffleCards"].performed -= OnLeftPressed;
+            playerInput.actions["ShuffleCards"].Disable();
         }
 
         public void OnLeftPressed(InputAction.CallbackContext context)
         {
-            Debug.Log("here");
             UnSelectCard();
             SelectCard();
         }

@@ -27,6 +27,8 @@ namespace Omega.Combat
         ScoreHandler scoreHandler;
         NumberRoller numberRoller;
 
+        private int bulletNum;
+
 
         private void Awake()
         {
@@ -49,18 +51,18 @@ namespace Omega.Combat
                 Debug.Log(enemyCollider.transform.parent.gameObject.name);
                 target.GetComponent<Health>().TakeDamage(damage);
                 Debug.Log(damage.ToString() + " Damage Dealt");
-                attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour);
+                attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour, false, damage);
                 if (target.GetComponent<Health>().isDead)
                 {
                     scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
                 }
                 numberRoller.TurnOffNumberRoller();
-                playerIdentifier.NextPlayer();
+                if(bulletNum == 0) playerIdentifier.NextPlayer();
                 Destroy(transform.parent.gameObject);
             }
         }
 
-        public void SetTarget(GameObject target, GameObject instigator, int damage, int min, int max, AttackButtonHandler origin)
+        public void SetTarget(GameObject target, GameObject instigator, int damage, int min, int max, AttackButtonHandler origin, int num)
         {
             this.target = target;
             this.instigator = instigator;
@@ -68,6 +70,7 @@ namespace Omega.Combat
             minColour = min;
             maxColour = max;
             attackButtonHandler = origin;
+            bulletNum = num;
         }
 
 

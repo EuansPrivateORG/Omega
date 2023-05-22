@@ -32,7 +32,11 @@ namespace Omega.Core
             { 
                 GameObject instantiated = Instantiate(cardsToSpawn[i].CardUIPreFab, cardTween.cardPositions[i].transform);
                 activeCards.Add(instantiated);
-                instantiated.transform.parent.GetComponent<CardButtonHandler>().currentCardHighlight = instantiated.GetComponent<CardCollection>().cardHighlight;
+                instantiated.GetComponent<CardCollection>().cardHighlight.SetActive(false);
+                if (cardTween.cardPositions[i] == cardTween.card1)
+                {
+                    cardTween.cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight = instantiated.GetComponent<CardCollection>().cardHighlight;
+                }
             }
 
             cardsToSpawn.Clear();
@@ -59,7 +63,6 @@ namespace Omega.Core
         {
             foreach(GameObject instantiated in activeCards)
             {
-                instantiated.transform.parent.GetComponent<CardButtonHandler>().currentCardHighlight = null;
                 instantiated.transform.parent.DetachChildren();
                 Destroy(instantiated);
             }

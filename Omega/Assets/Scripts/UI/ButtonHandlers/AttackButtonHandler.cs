@@ -47,6 +47,11 @@ namespace Omega.UI
 
         PhysicalDiceCalculator physicalDiceCalculator;
 
+        private GameObject playerLeft = null;
+        private GameObject playerRight = null;
+
+        public bool isAttackButton = false;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
@@ -60,22 +65,27 @@ namespace Omega.UI
 
         private void OnEnable()
         {
-
-            Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
-
-            if (playerEnergy.energy < attack.cost)
+            if (!isAttackButton)
             {
-                button.interactable = false;
-            }
-            else
-            {
-                button.interactable = true;
+                Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+
+                if (playerEnergy.energy < attack.cost)
+                {
+                    button.interactable = false;
+                }
+                else
+                {
+                    button.interactable = true;
+                }
             }
         }
         private void OnDisable()
         {
-            List<GameObject> attackablePlayers = new List<GameObject>();
-            DisableBaseSelection(attackablePlayers);
+            if (!isAttackButton)
+            {
+                List<GameObject> attackablePlayers = new List<GameObject>();
+                DisableBaseSelection(attackablePlayers);
+            }
         }
 
         public void ButtonPressed()
@@ -183,30 +193,9 @@ namespace Omega.UI
 
             damageToDeal += rollBonus;
 
-            PlayerCards recieversCards = playerToDamage.GetComponent<PlayerCards>();
-
-            List<Card> cardList = new List<Card>();
-            foreach (Card card in recieversCards.cardsPlayed)
-            {
-                cardList.Add(card);
-            }
-
-            foreach (Card card in cardList)
-            {
-                if (card.hasEffectWhenAttacked)
-                {
-                    if (card.cardType == Card.CardType.damageReduction)
-                    {
-                        float _damageToDeal = damageToDeal;
-                        _damageToDeal *= card.damageReductionPercentage;
-                        damageToDeal = (int)_damageToDeal;
-                        recieversCards.cardsPlayed.Remove(card);
-                        playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();
-                    }
-                }
-            }
-
             currentDamage = damageToDeal;
+
+            AttackCards(damageToDeal);
 
             int minColour = attack.minDamageFromDice();
             int maxColour = attack.maxDamageFromDice();
@@ -229,11 +218,116 @@ namespace Omega.UI
             rollBonus = 0;
         }
 
+        private void AttackCards(int damageToDeal)
+        {
+            PlayerCards recieversCards = playerToDamage.GetComponent<PlayerCards>();
+
+            List<Card> cardList = new List<Card>();
+            foreach (Card card in recieversCards.cardsPlayed)
+            {
+                cardList.Add(card);
+            }
+
+            foreach (Card card in cardList)
+            {
+                if (card.hasEffectWhenAttacked)
+                {
+                    if (card.cardType == Card.CardType.damageReduction)
+                    {
+                        float _damageToDeal = damageToDeal;
+                        _damageToDeal *= card.damageReductionPercentage;
+                        damageToDeal = (int)_damageToDeal;
+                        currentDamage = damageToDeal;
+                        recieversCards.cardsPlayed.Remove(card);
+                        playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();
+                    }
+                }
+            }
+
+            PlayerCards playersCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+
+            List<Card> _cardList = new List<Card>();
+            foreach (Card card in playersCards.cardsPlayed)
+            {
+                _cardList.Add(card);
+            }
+
+            foreach (Card card in _cardList)
+            {
+                if (card.activationType == Card.ActivationType.onAttack)
+                {
+                    if (card.cardType == Card.CardType.stun)
+                    {
+                        recieversCards.cardsPlayedAgainst.Add(card);
+                        playersCards.cardsPlayed.Remove(card);
+                        playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                    }
+
+                    if (card.cardType == Card.CardType.dot)
+                    {
+                        recieversCards.cardsPlayedAgainst.Add(card);
+                        playersCards.cardsPlayed.Remove(card);
+                        playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsDOT = card.amountOfRounds;
+                    }
+
+                    if (card.cardType == Card.CardType.aoe)
+                    {
+                        int targetsIndex = 0;
+
+                        for (int i = 0; i < playerIdentifier.turnOrderIndex.Count; i++)
+                        {
+                            if (playerIdentifier.turnOrderIndex[i] == playerToDamage) targetsIndex = i;
+                        }
+
+                        if (targetsIndex + 1 > playerIdentifier.turnOrderIndex.Count - 1)
+                        {
+                            playerRight = playerIdentifier.turnOrderIndex[0];
+                            if (playerRight.GetComponent<Health>().isDead) playerRight = null;
+                        }
+                        else
+                        {
+                            playerRight = playerIdentifier.turnOrderIndex[targetsIndex + 1];
+                            if (playerRight.GetComponent<Health>().isDead) playerRight = null;
+                        }
+
+                        if (targetsIndex - 1 < 0)
+                        {
+                            playerLeft = playerIdentifier.turnOrderIndex[playerIdentifier.turnOrderIndex.Count - 1];
+                            if (playerLeft.GetComponent<Health>().isDead) playerLeft = null;
+                        }
+                        else
+                        {
+                            playerLeft = playerIdentifier.turnOrderIndex[targetsIndex - 1];
+                            if (playerLeft.GetComponent<Health>().isDead) playerLeft = null;
+                        }
+
+                        playersCards.cardsPlayed.Remove(card);
+                    }
+                }
+            }
+        }
+
         private IEnumerator WaitForAttack(GameObject attackWeapon, int damageToDeal, int minColour, int maxColour)
         {
-            yield return StartCoroutine(SlerpAttackWeapon(attackWeapon));
+            if(playerLeft != null)
+            {
+                yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerLeft, minColour, maxColour, this, 1);
+                playerLeft = null;
+            }
 
-            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerToDamage, minColour, maxColour, this);
+            yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerToDamage));
+            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerToDamage, minColour, maxColour, this, 0);
+
+
+            if (playerRight != null)
+            {
+                yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerRight));
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerRight, minColour, maxColour, this, 2);
+                playerRight = null;
+            }
+
+
 
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
             playerEnergy.SpendEnergy(attack.cost);
@@ -297,8 +391,10 @@ namespace Omega.UI
             DisableBaseSelection(attackablePlayers);
         }
 
-        public void SpawnDamageNumbers(GameObject toDamage, int minColour, int maxColour)
+        public void SpawnDamageNumbers(GameObject toDamage, int minColour, int maxColour, bool fromCard, int damage)
         {
+            if (fromCard) currentDamage = damage;
+
             GameObject numbersPrefab = Instantiate(damageNumbersPrefab, toDamage.transform.position, quaternion.identity);
             numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(currentDamage, minColour, maxColour, colourGradient);
             NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
@@ -311,11 +407,11 @@ namespace Omega.UI
             return colorGradient.Evaluate(position);
         }
 
-        private IEnumerator SlerpAttackWeapon(GameObject attackWeapon)
+        private IEnumerator SlerpAttackWeapon(GameObject attackWeapon, GameObject playerToTarget)
         {
             Quaternion initialRotation = attackWeapon.transform.rotation;
 
-            Vector3 targetPosition = playerToDamage.transform.position;
+            Vector3 targetPosition = playerToTarget.transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(targetPosition - attackWeapon.transform.position);
 
             float elapsedTime = 0f;

@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 153677251}
   - component: {fileID: 153677250}
   - component: {fileID: 153677252}
+  - component: {fileID: 153677253}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -383,6 +384,37 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &153677253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153677248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 52e844168db641347b866d72c455075e,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 153677252}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 85744702}
 --- !u!114 &395585818 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7246069955291778188, guid: d29fc24822bfc8241a517ea8b3088b5d,
@@ -694,6 +726,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1cb68a6c42635ed4795889796af5aa3e, type: 2}
   - {fileID: 11400000, guid: d04260b0c6ab6e64f888416257e445cc, type: 2}
   - {fileID: 11400000, guid: 750d713986c8a7144b4325c182c93112, type: 2}
+  nextTurnDelayTime: 1
 --- !u!114 &781620692
 MonoBehaviour:
   m_ObjectHideFlags: 0

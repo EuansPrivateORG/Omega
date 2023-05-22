@@ -120,8 +120,11 @@ namespace Omega.UI
                     upCardTarget = cardPositions[i];
                     LeanTween.move(card, cardPositions[i].transform.position, cardUpTime);
                     card.transform.SetParent(cardPositions[i].transform);
-                    cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
-                    cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight = card.GetComponent<CardCollection>().cardHighlight;
+                    if (cardPositions[i] == card1)
+                    {
+                        cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                        cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight = card.GetComponent<CardCollection>().cardHighlight;
+                    }
                 }
             }
 
@@ -167,8 +170,11 @@ namespace Omega.UI
                 {
                     placedCard = cards[i];
                     placedCard.transform.SetParent(upCardTarget.transform);
-                    upCardTarget.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
-                    upCardTarget.GetComponent<CardButtonHandler>().currentCardHighlight = placedCard.GetComponent<CardCollection>().cardHighlight;
+                    if(upCardTarget == card1)
+                    {
+                        upCardTarget.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                        upCardTarget.GetComponent<CardButtonHandler>().currentCardHighlight = placedCard.GetComponent<CardCollection>().cardHighlight;
+                    }
                 }
 
                 else if (cards[i].transform.parent.position == secondCardPos)
@@ -177,7 +183,7 @@ namespace Omega.UI
                     LeanTween.move(cardInFirstPos, card1.transform.position, cardMoveTime);
                     cardInFirstPos.transform.SetParent(card1.transform);
                     card1.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
-                    card1.GetComponent<CardButtonHandler>().currentCardHighlight = cardInFirstPos.GetComponent<CardCollection>().cardHighlight;
+                    card1.GetComponent<CardButtonHandler>().currentCardHighlight = cards[i].GetComponent<CardCollection>().cardHighlight;
                 }
 
                 else if (cards[i].transform.parent.position == thirdCardPos)
@@ -185,8 +191,6 @@ namespace Omega.UI
                     cardInSecondPos = cards[i];
                     LeanTween.move(cardInSecondPos, card2.transform.position, cardMoveTime);
                     cardInSecondPos.transform.SetParent(card2.transform);
-                    card2.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
-                    card2.GetComponent<CardButtonHandler>().currentCardHighlight = cardInSecondPos.GetComponent<CardCollection>().cardHighlight;
                 }
 
                 else if (cards[i].transform.parent.position == fourthCardPos)
@@ -194,7 +198,6 @@ namespace Omega.UI
                     cardInThirdPos = cards[i];
                     LeanTween.move(cardInThirdPos, card3.transform.position, cardMoveTime);
                     cardInThirdPos.transform.SetParent(card3.transform);
-                    card3.GetComponent<CardButtonHandler>().currentCardHighlight = cardInThirdPos.GetComponent<CardCollection>().cardHighlight;
                 }
 
                 else if (cards[i].transform.parent.position == fifthCardPos)
@@ -202,8 +205,6 @@ namespace Omega.UI
                     cardInFourthPos = cards[i];
                     LeanTween.move(cardInFourthPos, card4.transform.position, cardMoveTime);
                     cardInFourthPos.transform.SetParent(card4.transform);
-                    card4.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
-                    card4.GetComponent<CardButtonHandler>().currentCardHighlight = cardInFourthPos.GetComponent<CardCollection>().cardHighlight;
                 }
             }
         }

@@ -209,17 +209,35 @@ namespace Omega.UI
 
             List<GameObject> healablePlayers = new List<GameObject>();
             DisableBaseSelection(healablePlayers);
-
-            physicalDiceCalculator.ClearDice();
         }
 
-        public void PerformHealing(int extraHealth, bool fromCard)
+        public void PerformHealing(int extraHealth, Card fromCard, GameObject playerToHealth)
         {
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
             playerEnergy.SpendEnergy(heal.cost);
 
-            Health playerHealth = playerToHeal.GetComponent<Health>();
+            if (fromCard == null) playerToHealth = playerToHeal;
+
+            Health playerHealth = playerToHealth.GetComponent<Health>();
+
+            PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+
+            List<Card> cardList = new List<Card>();
+            foreach (Card card in playerCards.cardsPlayed)
+            {
+                cardList.Add(card);
+            }
+
+            foreach (Card card in cardList)
+            {
+                if(card.cardType == Card.CardType.hot)
+                {
+                    playerCards.cardsPlayed.Remove(card);
+                    playerToHealth.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                    playerToHealth.GetComponent<PlayerSetup>().amountOfRoundsHOT = card.amountOfRounds;
+                }
+            }
 
             if (isDoubleRoll) extraHealth *= 2;
 
@@ -246,11 +264,11 @@ namespace Omega.UI
 
             if (healedMax)
             {
-                SpawnHealingNumbers(playerHealth.maxHealth - oldCurrentHealth);
+                SpawnHealingNumbers(playerHealth.maxHealth - oldCurrentHealth, playerToHealth, false);
             }
             else
             {
-                SpawnHealingNumbers(extraHealth);
+                SpawnHealingNumbers(extraHealth, playerToHealth, false);
             }
 
             if (!fromCard)
@@ -259,14 +277,22 @@ namespace Omega.UI
             }
 
             rollBonus = 0;
+
+            physicalDiceCalculator.ClearDice();
         }
 
-        private void SpawnHealingNumbers(int healthHealed)
+        public void SpawnHealingNumbers(int healthHealed, GameObject playerHeal, bool isCard)
         {
-            int minColour = heal.minDamageFromDice();
-            int maxColour = heal.maxDamageFromDice();
+            int minColour = healthHealed - 5;
+            int maxColour = healthHealed - 5;
 
-            GameObject numbersPrefab = Instantiate(healingNumbersPrefab, playerToHeal.transform.position, quaternion.identity);
+            if (!isCard)
+            {
+                minColour = heal.minDamageFromDice();
+                maxColour = heal.maxDamageFromDice();
+            }
+
+            GameObject numbersPrefab = Instantiate(healingNumbersPrefab, playerHeal.transform.position, quaternion.identity);
 
             numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(healthHealed, minColour, maxColour, colourGradient);
             NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();

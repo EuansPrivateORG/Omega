@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1280866213619265062}
   - component: {fileID: 333582813682490109}
   - component: {fileID: 4151250374502762522}
+  - component: {fileID: 1560081641157058689}
   m_Layer: 5
   m_Name: Attack
   m_TagString: Untagged
@@ -149,6 +150,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
+--- !u!114 &1560081641157058689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3596611808186345741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8945d4c5c1f4c49a1e24f9634b63fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 5672735124852019895}
+  weaponClass: 0
+  attack: {fileID: 11400000, guid: 05ca4bfcce47bb64097323185d4fd79b, type: 2}
+  currentDamage: 0
+  damageNumbersPrefab: {fileID: 8363412906782900037, guid: 613daa3e297a51e408737b65715ca2d0,
+    type: 3}
+  colourGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 0.8429308, b: 0, a: 1}
+    key2: {r: 1, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 49151
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  attackablePlayers: []
+  playerHUD: {fileID: 0}
+  rollBonus: 0
+  currentlySelectingPlayer: 0
+  isDoubleRoll: 0
+  isAttackButton: 1
 --- !u!1 &4227885611697172363
 GameObject:
   m_ObjectHideFlags: 0

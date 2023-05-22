@@ -18,7 +18,7 @@ namespace Omega.Combat
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
         }
 
-        public void SpawnProjectile(int damage,GameObject attackweapon, GameObject target, int minColour, int maxColour, AttackButtonHandler attackButtonHandler)
+        public void SpawnProjectile(int damage,GameObject attackweapon, GameObject target, int minColour, int maxColour, AttackButtonHandler attackButtonHandler, int num)
         {
             GameObject projectileToFire = null;
             if(attackButtonHandler.weaponClass != Weapon.weaponClass.Ultimate)
@@ -40,7 +40,7 @@ namespace Omega.Combat
                 projectileToFire = projectileInstance;
             }
             projectileToFire.transform.parent = transform;
-            projectileToFire.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler);
+            projectileToFire.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler, num);
         }
     }
 }
