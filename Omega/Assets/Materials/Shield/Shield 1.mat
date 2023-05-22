@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shield
+  m_Name: Shield 1
   m_Shader: {fileID: 4800000, guid: 2bffc50af4b1ff34cb151aa15bb9edb4, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -45,8 +45,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d2eac888094a652429c634df007d9ad9, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: e61a550a7ddc3304fbfe0a01919efe9c, type: 3}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -128,13 +128,13 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.06476926, g: 1.9615823, b: 1.8920655, a: 0.7607843}
+    - _Color: {r: 0, g: 2.3245068, b: 2.2339547, a: 0.7607843}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowDirection1: {r: 0.05, g: 0, b: 0, a: 1}
     - _FlowDirection2: {r: 0, g: 0.05, b: 0, a: 1}
     - _MovementDirection: {r: 0, g: -1, b: 0, a: 1}
-    - _ScrollDirection: {r: 0.01, g: 0.01, b: 0.01, a: 0}
+    - _ScrollDirection: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6971367077331135261
