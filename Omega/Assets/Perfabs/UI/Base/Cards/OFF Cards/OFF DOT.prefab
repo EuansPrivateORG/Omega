@@ -255,7 +255,17 @@ PrefabInstance:
     - target: {fileID: 3749471318476549542, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_text
-      value: DOT
+      value: Damage OverTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749471318476549542, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 15.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749471318476549542, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15.98
       objectReference: {fileID: 0}
     - target: {fileID: 5015744510079980077, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
@@ -292,8 +302,8 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card description:
 
-        The selected player receives damage at the
-        start of thier turn for 3 rounds'
+        The next player you attack recieves 10 damage
+        at the start of their next 3 turns'
       objectReference: {fileID: 0}
     - target: {fileID: 7213664628807949823, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
@@ -413,7 +423,7 @@ PrefabInstance:
     - target: {fileID: 8197855259099199771, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_text
-      value: 'Activation: on next action'
+      value: 'Activation: on next attack'
       objectReference: {fileID: 0}
     - target: {fileID: 9068723235286485366, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}

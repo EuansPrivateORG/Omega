@@ -267,7 +267,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card description:
 
-        Adds a D20 dice to your next action roll'
+        Adds a D20 dice to your next roll'
       objectReference: {fileID: 0}
     - target: {fileID: 6167935476242564601, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}

@@ -262,7 +262,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card Description:
 
-        flips the turn order'
+        Reverses the turn order'
       objectReference: {fileID: 0}
     - target: {fileID: 6167935476242564601, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}

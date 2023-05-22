@@ -262,8 +262,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card description:
 
-        Adds a bonus of "+X" to your next action
-        roll'
+        Adds a bonus of 12 to your next action roll'
       objectReference: {fileID: 0}
     - target: {fileID: 6167935476242564601, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}

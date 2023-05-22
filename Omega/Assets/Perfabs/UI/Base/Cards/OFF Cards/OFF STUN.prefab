@@ -292,7 +292,8 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card Description:
 
-        The selected player misses their next turn'
+        The next player you attack skips their next
+        turn'
       objectReference: {fileID: 0}
     - target: {fileID: 7213664628807949823, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
@@ -412,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 8197855259099199771, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_text
-      value: 'Activation: on next action'
+      value: 'Activation: on next attack'
       objectReference: {fileID: 0}
     - target: {fileID: 9068723235286485366, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}

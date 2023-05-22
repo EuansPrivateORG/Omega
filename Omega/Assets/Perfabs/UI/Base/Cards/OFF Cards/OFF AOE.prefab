@@ -62,6 +62,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1641959318429681584, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1830005848385736912, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -255,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 3749471318476549542, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_text
-      value: aoe
+      value: Multi Attack
       objectReference: {fileID: 0}
     - target: {fileID: 5015744510079980077, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
@@ -292,8 +297,8 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card Description:
 
-        Damages upto 3 total players based on the
-        attack selection'
+        Next attack attacks the target and the player
+        adjacent'
       objectReference: {fileID: 0}
     - target: {fileID: 7213664628807949823, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
@@ -413,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 8197855259099199771, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_text
-      value: 'Activation: On next action'
+      value: 'Activation: On next attack'
       objectReference: {fileID: 0}
     - target: {fileID: 9068723235286485366, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}

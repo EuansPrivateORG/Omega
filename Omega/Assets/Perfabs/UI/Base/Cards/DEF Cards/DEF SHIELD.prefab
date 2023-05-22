@@ -262,8 +262,8 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card description:
 
-        Adds a protective shield to the selected
-        player until start of their next turn'
+        Gives you a protective shield stopping other
+        players from attacking you until the start of your next turn'
       objectReference: {fileID: 0}
     - target: {fileID: 5960707240242361358, guid: 492c603a5a1ff014fa4d08e3e485abdf,
         type: 3}
