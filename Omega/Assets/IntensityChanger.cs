@@ -25,7 +25,7 @@ namespace Omega.Visual
             foreach (GameObject light in glowLights)
             {
                 Light glowLight = light.GetComponent<Light>();
-                glowLight.intensity = Mathf.Lerp(minIntensity, maxIntensity, t);
+                glowLight.intensity = Mathf.Lerp(maxIntensity, minIntensity, t);
                 glowLight.range = Mathf.Lerp(minRange, maxRange, t);
             }
         }
