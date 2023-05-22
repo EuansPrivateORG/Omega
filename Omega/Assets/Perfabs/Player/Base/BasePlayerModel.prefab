@@ -351,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateEnabled: 1
   rotationSpeed: 12
-  maxRotationAngle: 120
+  maxRotationAngle: 60
 --- !u!1 &3228152141517751861
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,8 +692,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateEnabled: 1
-  rotationSpeed: 8
-  maxRotationAngle: 120
+  rotationSpeed: 10
+  maxRotationAngle: 60
 --- !u!1 &4581857270488983291
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,4 +903,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateEnabled: 1
   rotationSpeed: 5
-  maxRotationAngle: 120
+  maxRotationAngle: 40
