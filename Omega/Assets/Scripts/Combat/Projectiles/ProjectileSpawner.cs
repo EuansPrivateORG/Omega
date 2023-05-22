@@ -24,6 +24,7 @@ namespace Omega.Combat
             if(attackButtonHandler.weaponClass != Weapon.weaponClass.Ultimate)
             {
                 GameObject projectileInstance = Instantiate(projectile, attackweapon.transform.position, Quaternion.identity);
+                attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }
             else
@@ -37,6 +38,7 @@ namespace Omega.Combat
                     }
                 }
                 GameObject projectileInstance = Instantiate(projectile, targetUltimatePosition.transform.position, Quaternion.identity);
+                attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }
             projectileToFire.transform.parent = transform;

@@ -313,6 +313,7 @@ namespace Omega.UI
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
                 playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerLeft, minColour, maxColour, this, 1);
+
                 playerLeft = null;
             }
 
