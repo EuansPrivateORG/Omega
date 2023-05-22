@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
   m_Name: Overcharge
   m_EditorClassIdentifier: 
-  CardUIPreFab: {fileID: 7983988467016855802, guid: 23997cca9513fbc49b5fe783dc107209,
+  CardUIPreFab: {fileID: 6541153526303316791, guid: 2a47119760cb9ce4eb5363ac5d05d8f6,
     type: 3}
   CardWorldPreFab: {fileID: 0}
   CardName: Overcharge
