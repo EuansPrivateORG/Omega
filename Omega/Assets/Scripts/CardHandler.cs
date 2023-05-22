@@ -66,7 +66,8 @@ namespace Omega.Actions
                 Card newCard = null;
 
                 newCard = FindCard(player);
-                foreach (Card card in playerCards.cardsInHand)
+
+                foreach (Card card in cards)
                 {
                     if (card == newCard)
                     {
@@ -98,12 +99,12 @@ namespace Omega.Actions
                 Card newCard = null;
 
                 newCard = FindCard(player);
+                Debug.Log(newCard);
                 foreach (Card card in playerCards.cardsInHand)
                 {
                     if (card == newCard)
                     {
                         i--;
-                        Debug.Log("Has Card");
                         hasCard = true;
                     }
                 }

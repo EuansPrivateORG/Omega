@@ -254,7 +254,6 @@ GameObject:
   m_Component:
   - component: {fileID: 395552447993689334}
   - component: {fileID: 395552447993689335}
-  - component: {fileID: 8262469350684625926}
   m_Layer: 0
   m_Name: CrystalGlow
   m_TagString: Untagged
@@ -294,19 +293,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: e46935141b3810a49b7164af1fb2f2f1, type: 2}
---- !u!135 &8262469350684625926
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395552447993689333}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 40
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &395552448832303487
 GameObject:
   m_ObjectHideFlags: 0

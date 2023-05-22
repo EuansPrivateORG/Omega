@@ -665,6 +665,7 @@ GameObject:
   - component: {fileID: 153677251}
   - component: {fileID: 153677250}
   - component: {fileID: 153677252}
+  - component: {fileID: 153677253}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -743,6 +744,37 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &153677253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153677248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 52e844168db641347b866d72c455075e,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 153677252}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 85744702}
 --- !u!4 &188902428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 258529680133530527, guid: e28284ddf25be9249bd5858f43197838,
@@ -824,6 +856,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8902254c36f7f294a83244555993cbcf, type: 3}
+--- !u!114 &267716154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 862083187091220066, guid: d29fc24822bfc8241a517ea8b3088b5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7905966732837235605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &272019195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 368823249668938719, guid: b33a8b37fc4fa6e469ae7ece12a7e445,
+    type: 3}
+  m_PrefabInstance: {fileID: 7760619482068935092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &303672471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7453478403325974743, guid: 6314fbaee0f951342939607a1fea9105,
@@ -1955,7 +2011,7 @@ MonoBehaviour:
   gameHUD: {fileID: 1698009779}
   playerHUD: {fileID: 1456564279}
   players: []
-  healButton: {fileID: 0}
+  healButton: {fileID: 267716154}
 --- !u!114 &781620688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2000,7 +2056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollers: {fileID: 7760619482068935094}
-  bonusNumText: {fileID: 0}
+  bonusNumText: {fileID: 272019195}
   rolledNumColours: {r: 0, g: 1, b: 0.9026253, a: 1}
   speed: 350
   diceTotal: 0
@@ -2036,6 +2092,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1cb68a6c42635ed4795889796af5aa3e, type: 2}
   - {fileID: 11400000, guid: d04260b0c6ab6e64f888416257e445cc, type: 2}
   - {fileID: 11400000, guid: 750d713986c8a7144b4325c182c93112, type: 2}
+  nextTurnDelayTime: 0
 --- !u!114 &781620692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4212,6 +4269,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 395552447846255780, guid: 39e0ebd59b9bb084ba4cd43c93f0e757,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 395552447993689335, guid: 39e0ebd59b9bb084ba4cd43c93f0e757,
+        type: 3}
+      propertyPath: m_IsGlobal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 395552449376001189, guid: 39e0ebd59b9bb084ba4cd43c93f0e757,
         type: 3}
       propertyPath: m_Name
@@ -4271,6 +4338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 395552449449700241, guid: 39e0ebd59b9bb084ba4cd43c93f0e757,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e0ebd59b9bb084ba4cd43c93f0e757, type: 3}
