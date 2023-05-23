@@ -76,8 +76,5 @@ namespace Omega.Combat
             attackButtonHandler = origin;
             bulletNum = num;
         }
-
-
-
     }
 }
