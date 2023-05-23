@@ -131,21 +131,18 @@ namespace Omega.Core
             {
                 if (player.factionName == playerScoresInOrder[0].playerFaction)
                 {
-                    Debug.Log("Set Player 1");
                     endScreen.player1Icon.sprite = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
                     endScreen.player1Icon.color = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
                 }
 
                 else if (player.factionName == playerScoresInOrder[1].playerFaction)
                 {
-                    Debug.Log("Set Player 2");
                     endScreen.player2Icon.sprite = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
                     endScreen.player2Icon.color = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
                 }
 
                 else if (player.factionName == playerScoresInOrder[2].playerFaction)
                 {
-                    Debug.Log("Set Player 3");
                     endScreen.player3Icon.sprite = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
                     endScreen.player3Icon.color = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
                 }

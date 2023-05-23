@@ -129,7 +129,6 @@ namespace Omega.Actions
                 Card newCard = null;
 
                 newCard = FindCard(player);
-                Debug.Log(newCard);
                 foreach (Card card in playerCards.cardsInHand)
                 {
                     if (card == newCard)
