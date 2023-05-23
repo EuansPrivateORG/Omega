@@ -1309,6 +1309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5415772039465526912}
   - component: {fileID: 1606740432016312996}
+  - component: {fileID: 4870006112346997918}
   m_Layer: 0
   m_Name: BaseCard
   m_TagString: Untagged
@@ -1353,3 +1354,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardHighlight: {fileID: 448626157810154302}
   card: {fileID: 0}
+--- !u!225 &4870006112346997918
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614338425255079727}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
