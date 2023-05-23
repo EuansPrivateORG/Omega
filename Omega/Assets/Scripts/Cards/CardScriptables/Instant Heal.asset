@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 7717577386591133453, guid: f4e7264f234122845a903174e1b56cca,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 2244057175724464247, guid: bfd75af55c657cf4fb86165b6e9551dd,
+    type: 3}
   CardName: Instant Heal
   cardCategory: 1
   cardOdds: 1
@@ -28,4 +29,6 @@ MonoBehaviour:
   rollBonusValue: 0
   instantHealAmount: 20
   damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 0
+  hasEffectWhenAttacked: 0

@@ -126,14 +126,49 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
+      objectReference: {fileID: 21300000, guid: 273e64387432de54fa14f87a0f6df244,
         type: 3}
+    - target: {fileID: 1789959888925409407, guid: da3668687ffbb3b47877a85498c1e443,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1789959888925409407, guid: da3668687ffbb3b47877a85498c1e443,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.38431376
+      objectReference: {fileID: 0}
+    - target: {fileID: 1789959888925409407, guid: da3668687ffbb3b47877a85498c1e443,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833544197961135902, guid: da3668687ffbb3b47877a85498c1e443,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1833544197961135902, guid: da3668687ffbb3b47877a85498c1e443,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 70e3ce8ad01f39248a3ea97a35bcf238,
+      objectReference: {fileID: 21300000, guid: 273e64387432de54fa14f87a0f6df244,
         type: 3}
+    - target: {fileID: 1833544197961135902, guid: da3668687ffbb3b47877a85498c1e443,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833544197961135902, guid: da3668687ffbb3b47877a85498c1e443,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.38262558
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833544197961135902, guid: da3668687ffbb3b47877a85498c1e443,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3318408958291268095, guid: da3668687ffbb3b47877a85498c1e443,
         type: 3}
       propertyPath: m_AnchorMax.y

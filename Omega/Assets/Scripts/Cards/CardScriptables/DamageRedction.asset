@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 7717577386591133453, guid: 043e4d068d71f0840a1b9f2a45b25948,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 8089731766833733795, guid: 69226e0c38ff5564195017d474cdfbe8,
+    type: 3}
   CardName: Damage Reduction
   cardCategory: 1
   cardOdds: 1

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 4869353032053728372, guid: 5e48c7305b5f102429d2f9c7a5205048,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 4796744417302401053, guid: fc5ab3bb5f949f848ba965caf2310a69,
+    type: 3}
   CardName: Double
   cardCategory: 2
   cardOdds: 0
@@ -26,4 +27,8 @@ MonoBehaviour:
   healingPerTurn: 0
   energyAmount: 0
   rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 0
+  hasEffectWhenAttacked: 0

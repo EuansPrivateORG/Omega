@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 1982473160651351736, guid: 3fb912d3ec499424ea8c887aa152d209,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 3296095753920987674, guid: 177ba4f42b8c69549ab7ad8d51c438f7,
+    type: 3}
   CardName: Chaos Dice
   cardCategory: 2
   cardOdds: 2
@@ -26,4 +27,8 @@ MonoBehaviour:
   healingPerTurn: 0
   energyAmount: 0
   rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 0
+  hasEffectWhenAttacked: 0
