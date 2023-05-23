@@ -52,6 +52,8 @@ namespace Omega.UI
 
         public bool isAttackButton = false;
 
+        [HideInInspector] public List<GameObject> currentlyAttackablePlayers;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
@@ -91,6 +93,8 @@ namespace Omega.UI
         public void ButtonPressed()
         {
             playerIdentifier.isAttacking = true;
+
+            playerIdentifier.currentAttack = this;
 
             foreach (GameObject player in playerIdentifier.playerIndex)
             {
@@ -146,6 +150,7 @@ namespace Omega.UI
                     playerObject.GetComponentInChildren<Outline>().enabled = true;
                     playerObject.GetComponentInChildren<Outline>().OutlineColor = Color.white;
                     attackablePlayers.Add(playerObject);
+                    Debug.Log(playerObject);
 
                     if (!foundNextPlayer)
                     {
@@ -159,6 +164,8 @@ namespace Omega.UI
             {
                 nextAvailablePlayer = null;
             }
+
+            currentlyAttackablePlayers = attackablePlayers;
         }
 
         private void DisableBaseSelection(List<GameObject> attackablePlayers)
@@ -384,7 +391,6 @@ namespace Omega.UI
 
             numberRoller.AddBonusNumbers(rollBonus);
 
-            playerIdentifier.currentAttack = this;
             playerToDamage = toDamage;
             diceSpawner.ActivateDice(attack);
 

@@ -117,7 +117,7 @@ namespace Omega.Actions
                         break;
                     case CardType.damageReduction:
                         card.damageReductionPercentage = EditorGUILayout.FloatField("Percentage of Reduction", card.damageReductionPercentage);
-                        card.damageReductionPreFab = (GameObject)EditorGUILayout.ObjectField("-Damage PreFab", card.damageReductionPreFab, typeof(GameObject), false);
+                        card.damageReductionPreFab = (GameObject)EditorGUILayout.ObjectField("Damage PreFab", card.damageReductionPreFab, typeof(GameObject), false);
                         break;
                 }
             }
