@@ -1946,6 +1946,7 @@ MonoBehaviour:
   currentPlayerIndex: 0
   roundOver: 0
   isAttacking: 0
+  flippedTurnOrder: 0
 --- !u!114 &781620685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2070,7 +2071,6 @@ MonoBehaviour:
   cards:
   - {fileID: 11400000, guid: c410b378cfa18fb4e908823120d1505a, type: 2}
   - {fileID: 11400000, guid: 26559576aeaa0ab44bc430df665624d8, type: 2}
-  - {fileID: 11400000, guid: 39cfc8f8788826c458049fd06ee6ab44, type: 2}
   - {fileID: 11400000, guid: 0ed745de5da59b249bf52b4689e8dc5a, type: 2}
   - {fileID: 11400000, guid: 51bee7347feab0943abbc26845696163, type: 2}
   - {fileID: 11400000, guid: 1cc4ad8f208abc542983d0cf2b514514, type: 2}
