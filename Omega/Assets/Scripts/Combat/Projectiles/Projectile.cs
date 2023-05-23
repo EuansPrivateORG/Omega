@@ -51,6 +51,7 @@ namespace Omega.Combat
                 Debug.Log(enemyCollider.transform.parent.gameObject.name);
                 target.GetComponent<Health>().TakeDamage(damage);
                 Debug.Log(damage.ToString() + " Damage Dealt");
+                enemyCollider.gameObject.GetComponentInChildren<AudioSource>().Play();
                 attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour, false, damage);
                 if (target.GetComponent<Health>().isDead)
                 {
