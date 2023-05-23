@@ -289,23 +289,23 @@ namespace Omega.UI
                         if (targetsIndex + 1 > playerIdentifier.turnOrderIndex.Count - 1)
                         {
                             playerRight = playerIdentifier.turnOrderIndex[0];
-                            if (playerRight.GetComponent<Health>().isDead) playerRight = null;
+                            if (playerRight.GetComponent<Health>().isDead || playerRight == playerIdentifier.currentPlayer) playerRight = null;
                         }
                         else
                         {
                             playerRight = playerIdentifier.turnOrderIndex[targetsIndex + 1];
-                            if (playerRight.GetComponent<Health>().isDead) playerRight = null;
+                            if (playerRight.GetComponent<Health>().isDead || playerRight == playerIdentifier.currentPlayer) playerRight = null;
                         }
 
                         if (targetsIndex - 1 < 0)
                         {
                             playerLeft = playerIdentifier.turnOrderIndex[playerIdentifier.turnOrderIndex.Count - 1];
-                            if (playerLeft.GetComponent<Health>().isDead) playerLeft = null;
+                            if (playerLeft.GetComponent<Health>().isDead || playerLeft == playerIdentifier.currentPlayer) playerLeft = null;
                         }
                         else
                         {
                             playerLeft = playerIdentifier.turnOrderIndex[targetsIndex - 1];
-                            if (playerLeft.GetComponent<Health>().isDead) playerLeft = null;
+                            if (playerLeft.GetComponent<Health>().isDead || playerLeft == playerIdentifier.currentPlayer) playerLeft = null;
                         }
 
                         playersCards.cardsPlayed.Remove(card);
@@ -316,22 +316,31 @@ namespace Omega.UI
 
         private IEnumerator WaitForAttack(GameObject attackWeapon, int damageToDeal, int minColour, int maxColour)
         {
+            int middlePlayerNum = 0;
+            int rightPlayerNum = 0;
+
+            if(playerRight != null)
+            {
+                middlePlayerNum = 1;
+            }
+
             if(playerLeft != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerLeft, minColour, maxColour, this, 1);
-
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerLeft, minColour, maxColour, this, 2);
                 playerLeft = null;
             }
 
+            
             yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerToDamage));
-            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerToDamage, minColour, maxColour, this, 0);
+            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
 
 
             if (playerRight != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerRight));
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerRight, minColour, maxColour, this, 2);
+                Debug.Log("here");
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
                 playerRight = null;
             }
 
@@ -428,6 +437,10 @@ namespace Omega.UI
             {
                 attackWeapon.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / rotationTime);
                 elapsedTime += Time.deltaTime;
+                if (playerToTarget == playerRight)
+                {
+                    Debug.Log(elapsedTime);
+                }
                 yield return null;
             }
             //attackWeapon.transform.rotation = initialRotation;

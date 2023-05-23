@@ -1915,7 +1915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPlayers: 5
   playerStartingHealth: 150
-  playerStartingEnergy: 0
+  playerStartingEnergy: 10
   radius: 14.5
   players: {fileID: 1902693845}
   playersTurnOrder: {fileID: 1914578938}

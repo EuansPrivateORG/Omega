@@ -41,6 +41,9 @@ namespace Omega.Combat
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }
+
+            Debug.Log(target);
+
             projectileToFire.transform.parent = transform;
             projectileToFire.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler, num);
         }
