@@ -39,6 +39,8 @@ namespace Omega.Core
         private PlayerSpawnHandler playerSpawnHandler;
         private CardHandler cardHandler;
 
+        [HideInInspector] public bool flippedTurnOrder = false;
+
         private void Awake()
         {
             turnTimer = GetComponent<TurnTimer>();
@@ -187,6 +189,12 @@ namespace Omega.Core
 
         public void FlipTurnOrder()
         {
+            if (flippedTurnOrder)
+            {
+                flippedTurnOrder = false;
+            }
+            else flippedTurnOrder = true;
+
             int currentPlayerIndexInOrder = 0;
 
             for (int i = 0; i < turnOrderIndex.Count; ++i)

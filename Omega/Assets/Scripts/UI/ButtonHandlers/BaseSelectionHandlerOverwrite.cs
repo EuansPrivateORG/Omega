@@ -55,13 +55,27 @@ namespace Omega.UI
             // Handle the "Select on Left" and "Select on Right" actions
             var selectable = GetComponent<Selectable>();
             Navigation nav = selectable.navigation;
-            if (context.ReadValue<Vector2>().x < 0)
+            if (playerIdentifier.flippedTurnOrder)
             {
-                nav.selectOnLeft = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
+                if (context.ReadValue<Vector2>().x < 0)
+                {
+                    nav.selectOnRight = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
+                }
+                else if (context.ReadValue<Vector2>().x > 0)
+                {
+                    nav.selectOnLeft = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
+                }
             }
-            else if (context.ReadValue<Vector2>().x > 0)
+            else
             {
-                nav.selectOnRight = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
+                if (context.ReadValue<Vector2>().x < 0)
+                {
+                    nav.selectOnLeft = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
+                }
+                else if (context.ReadValue<Vector2>().x > 0)
+                {
+                    nav.selectOnRight = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
+                }
             }
             selectable.navigation = nav;
         }
