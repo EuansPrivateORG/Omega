@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 9124566634668833495, guid: 97bc6ec486802b446ad707f21f543f89,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 828795397752390491, guid: b8298a4a49081df4f8d3ef01f34e40bf,
+    type: 3}
   CardName: DOT
   cardCategory: 0
   cardOdds: 1
@@ -26,4 +27,8 @@ MonoBehaviour:
   healingPerTurn: 0
   energyAmount: 0
   rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 1
+  hasEffectWhenAttacked: 0

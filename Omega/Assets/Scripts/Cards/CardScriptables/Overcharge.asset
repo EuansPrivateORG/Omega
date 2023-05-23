@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 6541153526303316791, guid: 2a47119760cb9ce4eb5363ac5d05d8f6,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 3028456047054941185, guid: 8a8a89819abf501468c82d1ad9403eef,
+    type: 3}
   CardName: Overcharge
   cardCategory: 2
   cardOdds: 2

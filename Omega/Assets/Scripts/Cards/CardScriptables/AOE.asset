@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 77622902810890107, guid: ceb14a9af3f163642a9993839a425f19,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 91824742423918415, guid: 03d0fc6b2123b4648922cba8d047832b,
+    type: 3}
   CardName: AOE
   cardCategory: 0
   cardOdds: 1

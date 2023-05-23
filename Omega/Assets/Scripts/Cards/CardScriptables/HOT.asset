@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 508666071731470071, guid: 07288b561c1c8eb4c99f85534e505dd3,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 9039687848172622866, guid: 063b0bb61be0b5d4f80a0b6f5dc05310,
+    type: 3}
   CardName: HOT
   cardCategory: 1
   cardOdds: 1
@@ -26,4 +27,8 @@ MonoBehaviour:
   healingPerTurn: 10
   energyAmount: 0
   rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 1
+  hasEffectWhenAttacked: 0

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 5884519262694819233, guid: 024f821707135f14a9c52317aed60118,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 3306886142411063845, guid: 437da1a3034e7184eb1a49a0e38f3219,
+    type: 3}
   CardName: Flip Turn Order
   cardCategory: 2
   cardOdds: 1
@@ -26,4 +27,8 @@ MonoBehaviour:
   healingPerTurn: 0
   energyAmount: 0
   rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 0
+  hasEffectWhenAttacked: 0

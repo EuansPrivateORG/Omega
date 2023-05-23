@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 753073516047436258, guid: de4f6827739aab542b48b5336f3990d8,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 7970796939551652211, guid: 4ad32f5a20512564ca07fc6c004bd997,
+    type: 3}
   CardName: Roll Bonus
   cardCategory: 2
   cardOdds: 2
@@ -26,4 +27,8 @@ MonoBehaviour:
   healingPerTurn: 0
   energyAmount: 0
   rollBonusValue: 12
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 0
+  hasEffectWhenAttacked: 0

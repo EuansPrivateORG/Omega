@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardUIPreFab: {fileID: 7130426610569531309, guid: 7476c3eb3a84d1d4b9206e65f9fb1bb9,
     type: 3}
-  CardWorldPreFab: {fileID: 0}
+  CardWorldPreFab: {fileID: 8995260391883770939, guid: 48d9afa588889084fb72db9d6831cf2d,
+    type: 3}
   CardName: Stun
   cardCategory: 0
   cardOdds: 0
@@ -26,4 +27,8 @@ MonoBehaviour:
   healingPerTurn: 0
   energyAmount: 0
   rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
   effectOverTime: 1
+  hasEffectWhenAttacked: 0
