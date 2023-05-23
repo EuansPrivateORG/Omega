@@ -26,6 +26,7 @@ namespace Omega.Combat
         AttackButtonHandler attackButtonHandler;
         ScoreHandler scoreHandler;
         NumberRoller numberRoller;
+        CardHandler cardHandler;
 
         private int bulletNum;
 
@@ -35,6 +36,7 @@ namespace Omega.Combat
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
             numberRoller = FindObjectOfType<NumberRoller>();
+            cardHandler = FindObjectOfType<CardHandler>();
         }
         private void Update()
         {
@@ -56,6 +58,7 @@ namespace Omega.Combat
                 if (target.GetComponent<Health>().isDead)
                 {
                     scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
+                    cardHandler.DrawCard(playerIdentifier.currentPlayer, 1);
                 }
                 numberRoller.TurnOffNumberRoller();
                 if(bulletNum == 0) playerIdentifier.NextPlayer();

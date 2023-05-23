@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPlayers: 5
-  playerStartingHealth: 150
+  playerStartingHealth: 10
   playerStartingEnergy: 10
   radius: 14.5
   players: {fileID: 1902693845}

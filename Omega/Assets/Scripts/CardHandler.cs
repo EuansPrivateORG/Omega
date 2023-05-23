@@ -60,6 +60,12 @@ namespace Omega.Actions
             List<Card> cards = new List<Card>();
             PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
 
+            if(playerCards.cardsInHand.Count > 5)
+            {
+                Debug.Log("Player has max Cards");
+                return;
+            }
+
             for (int i = 0; i < numOfCards; i++)
             {
                 bool hasCard = false;
@@ -92,6 +98,12 @@ namespace Omega.Actions
         {
             List<Card> cards = new List<Card>();
             PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+
+            if (playerCards.cardsInHand.Count > 5)
+            {
+                Debug.Log("Player has max Cards");
+                return;
+            }
 
             for (int i = 0; i < numOfCards; i++)
             {
