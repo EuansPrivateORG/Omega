@@ -2078,7 +2078,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: af75f58bc0dd5b549894717e9a44c0be, type: 2}
   - {fileID: 11400000, guid: e2d9dbe4a9d87ad4cbd965f675a81570, type: 2}
   - {fileID: 11400000, guid: 1cb68a6c42635ed4795889796af5aa3e, type: 2}
-  - {fileID: 11400000, guid: d04260b0c6ab6e64f888416257e445cc, type: 2}
   - {fileID: 11400000, guid: 750d713986c8a7144b4325c182c93112, type: 2}
   nextTurnDelayTime: 0
 --- !u!114 &781620692
