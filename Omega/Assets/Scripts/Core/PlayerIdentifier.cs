@@ -81,6 +81,8 @@ namespace Omega.Core
 
             UpdatePlayerIcon();
 
+            cardSpawner.ClearActiveCards();
+
             drawCardHandler.CheckEnergy();
 
             playerWhoHasDied = playerIndex.Count + 1;
@@ -124,9 +126,10 @@ namespace Omega.Core
                 currentAttack = null;
                 currentHeal = null;
 
+                cardSpawner.ClearActiveCards();
+
                 drawCardHandler.CheckEnergy();
 
-                cardSpawner.ClearActiveCards();
                 cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
 
                 cardTween.RefreshCardList();

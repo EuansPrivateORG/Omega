@@ -64,7 +64,7 @@ namespace Omega.Actions
                 {
                     var dotProduct = Vector3.Dot(hundredsCollection.numbersList[hundredsNumToStop].transform.forward, camToObject);
 
-                    if (dotProduct <= 0.94 && dotProduct > 0.938)
+                    if (dotProduct <= 0.94 && dotProduct > 0.939)
                     {
                         isRotatingHundreds = false;
                         stoppedRotatingHundreds = false;
@@ -82,7 +82,7 @@ namespace Omega.Actions
                 {
                     var dotProduct = Vector3.Dot(tensCollection.numbersList[tensNumToStop].transform.forward, camToObject);
 
-                    if (dotProduct <= 0.94 && dotProduct > 0.938)
+                    if (dotProduct <= 0.94 && dotProduct > 0.939)
                     {
                         isRotatingTens = false;
                         stoppedRotatingTens = false;
@@ -99,7 +99,7 @@ namespace Omega.Actions
                 {
                     var dotProduct = Vector3.Dot(unitsCollection.numbersList[unitsNumToStop].transform.forward, camToObject);
 
-                    if (dotProduct <= 0.94 && dotProduct > 0.938)
+                    if (dotProduct <= 0.94 && dotProduct > 0.939)
                     {
                         isRotatingUnits = false;
                         stoppedRotatingUnits = false;
