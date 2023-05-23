@@ -58,7 +58,7 @@ namespace Omega.Actions
         public void DrawCardNoUI(GameObject player, int numOfCards)
         {
             List<Card> cards = new List<Card>();
-            PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
+            PlayerCards playerCards = player.GetComponent<PlayerCards>();
 
             if(playerCards.cardsInHand.Count > 5)
             {
@@ -90,8 +90,26 @@ namespace Omega.Actions
 
             foreach (Card card in cards)
             {
-                player.GetComponent<PlayerCards>().cardsInHand.Add(card);
+                Transform cardSpawnPos = null;
+                playerCards.cardsInHand.Add(card);
+
+                for (int i = 0; i < playerCards.cardDeckPositions.Count; i++)
+                {
+                    if (playerCards.cardDeckPositions[i].transform.childCount > 0) continue;
+                    else
+                    {
+                        cardSpawnPos = playerCards.cardDeckPositions[i];
+                        break;
+                    }
+                }
+
+                GameObject instantiated = Instantiate(card.CardWorldPreFab, cardSpawnPos);
+
+                playerCards.playingCardInDeck.Add(instantiated);
             }
+
+            playerCards.cardNumText.text = playerCards.cardsInHand.Count.ToString();
+
         }
 
         public void DrawCard(GameObject player, int numOfCards)
@@ -127,11 +145,28 @@ namespace Omega.Actions
                 }
 
             }
+
             foreach (Card card in cards)
             {
-                player.GetComponent<PlayerCards>().cardsInHand.Add(card);
-                cardSpawner.AddCard(card);
+                Transform cardSpawnPos = null;
+                playerCards.cardsInHand.Add(card);
+
+                for (int i = 0; i < playerCards.cardDeckPositions.Count; i++)
+                {
+                    if (playerCards.cardDeckPositions[i].transform.childCount > 0) continue;
+                    else
+                    {
+                        cardSpawnPos = playerCards.cardDeckPositions[i];
+                        break;
+                    }
+                }
+
+                GameObject instantiated = Instantiate(card.CardWorldPreFab, cardSpawnPos);
+
+                playerCards.playingCardInDeck.Add(instantiated);
             }
+
+            playerCards.cardNumText.text = playerCards.cardsInHand.Count.ToString();
         }
 
         private Card FindCard(GameObject player)

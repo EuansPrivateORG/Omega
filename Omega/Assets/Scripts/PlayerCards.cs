@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Omega.Actions
@@ -9,6 +10,16 @@ namespace Omega.Actions
         public List<Card> cardsInHand = new List<Card>();
         public List<Card> cardsPlayed = new List<Card>();
         public List<Card> cardsPlayedAgainst = new List<Card>();
+
+        public List<Transform> cardDeckPositions;
+
+        public List<GameObject> playingCardInDeck;
+
+        public List<Transform> playingCardPositions;
+
+        public List<GameObject> playedCardInWorld;
+
+        public TextMeshProUGUI cardNumText;
 
         private CardHandler cardHandler;
 
