@@ -147,6 +147,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnergyText
       objectReference: {fileID: 0}
+    - target: {fileID: 8442845135607882492, guid: b8edd3f04f5db4740a6fea7c5d94325e,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d203176ed905be942adf4e498b4b88ac,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 5770224598974858161, guid: b8edd3f04f5db4740a6fea7c5d94325e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8edd3f04f5db4740a6fea7c5d94325e, type: 3}

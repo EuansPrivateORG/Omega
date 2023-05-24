@@ -1231,11 +1231,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5625048723210760607, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625048723210760607, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.010999978
+      objectReference: {fileID: 0}
     - target: {fileID: 5734937613304978810, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
         type: 3}
       propertyPath: m_Name
       value: DeckCountDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 8587367354318617189, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d203176ed905be942adf4e498b4b88ac,
+        type: 2}
+    - target: {fileID: 8587367354318617189, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2668728968165549931, guid: d203176ed905be942adf4e498b4b88ac,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61c7ff06d54e4fd41abe6164c7db5d31, type: 3}
 --- !u!224 &3587375105069072230 stripped
