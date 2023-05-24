@@ -208,13 +208,11 @@ namespace Omega.Core
 
             ReverseTurnOrder(turnOrderIndex, currentPlayerIndexInOrder);
             ReverseTurnOrder(currentlyAlivePlayersInTurn, currentPlayerIndex);
-            
 
-            for (int i = 0; i < currentlyAlivePlayersInTurn.Count; i++)
+            for (int i = 0; i < currentlyAlivePlayers.Count; i++)
             {
-                currentlyAlivePlayersInTurn[i].GetComponent<PlayerSetup>().playerID = i + 1;
+                currentlyAlivePlayers[i].GetComponent<PlayerSetup>().playerID = i + 1;
             }
-
 
             currentPlayerIndex = 0;
 

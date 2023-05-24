@@ -172,10 +172,17 @@ namespace Omega.Core
 
             foreach (GameObject player in playerIdentifier.turnOrderIndex)
             {
+                Debug.Log(player.name);
                 playersSetup = player.GetComponent<PlayerSetup>();
                 CreatIcon();
+            }
+
+            foreach(GameObject player in playerIdentifier.turnOrderIndex)
+            {
                 if (player.GetComponent<Health>().isDead)
                 {
+                    playersSetup = player.GetComponent<PlayerSetup>();
+                    Debug.Log(player.name + " is Dead");
                     playersSetup.SetPlayerIconDead();
                 }
             }
@@ -184,6 +191,7 @@ namespace Omega.Core
         private void CreatIcon()
         {
             GameObject instantiatedPlayerIcon = Instantiate(playersSetup.playerBase.turnOrderVarientIcon, playersTurnOrder);
+            playersSetup.icon = instantiatedPlayerIcon;
             instantiatedPlayerIcon.name = ("Player Icon" + (playersSetup.playerID));
             playerImageList.Add(instantiatedPlayerIcon);
             playerImageListPrivate.Add(instantiatedPlayerIcon);

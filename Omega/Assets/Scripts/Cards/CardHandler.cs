@@ -101,7 +101,7 @@ namespace Omega.Actions
             List<Card> cards = new List<Card>();
             PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
 
-            if (playerCards.cardsInHand.Count > 5)
+            if (playerCards.cardsInHand.Count + numOfCards > 5)
             {
                 Debug.Log("Player has max Cards");
                 return;
