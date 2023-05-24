@@ -1039,6 +1039,23 @@ MonoBehaviour:
   isDoubleRoll: 0
   rollBonus: 0
   isHealButton: 1
+--- !u!114 &7002370640022193286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847919614672838151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09f18d11c6db5d429b29a62687e0e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heals:
+  - {fileID: 6891065298576157017}
+  - {fileID: 1661281961791357157}
+  - {fileID: 2628993827155019715}
+  - {fileID: 1717351129412844151}
 --- !u!1 &8347073486992127137 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 105901981895885739, guid: 1ff5d9b461eadf749938f968bf780bc1,

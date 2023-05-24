@@ -97,6 +97,13 @@ namespace Omega.UI
                 newNav.selectOnLeft = card1.GetComponent<Button>();
                 drawCardHandler.attackButton.navigation = newNav;
             }
+            else
+            {
+                Navigation newNav = new Navigation();
+                newNav.mode = Navigation.Mode.Explicit;
+                newNav.selectOnRight = drawCardHandler.healingButton;
+                drawCardHandler.attackButton.navigation = newNav;
+            }
         }
 
         public void CardUp(GameObject card)

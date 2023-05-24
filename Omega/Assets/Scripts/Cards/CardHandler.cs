@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Omega.Actions
 {
@@ -26,15 +27,15 @@ namespace Omega.Actions
 
         private List<Card> highChanceCards = new List<Card>();
 
-        private CardSpawner cardSpawner;
-
         private PlayerIdentifier playerIdentifier;
+
+        private DrawCardHandler drawCardHandler;
 
         public float nextTurnDelayTime;
 
         private void Awake()
         {
-            cardSpawner = GetComponent<CardSpawner>();
+            drawCardHandler = FindObjectOfType<DrawCardHandler>();
 
             playerIdentifier = GetComponent<PlayerIdentifier>();
 
@@ -222,6 +223,23 @@ namespace Omega.Actions
                     break;
             }
 
+            if(playersCards.cardsInHand.Count < 5)
+            {
+                Button drawCardButton = drawCardHandler.GetComponent<Button>();
+                drawCardButton.interactable = true;
+
+                Navigation newNav = new Navigation();
+                newNav.mode = Navigation.Mode.Explicit;
+                newNav.selectOnRight = drawCardButton;
+                newNav.selectOnLeft = drawCardHandler.attackButton;
+                drawCardHandler.healingButton.navigation = newNav;
+
+                Navigation newNav2 = new Navigation();
+                newNav2.mode = Navigation.Mode.Explicit;
+                newNav2.selectOnRight = drawCardHandler.healingButton;
+                newNav2.selectOnLeft = drawCardButton;
+                drawCardHandler.skipButton.navigation = newNav2;
+            }
         }
 
         public void CheckPlayersCards()

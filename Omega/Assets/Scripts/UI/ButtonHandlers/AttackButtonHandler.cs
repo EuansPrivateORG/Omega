@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using Unity.Mathematics;
 using TMPro;
 using Omega.Combat;
-
+using Unity.VisualScripting;
 
 namespace Omega.UI
 {
@@ -52,10 +52,13 @@ namespace Omega.UI
 
         public bool isAttackButton = false;
 
+        AttackButtonID attackButtonID;
+
         [HideInInspector] public List<GameObject> currentlyAttackablePlayers;
 
         private void Awake()
         {
+            attackButtonID = FindObjectOfType<AttackButtonID>();
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
             diceSpawner = FindObjectOfType<DiceSpawner>();
@@ -78,6 +81,36 @@ namespace Omega.UI
                 else
                 {
                     button.interactable = true;
+
+                    int placeInList = 0;
+
+                    for (int i = 0; i < attackButtonID.attacks.Count; i++)
+                    {
+                        if (attackButtonID.attacks[i] == this)
+                        {
+                            placeInList = i; break;
+                        }
+                    }
+                    if(placeInList != attackButtonID.attacks.Count - 1)
+                    {
+                        Button thisButton = GetComponent<Button>();
+
+                        if (playerEnergy.energy < attackButtonID.attacks[placeInList + 1].attack.cost)
+                        {
+                            Navigation newNav = new Navigation();
+                            newNav.mode = Navigation.Mode.Explicit;
+                            if (placeInList != 0) newNav.selectOnLeft = attackButtonID.attacks[placeInList - 1].GetComponent<Button>();
+                            thisButton.navigation = newNav;
+                        }
+                        else
+                        {
+                            Navigation newNav = new Navigation();
+                            newNav.mode = Navigation.Mode.Explicit;
+                            newNav.selectOnRight = attackButtonID.attacks[placeInList + 1].GetComponent<Button>();
+                            if (placeInList != 0) newNav.selectOnLeft = attackButtonID.attacks[placeInList - 1].GetComponent<Button>();
+                            thisButton.navigation = newNav;
+                        }
+                    }
                 }
             }
         }

@@ -41,8 +41,11 @@ namespace Omega.UI
 
         PhysicalDiceCalculator physicalDiceCalculator;
 
+        HealingButtonID healingButtonID;
+
         private void Awake()
         {
+            healingButtonID = FindObjectOfType<HealingButtonID>();
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             scoreHandler = FindObjectOfType<ScoreHandler>();
             diceSpawner = FindObjectOfType<DiceSpawner>();
@@ -65,6 +68,36 @@ namespace Omega.UI
                 else
                 {
                     button.interactable = true;
+
+                    int placeInList = 0;
+
+                    for (int i = 0; i < healingButtonID.heals.Count; i++)
+                    {
+                        if (healingButtonID.heals[i] == this)
+                        {
+                            placeInList = i; break;
+                        }
+                    }
+                    if (placeInList != healingButtonID.heals.Count - 1)
+                    {
+                        Button thisButton = GetComponent<Button>();
+
+                        if (playerEnergy.energy < healingButtonID.heals[placeInList + 1].heal.cost)
+                        {
+                            Navigation newNav = new Navigation();
+                            newNav.mode = Navigation.Mode.Explicit;
+                            if (placeInList != 0) newNav.selectOnLeft = healingButtonID.heals[placeInList - 1].GetComponent<Button>();
+                            thisButton.navigation = newNav;
+                        }
+                        else
+                        {
+                            Navigation newNav = new Navigation();
+                            newNav.mode = Navigation.Mode.Explicit;
+                            newNav.selectOnRight = healingButtonID.heals[placeInList + 1].GetComponent<Button>();
+                            if (placeInList != 0) newNav.selectOnLeft = healingButtonID.heals[placeInList - 1].GetComponent<Button>();
+                            thisButton.navigation = newNav;
+                        }
+                    }
                 }
             }
         }
