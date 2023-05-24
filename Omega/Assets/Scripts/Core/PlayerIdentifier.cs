@@ -208,6 +208,13 @@ namespace Omega.Core
 
             ReverseTurnOrder(turnOrderIndex, currentPlayerIndexInOrder);
             ReverseTurnOrder(currentlyAlivePlayersInTurn, currentPlayerIndex);
+            
+
+            for (int i = 0; i < currentlyAlivePlayersInTurn.Count; i++)
+            {
+                currentlyAlivePlayersInTurn[i].GetComponent<PlayerSetup>().playerID = i + 1;
+            }
+
 
             currentPlayerIndex = 0;
 
@@ -281,7 +288,6 @@ namespace Omega.Core
 
         private void UpdatePlayerIcon()
         {
-            //update this for leanTween
             PlayerSpawnHandler playerSpawner = FindObjectOfType<PlayerSpawnHandler>();
             for (int i = 0; i < playerSpawner.playerImageList.Count; i++)
             {
