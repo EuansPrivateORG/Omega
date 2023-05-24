@@ -129,22 +129,29 @@ namespace Omega.Core
 
             foreach (Base player in roundHandler.players)
             {
+
                 if (player.factionName == playerScoresInOrder[0].playerFaction)
                 {
-                    endScreen.player1Icon.sprite = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
-                    endScreen.player1Icon.color = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
+                    PlayerIconID iconID = player.turnOrderVarientIcon.GetComponent<PlayerIconID>();
+                    endScreen.player1Icon.sprite = iconID.playerIcon.GetComponent<Image>().sprite;
+                    endScreen.player1Icon.color = iconID.iconBackground.GetComponent<Image>().color;
+                    endScreen.player1factionBackground.color = iconID.iconBackground.GetComponent<Image>().color;
                 }
 
                 else if (player.factionName == playerScoresInOrder[1].playerFaction)
                 {
-                    endScreen.player2Icon.sprite = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
-                    endScreen.player2Icon.color = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
+                    PlayerIconID iconID = player.turnOrderVarientIcon.GetComponent<PlayerIconID>();
+                    endScreen.player2Icon.sprite = iconID.playerIcon.GetComponent<Image>().sprite;
+                    endScreen.player2Icon.color = iconID.iconBackground.GetComponent<Image>().color;
+                    endScreen.player2factionBackground.color = iconID.iconBackground.GetComponent<Image>().color;
                 }
 
                 else if (player.factionName == playerScoresInOrder[2].playerFaction)
                 {
-                    endScreen.player3Icon.sprite = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
-                    endScreen.player3Icon.color = player.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
+                    PlayerIconID iconID = player.turnOrderVarientIcon.GetComponent<PlayerIconID>();
+                    endScreen.player3Icon.sprite = iconID.playerIcon.GetComponent<Image>().sprite;
+                    endScreen.player3Icon.color = iconID.iconBackground.GetComponent<Image>().color;
+                    endScreen.player3factionBackground.color = iconID.iconBackground.GetComponent<Image>().color;
                 }
             }
 

@@ -8,6 +8,7 @@ namespace Omega.UI
     {
         public GameObject playerIcon;
         public GameObject iconBackground;
+        public GameObject destroyedIconBackground;
         public GameObject playerDeadText;
         [SerializeField] public float moveDownAmountY;
         [HideInInspector]

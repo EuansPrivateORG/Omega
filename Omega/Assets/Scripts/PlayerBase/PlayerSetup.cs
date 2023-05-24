@@ -48,9 +48,9 @@ namespace Omega.Core
             if (FindObjectOfType<PlayerIdentifier>().currentlyAlivePlayers.Count > 1)
             {
                 PlayerIconID playerIconID = playerSpawnHandler.playerImageList[playerID - 1].GetComponent<PlayerIconID>();
-                playerIconID.playerDeadText.SetActive(true);
-                Image iconBackground = playerIconID.iconBackground.GetComponent<Image>();
-                iconBackground.color = new Color(iconBackground.color.r, iconBackground.color.g, iconBackground.color.b, iconBackground.color.a / 2);
+                playerIconID.iconBackground.SetActive(false);
+                playerIconID.destroyedIconBackground.SetActive(true);
+                playerIconID.playerIcon.GetComponent<Image>().color = playerIconID.destroyedIconBackground.GetComponent<Image>().color;
                 playerSpawnHandler.playerImageList.Remove(playerSpawnHandler.playerImageList[playerID - 1]);
             }
         }
