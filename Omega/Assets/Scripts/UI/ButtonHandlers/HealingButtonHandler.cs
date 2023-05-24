@@ -178,18 +178,21 @@ namespace Omega.UI
 
                             diceSpawner.ActivateChaosDice();
                             playerCards.cardsPlayed.Remove(card);
+                            playerCards.RemovePlayedCards(card.CardWorldPreFab);
                             break;
 
                         case Card.CardType.rollBonus:
 
                             currentRollBonus += card.rollBonusValue;
                             playerCards.cardsPlayed.Remove(card);
+                            playerCards.RemovePlayedCards(card.CardWorldPreFab);
                             break;
 
                         case Card.CardType.doubleRoll:
 
                             isDoubleRoll = true;
                             playerCards.cardsPlayed.Remove(card);
+                            playerCards.RemovePlayedCards(card.CardWorldPreFab);
                             break;
 
                     }
@@ -234,6 +237,7 @@ namespace Omega.UI
                 if(card.cardType == Card.CardType.hot)
                 {
                     playerCards.cardsPlayed.Remove(card);
+                    playerCards.RemovePlayedCards(card.CardWorldPreFab);
                     playerToHealth.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
                     playerToHealth.GetComponent<PlayerSetup>().amountOfRoundsHOT = card.amountOfRounds;
                 }

@@ -90,26 +90,9 @@ namespace Omega.Actions
 
             foreach (Card card in cards)
             {
-                Transform cardSpawnPos = null;
                 playerCards.cardsInHand.Add(card);
-
-                for (int i = 0; i < playerCards.cardDeckPositions.Count; i++)
-                {
-                    if (playerCards.cardDeckPositions[i].transform.childCount > 0) continue;
-                    else
-                    {
-                        cardSpawnPos = playerCards.cardDeckPositions[i];
-                        break;
-                    }
-                }
-
-                GameObject instantiated = Instantiate(card.CardWorldPreFab, cardSpawnPos);
-
-                playerCards.playingCardInDeck.Add(instantiated);
+                playerCards.InstantiatedCardInDeck(card.CardWorldPreFab);
             }
-
-            playerCards.cardNumText.text = playerCards.cardsInHand.Count.ToString();
-
         }
 
         public void DrawCard(GameObject player, int numOfCards)
@@ -147,25 +130,10 @@ namespace Omega.Actions
 
             foreach (Card card in cards)
             {
-                Transform cardSpawnPos = null;
                 playerCards.cardsInHand.Add(card);
 
-                for (int i = 0; i < playerCards.cardDeckPositions.Count; i++)
-                {
-                    if (playerCards.cardDeckPositions[i].transform.childCount > 0) continue;
-                    else
-                    {
-                        cardSpawnPos = playerCards.cardDeckPositions[i];
-                        break;
-                    }
-                }
-
-                GameObject instantiated = Instantiate(card.CardWorldPreFab, cardSpawnPos);
-
-                playerCards.playingCardInDeck.Add(instantiated);
+                playerCards.InstantiatedCardInDeck(card.CardWorldPreFab);
             }
-
-            playerCards.cardNumText.text = playerCards.cardsInHand.Count.ToString();
         }
 
         private Card FindCard(GameObject player)
@@ -195,6 +163,7 @@ namespace Omega.Actions
             PlayerCards playersCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
             PlayerSetup currentPlayersSetup = playerIdentifier.currentPlayer.GetComponent<PlayerSetup>();
             playersCards.cardsInHand.Remove(currentCard);
+            playersCards.RemoveCardFromDeck(currentCard.CardWorldPreFab);
 
             switch (currentCard.activationType)
             {
@@ -218,12 +187,14 @@ namespace Omega.Actions
 
                             currentPlayersSetup.ActivateDamageReduction(currentCard.damageReductionPreFab);
                             playersCards.cardsPlayed.Add(currentCard);
+                            playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
                             break;
 
                         case Card.CardType.shield:
 
                             currentPlayersSetup.ActivateShield(currentCard.shieldPrefab);
                             playersCards.cardsPlayed.Add(currentCard);
+                            playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
                             break;
 
                         case Card.CardType.flipTurn:
@@ -247,6 +218,7 @@ namespace Omega.Actions
                     }
 
                     playersCards.cardsPlayed.Add(currentCard);
+                    playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
                     break;
             }
 
@@ -276,6 +248,7 @@ namespace Omega.Actions
                         {
                             playerSetup.DeActivateShield();
                             playersCards.cardsPlayed.Remove(card);
+                            playersCards.RemovePlayedCards(card.CardWorldPreFab);
                         }
                     }
                 }

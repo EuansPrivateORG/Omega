@@ -50,7 +50,6 @@ namespace Omega.Combat
         {
             if (enemyCollider != instigator.GetComponent<Collider>())
             {
-                Debug.Log(enemyCollider.transform.parent.gameObject.name);
                 target.GetComponent<Health>().TakeDamage(damage);
                 Debug.Log(damage.ToString() + " Damage Dealt");
                 enemyCollider.gameObject.GetComponentInChildren<AudioSource>().Play();

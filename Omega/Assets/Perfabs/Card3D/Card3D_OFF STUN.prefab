@@ -122,6 +122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card3D_OFF STUN
       objectReference: {fileID: 0}
+    - target: {fileID: 5403180443365706584, guid: c0d645bb2045f9c44b5fbe1ae366eeae,
+        type: 3}
+      propertyPath: cardToUse
+      value: 
+      objectReference: {fileID: 5100438462112985049}
     - target: {fileID: 5570938883949621004, guid: c0d645bb2045f9c44b5fbe1ae366eeae,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -324,3 +329,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0d645bb2045f9c44b5fbe1ae366eeae, type: 3}
+--- !u!1 &5100438462112985049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1499398593076072924, guid: c0d645bb2045f9c44b5fbe1ae366eeae,
+    type: 3}
+  m_PrefabInstance: {fileID: 5910564193538342405}
+  m_PrefabAsset: {fileID: 0}

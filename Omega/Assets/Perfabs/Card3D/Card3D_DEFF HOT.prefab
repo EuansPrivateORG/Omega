@@ -207,6 +207,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4161635453603262607, guid: 7f79b6ed55ecde745b03827cecf38323,
+        type: 3}
+      propertyPath: cardToUse
+      value: 
+      objectReference: {fileID: 6512555220858606183}
     - target: {fileID: 6767210267474807273, guid: 7f79b6ed55ecde745b03827cecf38323,
         type: 3}
       propertyPath: m_Name
@@ -324,3 +329,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f79b6ed55ecde745b03827cecf38323, type: 3}
+--- !u!1 &6512555220858606183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8861861004547215260, guid: 7f79b6ed55ecde745b03827cecf38323,
+    type: 3}
+  m_PrefabInstance: {fileID: 2349359301363555835}
+  m_PrefabAsset: {fileID: 0}

@@ -150,7 +150,6 @@ namespace Omega.UI
                     playerObject.GetComponentInChildren<Outline>().enabled = true;
                     playerObject.GetComponentInChildren<Outline>().OutlineColor = Color.white;
                     attackablePlayers.Add(playerObject);
-                    Debug.Log(playerObject);
 
                     if (!foundNextPlayer)
                     {
@@ -217,8 +216,6 @@ namespace Omega.UI
                 }
             }
 
-            Debug.Log("this attack uses this:" + attackWeapon.name);
-
             // Start the coroutine and wait until it finishes
             StartCoroutine(WaitForAttack(attackWeapon, damageToDeal, minColour, maxColour));
 
@@ -246,6 +243,7 @@ namespace Omega.UI
                         damageToDeal = (int)_damageToDeal;
                         currentDamage = damageToDeal;
                         recieversCards.cardsPlayed.Remove(card);
+                        recieversCards.RemovePlayedCards(card.CardWorldPreFab);
                         playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();
                     }
                 }
@@ -267,6 +265,7 @@ namespace Omega.UI
                     {
                         recieversCards.cardsPlayedAgainst.Add(card);
                         playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
                         playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
                     }
 
@@ -274,6 +273,7 @@ namespace Omega.UI
                     {
                         recieversCards.cardsPlayedAgainst.Add(card);
                         playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
                         playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsDOT = card.amountOfRounds;
                     }
 
@@ -309,6 +309,7 @@ namespace Omega.UI
                         }
 
                         playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
                     }
                 }
             }
@@ -375,18 +376,21 @@ namespace Omega.UI
 
                             diceSpawner.ActivateChaosDice();
                             playerCards.cardsPlayed.Remove(card);
+                            playerCards.RemovePlayedCards(card.CardWorldPreFab);
                             break;
 
                         case Card.CardType.rollBonus:
 
                             currentRollBonus += card.rollBonusValue;
                             playerCards.cardsPlayed.Remove(card);
+                            playerCards.RemovePlayedCards(card.CardWorldPreFab);
                             break;
 
                         case Card.CardType.doubleRoll:
 
                             isDoubleRoll = true;
                             playerCards.cardsPlayed.Remove(card);
+                            playerCards.RemovePlayedCards(card.CardWorldPreFab);
                             break;
 
                     }

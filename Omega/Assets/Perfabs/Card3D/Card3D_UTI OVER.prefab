@@ -122,6 +122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card3D_UTI OVER
       objectReference: {fileID: 0}
+    - target: {fileID: 6257523024372825422, guid: c36bc16411469d740aa989e7c7f0c899,
+        type: 3}
+      propertyPath: cardToUse
+      value: 
+      objectReference: {fileID: 2008768014105382636}
     - target: {fileID: 6528371854755076117, guid: c36bc16411469d740aa989e7c7f0c899,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -324,3 +329,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c36bc16411469d740aa989e7c7f0c899, type: 3}
+--- !u!1 &2008768014105382636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 223055627904804549, guid: c36bc16411469d740aa989e7c7f0c899,
+    type: 3}
+  m_PrefabInstance: {fileID: 1799434568407836713}
+  m_PrefabAsset: {fileID: 0}

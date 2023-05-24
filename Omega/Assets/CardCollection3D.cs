@@ -7,13 +7,7 @@ namespace Omega.Actions
 {
     public class CardCollection3D : MonoBehaviour
     {
-        [HideInInspector]
         [SerializeField] public GameObject cardToUse = null;
-
-        private void Awake()
-        {
-            cardToUse = GetComponentInChildren<CardCollection>().gameObject;
-        }
     }
 
 }
