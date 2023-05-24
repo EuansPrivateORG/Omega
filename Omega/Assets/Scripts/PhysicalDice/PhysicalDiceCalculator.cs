@@ -2,6 +2,7 @@ using Omega.Core;
 using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -20,6 +21,9 @@ namespace Omega.Actions
 
         [HideInInspector]public bool passedInfo = false;
 
+        public float diceLifeTime = 10f;
+        private float diceTimer;
+
         private void Awake()
         {
             numberRoller = GetComponent<NumberRoller>();
@@ -34,8 +38,24 @@ namespace Omega.Actions
         [ContextMenu("GetDiceTotal")]
         public void GetDiceTotal()
         {
+
             if(actionDices.Count > 0)
             {
+                diceTimer += Time.deltaTime;
+
+                if (diceTimer > diceTotal)
+                {
+                    foreach (GameObject actionDice in actionDices)
+                    {
+                        PhysicalDice physDice = actionDice.GetComponent<PhysicalDice>();
+                        if (physDice.diceValue <= 0)
+                        {
+                            int ran = Random.Range(0, 4);
+                            physDice.diceValue = ran;
+                        }
+                    }
+                }
+
                 foreach (GameObject dice in actionDices)
                 {
                     PhysicalDice physicalDice = dice.GetComponent<PhysicalDice>();
@@ -51,6 +71,8 @@ namespace Omega.Actions
                     numberRoller.StopRolling(diceTotal,playerIdentifier.isAttacking);
     
                     passedInfo = true;
+
+                    diceTimer = 0;
                 }
                 diceTotal = 0;
                 diceCounter = 0;
