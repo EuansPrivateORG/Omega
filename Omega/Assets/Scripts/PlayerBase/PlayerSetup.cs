@@ -19,6 +19,8 @@ namespace Omega.Core
         public Transform diceTarget;
         public Transform diceSpawn;
 
+        [HideInInspector] public GameObject icon;
+
         private GameObject playerShield = null;
         private GameObject playerDamageReduction = null;
 
@@ -27,10 +29,11 @@ namespace Omega.Core
         [HideInInspector] public int amountOfRoundsShield;
         [HideInInspector] public int amountOfRoundsStun;
 
-
+        PlayerIdentifier playerIdentifier;
 
         private void Awake()
         {
+            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             playerSpawnHandler = FindObjectOfType<PlayerSpawnHandler>();
         }
 
@@ -45,13 +48,13 @@ namespace Omega.Core
 
         public void SetPlayerIconDead()
         {
-            if (FindObjectOfType<PlayerIdentifier>().currentlyAlivePlayers.Count > 1)
+            if (playerIdentifier.currentlyAlivePlayers.Count > 1)
             {
-                PlayerIconID playerIconID = playerSpawnHandler.playerImageList[playerID - 1].GetComponent<PlayerIconID>();
+                PlayerIconID playerIconID = icon.GetComponent<PlayerIconID>();
                 playerIconID.iconBackground.SetActive(false);
                 playerIconID.destroyedIconBackground.SetActive(true);
                 playerIconID.playerIcon.GetComponent<Image>().color = playerIconID.destroyedIconBackground.GetComponent<Image>().color;
-                playerSpawnHandler.playerImageList.Remove(playerSpawnHandler.playerImageList[playerID - 1]);
+                playerSpawnHandler.playerImageList.Remove(icon);
             }
         }
 
