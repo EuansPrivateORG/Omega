@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Omega.Core;
 using Omega.Status;
+using UnityEngine.UI;
 
 namespace Omega.UI
 {
@@ -11,6 +12,7 @@ namespace Omega.UI
     {
         private int playerHealth;
         public TextMeshProUGUI DisplayText;
+        public Image FactionIcon = null;
 
         PlayerIdentifier playerIdentifier;
 
@@ -26,13 +28,24 @@ namespace Omega.UI
 
         private void Update()
         {
-            UpdateHealthText();
+            UpdateHealthInfo();
         }
 
-        private void UpdateHealthText()
+        private void UpdateHealthInfo()
         {
             if (playerIdentifier.currentPlayer != null)
             {
+                Base playerBase = playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().playerBase;
+                Image currentPlayerIcon = playerBase.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>();
+                FactionIcon.sprite = currentPlayerIcon.sprite;
+                if(playerBase.factionName == "Typherion Dominion")
+                {
+                    FactionIcon.color = new Color(212f/255f,34f/255f,21f/255f,1f);
+                }
+                else
+                {
+                FactionIcon.color = currentPlayerIcon.color;
+                }
                 playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>().currentHealth;
             }
             DisplayText.text = playerHealth.ToString();
