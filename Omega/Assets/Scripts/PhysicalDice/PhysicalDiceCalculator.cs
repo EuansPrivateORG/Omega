@@ -21,7 +21,7 @@ namespace Omega.Actions
 
         [HideInInspector]public bool passedInfo = false;
 
-        public float diceLifeTime = 10f;
+        public float diceLifeTime = 15f;
         private float diceTimer;
 
         private void Awake()
