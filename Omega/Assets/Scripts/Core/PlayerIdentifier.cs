@@ -115,8 +115,6 @@ namespace Omega.Core
 
                 SettingUpNextPlayer();
 
-                //SetupCurrentPlayerWeapons(currentPlayer);
-
                 CancelHandler handler = FindObjectOfType<CancelHandler>();
                 if (handler != null)
                 {
