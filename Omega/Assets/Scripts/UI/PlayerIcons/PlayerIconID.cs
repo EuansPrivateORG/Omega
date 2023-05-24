@@ -9,5 +9,14 @@ namespace Omega.UI
         public GameObject playerIcon;
         public GameObject iconBackground;
         public GameObject playerDeadText;
+        public Transform downPosition;
+
+        [HideInInspector]
+        public Transform startingPosition;
+
+        private void Awake()
+        {
+            startingPosition = transform;
+        }
     }
 }
