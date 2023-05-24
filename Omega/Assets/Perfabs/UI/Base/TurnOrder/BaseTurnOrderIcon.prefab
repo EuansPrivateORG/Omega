@@ -96,6 +96,8 @@ MonoBehaviour:
   playerIcon: {fileID: 3832434045106454272}
   iconBackground: {fileID: 8257676293795366713}
   playerDeadText: {fileID: 3683925706037518693}
+  moveDownAmountY: 30
+  yAxisMovement: 3
 --- !u!1 &3683925706037518693
 GameObject:
   m_ObjectHideFlags: 0

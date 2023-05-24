@@ -281,16 +281,23 @@ namespace Omega.Core
 
         private void UpdatePlayerIcon()
         {
+            //update this for leanTween
             PlayerSpawnHandler playerSpawner = FindObjectOfType<PlayerSpawnHandler>();
             for (int i = 0; i < playerSpawner.playerImageList.Count; i++)
             {
+                PlayerIconID iconID = playerSpawner.playerImageList[i].GetComponent<PlayerIconID>();
+
+                float yAxisMovement = iconID.yAxisMovement;
+
+                float oppsiteYAxisMovement = yAxisMovement + iconID.moveDownAmountY;
+
                 if (i  == currentPlayerIndex)
                 {
-                    playerSpawner.playerImageList[i].GetComponent<Image>().enabled = true;
+                    LeanTween.moveY(playerSpawner.playerImageList[i], yAxisMovement, .5f);
                 }
                 else
                 {
-                    playerSpawner.playerImageList[i].GetComponent<Image>().enabled = false;
+                    LeanTween.moveY(playerSpawner.playerImageList[i], oppsiteYAxisMovement, .5f);
                 }
             }
         }

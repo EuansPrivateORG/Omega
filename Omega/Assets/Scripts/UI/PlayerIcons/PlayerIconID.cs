@@ -9,14 +9,15 @@ namespace Omega.UI
         public GameObject playerIcon;
         public GameObject iconBackground;
         public GameObject playerDeadText;
-        public Transform downPosition;
-
+        [SerializeField] public float moveDownAmountY;
         [HideInInspector]
-        public Transform startingPosition;
+        public float yAxisMovement;
 
         private void Awake()
         {
-            startingPosition = transform;
+            yAxisMovement = transform.position.y - moveDownAmountY;
         }
+
+
     }
 }
