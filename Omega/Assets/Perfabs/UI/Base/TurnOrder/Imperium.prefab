@@ -12,6 +12,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Imperium
       objectReference: {fileID: 0}
+    - target: {fileID: 6092583148424141623, guid: 01533bb7f78bd0d45b92559954d47a9b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1bfd62909b117394fae2a792afd532c0,
+        type: 3}
     - target: {fileID: 6789389691489395621, guid: 01533bb7f78bd0d45b92559954d47a9b,
         type: 3}
       propertyPath: m_Enabled
