@@ -327,6 +327,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card3D_DEFF SHIELD
       objectReference: {fileID: 0}
+    - target: {fileID: 8865891927795381076, guid: 7f79b6ed55ecde745b03827cecf38323,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0.488972
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f79b6ed55ecde745b03827cecf38323, type: 3}
 --- !u!1 &57367924147228544 stripped

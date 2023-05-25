@@ -283,7 +283,6 @@ namespace Omega.UI
                         float newDam = damageToDeal * card.damageReductionPercentage;
                         damageToDeal = (int)newDam;
                         currentDamage = damageToDeal;
-                        Debug.Log(currentDamage);
                         recieversCards.cardsPlayed.Remove(card);
                         recieversCards.RemovePlayedCards(card.CardWorldPreFab);
                         playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();

@@ -21,6 +21,8 @@ namespace Omega.Actions
 
         public List<Card> cards;
 
+        public CardProbabilityTracker cardProbabilityTracker;
+
         private List<Card> lowChanceCards = new List<Card>();
 
         private List<Card> mediumChanceCards = new List<Card>();
@@ -93,6 +95,7 @@ namespace Omega.Actions
             {
                 playerCards.cardsInHand.Add(card);
                 playerCards.InstantiatedCardInDeck(card.CardWorldPreFab);
+                cardProbabilityTracker.AddCardProb(card);
             }
         }
 
@@ -134,6 +137,8 @@ namespace Omega.Actions
                 playerCards.cardsInHand.Add(card);
 
                 playerCards.InstantiatedCardInDeck(card.CardWorldPreFab);
+
+                cardProbabilityTracker.AddCardProb(card);
             }
         }
 
