@@ -65,11 +65,11 @@ namespace Omega.Combat
             }
         }
 
-        public void SetTarget(GameObject target, GameObject instigator, int damage, int min, int max, AttackButtonHandler origin, int num)
+        public void SetTarget(GameObject _target, GameObject _instigator, int _damage, int min, int max, AttackButtonHandler origin, int num)
         {
-            this.target = target;
-            this.instigator = instigator;
-            this.damage = damage;
+            target = _target;
+            instigator = _instigator;
+            damage = _damage;
             minColour = min;
             maxColour = max;
             attackButtonHandler = origin;

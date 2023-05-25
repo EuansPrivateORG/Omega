@@ -259,7 +259,7 @@ namespace Omega.UI
             }
 
             // Start the coroutine and wait until it finishes
-            StartCoroutine(WaitForAttack(attackWeapon, damageToDeal, minColour, maxColour));
+            StartCoroutine(WaitForAttack(attackWeapon, currentDamage, minColour, maxColour));
 
             rollBonus = 0;
         }
@@ -280,10 +280,10 @@ namespace Omega.UI
                 {
                     if (card.cardType == Card.CardType.damageReduction)
                     {
-                        float _damageToDeal = damageToDeal;
-                        _damageToDeal *= card.damageReductionPercentage;
-                        damageToDeal = (int)_damageToDeal;
+                        float newDam = damageToDeal * card.damageReductionPercentage;
+                        damageToDeal = (int)newDam;
                         currentDamage = damageToDeal;
+                        Debug.Log(currentDamage);
                         recieversCards.cardsPlayed.Remove(card);
                         recieversCards.RemovePlayedCards(card.CardWorldPreFab);
                         playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();

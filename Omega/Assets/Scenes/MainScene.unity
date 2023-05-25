@@ -1914,8 +1914,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPlayers: 5
-  playerStartingHealth: 10
-  playerStartingEnergy: 10
+  playerStartingHealth: 150
+  playerStartingEnergy: 0
   radius: 14.5
   players: {fileID: 1902693845}
   playersTurnOrder: {fileID: 1914578938}
@@ -2082,6 +2082,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1cb68a6c42635ed4795889796af5aa3e, type: 2}
   - {fileID: 11400000, guid: 750d713986c8a7144b4325c182c93112, type: 2}
   - {fileID: 11400000, guid: d04260b0c6ab6e64f888416257e445cc, type: 2}
+  - {fileID: 11400000, guid: 39cfc8f8788826c458049fd06ee6ab44, type: 2}
   nextTurnDelayTime: 0
 --- !u!114 &781620692
 MonoBehaviour:

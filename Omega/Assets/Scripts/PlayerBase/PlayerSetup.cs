@@ -21,8 +21,8 @@ namespace Omega.Core
 
         [HideInInspector] public GameObject icon;
 
-        private GameObject playerShield = null;
-        private GameObject playerDamageReduction = null;
+        private GameObject playerShield;
+        private GameObject playerDamageReduction;
 
         [HideInInspector] public int amountOfRoundsDOT;
         [HideInInspector] public int amountOfRoundsHOT;
