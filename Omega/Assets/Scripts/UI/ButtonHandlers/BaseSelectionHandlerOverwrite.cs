@@ -12,18 +12,11 @@ namespace Omega.UI
     {
         private PlayerIdentifier playerIdentifier;
 
+        public List<GameObject> playersToChooseFrom;
 
         void Start()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
-
-            // Set up the initial navigation for the Selectable component
-            var selectable = GetComponent<Selectable>();
-            Navigation nav = selectable.navigation;
-            nav.mode = Navigation.Mode.Explicit;
-            nav.selectOnLeft = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
-            nav.selectOnRight = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
-            selectable.navigation = nav;
         }
 
 
@@ -48,36 +41,74 @@ namespace Omega.UI
             }
         }
 
+        public void InitialNav()
+        {
+            // Set up the initial navigation for the Selectable component
 
+            if (playerIdentifier.flippedTurnOrder)
+            {
+                var selectable = GetComponent<Selectable>();
+                Navigation nav = selectable.navigation;
+                nav.mode = Navigation.Mode.Explicit;
+                nav.selectOnLeft = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) + 1)].GetComponent<Selectable>();
+                nav.selectOnRight = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) - 1)].GetComponent<Selectable>();
+                selectable.navigation = nav;
+            }
+            else
+            {
+                var selectable = GetComponent<Selectable>();
+                Navigation nav = selectable.navigation;
+                nav.mode = Navigation.Mode.Explicit;
+                nav.selectOnRight = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) + 1)].GetComponent<Selectable>();
+                nav.selectOnLeft = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) - 1)].GetComponent<Selectable>();
+                selectable.navigation = nav;
+            }
+        }
 
         void OnNavigatePerformed(InputAction.CallbackContext context)
         {
             // Handle the "Select on Left" and "Select on Right" actions
             var selectable = GetComponent<Selectable>();
             Navigation nav = selectable.navigation;
-            if (playerIdentifier.flippedTurnOrder)
+
+            if (playerIdentifier.isSelectingPlayer)
             {
-                if (context.ReadValue<Vector2>().x < 0)
+                if (playerIdentifier.flippedTurnOrder)
                 {
-                    nav.selectOnRight = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
+                    if (context.ReadValue<Vector2>().x < 0)
+                    {
+                        nav.selectOnRight = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) - 1)].GetComponent<Selectable>();
+                    }
+                    else if (context.ReadValue<Vector2>().x > 0)
+                    {
+                        nav.selectOnLeft = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) + 1)].GetComponent<Selectable>();
+                    }
                 }
-                else if (context.ReadValue<Vector2>().x > 0)
+                else
                 {
-                    nav.selectOnLeft = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
+                    if (context.ReadValue<Vector2>().x < 0)
+                    {
+                        nav.selectOnLeft = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) - 1)].GetComponent<Selectable>();
+                    }
+                    else if (context.ReadValue<Vector2>().x > 0)
+                    {
+                        nav.selectOnRight = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) + 1)].GetComponent<Selectable>();
+                    }
+                }
+                selectable.navigation = nav;
+            }
+        }
+
+        private int GetPlaceInIndexNew(GameObject obj)
+        {
+            for (int i = 0; i < playersToChooseFrom.Count; i++)
+            {
+                if (obj == playersToChooseFrom[i])
+                {
+                    return i;
                 }
             }
-            else
-            {
-                if (context.ReadValue<Vector2>().x < 0)
-                {
-                    nav.selectOnLeft = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) - 1)].GetComponent<Selectable>();
-                }
-                else if (context.ReadValue<Vector2>().x > 0)
-                {
-                    nav.selectOnRight = playerIdentifier.currentlyAlivePlayersInTurn[WrapIndex(playerIdentifier.GetPlaceInIndex(gameObject) + 1)].GetComponent<Selectable>();
-                }
-            }
-            selectable.navigation = nav;
+            return 0;
         }
 
 
@@ -85,7 +116,7 @@ namespace Omega.UI
         int WrapIndex(int index)
         {
             // Helper function to wrap an index around the start and end of the list
-            return (index + playerIdentifier.currentlyAlivePlayers.Count) % playerIdentifier.currentlyAlivePlayers.Count;
+            return (index + playersToChooseFrom.Count) % playersToChooseFrom.Count;
         }
     }
 }

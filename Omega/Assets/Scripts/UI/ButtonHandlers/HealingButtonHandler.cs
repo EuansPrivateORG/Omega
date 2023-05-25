@@ -128,6 +128,7 @@ namespace Omega.UI
 
         private void EnableBaseSelection(List<GameObject> healablePlayers)
         {
+            playerIdentifier.isSelectingPlayer = true;
             currentlySelectingPlayer = true;
             playerHUD.alpha = 0.25f;
             cancelHandler.cannotCancel = true;
@@ -167,6 +168,7 @@ namespace Omega.UI
 
         private void DisableBaseSelection(List<GameObject> healablePlayers)
         {
+            playerIdentifier.isSelectingPlayer = false;
             currentlySelectingPlayer = false;
             foreach (GameObject player in playerIdentifier.playerIndex)
             {

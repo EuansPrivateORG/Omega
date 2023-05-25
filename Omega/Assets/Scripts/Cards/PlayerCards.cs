@@ -1,3 +1,4 @@
+using Omega.Core;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -166,9 +167,11 @@ namespace Omega.Actions
 
         private IEnumerator ReappearCard(GameObject card)
         {
+            //Debug.Log(card.name);
             Renderer cardRenderer = card.GetComponent<Renderer>();
             CanvasGroup cardCanvas = card.GetComponent<CardCollection3D>().cardToUse.GetComponent<CanvasGroup>();
             float dissolveDuration = Random.Range(1f, 2f);
+            cardCanvas.alpha = 0f;
             float elapsedTime = 0f;
 
             while (elapsedTime < dissolveDuration)
@@ -178,6 +181,7 @@ namespace Omega.Actions
 
                 cardRenderer.sharedMaterial.SetFloat("_Dissolve", tRenderer);
                 cardCanvas.alpha = tCanvas;
+                //Debug.Log(gameObject.name + " " + cardCanvas + " " + cardCanvas.alpha);
 
                 elapsedTime += Time.deltaTime;
                 yield return null;

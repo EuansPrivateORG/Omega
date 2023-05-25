@@ -146,6 +146,7 @@ namespace Omega.UI
 
         private void EnableBaseSelection(List<GameObject> attackablePlayers)
         {
+            playerIdentifier.isSelectingPlayer = true;
             currentlySelectingPlayer = true;
             playerHUD.alpha = 0.25f;
             cancelHandler.cannotCancel = true;
@@ -178,7 +179,7 @@ namespace Omega.UI
 
                 if (playerObject != playerIdentifier.currentPlayer && !playerObject.GetComponent<Health>().isDead)
                 {
-                    playerObject.GetComponent <PlayerSelectionHandler>().enabled = true;
+                    playerObject.GetComponent<PlayerSelectionHandler>().enabled = true;
                     playerObject.GetComponent<Selectable>().enabled = true;
                     playerObject.GetComponentInChildren<Outline>().enabled = true;
                     playerObject.GetComponentInChildren<Outline>().OutlineColor = Color.white;
@@ -198,10 +199,18 @@ namespace Omega.UI
             }
 
             currentlyAttackablePlayers = attackablePlayers;
+
+            foreach (GameObject playerObject in playerIdentifier.currentlyAlivePlayersInTurn)
+            {
+                BaseSelectionHandlerOverwrite baseSelectionHandlerOverwrite = playerObject.GetComponent<BaseSelectionHandlerOverwrite>();
+                baseSelectionHandlerOverwrite.playersToChooseFrom = currentlyAttackablePlayers;
+                baseSelectionHandlerOverwrite.InitialNav();
+            }
         }
 
         private void DisableBaseSelection(List<GameObject> attackablePlayers)
         {
+            playerIdentifier.isSelectingPlayer = false;
             currentlySelectingPlayer = false;
             foreach (GameObject player in playerIdentifier.playerIndex)
             {

@@ -41,6 +41,9 @@ namespace Omega.Core
 
         [HideInInspector] public bool flippedTurnOrder = false;
 
+        [HideInInspector] public bool isSelectingPlayer = false;
+
+
         private void Awake()
         {
             turnTimer = GetComponent<TurnTimer>();
