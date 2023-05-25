@@ -17,12 +17,17 @@ namespace Omega.Actions
             physicalDice = GetComponentInParent<PhysicalDice>();
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            GetComponent<AudioSource>().Play();
+        }
         private void OnTriggerStay(Collider other)
         {
             if (other.tag == "Terrain")
             {
                 onGround = true;
                 physicalDice.diceValue = sideValue;
+                
             }
         }
 
