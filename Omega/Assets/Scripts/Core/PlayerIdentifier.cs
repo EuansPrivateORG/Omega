@@ -150,6 +150,8 @@ namespace Omega.Core
             StartCoroutine(turnTransition.FadeOutHUD());
             EnergyBar energyBar = FindObjectOfType<EnergyBar>();
             energyBar.UpdateSegments();
+            PlayerHealthDisplay playerHealthDisplay = FindObjectOfType<PlayerHealthDisplay>();
+            playerHealthDisplay.UpdateHealthInfo();
             cameraHandler.SwitchCamera(currentPlayer.GetComponentInChildren<CinemachineVirtualCamera>());
             StartCoroutine(DelayedHUDFadeIn(turnTransition));
             turnTimer.ResetTimer();

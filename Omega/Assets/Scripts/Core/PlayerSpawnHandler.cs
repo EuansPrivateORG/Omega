@@ -111,6 +111,8 @@ namespace Omega.Core
             cameraHandler.SetupCameras();
             EnergyBar energyBar = FindObjectOfType<EnergyBar>();
             energyBar.UpdateSegments();
+            PlayerHealthDisplay playerHealthDisplay = FindObjectOfType<PlayerHealthDisplay>();
+            playerHealthDisplay.UpdateHealthInfo();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
             StartCoroutine(turnTransition.FadeInHUD());
             TurnTimer turnTimer = GetComponent<TurnTimer>();
