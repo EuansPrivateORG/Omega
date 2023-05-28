@@ -9,7 +9,6 @@ namespace Omega.Combat
 {
     public class ProjectileSpawner : MonoBehaviour
     {
-        [SerializeField] GameObject projectile;
         PlayerIdentifier playerIdentifier;
 
 
@@ -23,7 +22,7 @@ namespace Omega.Combat
             GameObject projectileToFire = null;
             if(attackButtonHandler.weaponClass != Weapon.weaponClass.Ultimate)
             {
-                GameObject projectileInstance = Instantiate(projectile, attackweapon.transform.position, Quaternion.identity);
+                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, attackweapon.transform.position, Quaternion.identity);
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }
@@ -37,7 +36,7 @@ namespace Omega.Combat
                         targetUltimatePosition = weapon.gameObject;
                     }
                 }
-                GameObject projectileInstance = Instantiate(projectile, targetUltimatePosition.transform.position, Quaternion.identity);
+                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, targetUltimatePosition.transform.position, Quaternion.identity);
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }
