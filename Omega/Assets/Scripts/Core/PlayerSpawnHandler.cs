@@ -109,6 +109,8 @@ namespace Omega.Core
             cardTween.RefreshCardList();
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             cameraHandler.SetupCameras();
+            EnergyBar energyBar = FindObjectOfType<EnergyBar>();
+            energyBar.UpdateSegments();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
             StartCoroutine(turnTransition.FadeInHUD());
             TurnTimer turnTimer = GetComponent<TurnTimer>();

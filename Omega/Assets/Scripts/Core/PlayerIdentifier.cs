@@ -148,6 +148,8 @@ namespace Omega.Core
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();
             StartCoroutine(turnTransition.FadeOutHUD());
+            EnergyBar energyBar = FindObjectOfType<EnergyBar>();
+            energyBar.UpdateSegments();
             cameraHandler.SwitchCamera(currentPlayer.GetComponentInChildren<CinemachineVirtualCamera>());
             StartCoroutine(DelayedHUDFadeIn(turnTransition));
             turnTimer.ResetTimer();
