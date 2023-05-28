@@ -49,10 +49,7 @@ namespace Omega.UI
                 maxHealth = playerIdentifier.currentPlayer.GetComponent<Health>().maxHealth;
             }
             healthSlider.value = playerHealth/ maxHealth;
-            Debug.Log("Clamp: " + playerHealth/ maxHealth);
             DisplayText.text = playerHealth.ToString();
-            Debug.Log(playerIdentifier.currentPlayer.gameObject.name + " : " + playerHealth);
-            Debug.Log("Slidervalue: " + healthSlider.value);
         }
     }
 

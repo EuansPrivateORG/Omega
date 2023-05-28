@@ -5,6 +5,7 @@ using Omega.Status;
 using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace Omega.Combat
@@ -51,7 +52,7 @@ namespace Omega.Combat
             if (enemyCollider != instigator.GetComponent<Collider>())
             {
                 target.GetComponent<Health>().TakeDamage(damage);
-                Debug.Log(damage.ToString() + " Damage Dealt");
+                UnityEngine.Debug.Log(damage.ToString() + " Damage Dealt");
                 enemyCollider.gameObject.GetComponentInChildren<AudioSource>().Play();
                 attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour, false, damage);
                 if (target.GetComponent<Health>().isDead)

@@ -142,7 +142,6 @@ namespace Omega.Core
         private void SettingUpNextPlayer()
         {
             currentPlayer = currentlyAlivePlayersInTurn[currentPlayerIndex];
-            Debug.Log("This Players Turn: " + currentPlayer);
 
             currentPlayer.GetComponent<Energy>().GainEnergy(energyGainPerTurn);
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();

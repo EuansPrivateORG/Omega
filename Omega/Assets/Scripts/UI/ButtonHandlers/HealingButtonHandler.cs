@@ -164,6 +164,13 @@ namespace Omega.UI
             {
                 nextAvailablePlayer = null;
             }
+
+            foreach (GameObject playerObject in playerIdentifier.currentlyAlivePlayersInTurn)
+            {
+                BaseSelectionHandlerOverwrite baseSelectionHandlerOverwrite = playerObject.GetComponent<BaseSelectionHandlerOverwrite>();
+                baseSelectionHandlerOverwrite.playersToChooseFrom = healablePlayers;
+                baseSelectionHandlerOverwrite.InitialNav();
+            }
         }
 
         private void DisableBaseSelection(List<GameObject> healablePlayers)

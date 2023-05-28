@@ -274,22 +274,6 @@ namespace Omega.UI
                 cardList.Add(card);
             }
 
-            foreach (Card card in cardList)
-            {
-                if (card.hasEffectWhenAttacked)
-                {
-                    if (card.cardType == Card.CardType.damageReduction)
-                    {
-                        float newDam = damageToDeal * card.damageReductionPercentage;
-                        damageToDeal = (int)newDam;
-                        currentDamage = damageToDeal;
-                        recieversCards.cardsPlayed.Remove(card);
-                        recieversCards.RemovePlayedCards(card.CardWorldPreFab);
-                        playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();
-                    }
-                }
-            }
-
             PlayerCards playersCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
 
             List<Card> _cardList = new List<Card>();
@@ -369,20 +353,19 @@ namespace Omega.UI
             if(playerLeft != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerLeft, minColour, maxColour, this, 2);
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerLeft, damageToDeal), attackWeapon, playerLeft, minColour, maxColour, this, 2);
                 playerLeft = null;
             }
 
             
             yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerToDamage));
-            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
-
+            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerToDamage, damageToDeal), attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
+            
 
             if (playerRight != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerRight));
-                Debug.Log("here");
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(damageToDeal, attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerRight, damageToDeal), attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
                 playerRight = null;
             }
 
@@ -393,6 +376,35 @@ namespace Omega.UI
             scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += damageToDeal;
 
             physicalDiceCalculator.ClearDice();
+        }
+
+        private int ShieldDamage(GameObject _playerToDamage, int damageToDeal)
+        {
+            damageToDeal = currentDamage;
+            PlayerCards recieversCards = _playerToDamage.GetComponent<PlayerCards>();
+
+            List<Card> cardList = new List<Card>();
+            foreach (Card card in recieversCards.cardsPlayed)
+            {
+                cardList.Add(card);
+            }
+
+            foreach (Card card in cardList)
+            {
+                if (card.hasEffectWhenAttacked)
+                {
+                    if (card.cardType == Card.CardType.damageReduction)
+                    {
+                        float newDam = damageToDeal * card.damageReductionPercentage;
+                        damageToDeal = (int)newDam;
+                        recieversCards.cardsPlayed.Remove(card);
+                        recieversCards.RemovePlayedCards(card.CardWorldPreFab);
+                        _playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();
+                    }
+                }
+            }
+
+            return damageToDeal;
         }
 
         public void RollDice(GameObject toDamage)
@@ -454,12 +466,12 @@ namespace Omega.UI
 
         public void SpawnDamageNumbers(GameObject toDamage, int minColour, int maxColour, bool fromCard, int damage)
         {
-            if (fromCard) currentDamage = damage;
+            //if (fromCard) currentDamage = damage;
 
             GameObject numbersPrefab = Instantiate(damageNumbersPrefab, toDamage.transform.position, quaternion.identity);
-            numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(currentDamage, minColour, maxColour, colourGradient);
+            numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(damage, minColour, maxColour, colourGradient);
             NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
-            numbersDisplay.SpawnNumbers(currentDamage);
+            numbersDisplay.SpawnNumbers(damage);
         }
 
         public Color GetColorOnGradient(int value, int minValue, int maxValue, Gradient colorGradient)
@@ -482,10 +494,6 @@ namespace Omega.UI
             {
                 attackWeapon.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / rotationTime);
                 elapsedTime += Time.deltaTime;
-                if (playerToTarget == playerRight)
-                {
-                    Debug.Log(elapsedTime);
-                }
                 yield return null;
             }
             //attackWeapon.transform.rotation = initialRotation;
