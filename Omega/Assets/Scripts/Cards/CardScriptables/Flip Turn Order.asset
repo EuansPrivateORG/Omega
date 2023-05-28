@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Flip Turn Order
   cardCategory: 2
-  cardOdds: 1
+  cardWeight: 7
   activationType: 3
   cardType: 9
   amountOfRounds: 0

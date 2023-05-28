@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Chaos Dice
   cardCategory: 2
-  cardOdds: 2
+  cardWeight: 10
   activationType: 2
   cardType: 7
   amountOfRounds: 0

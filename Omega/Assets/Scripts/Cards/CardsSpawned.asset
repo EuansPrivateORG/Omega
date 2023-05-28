@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4527f5db11afe9408ce39455f0014d1, type: 3}
   m_Name: CardsSpawned
   m_EditorClassIdentifier: 
-  totalShieldSpawned: 18
-  totalStunSpawned: 15
-  totalDoubleSpawned: 16
-  totalAOESpawned: 23
-  totalDOTSpawned: 21
-  totalHOTSpawned: 19
-  totalInstantSpawned: 18
-  totalFlipSpawned: 14
-  totalDamageReductionSpawned: 39
+  totalShieldSpawned: 4
+  totalStunSpawned: 10
+  totalDoubleSpawned: 12
+  totalAOESpawned: 18
+  totalInstantSpawned: 17
+  totalDOTSpawned: 16
+  totalHOTSpawned: 14
+  totalFlipSpawned: 27
+  totalDamageReductionSpawned: 28
   totalBonusSpawned: 30
-  totalOverchargeSpawned: 40
-  totalChaosSpawned: 47
+  totalOverchargeSpawned: 34
+  totalChaosSpawned: 30

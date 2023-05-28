@@ -21,9 +21,9 @@ namespace Omega.Actions
         public int totalDoubleSpawned;
         [Header("Medium Chance Cards")]
         public int totalAOESpawned;
+        public int totalInstantSpawned;
         public int totalDOTSpawned;
         public int totalHOTSpawned;
-        public int totalInstantSpawned;
         public int totalFlipSpawned;
         [Header("High Chance Cards")]
         public int totalDamageReductionSpawned;
@@ -90,4 +90,5 @@ namespace Omega.Actions
             }
         }
     }
+
 }

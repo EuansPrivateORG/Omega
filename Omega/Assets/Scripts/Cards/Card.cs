@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.Rendering;
 
 namespace Omega.Actions
 {
@@ -26,14 +26,8 @@ namespace Omega.Actions
 
         public CardCategory cardCategory;
 
-        public enum CardOdds
-        {
-            Low,
-            Medium,
-            High
-        }
-
-        public CardOdds cardOdds;
+        [Tooltip("The higher the card weight the higher the probability of that card being given")]
+        public float cardWeight;
 
         public enum ActivationType
         {

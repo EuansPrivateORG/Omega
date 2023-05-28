@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Damage Reduction
   cardCategory: 1
-  cardOdds: 2
+  cardWeight: 8
   activationType: 3
   cardType: 11
   amountOfRounds: 1

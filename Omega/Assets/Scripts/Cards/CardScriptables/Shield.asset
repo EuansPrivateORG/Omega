@@ -18,10 +18,10 @@ MonoBehaviour:
     type: 3}
   CardName: Shield
   cardCategory: 1
-  cardOdds: 0
+  cardWeight: 1
   activationType: 3
   cardType: 3
-  amountOfRounds: -1
+  amountOfRounds: 1
   damagePerTurn: 0
   shieldPrefab: {fileID: 7774425719397589398, guid: 53464166dc135d746aa41ef1b971d3fe,
     type: 3}

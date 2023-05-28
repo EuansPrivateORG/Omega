@@ -23,12 +23,6 @@ namespace Omega.Actions
 
         public CardProbabilityTracker cardProbabilityTracker;
 
-        private List<Card> lowChanceCards = new List<Card>();
-
-        private List<Card> mediumChanceCards = new List<Card>();
-
-        private List<Card> highChanceCards = new List<Card>();
-
         private PlayerIdentifier playerIdentifier;
 
         private DrawCardHandler drawCardHandler;
@@ -40,22 +34,6 @@ namespace Omega.Actions
             drawCardHandler = FindObjectOfType<DrawCardHandler>();
 
             playerIdentifier = GetComponent<PlayerIdentifier>();
-
-            foreach(Card card in cards)
-            {
-                if(card.cardOdds == Card.CardOdds.Low)
-                {
-                    lowChanceCards.Add(card);
-                }
-                if (card.cardOdds == Card.CardOdds.Medium)
-                {
-                    mediumChanceCards.Add(card);
-                }
-                if (card.cardOdds == Card.CardOdds.High)
-                {
-                    highChanceCards.Add(card);
-                }
-            }
         }
 
         public void DrawCardNoUI(GameObject player, int numOfCards)
@@ -144,24 +122,40 @@ namespace Omega.Actions
 
         private Card FindCard(GameObject player)
         {
-            int ran = Random.Range(0, 100);
+            List<Card> allCards = new List<Card>();
+            allCards.AddRange(cards);
 
-            if (ran > 83.33)
+            List<float> probabilities = new List<float>();
+
+            float totalWeight = 0;
+            foreach (Card card in allCards)
             {
-                int rand = Random.Range(0, lowChanceCards.Count);
-                return lowChanceCards[rand];
+                totalWeight += card.cardWeight; // Assuming each card has a weight property
             }
-            else if (ran < 83.33 && ran > 50)
+
+            float cumulativeProbability = 0;
+            foreach (Card card in allCards)
             {
-                int rand = Random.Range(0, mediumChanceCards.Count);
-                return mediumChanceCards[rand];
+                float cardProbability = card.cardWeight / totalWeight;
+                cumulativeProbability += cardProbability;
+                probabilities.Add(cumulativeProbability);
             }
-            else
+
+            float randomValue = Random.value;
+
+            for (int i = 0; i < probabilities.Count; i++)
             {
-                int rand = Random.Range(0, highChanceCards.Count);
-                return highChanceCards[rand];
+                if (randomValue <= probabilities[i])
+                {
+                    return allCards[i];
+                }
             }
+
+            // If no card is selected, return null or handle the case as appropriate
+            Debug.LogError("No Card Was Given");
+            return null;
         }
+
 
         public void CardPlayed(GameObject card)
         {

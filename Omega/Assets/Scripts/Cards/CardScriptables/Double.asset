@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Double
   cardCategory: 2
-  cardOdds: 0
+  cardWeight: 2
   activationType: 2
   cardType: 6
   amountOfRounds: 0
