@@ -5117,7 +5117,6 @@ GameObject:
   - component: {fileID: 230174530208096830}
   - component: {fileID: 8844619153432127089}
   - component: {fileID: 5997517988077607454}
-  - component: {fileID: 947449164275773979}
   m_Layer: 0
   m_Name: Sifi-Gizmo (1)
   m_TagString: Untagged
@@ -5183,20 +5182,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &947449164275773979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7071672794146088658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 641380fcf944b8c48a84d304f69c3fad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinTime: 0.2
-  isNegative: 1
 --- !u!1 &7224090025516910918
 GameObject:
   m_ObjectHideFlags: 0
@@ -5885,7 +5870,6 @@ GameObject:
   - component: {fileID: 2171915123833676178}
   - component: {fileID: 905679948080780391}
   - component: {fileID: 9087528798982059563}
-  - component: {fileID: 4374823171036328092}
   m_Layer: 0
   m_Name: Sifi-Gizmo
   m_TagString: Untagged
@@ -5951,20 +5935,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4374823171036328092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8838610855047580338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 641380fcf944b8c48a84d304f69c3fad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinTime: 0.2
-  isNegative: 0
 --- !u!1 &9050392331797365647
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class TurningTimer : MonoBehaviour
     {
         if (turningTimer)
         {
-            if(isNegative)
+            if (!isNegative)
             {
                 currentRotation = 360 + (amountOfSpins * 360);
             }
@@ -25,10 +25,18 @@ public class TurningTimer : MonoBehaviour
             LeanTween.rotateZ(gameObject, currentRotation, spinTime);
             turningTimer = false;
         }
-        if (gameObject.transform.rotation.z == currentRotation)
+        else
         {
-            turningTimer = true;
-            amountOfSpins++;
+            float rotationDifference = Mathf.Abs(gameObject.transform.rotation.eulerAngles.z - currentRotation);
+            if (rotationDifference < 0.01f) // Adjust the threshold as needed
+            {
+                turningTimer = true;
+                amountOfSpins++;
+                Debug.LogError("here");
+            }
         }
+
+        Debug.Log(gameObject.name + " " + gameObject.transform.rotation.eulerAngles.z);
     }
 }
+
