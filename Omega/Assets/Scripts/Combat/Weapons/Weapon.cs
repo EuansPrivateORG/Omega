@@ -6,8 +6,9 @@ namespace Omega.Combat
 {
     public class Weapon : MonoBehaviour
     {
-        public weaponClass weaponType;
 
+        public weaponClass weaponType;
+        public GameObject projectilePrefab;
         [System.Serializable]
         public enum weaponClass
         {

@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 3
+  projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
+    type: 3}
 --- !u!82 &8437444335062620135
 AudioSource:
   m_ObjectHideFlags: 0
@@ -241,6 +243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
+  projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
+    type: 3}
 --- !u!82 &1521801123239228377
 AudioSource:
   m_ObjectHideFlags: 0
@@ -583,6 +587,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 1
+  projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
+    type: 3}
 --- !u!82 &3966972333611909342
 AudioSource:
   m_ObjectHideFlags: 0
@@ -793,6 +799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 2
+  projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
+    type: 3}
 --- !u!82 &605419409022116970
 AudioSource:
   m_ObjectHideFlags: 0
