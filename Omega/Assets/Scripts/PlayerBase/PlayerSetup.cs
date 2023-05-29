@@ -26,9 +26,10 @@ namespace Omega.Core
 
         [HideInInspector] public int amountOfRoundsDOT;
         [HideInInspector] public int amountOfRoundsHOT;
-        [HideInInspector] public int amountOfRoundsShield;
-        [HideInInspector] public int amountOfRoundsStun;
         //[HideInInspector] 
+        public int amountOfRoundsShield = 0;
+        [HideInInspector] public int amountOfRoundsStun;
+        [HideInInspector] 
         public int amountOfRoundsEOT;
 
         PlayerIdentifier playerIdentifier;

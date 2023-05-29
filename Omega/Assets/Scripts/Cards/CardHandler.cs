@@ -193,6 +193,7 @@ namespace Omega.Actions
 
                         case Card.CardType.shield:
 
+                            currentPlayersSetup.amountOfRoundsShield = currentCard.amountOfRounds;
                             currentPlayersSetup.ActivateShield(currentCard.shieldPrefab);
                             playersCards.cardsPlayed.Add(currentCard);
                             playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
@@ -266,10 +267,11 @@ namespace Omega.Actions
                 if (card.effectOverTime)
                 {
 
-                    if(card.cardType == Card.CardType.shield && card.amountOfRounds <= 0)
+                    if(card.cardType == Card.CardType.shield)
                     {
                         playerSetup.amountOfRoundsShield--;
-                        if(playerSetup.amountOfRoundsShield <= 0)
+
+                        if (playerSetup.amountOfRoundsShield <= 0)
                         {
                             playerSetup.DeActivateShield();
                             playersCards.cardsPlayed.Remove(card);
