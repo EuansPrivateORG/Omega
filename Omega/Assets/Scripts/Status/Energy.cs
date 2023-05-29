@@ -8,6 +8,14 @@ namespace Omega.Status
     {
         [HideInInspector] public int energy;
 
+        private void Update()
+        {
+            if(energy > 16)
+            {
+                energy = 16;
+            }
+        }
+
         public void GainEnergy(int addition)
         {
             energy += addition;

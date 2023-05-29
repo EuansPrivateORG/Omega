@@ -4864,7 +4864,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 39cfc8f8788826c458049fd06ee6ab44, type: 2}
   cardProbabilityTracker: {fileID: 11400000, guid: b36e3688e8d2b2a498de7a5e54073819,
     type: 2}
-  nextTurnDelayTime: 0
+  nextTurnDelayTime: 2
 --- !u!114 &781620692
 MonoBehaviour:
   m_ObjectHideFlags: 0
