@@ -337,7 +337,7 @@ namespace Omega.Actions
             }
         }
 
-        private IEnumerator DelayNextTurn()
+        public IEnumerator DelayNextTurn()
         {
             yield return new WaitForSeconds(nextTurnDelayTime);
             playerIdentifier.NextPlayer();

@@ -9,6 +9,10 @@ namespace Omega.Combat
 
         public weaponClass weaponType;
         public GameObject projectilePrefab;
+        public float shakeOnShot;
+        public float shakeOnImpact;
+        public float shakOnShotLength;
+        public float shakOnImpactLength;
         [System.Serializable]
         public enum weaponClass
         {

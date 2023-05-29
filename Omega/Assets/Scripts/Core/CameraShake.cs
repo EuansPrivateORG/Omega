@@ -12,15 +12,10 @@ namespace Omega.UI
         public float intensity = 1f;
 
         CinemachineVirtualCamera cinemachineVirtualCamera;
-        PlayerIdentifier playerIdentifier;
 
         private void Awake()
         {
-            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
-        }
-        private void UpdateCamera()
-        {
-            cinemachineVirtualCamera = playerIdentifier.currentPlayer.GetComponent<CinemachineVirtualCamera>();
+            cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
         }
 
         private void Update()
@@ -31,14 +26,15 @@ namespace Omega.UI
                 if(shakeTimer <= 0f)
                 {
                     CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-                    cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+                    cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
                 }
             }
         }
-        private void ShakeCamera(float intensity, float time)
+        public void ShakeCamera(float intensity, float time)
         {
             CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+            cinemachineBasicMultiChannelPerlin.m_FrequencyGain = time;
             shakeTimer = time;
         }
     }

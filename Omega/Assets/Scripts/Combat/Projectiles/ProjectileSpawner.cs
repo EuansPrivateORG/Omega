@@ -1,3 +1,4 @@
+using Omega.Actions;
 using Omega.Core;
 using Omega.Status;
 using Omega.UI;
@@ -19,10 +20,15 @@ namespace Omega.Combat
 
         public void SpawnProjectile(int damage,GameObject attackweapon, GameObject target, int minColour, int maxColour, AttackButtonHandler attackButtonHandler, int num)
         {
+            //Add CameraShake on shot
+            CameraShake cameraShake = playerIdentifier.currentPlayer.GetComponent<PlayerCam>().playerCam.GetComponent<CameraShake>();
+            Weapon weapon1 = attackweapon.GetComponent<Weapon>();
+            cameraShake.ShakeCamera(weapon1.shakeOnShot, weapon1.shakOnShotLength);
+
             GameObject projectileToFire = null;
             if(attackButtonHandler.weaponClass != Weapon.weaponClass.Ultimate)
             {
-                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, attackweapon.transform.position, Quaternion.identity);
+                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, attackweapon.transform);
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }
@@ -36,15 +42,13 @@ namespace Omega.Combat
                         targetUltimatePosition = weapon.gameObject;
                     }
                 }
-                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, targetUltimatePosition.transform.position, Quaternion.identity);
+                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, attackweapon.transform);
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }
 
-            Debug.Log(target);
-
             projectileToFire.transform.parent = transform;
-            projectileToFire.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler, num);
+            projectileToFire.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler, num, attackweapon);
         }
     }
 }

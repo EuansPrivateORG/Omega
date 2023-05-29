@@ -457,7 +457,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 85744703}
+  - component: {fileID: 85744708}
   - component: {fileID: 85744702}
   - component: {fileID: 85744705}
   - component: {fileID: 85744706}
@@ -522,22 +522,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &85744703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85744700}
-  m_LocalRotation: {x: 0.17364852, y: 0.0000003427267, z: 0.000000007450581, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 7, z: -13.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7760619482068935093}
-  m_Father: {fileID: 1863401253}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!114 &85744704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,6 +620,22 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 0}
+--- !u!4 &85744708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85744700}
+  m_LocalRotation: {x: 0.17364852, y: 0.0000003427267, z: 0.000000007450581, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 7, z: -13.5}
+  m_LocalScale: {x: 0.0065, y: 0.0065, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7760619482068935093}
+  m_Father: {fileID: 1863401253}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &88460475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7562135739577369808, guid: 8902254c36f7f294a83244555993cbcf,
@@ -2102,7 +2102,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01520f1f4fe6389409c5662513f7db62, type: 2}
   cardProbabilityTracker: {fileID: 11400000, guid: b36e3688e8d2b2a498de7a5e54073819,
     type: 2}
-  nextTurnDelayTime: 0
+  nextTurnDelayTime: 2
 --- !u!114 &781620692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4076,7 +4076,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 85744703}
+  - {fileID: 85744708}
   - {fileID: 1755569511}
   - {fileID: 153677251}
   - {fileID: 781620682}
@@ -4720,7 +4720,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 85744703}
+    m_TransformParent: {fileID: 85744708}
     m_Modifications:
     - target: {fileID: 368823249668938719, guid: b33a8b37fc4fa6e469ae7ece12a7e445,
         type: 3}

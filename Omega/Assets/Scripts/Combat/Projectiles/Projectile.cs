@@ -19,6 +19,7 @@ namespace Omega.Combat
 
         GameObject instigator = null;
         GameObject target = null;
+        GameObject attackWeapon = null;
 
         int minColour;
         int maxColour;
@@ -51,6 +52,11 @@ namespace Omega.Combat
         {
             if (enemyCollider != instigator.GetComponent<Collider>())
             {
+                //Add CameraShake on impact
+                CameraShake cameraShake = instigator.GetComponent<PlayerCam>().playerCam.GetComponent<CameraShake>();
+                Weapon weapon = attackWeapon.GetComponent<Weapon>();
+                cameraShake.ShakeCamera(weapon.shakeOnImpact, weapon.shakOnImpactLength);
+
                 target.GetComponent<Health>().TakeDamage(damage);
                 UnityEngine.Debug.Log(damage.ToString() + " Damage Dealt");
                 enemyCollider.gameObject.GetComponentInChildren<AudioSource>().Play();
@@ -61,13 +67,18 @@ namespace Omega.Combat
                     cardHandler.DrawCard(playerIdentifier.currentPlayer, 1);
                 }
                 numberRoller.TurnOffNumberRoller();
-                if(bulletNum == 0) playerIdentifier.NextPlayer();
+                if (bulletNum == 0)
+                {
+                    CardHandler cardHandler = FindObjectOfType<CardHandler>();
+                    cardHandler.StartCoroutine(cardHandler.DelayNextTurn());
+                }
                 Destroy(transform.parent.gameObject);
             }
         }
 
-        public void SetTarget(GameObject _target, GameObject _instigator, int _damage, int min, int max, AttackButtonHandler origin, int num)
+        public void SetTarget(GameObject _target, GameObject _instigator, int _damage, int min, int max, AttackButtonHandler origin, int num, GameObject _attackWeapon)
         {
+            attackWeapon = _attackWeapon;
             target = _target;
             instigator = _instigator;
             damage = _damage;

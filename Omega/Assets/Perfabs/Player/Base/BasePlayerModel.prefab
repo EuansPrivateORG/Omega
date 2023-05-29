@@ -48,6 +48,10 @@ MonoBehaviour:
   weaponType: 3
   projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
     type: 3}
+  shakeOnShot: 1
+  shakeOnImpact: 5
+  shakOnShotLength: 0.2
+  shakOnImpactLength: 0.8
 --- !u!82 &8437444335062620135
 AudioSource:
   m_ObjectHideFlags: 0
@@ -245,6 +249,10 @@ MonoBehaviour:
   weaponType: 0
   projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
     type: 3}
+  shakeOnShot: 0.5
+  shakeOnImpact: 1
+  shakOnShotLength: 0.1
+  shakOnImpactLength: 0.3
 --- !u!82 &1521801123239228377
 AudioSource:
   m_ObjectHideFlags: 0
@@ -589,6 +597,10 @@ MonoBehaviour:
   weaponType: 1
   projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
     type: 3}
+  shakeOnShot: 0.5
+  shakeOnImpact: 2
+  shakOnShotLength: 0.1
+  shakOnImpactLength: 0.4
 --- !u!82 &3966972333611909342
 AudioSource:
   m_ObjectHideFlags: 0
@@ -801,6 +813,10 @@ MonoBehaviour:
   weaponType: 2
   projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
     type: 3}
+  shakeOnShot: 2
+  shakeOnImpact: 1
+  shakOnShotLength: 0.8
+  shakOnImpactLength: 0.3
 --- !u!82 &605419409022116970
 AudioSource:
   m_ObjectHideFlags: 0
