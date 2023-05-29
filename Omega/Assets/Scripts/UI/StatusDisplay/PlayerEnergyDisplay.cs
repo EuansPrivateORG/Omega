@@ -36,6 +36,10 @@ namespace Omega.UI
                 playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>().energy;
             }
             DisplayText.text = playerEnergy.ToString();
+            if(playerEnergy >= 16)
+            {
+                DisplayText.text = "Max";
+            }
         }
     }
 
