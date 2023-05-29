@@ -38,7 +38,7 @@ namespace Omega.UI
             DisplayText.text = playerEnergy.ToString();
             if(playerEnergy >= 16)
             {
-                DisplayText.text = "Max";
+                DisplayText.text = "Max (16)";
             }
         }
     }

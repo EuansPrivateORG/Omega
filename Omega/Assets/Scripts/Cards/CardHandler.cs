@@ -173,7 +173,15 @@ namespace Omega.Actions
                     {
                         case Card.CardType.overcharge:
 
-                            playerIdentifier.currentPlayer.GetComponent<Energy>().energy += currentCard.energyAmount;
+                            if((playerIdentifier.currentPlayer.GetComponent<Energy>().energy + currentCard.energyAmount) <= 16) 
+                            { 
+                                playerIdentifier.currentPlayer.GetComponent<Energy>().energy += currentCard.energyAmount;
+                            }
+                            else
+                            {
+                                playerIdentifier.currentPlayer.GetComponent<Energy>().energy = 16;
+                            }
+                                
                             FindObjectOfType<EnergyBar>().UpdateSegments();
                             break;
 
