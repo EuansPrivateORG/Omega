@@ -42,7 +42,7 @@ namespace Omega.Combat
                         targetUltimatePosition = weapon.gameObject;
                     }
                 }
-                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, attackweapon.transform);
+                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, targetUltimatePosition.transform);
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }

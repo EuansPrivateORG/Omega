@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 3
-  projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
+  projectilePrefab: {fileID: 4488168014306480544, guid: 8cf35134cd3a5dd43a13b1d6ed4298b1,
     type: 3}
   shakeOnShot: 1
   shakeOnImpact: 5
@@ -62,7 +62,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 20a3d3fee3ef9d94f94434acb113709f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a3478b23a4eb0a642971714f667bd670, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
-  projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
+  projectilePrefab: {fileID: 5673886564484992413, guid: a24b82b6b0ded4042afd311e586a6512,
     type: 3}
   shakeOnShot: 0.5
   shakeOnImpact: 1
@@ -263,7 +263,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b18b1644e3a662b4d9051b0dd1f2bf08, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e6200612923e15b4a9248163b9c6fda2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 1
-  projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
+  projectilePrefab: {fileID: 1492274207551265930, guid: df9e0cc7f70e3294d968575f5b8febcf,
     type: 3}
   shakeOnShot: 0.5
   shakeOnImpact: 2
@@ -611,7 +611,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 17f3805d11575844d85b49435bac1572, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7afac8ae51607394e869d43d097d4d62, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 2
-  projectilePrefab: {fileID: 8964090235469613368, guid: 00f3577a9fd471946ba837f98fba9075,
+  projectilePrefab: {fileID: 8005755239208822311, guid: 747249f9e5cd52f4f86b26164d9dbdeb,
     type: 3}
   shakeOnShot: 2
   shakeOnImpact: 1
@@ -827,7 +827,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a9e3fee688cf000499bded40dd54ff48, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 03e3aac2a4d70024caa7da7862c16593, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

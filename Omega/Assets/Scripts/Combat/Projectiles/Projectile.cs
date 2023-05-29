@@ -5,7 +5,7 @@ using Omega.Status;
 using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System;
 using UnityEngine;
 
 namespace Omega.Combat
@@ -16,6 +16,7 @@ namespace Omega.Combat
 
         public float projectileLifetime = 3f;
         public float projectileSpeed = 10f;
+        public AudioClip ImpactClip;
 
         GameObject instigator = null;
         GameObject target = null;
@@ -59,7 +60,10 @@ namespace Omega.Combat
 
                 target.GetComponent<Health>().TakeDamage(damage);
                 UnityEngine.Debug.Log(damage.ToString() + " Damage Dealt");
-                enemyCollider.gameObject.GetComponentInChildren<AudioSource>().Play();
+                AudioSource enemySource = enemyCollider.gameObject.GetComponentInChildren<AudioSource>();
+                UnityEngine.Debug.Log(enemySource.gameObject.name);
+                enemySource.Play();
+
                 attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour, false, damage);
                 if (target.GetComponent<Health>().isDead)
                 {
@@ -86,6 +90,8 @@ namespace Omega.Combat
             maxColour = max;
             attackButtonHandler = origin;
             bulletNum = num;
+            _target.GetComponentInChildren<AudioSource>().clip = ImpactClip;
+            UnityEngine.Debug.Log(_target.GetComponentInChildren<AudioSource>().clip.name);
         }
     }
 }
