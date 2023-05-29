@@ -18,6 +18,8 @@ namespace Omega.UI
         [SerializeField] public GameObject card4;
         [SerializeField] public GameObject card5;
 
+        public AudioSource cardTransitionSource;
+
         [SerializeField] Transform cardUpPos;
         [SerializeField] Vector3 cardUpScale;
 
@@ -119,8 +121,8 @@ namespace Omega.UI
         {
             GameObject upCardTarget = null;
             LeanTween.scale(card, originalCardScale, cardUpTime);
-
-            for(int i = 0; i < cards.Count; i++)
+            cardTransitionSource.Play();
+            for (int i = 0; i < cards.Count; i++)
             {
                 if(i == cards.Count - 1)
                 {

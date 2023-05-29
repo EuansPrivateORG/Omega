@@ -23,6 +23,7 @@ namespace Omega.Actions
 
         public TextMeshProUGUI cardNumText;
 
+
         private CardHandler cardHandler;
 
         private void Awake()

@@ -261,11 +261,12 @@ namespace Omega.UI
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
             playerEnergy.SpendEnergy(heal.cost);
-
             if (fromCard == null) playerToHealth = playerToHeal;
 
             Health playerHealth = playerToHealth.GetComponent<Health>();
 
+            HealingSFXCollection sfx = playerToHealth.GetComponentInChildren<HealingSFXCollection>();
+            sfx.healingSource.Play();
             PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
 
             List<Card> cardList = new List<Card>();
@@ -343,6 +344,7 @@ namespace Omega.UI
             numbersPrefab.GetComponentInChildren<TextMeshProUGUI>().color = GetColorOnGradient(healthHealed, minColour, maxColour, colourGradient);
             NumbersDisplay numbersDisplay = numbersPrefab.gameObject.GetComponent<NumbersDisplay>();
             numbersDisplay.SpawnNumbers(healthHealed);
+            
         }
 
         private IEnumerator DelayNextTurn()

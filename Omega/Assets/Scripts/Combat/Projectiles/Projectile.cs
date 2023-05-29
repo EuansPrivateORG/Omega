@@ -61,7 +61,6 @@ namespace Omega.Combat
                 target.GetComponent<Health>().TakeDamage(damage);
                 UnityEngine.Debug.Log(damage.ToString() + " Damage Dealt");
                 AudioSource enemySource = enemyCollider.gameObject.GetComponentInChildren<AudioSource>();
-                UnityEngine.Debug.Log(enemySource.gameObject.name);
                 enemySource.Play();
 
                 attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour, false, damage);
@@ -91,7 +90,7 @@ namespace Omega.Combat
             attackButtonHandler = origin;
             bulletNum = num;
             _target.GetComponentInChildren<AudioSource>().clip = ImpactClip;
-            UnityEngine.Debug.Log(_target.GetComponentInChildren<AudioSource>().clip.name);
+           
         }
     }
 }
