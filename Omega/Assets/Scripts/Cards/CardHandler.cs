@@ -202,6 +202,13 @@ namespace Omega.Actions
 
                             playerIdentifier.FlipTurnOrder();
                             break;
+
+                        case Card.CardType.eot:
+
+                            currentPlayersSetup.amountOfRoundsEOT = currentCard.amountOfRounds;
+                            playersCards.cardsPlayed.Add(currentCard);
+                            playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
+                            break;
                     }
                     break;
 

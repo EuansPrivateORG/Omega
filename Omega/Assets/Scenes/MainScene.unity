@@ -2099,6 +2099,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 750d713986c8a7144b4325c182c93112, type: 2}
   - {fileID: 11400000, guid: d04260b0c6ab6e64f888416257e445cc, type: 2}
   - {fileID: 11400000, guid: 39cfc8f8788826c458049fd06ee6ab44, type: 2}
+  - {fileID: 11400000, guid: 01520f1f4fe6389409c5662513f7db62, type: 2}
   cardProbabilityTracker: {fileID: 11400000, guid: b36e3688e8d2b2a498de7a5e54073819,
     type: 2}
   nextTurnDelayTime: 0

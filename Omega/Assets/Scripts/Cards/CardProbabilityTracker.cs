@@ -22,6 +22,7 @@ namespace Omega.Actions
         [Header("Medium Chance Cards")]
         public int totalAOESpawned;
         public int totalInstantSpawned;
+        public int totalEOTSpawned;
         public int totalDOTSpawned;
         public int totalHOTSpawned;
         public int totalFlipSpawned;
@@ -86,6 +87,10 @@ namespace Omega.Actions
                 case Card.CardType.stun:
 
                     totalStunSpawned++;
+                    break;
+                case Card.CardType.eot:
+
+                    totalEOTSpawned++;
                     break;
             }
         }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
+  m_Name: EOT
+  m_EditorClassIdentifier: 
+  CardUIPreFab: {fileID: 6541153526303316791, guid: 3d9d6052b8705264883fd5bfdd7b4c83,
+    type: 3}
+  CardWorldPreFab: {fileID: 7970796939551652211, guid: 41eadcc49cfb3284a92aa7610051aac8,
+    type: 3}
+  CardName: EOT
+  cardCategory: 2
+  cardWeight: 5
+  activationType: 3
+  cardType: 12
+  amountOfRounds: 3
+  damagePerTurn: 0
+  shieldPrefab: {fileID: 0}
+  healingPerTurn: 0
+  energyAmount: 4
+  rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
+  energyPerTurn: 2
+  effectOverTime: 1
+  hasEffectWhenAttacked: 0
