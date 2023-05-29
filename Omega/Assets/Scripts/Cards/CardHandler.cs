@@ -174,6 +174,7 @@ namespace Omega.Actions
                         case Card.CardType.overcharge:
 
                             playerIdentifier.currentPlayer.GetComponent<Energy>().energy += currentCard.energyAmount;
+                            FindObjectOfType<EnergyBar>().UpdateSegments();
                             break;
 
                         case Card.CardType.instantHeal:
