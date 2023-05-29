@@ -148,7 +148,15 @@ namespace Omega.Core
             currentPlayer = currentlyAlivePlayersInTurn[currentPlayerIndex];
 
             Energy currentEnergy = currentPlayer.GetComponent<Energy>();
+            if(currentEnergy.energy + energyGainPerTurn <= 16)
+            {
             currentEnergy.GainEnergy(energyGainPerTurn);
+
+            }
+            else
+            {
+                currentEnergy.energy = 16;
+            }
             PlayerCards currentCards = currentPlayer.GetComponent<PlayerCards>();
             List<Card> cards = new List<Card>();
             cards.AddRange(currentCards.cardsPlayed);
