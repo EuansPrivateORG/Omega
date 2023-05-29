@@ -1,9 +1,12 @@
+using Omega.Actions;
+using Omega.Core;
 using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Omega.UI
 {
@@ -17,11 +20,17 @@ namespace Omega.UI
 
         private PlayerInput playerInput;
 
+        private PlayerIdentifier playerIdentifier;
+
+        private DrawCardHandler drawCardHandler;
+
         private bool hasEnabledInput = false;
 
 
         private void Awake()
         {
+            drawCardHandler = FindObjectOfType<DrawCardHandler>();
+            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
             eventSystem = EventSystem.current;
             cardTween = FindObjectOfType<CardTween>();
             playerInput = FindObjectOfType<PlayerInput>();
@@ -89,6 +98,25 @@ namespace Omega.UI
         public void UnSelectCard()
         {
             cardTween.CardDown(transform.GetChild(0).gameObject);
+        }
+
+        public void CheckCards()
+        {
+            if(playerIdentifier.currentPlayer.GetComponent<PlayerCards>().cardsPlayed.Count >= 5)
+            {
+                Navigation newNav = new Navigation();
+                newNav.mode = Navigation.Mode.Explicit;
+                newNav.selectOnRight = drawCardHandler.healingButton;
+                drawCardHandler.attackButton.navigation = newNav;
+            }
+            else
+            {
+                Navigation newNav = new Navigation();
+                newNav.mode = Navigation.Mode.Explicit;
+                newNav.selectOnRight = drawCardHandler.healingButton;
+                newNav.selectOnLeft = GetComponent<Button>();
+                drawCardHandler.attackButton.navigation = newNav;
+            }
         }
     }
 }

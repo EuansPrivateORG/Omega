@@ -63,6 +63,24 @@ namespace Omega.Actions
                     }
                 }
 
+                foreach (Card card in playerCards.cardsInHand)
+                {
+                    if (card == newCard)
+                    {
+                        i--;
+                        hasCard = true;
+                    }
+                }
+
+                foreach (Card card in playerCards.cardsPlayed)
+                {
+                    if (card == newCard)
+                    {
+                        i--;
+                        hasCard = true;
+                    }
+                }
+
                 if (!hasCard)
                 {
                     cards.Add(newCard);
@@ -94,6 +112,16 @@ namespace Omega.Actions
                 Card newCard = null;
 
                 newCard = FindCard(player);
+
+                foreach (Card card in cards)
+                {
+                    if (card == newCard)
+                    {
+                        i--;
+                        hasCard = true;
+                    }
+                }
+
                 foreach (Card card in playerCards.cardsInHand)
                 {
                     if (card == newCard)
@@ -103,7 +131,16 @@ namespace Omega.Actions
                     }
                 }
 
-                if(!hasCard)
+                foreach (Card card in playerCards.cardsPlayed)
+                {
+                    if (card == newCard)
+                    {
+                        i--;
+                        hasCard = true;
+                    }
+                }
+
+                if (!hasCard)
                 {
                     cards.Add(newCard);
                 }

@@ -21,6 +21,7 @@ namespace Omega.Core
 
         [HideInInspector] public AttackButtonHandler currentAttack;
         [HideInInspector] public HealingButtonHandler currentHeal;
+        private CardButtonHandler cardButtonHandler;
 
         [SerializeField] public GameObject currentPlayer = null;
         public List<GameObject> currentPlayerWeapons = new List<GameObject>();
@@ -46,6 +47,7 @@ namespace Omega.Core
 
         private void Awake()
         {
+            cardButtonHandler = FindObjectOfType<CardButtonHandler>();
             turnTimer = GetComponent<TurnTimer>();
             physicalDiceCalculator = GetComponent<PhysicalDiceCalculator>();
             cardSpawner = GetComponent<CardSpawner>();
@@ -130,6 +132,8 @@ namespace Omega.Core
                 cardSpawner.ClearActiveCards();
 
                 drawCardHandler.CheckEnergy();
+
+                cardButtonHandler.CheckCards();
 
                 cardSpawner.SpawnCards(currentPlayer.GetComponent<PlayerCards>().cardsInHand);
 
