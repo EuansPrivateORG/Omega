@@ -26,8 +26,7 @@ namespace Omega.Actions
             if (other.tag == "Terrain")
             {
                 onGround = true;
-                physicalDice.diceValue = sideValue;
-                
+                physicalDice.diceValue = sideValue;       
             }
         }
 
@@ -39,6 +38,5 @@ namespace Omega.Actions
                 physicalDice.diceValue = 0;
             }
         }
-
     }
 }
