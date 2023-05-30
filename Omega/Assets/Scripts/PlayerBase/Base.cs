@@ -12,6 +12,9 @@ namespace Omega.Core
         [SerializeField] public GameObject emptyPreFab;
         [SerializeField] public List<GameObject> baseVarientPrefabList;
         [SerializeField] public Material materialVarientOverrite;
+        [SerializeField] public Material baseMaterialVarientOverrite;
+        [SerializeField] public Material emissiveMaterialVarientOverrite;
         [SerializeField] public GameObject turnOrderVarientIcon;
+       
     }
 }

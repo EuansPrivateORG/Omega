@@ -19,7 +19,7 @@ namespace Omega.Combat
         public AudioClip ImpactClip;
 
         GameObject instigator = null;
-        GameObject target = null;
+        public GameObject target = null;
         GameObject attackWeapon = null;
 
         int minColour;

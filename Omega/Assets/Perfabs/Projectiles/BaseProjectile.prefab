@@ -114,6 +114,8 @@ MonoBehaviour:
   damage: 0
   projectileLifetime: 3
   projectileSpeed: 15
+  ImpactClip: {fileID: 0}
+  target: {fileID: 0}
 --- !u!54 &3300027096642494253
 Rigidbody:
   m_ObjectHideFlags: 0
