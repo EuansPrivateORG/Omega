@@ -5627,6 +5627,7 @@ MonoBehaviour:
   numberOfPlayers: {fileID: 5420166864994031767}
   numberOfRounds: {fileID: 1572591895726966138}
   startRoundButton: {fileID: 6052576888062386244}
+  initiateButton: {fileID: 7396817427335305112}
   healButton: {fileID: 862083187091220066}
   playerFactionIconPrefab: {fileID: 1381391798786512143, guid: 01533bb7f78bd0d45b92559954d47a9b,
     type: 3}

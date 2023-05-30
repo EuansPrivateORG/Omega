@@ -16,6 +16,7 @@ namespace Omega.UI
         [SerializeField] TextMeshProUGUI numberOfPlayers;
         [SerializeField] TextMeshProUGUI numberOfRounds;
         [SerializeField] public Button startRoundButton;
+        [SerializeField] public Button initiateButton;
         [SerializeField] Button healButton;
 
         [Header("Faction Icons")]
@@ -86,7 +87,7 @@ namespace Omega.UI
                 {
                     eventSystem.SetSelectedGameObject(plusRoundsButton.gameObject);
                 }
-                else eventSystem.SetSelectedGameObject(startRoundButton.gameObject);
+                else eventSystem.SetSelectedGameObject(initiateButton.gameObject);
             }
 
 
