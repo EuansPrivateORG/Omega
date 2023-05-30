@@ -225,8 +225,10 @@ namespace Omega.Actions
                         case Card.CardType.instantHeal:
 
                             HealingButtonHandler h = FindObjectOfType<HealingButtonHandler>();
+                            PlayerHealthDisplay pH = FindObjectOfType<PlayerHealthDisplay>();
                             h.playerToHeal = playerIdentifier.currentPlayer;
                             h.PerformHealing(currentCard.instantHealAmount, currentCard, playerIdentifier.currentPlayer);
+                            pH.UpdateHealthInfo();
                             break;
 
                         case Card.CardType.damageReduction:

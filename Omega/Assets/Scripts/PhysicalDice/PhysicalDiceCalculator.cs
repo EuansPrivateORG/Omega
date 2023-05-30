@@ -43,7 +43,7 @@ namespace Omega.Actions
             {
                 diceTimer += Time.deltaTime;
 
-                if (diceTimer > diceTotal)
+                if (diceTimer > diceLifeTime)
                 {
                     foreach (GameObject actionDice in actionDices)
                     {
@@ -52,6 +52,7 @@ namespace Omega.Actions
                         {
                             int ran = Random.Range(0, 4);
                             physDice.diceValue = ran;
+                            Debug.Log(actionDice + " " + ran);
                         }
                     }
                 }
