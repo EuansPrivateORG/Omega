@@ -323,6 +323,10 @@ namespace Omega.UI
                 StartCoroutine(DelayNextTurn());
             }
 
+
+            playerToHealth.GetComponent<DamageStateCollection>().CheckHealth();
+
+
             rollBonus = 0;
 
             physicalDiceCalculator.ClearDice();

@@ -17,7 +17,7 @@ namespace Omega.Core
 
         [Header("Stats")]
         [Tooltip("Health all players will spawn with")]
-        [SerializeField] private int playerStartingHealth;
+        [SerializeField] public int playerStartingHealth;
 
         [Tooltip("Energy all players will spawn with")]
         [SerializeField] private int playerStartingEnergy;

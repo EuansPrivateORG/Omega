@@ -358,6 +358,7 @@ namespace Omega.Actions
                         AttackButtonHandler attack = FindObjectOfType<AttackButtonHandler>();
 
                         playerIdentifier.currentPlayer.GetComponent<Health>().currentHealth -= card.damagePerTurn;
+                        playerIdentifier.currentPlayer.GetComponent<DamageStateCollection>().CheckHealth();
                         StartCoroutine(DelayNums(attack, card, null));
 
                         playerSetup.amountOfRoundsDOT--;

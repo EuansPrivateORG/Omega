@@ -27,13 +27,16 @@ namespace Omega.Status
         public void AddHealth(int addition)
         {
             currentHealth += addition;
+            GetComponent<DamageStateCollection>().CheckHealth();
         }
 
         public void TakeDamage(int loss)
         {
             currentHealth -= loss;
 
-            if(currentHealth <= 0)
+            GetComponent<DamageStateCollection>().CheckHealth();
+
+            if (currentHealth <= 0)
             {
                 isDead = true;
                 PlayerSetup playerSetup = GetComponent<PlayerSetup>();
@@ -58,6 +61,7 @@ namespace Omega.Status
         public void SetHealth()
         {
             currentHealth = maxHealth;
+            GetComponent<DamageStateCollection>().CheckHealth();
         }
     }
 }
