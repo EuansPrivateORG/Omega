@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Omega.Status;
+using Omega.Visual;
+using Unity.VisualScripting;
 
 namespace Omega.Core
 {
@@ -26,7 +28,6 @@ namespace Omega.Core
 
         [HideInInspector] public int amountOfRoundsDOT;
         [HideInInspector] public int amountOfRoundsHOT;
-        //[HideInInspector] 
         public int amountOfRoundsShield = 0;
         [HideInInspector] public int amountOfRoundsStun;
         [HideInInspector] 
@@ -47,6 +48,24 @@ namespace Omega.Core
 
             MeshRenderer playerMesh = instantiated.GetComponent<MeshRenderer>();
             playerMesh.material = playerBase.materialVarientOverrite;
+
+            BaseCollection baseCollection = instantiated.GetComponent<BaseCollection>();
+
+            foreach(Transform child in baseCollection.basePiecesParent.transform)
+            {
+                if(child.TryGetComponent<Renderer>(out Renderer childRen))
+                {
+                    childRen.material = playerBase.baseMaterialVarientOverrite;
+                }
+            }
+
+            foreach (Transform child in baseCollection.emissivePiecesParent.transform)
+            {
+                if (child.TryGetComponent<Renderer>(out Renderer childRen))
+                {
+                    childRen.material = playerBase.emissiveMaterialVarientOverrite;
+                }
+            }
         }
 
         public void SetPlayerIconDead()
