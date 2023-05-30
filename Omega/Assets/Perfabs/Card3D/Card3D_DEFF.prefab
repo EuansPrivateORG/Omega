@@ -322,6 +322,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card3D_DEFF
       objectReference: {fileID: 0}
+    - target: {fileID: 7393332449842094405, guid: d6dbd182d8899394e8d1b97386808ab0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 910baba2d91ce214f9b43388669680b8, type: 2}
     - target: {fileID: 8036976453211474172, guid: d6dbd182d8899394e8d1b97386808ab0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
