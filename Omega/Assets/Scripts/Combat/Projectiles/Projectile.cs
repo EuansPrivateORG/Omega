@@ -75,6 +75,7 @@ namespace Omega.Combat
                     CardHandler cardHandler = FindObjectOfType<CardHandler>();
                     cardHandler.StartCoroutine(cardHandler.DelayNextTurn());
                 }
+                playerIdentifier.currentAttack.projectileIsFiring = false;
                 Destroy(transform.parent.gameObject);
             }
         }

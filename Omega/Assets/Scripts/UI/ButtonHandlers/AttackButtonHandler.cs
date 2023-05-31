@@ -56,6 +56,9 @@ namespace Omega.UI
 
         [HideInInspector] public List<GameObject> currentlyAttackablePlayers;
 
+        [HideInInspector] public bool projectileIsFiring = false;
+        private GameObject currentAttackWeapon = null;
+
         private void Awake()
         {
             attackButtonID = FindObjectOfType<AttackButtonID>();
@@ -66,6 +69,13 @@ namespace Omega.UI
             cancelHandler = GetComponent<CancelHandler>();
             numberRoller = FindObjectOfType<NumberRoller>();
             physicalDiceCalculator = FindObjectOfType<PhysicalDiceCalculator>();
+        }
+        private void Update()
+        {
+            if (projectileIsFiring)
+            {
+                currentAttackWeapon.transform.LookAt(playerToDamage.transform);
+            }
         }
 
         private void OnEnable()
@@ -355,18 +365,20 @@ namespace Omega.UI
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
                 playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerLeft, damageToDeal), attackWeapon, playerLeft, minColour, maxColour, this, 2);
                 playerLeft = null;
+                LookAtPlayer(attackWeapon);
             }
 
-            
+
             yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerToDamage));
             playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerToDamage, damageToDeal), attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
-            
+            LookAtPlayer(attackWeapon);
 
             if (playerRight != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerRight));
                 playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerRight, damageToDeal), attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
                 playerRight = null;
+                LookAtPlayer(attackWeapon);
             }
 
 
@@ -376,6 +388,15 @@ namespace Omega.UI
             scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += damageToDeal;
 
             physicalDiceCalculator.ClearDice();
+        }
+
+        private void LookAtPlayer(GameObject attackWeapon)
+        {
+            currentAttackWeapon = attackWeapon;
+            if (currentAttackWeapon.GetComponent<Weapon>().weaponType != Weapon.weaponClass.Ultimate)
+            {
+                projectileIsFiring = true;
+            }
         }
 
         private int ShieldDamage(GameObject _playerToDamage, int damageToDeal)

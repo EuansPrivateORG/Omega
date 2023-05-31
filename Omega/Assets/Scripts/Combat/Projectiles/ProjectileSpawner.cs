@@ -32,6 +32,10 @@ namespace Omega.Combat
                 GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, attackweapon.transform);
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
+                if(attackButtonHandler.weaponClass == Weapon.weaponClass.Medium)
+                {
+                    projectileInstance.GetComponent<MediumAttack>().target = target;
+                }
             }
             else
             {
