@@ -66,6 +66,14 @@ namespace Omega.Core
                     childRen.material = playerBase.emissiveMaterialVarientOverrite;
                 }
             }
+
+            Transform iconSpawnPosition = baseCollection.iconParent.gameObject.transform;
+            GameObject faction3DIcon = Instantiate(playerBase.faction3DIcon, iconSpawnPosition);
+            foreach (Transform child in faction3DIcon.transform)
+            {
+                child.GetComponent<MeshRenderer>().material = playerBase.emissiveMaterialVarientOverrite;
+            }
+
         }
 
         public void SetPlayerIconDead()

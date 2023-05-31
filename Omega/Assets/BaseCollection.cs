@@ -8,5 +8,6 @@ namespace Omega.Visual
     {
         [SerializeField] public GameObject basePiecesParent;
         [SerializeField] public GameObject emissivePiecesParent;
+        [SerializeField] public GameObject iconParent;
     }
 }
