@@ -229,6 +229,7 @@ namespace Omega.Actions
                             h.playerToHeal = playerIdentifier.currentPlayer;
                             h.PerformHealing(currentCard.instantHealAmount, currentCard, playerIdentifier.currentPlayer);
                             pH.UpdateHealthInfo();
+                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().PerformHealing();
                             break;
 
                         case Card.CardType.damageReduction:
@@ -256,6 +257,7 @@ namespace Omega.Actions
                             currentPlayersSetup.amountOfRoundsEOT = currentCard.amountOfRounds;
                             playersCards.cardsPlayed.Add(currentCard);
                             playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
+                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().StartEnergyVFX();
                             break;
                     }
                     break;
@@ -343,12 +345,16 @@ namespace Omega.Actions
                         HealingButtonHandler heal = FindObjectOfType<HealingButtonHandler>();
 
                         heal.PerformHealing(card.healingPerTurn, card, playerIdentifier.currentPlayer);
+                        playerIdentifier.currentPlayer.GetComponent<BaseVFX>().HOTVFXStart();
                         StartCoroutine(DelayNums(null, card, heal));
+
+                        playerIdentifier.currentPlayer.GetComponent<DamageStateCollection>().CheckHealth();
 
                         playerSetup.amountOfRoundsHOT--;
 
                         if (playerSetup.amountOfRoundsHOT <= 0)
                         {
+                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().HOTVFXStop();
                             playersCards.cardsPlayedAgainst.Remove(card);
                         }
                     }
@@ -357,15 +363,33 @@ namespace Omega.Actions
                     {
                         AttackButtonHandler attack = FindObjectOfType<AttackButtonHandler>();
 
-                        playerIdentifier.currentPlayer.GetComponent<Health>().currentHealth -= card.damagePerTurn;
-                        playerIdentifier.currentPlayer.GetComponent<DamageStateCollection>().CheckHealth();
+                        playerIdentifier.currentPlayer.GetComponent<Health>().TakeDamage(card.damagePerTurn);
                         StartCoroutine(DelayNums(attack, card, null));
+                        playerIdentifier.currentPlayer.GetComponent<DamageStateCollection>().CheckHealth();
 
                         playerSetup.amountOfRoundsDOT--;
 
                         if (playerSetup.amountOfRoundsDOT <= 0)
                         {
+                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().DamageVFXStop();
                             playersCards.cardsPlayedAgainst.Remove(card);
+                        }
+                        if (playerIdentifier.currentPlayer.GetComponent<Health>().currentHealth <= 0)
+                        {
+                            playerIdentifier.NextPlayer();
+                        }
+                    }
+
+                    if (card.cardType == Card.CardType.eot)
+                    {
+                        Energy currentEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
+                        currentEnergy.GainEnergy(card.energyPerTurn);
+                        playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().amountOfRoundsEOT--;
+                        if (playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().amountOfRoundsEOT <= 0)
+                        {
+                            playersCards.cardsPlayed.Remove(card);
+                            playersCards.RemovePlayedCards(card.CardWorldPreFab);
+                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().EnergyVFXStop();
                         }
                     }
 

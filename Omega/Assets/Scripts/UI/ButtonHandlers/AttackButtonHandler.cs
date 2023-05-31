@@ -225,6 +225,7 @@ namespace Omega.UI
             foreach (GameObject player in playerIdentifier.playerIndex)
             {
                 PlayerSelectionHandler playerSelectionHandler = player.GetComponent<PlayerSelectionHandler>();
+
                 playerSelectionHandler.enabled = false;
 
             }
@@ -296,22 +297,6 @@ namespace Omega.UI
             {
                 if (card.activationType == Card.ActivationType.onAttack)
                 {
-                    if (card.cardType == Card.CardType.stun)
-                    {
-                        recieversCards.cardsPlayedAgainst.Add(card);
-                        playersCards.cardsPlayed.Remove(card);
-                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
-                        playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
-                    }
-
-                    if (card.cardType == Card.CardType.dot)
-                    {
-                        recieversCards.cardsPlayedAgainst.Add(card);
-                        playersCards.cardsPlayed.Remove(card);
-                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
-                        playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsDOT = card.amountOfRounds;
-                    }
-
                     if (card.cardType == Card.CardType.aoe)
                     {
                         int targetsIndex = 0;
@@ -346,6 +331,48 @@ namespace Omega.UI
                         playersCards.cardsPlayed.Remove(card);
                         playersCards.RemovePlayedCards(card.CardWorldPreFab);
                     }
+
+                    if (card.cardType == Card.CardType.stun)
+                    {
+                        if(playerLeft != null)
+                        {
+                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playerLeft.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                        }
+                        if (playerRight != null)
+                        {
+                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playerLeft.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                        }
+
+                        recieversCards.cardsPlayedAgainst.Add(card);
+                        playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
+                        playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                    }
+
+                    if (card.cardType == Card.CardType.dot)
+                    {
+                        if (playerLeft != null)
+                        {
+                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playerLeft.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                            playerToDamage.GetComponent<BaseVFX>().StartDamageVFX();
+                        }
+                        if (playerRight != null)
+                        {
+                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playerLeft.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                            playerToDamage.GetComponent<BaseVFX>().StartDamageVFX();
+                        }
+
+                        recieversCards.cardsPlayedAgainst.Add(card);
+                        playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
+                        playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsDOT = card.amountOfRounds;
+                        playerToDamage.GetComponent<BaseVFX>().StartDamageVFX();
+                    }
+
                 }
             }
         }
