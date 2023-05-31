@@ -2,10 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScreenFader : MonoBehaviour
+public class WhiteFade : MonoBehaviour
 {
     public Image fadeImage;
     public float fadeDuration = 1f;
+    public float waitBetweenFadeIn = 1f;
 
     private Coroutine currentFadeCoroutine;
 
@@ -15,9 +16,12 @@ public class ScreenFader : MonoBehaviour
         if (currentFadeCoroutine != null)
         {
             StopCoroutine(currentFadeCoroutine);
+            currentFadeCoroutine = StartCoroutine(MidFade());
         }
-
-        currentFadeCoroutine = StartCoroutine(FadeRoutine());
+        else
+        {
+            currentFadeCoroutine = StartCoroutine(FadeRoutine());
+        }
     }
 
     private IEnumerator FadeRoutine()
@@ -38,7 +42,31 @@ public class ScreenFader : MonoBehaviour
         fadeImage.color = Color.white;
 
         // Wait for a brief duration
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(waitBetweenFadeIn);
+
+        // Fade out
+        elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            float t = elapsedTime / fadeDuration;
+            fadeImage.color = Color.Lerp(Color.white, Color.clear, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        fadeImage.color = Color.clear;
+        fadeImage.gameObject.SetActive(false);
+
+        currentFadeCoroutine = null;
+    }
+
+    private IEnumerator MidFade()
+    {
+        fadeImage.gameObject.SetActive(true);
+        float elapsedTime = 0f;
+        fadeImage.color = Color.white;
+        // Wait for a brief duration
+        yield return new WaitForSeconds(waitBetweenFadeIn);
 
         // Fade out
         elapsedTime = 0f;

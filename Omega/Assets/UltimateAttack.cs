@@ -146,6 +146,7 @@ public class UltimateAttack : MonoBehaviour
 
         Vector3 centerPosition = transform.position;
         finalLaser = Instantiate(delayedPrefab, centerPosition, Quaternion.identity);
+        FindObjectOfType<WhiteFade>().StartFade();
         StartCoroutine(DestroyAfterDelay());
     }
 
