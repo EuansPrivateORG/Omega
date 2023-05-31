@@ -157,6 +157,23 @@ namespace Omega.Core
             {
                 currentEnergy.energy = 16;
             }
+            PlayerCards currentCards = currentPlayer.GetComponent<PlayerCards>();
+            List<Card> cards = new List<Card>();
+            cards.AddRange(currentCards.cardsPlayed);
+            foreach(Card card in cards)
+            {
+                if(card.cardType == Card.CardType.eot)
+                {
+                    currentEnergy.GainEnergy(card.energyPerTurn);
+                    currentPlayer.GetComponent<PlayerSetup>().amountOfRoundsEOT--;
+                    if(currentPlayer.GetComponent<PlayerSetup>().amountOfRoundsEOT <= 0)
+                    {
+                        currentCards.cardsPlayed.Remove(card);
+                        currentCards.RemovePlayedCards(card.CardWorldPreFab);
+                        currentPlayer.GetComponent<BaseVFX>().EnergyVFXStop();
+                    }
+                }
+            }
 
             CameraHandler cameraHandler = FindObjectOfType<CameraHandler>();
             TurnTransition turnTransition = FindObjectOfType<TurnTransition>();

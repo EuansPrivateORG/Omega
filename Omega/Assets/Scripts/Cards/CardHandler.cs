@@ -380,19 +380,6 @@ namespace Omega.Actions
                         }
                     }
 
-                    if (card.cardType == Card.CardType.eot)
-                    {
-                        Energy currentEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
-                        currentEnergy.GainEnergy(card.energyPerTurn);
-                        playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().amountOfRoundsEOT--;
-                        if (playerIdentifier.currentPlayer.GetComponent<PlayerSetup>().amountOfRoundsEOT <= 0)
-                        {
-                            playersCards.cardsPlayed.Remove(card);
-                            playersCards.RemovePlayedCards(card.CardWorldPreFab);
-                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().EnergyVFXStop();
-                        }
-                    }
-
                     if (card.cardType == Card.CardType.stun)
                     {
 
