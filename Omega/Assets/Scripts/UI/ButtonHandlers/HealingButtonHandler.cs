@@ -355,7 +355,7 @@ namespace Omega.UI
 
         private IEnumerator DelayNextTurn()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
 
             numberRoller.TurnOffNumberRoller();
             playerIdentifier.NextPlayer();
