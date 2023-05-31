@@ -218,7 +218,7 @@ namespace Omega.Actions
                             {
                                 playerIdentifier.currentPlayer.GetComponent<Energy>().energy = 16;
                             }
-                                
+                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().StartOverchargeVFX();   
                             FindObjectOfType<EnergyBar>().UpdateSegments();
                             break;
 

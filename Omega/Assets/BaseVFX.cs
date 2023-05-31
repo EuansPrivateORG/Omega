@@ -8,7 +8,9 @@ public class BaseVFX : MonoBehaviour
     public GameObject dotVFX;
     public GameObject hotVFX;
     public GameObject energyVFX;
+    public GameObject overchargeVFX;
     public float healingVFXTime;
+    public float overchargeVFXTime;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,7 @@ public class BaseVFX : MonoBehaviour
         dotVFX.GetComponent<ParticleSystem>().Stop();
         hotVFX.GetComponent<ParticleSystem>().Stop();
         energyVFX.GetComponent<ParticleSystem>().Stop();
+        overchargeVFX.GetComponent<ParticleSystem>().Stop();
     }
 
     // Update is called once per frame
@@ -31,10 +34,21 @@ public class BaseVFX : MonoBehaviour
         StartCoroutine(HealingVFXStop());
     }
 
-    public IEnumerator HealingVFXStop()
+    private IEnumerator HealingVFXStop()
     {
         yield return new WaitForSeconds(healingVFXTime);
         healingVFX.GetComponent<ParticleSystem>().Stop();
+    }
+    public void StartOverchargeVFX()
+    {
+        overchargeVFX.GetComponent<ParticleSystem>().Play();
+        StartCoroutine(OverchargeVFXStop());
+    }
+
+    private IEnumerator OverchargeVFXStop()
+    {
+        yield return new WaitForSeconds(overchargeVFXTime);
+        overchargeVFX.GetComponent<ParticleSystem>().Stop();
     }
 
     public void StartDamageVFX()
@@ -45,8 +59,8 @@ public class BaseVFX : MonoBehaviour
     public void StartEnergyVFX()
     {
         energyVFX.GetComponent<ParticleSystem>().Play();
-        Debug.Log("Started Energy");
     }
+
 
     public void HOTVFXStart()
     {
