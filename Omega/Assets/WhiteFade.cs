@@ -64,6 +64,17 @@ public class WhiteFade : MonoBehaviour
     {
         fadeImage.gameObject.SetActive(true);
         float elapsedTime = 0f;
+        fadeImage.color = new Color (1,1,1,0.75f);
+
+        // Fade in
+        while (elapsedTime < fadeDuration / 4)
+        {
+            float t = elapsedTime / (fadeDuration / 4);
+            fadeImage.color = Color.Lerp(new Color(1, 1, 1, 0.75f), Color.white, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
         fadeImage.color = Color.white;
         // Wait for a brief duration
         yield return new WaitForSeconds(waitBetweenFadeIn);

@@ -1807,7 +1807,7 @@ Transform:
   - {fileID: 646547174}
   - {fileID: 1562562637}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &685870782
 PrefabInstance:
@@ -2256,6 +2256,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 750d713986c8a7144b4325c182c93112, type: 2}
   - {fileID: 11400000, guid: d04260b0c6ab6e64f888416257e445cc, type: 2}
   - {fileID: 11400000, guid: 39cfc8f8788826c458049fd06ee6ab44, type: 2}
+  - {fileID: 11400000, guid: 01520f1f4fe6389409c5662513f7db62, type: 2}
   cardProbabilityTracker: {fileID: 11400000, guid: b36e3688e8d2b2a498de7a5e54073819,
     type: 2}
   nextTurnDelayTime: 2
@@ -2782,7 +2783,7 @@ PrefabInstance:
     - target: {fileID: 6392141737622645300, guid: 9e5d7cfc69447fe42b0bfa0f2ef5c91b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6392141737622645300, guid: 9e5d7cfc69447fe42b0bfa0f2ef5c91b,
         type: 3}

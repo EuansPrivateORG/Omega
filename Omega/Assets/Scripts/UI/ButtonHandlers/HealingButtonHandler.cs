@@ -283,6 +283,7 @@ namespace Omega.UI
                     playerCards.RemovePlayedCards(card.CardWorldPreFab);
                     playerToHealth.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
                     playerToHealth.GetComponent<PlayerSetup>().amountOfRoundsHOT = card.amountOfRounds;
+                    playerToHealth.GetComponent<BaseVFX>().HOTVFXStart();
                 }
             }
 
@@ -320,6 +321,7 @@ namespace Omega.UI
 
             if (!fromCard)
             {
+                playerToHealth.GetComponent<BaseVFX>().PerformHealing();
                 StartCoroutine(DelayNextTurn());
             }
 
