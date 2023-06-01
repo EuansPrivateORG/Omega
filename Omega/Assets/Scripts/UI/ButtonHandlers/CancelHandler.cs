@@ -27,6 +27,7 @@ namespace Omega.UI
 
         private void OnEnable()
         {
+            //cannotCancel = false;
             cancelAction = new InputAction("Cancel", InputActionType.Button, "<Gamepad>/buttonEast");
             cancelAction.performed += OnCancelPressed;
             cancelAction.Enable();
@@ -45,10 +46,10 @@ namespace Omega.UI
 
         private void OnCancelPressed(InputAction.CallbackContext context)
         {
-            if(playerIdentifier.isAttacking) playerIdentifier.currentAttack = null;
             if (cannotCancel) return;
             if (playerIdentifier.currentAttack != null && !playerIdentifier.currentAttack.currentlySelectingPlayer) return;
             if (playerIdentifier.currentHeal != null && !playerIdentifier.currentHeal.currentlySelectingPlayer) return;
+            if (playerIdentifier.isAttacking) playerIdentifier.currentAttack = null;
             playerHUD.interactable = true;
             playerHUD.alpha = 1;
             ResetUI();
