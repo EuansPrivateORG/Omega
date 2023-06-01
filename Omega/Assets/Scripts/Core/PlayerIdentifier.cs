@@ -44,6 +44,8 @@ namespace Omega.Core
 
         [HideInInspector] public bool isSelectingPlayer = false;
 
+        [HideInInspector] public Card speedCard;
+
 
         private void Awake()
         {
@@ -140,8 +142,21 @@ namespace Omega.Core
 
                 cardTween.RefreshCardList();
 
-                cardHandler.CheckPlayersCards(); //Must be last action
+                cardHandler.CheckPlayersCards(); //Must be last action apart from other card stuff
+
+                if (speedCard != null)
+                {
+                    SpeedRound();
+                }
             }
+        }
+
+        public void SpeedRound()
+        {
+            turnTimer.turnTimeLimit = speedCard.speedRoundTime;
+            TimerCollection timerCollection = FindObjectOfType<TimerCollection>();
+            timerCollection.gizomo1.GetComponent<RotateUIImage>().rotationSpeed = timerCollection.gizomo1.GetComponent<RotateUIImage>().rotationSpeed * 4;
+            timerCollection.gizomo1.GetComponent<RotateUIImage>().rotationSpeed = timerCollection.gizomo2.GetComponent<RotateUIImage>().rotationSpeed * 4;
         }
 
         private void SettingUpNextPlayer()

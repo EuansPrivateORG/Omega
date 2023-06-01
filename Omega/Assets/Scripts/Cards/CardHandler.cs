@@ -259,6 +259,13 @@ namespace Omega.Actions
                             playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
                             playerIdentifier.currentPlayer.GetComponent<BaseVFX>().StartEnergyVFX();
                             break;
+
+                        case Card.CardType.speedRound:
+
+                            playersCards.cardsPlayed.Add(currentCard);
+                            playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
+                            playerIdentifier.speedCard = currentCard;
+                            break;
                     }
                     break;
 
@@ -316,6 +323,18 @@ namespace Omega.Actions
                             playersCards.RemovePlayedCards(card.CardWorldPreFab);
                         }
                     }
+                }
+
+                if(card.cardType == Card.CardType.speedRound)
+                {
+                    playersCards.cardsPlayed.Remove(card);
+                    playersCards.RemovePlayedCards(card.CardWorldPreFab);
+                    playerIdentifier.speedCard = null;
+                    TurnTimer turnTimer = FindObjectOfType<TurnTimer>();
+                    turnTimer.turnTimeLimit = turnTimer.originalTime;
+                    TimerCollection timerCollection = FindObjectOfType<TimerCollection>();
+                    timerCollection.gizomo1.GetComponent<RotateUIImage>().rotationSpeed = timerCollection.gizomo1.GetComponent<RotateUIImage>().rotationSpeed / 4;
+                    timerCollection.gizomo1.GetComponent<RotateUIImage>().rotationSpeed = timerCollection.gizomo2.GetComponent<RotateUIImage>().rotationSpeed / 4;
                 }
             }
 

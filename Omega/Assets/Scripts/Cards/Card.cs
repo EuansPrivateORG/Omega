@@ -54,7 +54,8 @@ namespace Omega.Actions
             instantHeal,
             damageReduction,
             eot,
-            lifeSteal
+            lifeSteal,
+            speedRound
         }
 
         public CardType cardType;
@@ -72,6 +73,7 @@ namespace Omega.Actions
         [HideInInspector] public GameObject damageReductionPreFab;
         [HideInInspector] public int energyPerTurn; //For Energy over time
         [HideInInspector] public float lifeStealPercentage; //For Energy over time
+        [HideInInspector] public int speedRoundTime; //For Energy over time
 
 
         public bool effectOverTime;
@@ -123,6 +125,9 @@ namespace Omega.Actions
                         break;
                     case CardType.lifeSteal:
                         card.lifeStealPercentage = EditorGUILayout.FloatField("Percentage of health gained", card.lifeStealPercentage);
+                        break;
+                    case CardType.speedRound:
+                        card.speedRoundTime = EditorGUILayout.IntField("Speed Round Time", card.speedRoundTime);
                         break;
                 }
             }

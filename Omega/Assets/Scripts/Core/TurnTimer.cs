@@ -12,6 +12,7 @@ namespace Omega.Core
         [SerializeField] public Image timeFace;
         [SerializeField] public TextMeshProUGUI timerText;
         [SerializeField] public Image timeOutImage;
+        [HideInInspector] public float originalTime;
 
         private bool flashing = false;
         public float toggleDuration = .1f;
@@ -24,6 +25,7 @@ namespace Omega.Core
 
         private void Awake()
         {
+            originalTime = turnTimeLimit;
             playerIdentifier = GetComponent<PlayerIdentifier>();
         }
 

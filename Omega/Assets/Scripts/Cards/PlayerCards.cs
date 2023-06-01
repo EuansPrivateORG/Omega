@@ -136,6 +136,8 @@ namespace Omega.Actions
 
         private IEnumerator DissolveCard(GameObject card, bool fromDeck)
         {
+            card.GetComponent<CardCollection3D>().emissive.SetActive(false);
+
             Renderer cardRenderer = card.GetComponent<Renderer>();
             CanvasGroup cardCanvas = card.GetComponent<CardCollection3D>().cardToUse.GetComponent<CanvasGroup>();
             float dissolveDuration = Random.Range(1f, 2f);
@@ -168,7 +170,6 @@ namespace Omega.Actions
 
         private IEnumerator ReappearCard(GameObject card)
         {
-            //Debug.Log(card.name);
             Renderer cardRenderer = card.GetComponent<Renderer>();
             CanvasGroup cardCanvas = card.GetComponent<CardCollection3D>().cardToUse.GetComponent<CanvasGroup>();
             float dissolveDuration = Random.Range(1f, 2f);
@@ -182,7 +183,6 @@ namespace Omega.Actions
 
                 cardRenderer.sharedMaterial.SetFloat("_Dissolve", tRenderer);
                 cardCanvas.alpha = tCanvas;
-                //Debug.Log(gameObject.name + " " + cardCanvas + " " + cardCanvas.alpha);
 
                 elapsedTime += Time.deltaTime;
                 yield return null;
@@ -190,6 +190,7 @@ namespace Omega.Actions
 
             cardRenderer.sharedMaterial.SetFloat("_Dissolve", 0f);
             cardCanvas.alpha = 1f;
+            card.GetComponent<CardCollection3D>().emissive.SetActive(true);
         }
 
         private IEnumerator MoveCardsDown(GameObject playedCard)

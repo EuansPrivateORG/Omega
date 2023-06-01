@@ -9860,6 +9860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9125541964847986875}
+  - component: {fileID: 5252074561803918509}
   m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
@@ -9892,6 +9893,20 @@ RectTransform:
   m_AnchoredPosition: {x: 2000, y: -55}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5252074561803918509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693734483826460245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1838fe7e3312ce24b886b19e3364c1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gizomo1: {fileID: 8838610855047580338}
+  gizomo2: {fileID: 7071672794146088658}
 --- !u!1 &3773937612626484859
 GameObject:
   m_ObjectHideFlags: 0

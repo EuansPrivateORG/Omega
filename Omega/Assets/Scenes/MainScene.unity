@@ -2383,6 +2383,7 @@ MonoBehaviour:
   isAttacking: 0
   flippedTurnOrder: 0
   isSelectingPlayer: 0
+  speedCard: {fileID: 0}
 --- !u!114 &781620685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2399,6 +2400,7 @@ MonoBehaviour:
   timeFace: {fileID: 1260213818}
   timerText: {fileID: 162888156}
   timeOutImage: {fileID: 2039334749}
+  originalTime: 0
   toggleDuration: 0.3
   repeatCount: 3
 --- !u!114 &781620686
@@ -2524,6 +2526,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 39cfc8f8788826c458049fd06ee6ab44, type: 2}
   - {fileID: 11400000, guid: 01520f1f4fe6389409c5662513f7db62, type: 2}
   - {fileID: 11400000, guid: 00723beddd252844489d7a4c046613d5, type: 2}
+  - {fileID: 11400000, guid: 63fc5f1f3c6ab744abaa49d3e8536f5a, type: 2}
   cardProbabilityTracker: {fileID: 11400000, guid: b36e3688e8d2b2a498de7a5e54073819,
     type: 2}
   nextTurnDelayTime: 2

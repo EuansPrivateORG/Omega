@@ -8,6 +8,7 @@ namespace Omega.Actions
     public class CardCollection3D : MonoBehaviour
     {
         [SerializeField] public GameObject cardToUse = null;
+        [SerializeField] public GameObject emissive;
     }
 
 }
