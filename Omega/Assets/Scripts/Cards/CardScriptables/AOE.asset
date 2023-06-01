@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: AOE
   cardCategory: 0
-  cardWeight: 100000
+  cardWeight: 4
   activationType: 0
   cardType: 0
   amountOfRounds: 0

@@ -55,6 +55,8 @@ namespace Omega.Core
 
         public void StartNextRound()
         {
+            spawnHandler.ResetPlayers();
+
             StartCoroutine(roundCompletion.FadeOutHUD(roundResults));
 
             gameHUD.alpha = 1;
@@ -75,7 +77,10 @@ namespace Omega.Core
 
         public void EndRound()
         {
-            spawnHandler.ResetPlayers();
+            spawnHandler.EndRound();
+
+            FindObjectOfType<CameraHandler>().EndRoundCam();
+
             playerId.roundOver = true;
 
             gameHUD.alpha = 0;
@@ -88,7 +93,10 @@ namespace Omega.Core
 
         public void EndGame(GameObject endScreen)
         {
-            spawnHandler.ResetPlayers();
+            spawnHandler.EndRound();
+
+            FindObjectOfType<CameraHandler>().EndRoundCam();
+
             playerId.roundOver = true;
 
             scoreHandler.DisplayEndGameScores(endScreen.GetComponent<EndScreenCollection>());

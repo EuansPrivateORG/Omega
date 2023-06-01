@@ -216,11 +216,17 @@ namespace Omega.Core
 
         public void ResetPlayers()
         {
-            foreach(GameObject player in playerList)
+            foreach (GameObject player in playerList)
             {
                 Destroy(player);
+                Debug.Log(player);
             }
 
+            playerList.Clear();
+        }
+
+        public void EndRound()
+        {
             foreach (GameObject icon in playerImageListPrivate)
             {
                 Destroy(icon);
@@ -229,7 +235,6 @@ namespace Omega.Core
             playerCounter = 0;
             playerImageListPrivate.Clear();
             playerImageList.Clear();
-            playerList.Clear();
             playerIdentifier.ResetIndex();
         }
     }

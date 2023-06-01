@@ -39,7 +39,6 @@ public class BaseVFX : MonoBehaviour
                 float lerpFactor = Mathf.PingPong(Time.time * timeBetweenStunFlash, 1f);
                 Color targetColor = Color.Lerp(Color.black / 10, originalImissiveColor * 4, lerpFactor);
                 mat.SetColor("_EmissionColor", targetColor);
-                Debug.Log(targetColor);
             }
         }
     }
@@ -112,26 +111,6 @@ public class BaseVFX : MonoBehaviour
         {
             Material mat = t.GetComponent<Renderer>().material;
             mat.SetColor("_EmissionColor", originalImissiveColor);
-            Debug.Log("Stopped Flashing Base");
         }
     }
-
-    //private IEnumerator FlashMaterial()
-    //{
-    //    while (stunVFXActive)
-    //    {
-    //        foreach (Transform t in currentStunImissive.transform)
-    //        {
-    //            Material mat = t.GetComponent<Renderer>().material;
-
-    //            mat.SetColor("_EmissionColor", Color.black); // Set minimum intensity color
-
-    //            yield return new WaitForSeconds(timeBetweenStunFlash / 2f);
-
-    //            mat.SetColor("_EmissionColor", originalImissiveColor); // Set maximum intensity color
-
-    //            yield return new WaitForSeconds(timeBetweenStunFlash / 2f);
-    //        }
-    //    }
-    //}
 }

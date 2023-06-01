@@ -100,6 +100,8 @@ namespace Omega.UI
 
         public void ResetGame()
         {
+            FindObjectOfType<PlayerSpawnHandler>().ResetPlayers();
+
             StartCoroutine(FadeOutHUD(endScreen));
             StartCoroutine(FadeInHUD(startScreen));
             EventSystem.current.SetSelectedGameObject(startScreen.GetComponent<RoundStart>().startRoundButton.gameObject);

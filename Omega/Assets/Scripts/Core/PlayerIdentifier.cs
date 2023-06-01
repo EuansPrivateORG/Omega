@@ -77,7 +77,8 @@ namespace Omega.Core
 
         public void SetIndex(List<GameObject> playerList)
         {
-            playerIndex = playerList;
+            playerIndex = new List<GameObject>();
+            playerIndex.AddRange(playerList);
             SetupTurnOrderIndex();
             SetupCurrentlyAlivePlayerIndex();
 

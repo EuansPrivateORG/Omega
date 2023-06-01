@@ -9,6 +9,7 @@ namespace Omega.Core
     {
         [HideInInspector]
         [SerializeField] List<CinemachineVirtualCamera> playerCameras;
+        [SerializeField] CinemachineVirtualCamera endRoundCam;
 
         [HideInInspector]
         public CinemachineVirtualCamera firstPlayerCamera;
@@ -49,6 +50,11 @@ namespace Omega.Core
             {
                 if (playerCameras[i] != currentPlayerCamera) playerCameras[i].Priority = 10;
             }
+        }
+
+        public void EndRoundCam()
+        {
+            SwitchCamera(endRoundCam);
         }
     }
 }
