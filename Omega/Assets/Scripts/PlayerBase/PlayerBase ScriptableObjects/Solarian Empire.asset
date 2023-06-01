@@ -25,3 +25,5 @@ MonoBehaviour:
     type: 2}
   turnOrderVarientIcon: {fileID: 619060943751386943, guid: 8d4ae91af402b244782c3570009f2b4f,
     type: 3}
+  faction3DIcon: {fileID: 1575426649320557454, guid: dac379bc7870107449c1e6972de3ea58,
+    type: 3}
