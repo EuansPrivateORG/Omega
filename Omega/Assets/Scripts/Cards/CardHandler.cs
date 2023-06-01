@@ -264,17 +264,6 @@ namespace Omega.Actions
 
                 default:
 
-                    if (currentCard.effectOverTime)
-                    {
-                        switch (currentCard.cardType)
-                        {
-                            case Card.CardType.shield:
-
-                                currentPlayersSetup.amountOfRoundsShield = currentCard.amountOfRounds;
-                                break;
-                        }
-                    }
-
                     playersCards.cardsPlayed.Add(currentCard);
                     playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
                     break;

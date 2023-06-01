@@ -373,6 +373,13 @@ namespace Omega.UI
                         playerToDamage.GetComponent<BaseVFX>().StartDamageVFX();
                     }
 
+                    if(card.cardType == Card.CardType.lifeSteal)
+                    {
+                        HealingButtonHandler health = FindObjectOfType<HealingButtonHandler>();
+                        float amountToHeal = damageToDeal * card.lifeStealPercentage;
+                        health.PerformHealing((int)amountToHeal, card, playerIdentifier.currentPlayer);
+                        playerIdentifier.currentPlayer.GetComponent<BaseVFX>().PerformHealing();
+                    }
                 }
             }
         }

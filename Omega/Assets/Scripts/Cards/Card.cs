@@ -53,7 +53,8 @@ namespace Omega.Actions
             flipTurn,
             instantHeal,
             damageReduction,
-            eot
+            eot,
+            lifeSteal
         }
 
         public CardType cardType;
@@ -70,6 +71,8 @@ namespace Omega.Actions
         [HideInInspector] public float damageReductionPercentage; //For reduced damage
         [HideInInspector] public GameObject damageReductionPreFab;
         [HideInInspector] public int energyPerTurn; //For Energy over time
+        [HideInInspector] public float lifeStealPercentage; //For Energy over time
+
 
         public bool effectOverTime;
 
@@ -117,6 +120,9 @@ namespace Omega.Actions
                         break;
                     case CardType.eot:
                         card.energyPerTurn = EditorGUILayout.IntField("Amount of energy per turn", card.energyPerTurn);
+                        break;
+                    case CardType.lifeSteal:
+                        card.lifeStealPercentage = EditorGUILayout.FloatField("Percentage of health gained", card.lifeStealPercentage);
                         break;
                 }
             }
