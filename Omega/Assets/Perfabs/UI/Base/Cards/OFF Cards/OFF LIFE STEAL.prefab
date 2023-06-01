@@ -287,6 +287,16 @@ PrefabInstance:
       propertyPath: m_text
       value: Life Steal
       objectReference: {fileID: 0}
+    - target: {fileID: 3749471318476549542, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749471318476549542, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5015744510079980077, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_AnchorMax.y

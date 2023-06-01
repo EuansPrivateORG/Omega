@@ -1599,6 +1599,7 @@ MonoBehaviour:
   overchargeVFX: {fileID: 1124646314071664168}
   healingVFXTime: 1
   overchargeVFXTime: 1
+  timeBetweenStunFlash: 1
 --- !u!1 &8153083942625156066
 GameObject:
   m_ObjectHideFlags: 0

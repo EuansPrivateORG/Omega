@@ -373,11 +373,12 @@ namespace Omega.Actions
                     {
 
                         playerSetup.amountOfRoundsStun--;
+                        StartCoroutine(DelayNextTurn());
 
                         if (playerSetup.amountOfRoundsStun <= 0)
                         {
                             playersCards.cardsPlayedAgainst.Remove(card);
-                            StartCoroutine(DelayNextTurn());
+                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().StunVFXStop();
                         }
                     }
 

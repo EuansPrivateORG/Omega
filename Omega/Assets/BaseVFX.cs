@@ -1,3 +1,4 @@
+using Omega.Visual;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,11 @@ public class BaseVFX : MonoBehaviour
     public GameObject overchargeVFX;
     public float healingVFXTime;
     public float overchargeVFXTime;
+    public float timeBetweenStunFlash;
+    private bool stunVFXActive = false;
+    private GameObject currentStunImissive;
+    private Color originalImissiveColor;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +31,17 @@ public class BaseVFX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (stunVFXActive)
+        {
+            foreach (Transform t in currentStunImissive.transform)
+            {
+                Material mat = t.GetComponent<Renderer>().material;
+                float lerpFactor = Mathf.PingPong(Time.time * timeBetweenStunFlash, 1f);
+                Color targetColor = Color.Lerp(Color.black / 10, originalImissiveColor * 4, lerpFactor);
+                mat.SetColor("_EmissionColor", targetColor);
+                Debug.Log(targetColor);
+            }
+        }
     }
 
     public void PerformHealing()
@@ -67,6 +83,13 @@ public class BaseVFX : MonoBehaviour
         hotVFX.GetComponent<ParticleSystem>().Play();
     }
 
+    public void StartStunVFX()
+    {
+        currentStunImissive = gameObject.GetComponentInChildren<BaseCollection>().emissivePiecesParent;
+        originalImissiveColor = currentStunImissive.GetComponentInChildren<Renderer>().material.GetColor("_EmissionColor");
+        stunVFXActive = true;
+    }
+
     public void HOTVFXStop()
     {
         hotVFX.GetComponent<ParticleSystem>().Stop();
@@ -81,4 +104,34 @@ public class BaseVFX : MonoBehaviour
     {
         energyVFX.GetComponent<ParticleSystem>().Stop();
     }
+
+    public void StunVFXStop()
+    {
+        stunVFXActive = false;
+        foreach (Transform t in currentStunImissive.transform)
+        {
+            Material mat = t.GetComponent<Renderer>().material;
+            mat.SetColor("_EmissionColor", originalImissiveColor);
+            Debug.Log("Stopped Flashing Base");
+        }
+    }
+
+    //private IEnumerator FlashMaterial()
+    //{
+    //    while (stunVFXActive)
+    //    {
+    //        foreach (Transform t in currentStunImissive.transform)
+    //        {
+    //            Material mat = t.GetComponent<Renderer>().material;
+
+    //            mat.SetColor("_EmissionColor", Color.black); // Set minimum intensity color
+
+    //            yield return new WaitForSeconds(timeBetweenStunFlash / 2f);
+
+    //            mat.SetColor("_EmissionColor", originalImissiveColor); // Set maximum intensity color
+
+    //            yield return new WaitForSeconds(timeBetweenStunFlash / 2f);
+    //        }
+    //    }
+    //}
 }

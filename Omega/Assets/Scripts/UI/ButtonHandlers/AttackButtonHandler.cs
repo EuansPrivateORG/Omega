@@ -338,17 +338,20 @@ namespace Omega.UI
                         {
                             playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
                             playerLeft.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                            playerLeft.GetComponent<BaseVFX>().StartStunVFX();
                         }
                         if (playerRight != null)
                         {
-                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
-                            playerLeft.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                            playerRight.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playerRight.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                            playerRight.GetComponent<BaseVFX>().StartStunVFX();
                         }
 
                         recieversCards.cardsPlayedAgainst.Add(card);
                         playersCards.cardsPlayed.Remove(card);
                         playersCards.RemovePlayedCards(card.CardWorldPreFab);
                         playerToDamage.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                        playerToDamage.GetComponent<BaseVFX>().StartStunVFX();
                     }
 
                     if (card.cardType == Card.CardType.dot)
