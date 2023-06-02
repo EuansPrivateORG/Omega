@@ -324,6 +324,27 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2172796cfd5598140b71d357e9eb6298,
+        type: 3}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.38039216
+      objectReference: {fileID: 0}
     - target: {fileID: 7915632799456698018, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}
       propertyPath: card
@@ -414,6 +435,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076654775198026984, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076654775198026984, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9a0a07bc5298b949bb1527c92df62eb, type: 3}

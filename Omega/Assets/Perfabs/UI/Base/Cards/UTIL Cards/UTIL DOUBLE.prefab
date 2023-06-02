@@ -330,6 +330,27 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Activation: on next action'
       objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: be11793e41d8db84ca38608dec3909b4,
+        type: 3}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.70062083
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.48584908
+      objectReference: {fileID: 0}
     - target: {fileID: 7915632799456698018, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}
       propertyPath: card
