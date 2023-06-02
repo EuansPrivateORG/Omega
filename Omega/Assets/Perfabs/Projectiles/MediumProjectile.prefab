@@ -228,14 +228,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mediumAttack: {fileID: 4792560708573822342, guid: 1a01f54f0d7e107498975419ad291bac,
     type: 3}
-  amountOfShots: 4
+  amountOfShots: 8
   target: {fileID: 0}
-  delayBetweenShots: 0.6
+  delayBetweenShots: 0.1
   bulletSpawns:
   - {fileID: 7983287718134520893}
   - {fileID: 3682879933394894240}
   - {fileID: 6755727963919466147}
   - {fileID: 8973205096264144295}
+  shotWaitTime: 1.2
 --- !u!4 &7249458288154679901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 885089303948709871, guid: 00f3577a9fd471946ba837f98fba9075,

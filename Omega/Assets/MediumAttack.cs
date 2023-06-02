@@ -9,6 +9,7 @@ public class MediumAttack : MonoBehaviour
     [HideInInspector] public GameObject target;
     public float delayBetweenShots;
     public List<Transform> bulletSpawns;
+    public float shotWaitTime;
 
     void Start()
     {
@@ -17,10 +18,19 @@ public class MediumAttack : MonoBehaviour
 
     public IEnumerator Shoot()
     {
+        int bulletSpawnCounter = 0;
+        yield return new WaitForSeconds(shotWaitTime);
+
+
         for (int i = 0; i < amountOfShots; i++)
         {
-            GameObject bullet = Instantiate(mediumAttack, bulletSpawns[i]);
+            if(bulletSpawnCounter > bulletSpawns.Count - 1)
+            {
+                bulletSpawnCounter = 0;
+            }
+            GameObject bullet = Instantiate(mediumAttack, bulletSpawns[bulletSpawnCounter]);
             bullet.GetComponent<MediumVFX>().target = target;
+            bulletSpawnCounter++;
             yield return new WaitForSeconds(delayBetweenShots);
         }
     }
