@@ -1,3 +1,4 @@
+using Omega.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,11 @@ public class MediumAttack : MonoBehaviour
     public float delayBetweenShots;
     public List<Transform> bulletSpawns;
     public float shotWaitTime;
+    PlayerIdentifier playerIdentifier;
 
     void Start()
     {
+        playerIdentifier = FindObjectOfType<PlayerIdentifier>();
         StartCoroutine(Shoot());
     }
 
@@ -33,5 +36,7 @@ public class MediumAttack : MonoBehaviour
             bulletSpawnCounter++;
             yield return new WaitForSeconds(delayBetweenShots);
         }
+
+        playerIdentifier.currentAttack.continueWithAttack = true;
     }
 }

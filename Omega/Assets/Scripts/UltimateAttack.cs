@@ -1,3 +1,4 @@
+using Omega.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,14 +28,17 @@ public class UltimateAttack : MonoBehaviour
     private bool isLerping = false;
     private bool isDelayedPrefabInstantiated = false;
 
+    private PlayerIdentifier playerIdentifier;
 
 
     private void Start()
     {
+        playerIdentifier = FindObjectOfType<PlayerIdentifier>();
         parentObject = new GameObject("VFXParent"); // Create a parent object
         parentObject.transform.position = transform.position;
         currentRadius = radius;
         InstantiatePrefabs(initialPrefab);
+        playerIdentifier.currentAttack.continueWithAttack = true;
     }
 
 

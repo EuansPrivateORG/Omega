@@ -56,6 +56,12 @@ namespace Omega.Combat
 
             projectileToFire.transform.parent = transform;
             projectileToFire.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler, num, attackweapon);
+
+            if (attackweapon.GetComponent<Weapon>().weaponType == Weapon.weaponClass.Light)
+            {
+                Debug.Log("Here");
+                playerIdentifier.currentAttack.continueWithAttack = true;
+            }
         }
     }
 }

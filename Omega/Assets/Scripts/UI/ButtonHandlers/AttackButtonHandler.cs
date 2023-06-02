@@ -404,11 +404,11 @@ namespace Omega.UI
             if(playerLeft != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
+                continueWithAttack = false;
                 playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerLeft, damageToDeal), attackWeapon, playerLeft, minColour, maxColour, this, 2);
                 currentTarget = playerLeft;
                 playerLeft = null;
                 LookAtPlayer(attackWeapon);
-                continueWithAttack = false;
             }
             while (!continueWithAttack)
             {
@@ -418,11 +418,11 @@ namespace Omega.UI
 
 
             yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerToDamage));
+            if (playerLeft != null || playerRight != null) continueWithAttack = false;
+            else continueWithAttack = true;
             playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerToDamage, damageToDeal), attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
             LookAtPlayer(attackWeapon);
             currentTarget = playerToDamage;
-            if (playerLeft != null || playerRight != null) continueWithAttack = false;
-            else continueWithAttack = true;
 
             while (!continueWithAttack)
             {
@@ -562,21 +562,27 @@ namespace Omega.UI
 
         private IEnumerator SlerpAttackWeapon(GameObject attackWeapon, GameObject playerToTarget)
         {
-            Quaternion initialRotation = attackWeapon.transform.rotation;
-
-            Vector3 targetPosition = playerToTarget.transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(targetPosition - attackWeapon.transform.position);
-
-            float elapsedTime = 0f;
-            float rotationTime = 1f;
-
-            while (elapsedTime < rotationTime)
+            if(attackWeapon.GetComponent<Weapon>().weaponType != Weapon.weaponClass.Ultimate)
             {
-                attackWeapon.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / rotationTime);
-                elapsedTime += Time.deltaTime;
+                Quaternion initialRotation = attackWeapon.transform.rotation;
+
+                Vector3 targetPosition = playerToTarget.transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(targetPosition - attackWeapon.transform.position);
+
+                float elapsedTime = 0f;
+                float rotationTime = 1f;
+
+                while (elapsedTime < rotationTime)
+                {
+                    attackWeapon.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / rotationTime);
+                    elapsedTime += Time.deltaTime;
+                    yield return null;
+                }
+            }
+            else
+            {
                 yield return null;
             }
-            //attackWeapon.transform.rotation = initialRotation;
         }
     }
 }

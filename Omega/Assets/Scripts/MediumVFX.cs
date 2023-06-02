@@ -13,5 +13,6 @@ public class MediumVFX : MonoBehaviour
 
         Vector3 direction = (target.transform.position - transform.position).normalized;
         transform.position += direction * moveSpeed * Time.deltaTime;
+        transform.LookAt(target.transform);
     }
 }

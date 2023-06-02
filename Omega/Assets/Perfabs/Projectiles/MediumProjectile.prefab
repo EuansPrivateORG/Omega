@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b3a02578b8b374c94fdaa683d6e77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mediumAttack: {fileID: 4792560708573822342, guid: 1a01f54f0d7e107498975419ad291bac,
+  mediumAttack: {fileID: 3506629785697876113, guid: e421b4167ead01a4f909a749fe7241c1,
     type: 3}
   amountOfShots: 8
   target: {fileID: 0}
