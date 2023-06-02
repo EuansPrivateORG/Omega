@@ -15,6 +15,7 @@ namespace Omega.UI
         public TextMeshProUGUI DisplayText;
         public Image FactionIcon = null;
         public Slider healthSlider;
+        public List<GameObject> barNotches = new List<GameObject>();
 
 
         PlayerIdentifier playerIdentifier;
@@ -44,6 +45,10 @@ namespace Omega.UI
                 else
                 {
                 FactionIcon.color = currentPlayerIcon.color;
+                }
+                foreach (GameObject notch in barNotches)
+                {
+                    notch.GetComponent<Image>().color = playerBase.uiOverriteColor;
                 }
                 playerHealth = playerIdentifier.currentPlayer.GetComponent<Health>().currentHealth;
                 maxHealth = playerIdentifier.currentPlayer.GetComponent<Health>().maxHealth;
