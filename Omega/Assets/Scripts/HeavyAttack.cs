@@ -14,18 +14,5 @@ public class HeavyAttack : MonoBehaviour
     {
         projectile = GetComponentInChildren<Projectile>().gameObject;
         volumetricLine = heavyAttackVFX.GetComponent<VolumetricLineBehavior>();
-        //StartCoroutine(LookAtDelay(1f));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //heavyAttackVFX.transform.LookAt(projectile.transform);
-    }
-
-    private IEnumerator LookAtDelay(float time)
-    {
-        yield return new WaitForSeconds(time);
-        heavyAttackVFX.transform.LookAt(projectile.transform);
     }
 }

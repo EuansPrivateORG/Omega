@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba2b4dda3631024e9abf5ff9f58aa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sideValue: 2
+  sideValue: 3
 --- !u!82 &6217069645729226820
 AudioSource:
   m_ObjectHideFlags: 0
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba2b4dda3631024e9abf5ff9f58aa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sideValue: 3
+  sideValue: 2
 --- !u!82 &722420044892067603
 AudioSource:
   m_ObjectHideFlags: 0

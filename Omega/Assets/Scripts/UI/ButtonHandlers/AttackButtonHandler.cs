@@ -58,6 +58,9 @@ namespace Omega.UI
 
         [HideInInspector] public bool projectileIsFiring = false;
         private GameObject currentAttackWeapon = null;
+        private GameObject currentTarget = null;
+
+        [HideInInspector] public bool continueWithAttack = true;
 
         private void Awake()
         {
@@ -74,7 +77,7 @@ namespace Omega.UI
         {
             if (projectileIsFiring)
             {
-                currentAttackWeapon.transform.LookAt(playerToDamage.transform);
+                currentAttackWeapon.transform.LookAt(currentTarget.transform);
             }
         }
 
@@ -389,6 +392,7 @@ namespace Omega.UI
 
         private IEnumerator WaitForAttack(GameObject attackWeapon, int damageToDeal, int minColour, int maxColour)
         {
+            continueWithAttack = true;
             int middlePlayerNum = 0;
             int rightPlayerNum = 0;
 
@@ -401,21 +405,39 @@ namespace Omega.UI
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
                 playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerLeft, damageToDeal), attackWeapon, playerLeft, minColour, maxColour, this, 2);
+                currentTarget = playerLeft;
                 playerLeft = null;
                 LookAtPlayer(attackWeapon);
+                continueWithAttack = false;
             }
+            while (!continueWithAttack)
+            {
+                yield return null;
+            }
+
 
 
             yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerToDamage));
             playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerToDamage, damageToDeal), attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
             LookAtPlayer(attackWeapon);
+            currentTarget = playerToDamage;
+            if (playerLeft != null || playerRight != null) continueWithAttack = false;
+            else continueWithAttack = true;
+
+            while (!continueWithAttack)
+            {
+                Debug.Log("waiting");
+                yield return null;
+            }
 
             if (playerRight != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerRight));
                 playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerRight, damageToDeal), attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
+                currentTarget = playerRight;
                 playerRight = null;
                 LookAtPlayer(attackWeapon);
+                continueWithAttack = true;
             }
 
 
