@@ -25,6 +25,8 @@ MonoBehaviour:
     type: 2}
   turnOrderVarientIcon: {fileID: 3069725125701190017, guid: e3425fb3977b9e44da65acbdba72f353,
     type: 3}
+  startMenuVarientIcon: {fileID: 8969466248568990210, guid: 5e86876961fe58841baed12f05137011,
+    type: 3}
   faction3DIcon: {fileID: 8986964843554548652, guid: 528c245be8906c8438a470f348959258,
     type: 3}
   uiOverriteColor: {r: 0.8808007, g: 0, b: 1, a: 1}

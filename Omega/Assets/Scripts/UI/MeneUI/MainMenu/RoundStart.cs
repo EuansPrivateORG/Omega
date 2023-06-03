@@ -54,7 +54,7 @@ namespace Omega.UI
             for (int i = 0; i < playerSpawnHandler.numberOfPlayers; i++) 
             {
                 int ran = Random.Range(0, playerTypesList.Count);
-                GameObject instantiatedIcon = Instantiate(playerTypesList[ran].turnOrderVarientIcon, iconSpawnPosition);
+                GameObject instantiatedIcon = Instantiate(playerTypesList[ran].startMenuVarientIcon, iconSpawnPosition);
                 RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
                 iconRect.sizeDelta = new Vector2(50, 50);
                 playerTypesListToSpawn.Add(playerTypesList[ran]);
@@ -128,7 +128,7 @@ namespace Omega.UI
 
             playerSpawnHandler.numberOfPlayers++;
             int ran = Random.Range(0, playerTypesList.Count);
-            GameObject instantiatedIcon = Instantiate(playerTypesList[ran].turnOrderVarientIcon, iconSpawnPosition);
+            GameObject instantiatedIcon = Instantiate(playerTypesList[ran].startMenuVarientIcon, iconSpawnPosition);
             RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
             iconRect.sizeDelta = new Vector2(50, 50);
             playerTypesListToSpawn.Add(playerTypesList[ran]);
