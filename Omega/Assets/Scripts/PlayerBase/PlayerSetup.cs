@@ -72,6 +72,11 @@ namespace Omega.Core
                 }
             }
 
+            foreach (GameObject emissive in baseCollection.emissiveGunPartsList)
+            {
+                emissive.GetComponent<Renderer>().material = playerBase.emissiveMaterialVarientOverrite;
+            }
+
             Transform iconSpawnPosition = baseCollection.iconParent.gameObject.transform;
             GameObject faction3DIcon = Instantiate(playerBase.faction3DIcon, iconSpawnPosition);
             foreach (Transform child in faction3DIcon.transform)

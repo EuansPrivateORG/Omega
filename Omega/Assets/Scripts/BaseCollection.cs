@@ -9,5 +9,6 @@ namespace Omega.Visual
         [SerializeField] public GameObject basePiecesParent;
         [SerializeField] public GameObject emissivePiecesParent;
         [SerializeField] public GameObject iconParent;
+        [SerializeField] public List<GameObject> emissiveGunPartsList = new List<GameObject>();
     }
 }
