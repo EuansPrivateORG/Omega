@@ -59,7 +59,6 @@ namespace Omega.Combat
 
             if (attackweapon.GetComponent<Weapon>().weaponType == Weapon.weaponClass.Light)
             {
-                Debug.Log("Here");
                 playerIdentifier.currentAttack.continueWithAttack = true;
             }
         }
