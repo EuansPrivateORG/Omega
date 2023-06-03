@@ -396,17 +396,20 @@ namespace Omega.UI
                         {
                             playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
                             playersWithHunter.Add(playerLeft);
+                            playerLeft.GetComponent<BaseVFX>().StartReticle();
                         }
                         if (playerRight != null)
                         {
                             playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
                             playersWithHunter.Add(playerRight);
+                            playerRight.GetComponent<BaseVFX>().StartReticle();
                         }
 
                         recieversCards.cardsPlayedAgainst.Add(card);
                         playersCards.cardsPlayed.Remove(card);
                         playersCards.RemovePlayedCards(card.CardWorldPreFab);
                         playersWithHunter.Add(playerToDamage);
+                        playerToDamage.GetComponent<BaseVFX>().StartReticle();
                         hunterThisTurn = true;
                     }
                 }
@@ -541,6 +544,7 @@ namespace Omega.UI
                             damageToDeal = (int)newDam;
                             recieversCards.cardsPlayedAgainst.Remove(card);
                             Debug.Log(_playerToDamage.name + " Hunter Dam " + newDam);
+                            _playerToDamage.GetComponent<BaseVFX>().StopReticle();
                         }
                     }
                 }

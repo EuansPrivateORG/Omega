@@ -10,6 +10,7 @@ public class BaseVFX : MonoBehaviour
     public GameObject hotVFX;
     public GameObject energyVFX;
     public GameObject overchargeVFX;
+    public GameObject huntersVFX;
     public float healingVFXTime;
     public float overchargeVFXTime;
     public float timeBetweenStunFlash;
@@ -26,6 +27,7 @@ public class BaseVFX : MonoBehaviour
         hotVFX.GetComponent<ParticleSystem>().Stop();
         energyVFX.GetComponent<ParticleSystem>().Stop();
         overchargeVFX.GetComponent<ParticleSystem>().Stop();
+        huntersVFX.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,6 +49,11 @@ public class BaseVFX : MonoBehaviour
     {
         healingVFX.GetComponent<ParticleSystem>().Play();
         StartCoroutine(HealingVFXStop());
+    }
+
+    public void StartReticle()
+    {
+        huntersVFX.SetActive(true);
     }
 
     private IEnumerator HealingVFXStop()
@@ -112,5 +119,10 @@ public class BaseVFX : MonoBehaviour
             Material mat = t.GetComponent<Renderer>().material;
             mat.SetColor("_EmissionColor", originalImissiveColor);
         }
+    }
+
+    public void StopReticle()
+    {
+        huntersVFX.SetActive(false);
     }
 }

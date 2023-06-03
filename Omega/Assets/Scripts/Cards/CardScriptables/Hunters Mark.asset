@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Hunters Mark
   cardCategory: 0
-  cardWeight: 8
+  cardWeight: 10000
   activationType: 0
   cardType: 15
   amountOfRounds: 0

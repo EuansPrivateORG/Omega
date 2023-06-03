@@ -1694,6 +1694,7 @@ MonoBehaviour:
   hotVFX: {fileID: 1244919601458246744}
   energyVFX: {fileID: 4926171589076936356}
   overchargeVFX: {fileID: 1124646314071664168}
+  huntersVFX: {fileID: 3058718426163807523}
   healingVFXTime: 1
   overchargeVFXTime: 1
   timeBetweenStunFlash: 0.5
@@ -2370,21 +2371,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1312627505330343970, guid: 24cba610bb7997041bef2d2c803d61e9,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1312627505330343970, guid: 24cba610bb7997041bef2d2c803d61e9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1312627505330343970, guid: 24cba610bb7997041bef2d2c803d61e9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1312627505330343970, guid: 24cba610bb7997041bef2d2c803d61e9,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2448,6 +2434,12 @@ PrefabInstance:
 --- !u!4 &2393962953920470937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1312627505330343970, guid: 24cba610bb7997041bef2d2c803d61e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3679004791029141435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3058718426163807523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1836540034886339224, guid: 24cba610bb7997041bef2d2c803d61e9,
     type: 3}
   m_PrefabInstance: {fileID: 3679004791029141435}
   m_PrefabAsset: {fileID: 0}
