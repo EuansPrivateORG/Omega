@@ -429,6 +429,29 @@ namespace Omega.UI
                         playersCards.RemovePlayedCards(card.CardWorldPreFab);
                         playerIdentifier.currentPlayer.GetComponent<BaseVFX>().StartSacraficeVFX();
                     }
+
+                    if (card.cardType == Card.CardType.damageReduction)
+                    {
+                        float newDam = currentDamage * card.disruptorPerc;
+                        currentDamage = (int)newDam;
+
+
+                        recieversCards.cardsPlayed.Remove(card);
+                        recieversCards.RemovePlayedCards(card.CardWorldPreFab);
+                        playerToDamage.GetComponent<BaseVFX>().StopDisruptor();
+                        int ran = Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
+                        for (int i = 0; i < playerIdentifier.currentlyAlivePlayers.Count; i++)
+                        {
+                            if (playerIdentifier.currentlyAlivePlayers[ran] != playerIdentifier.currentPlayer)
+                            {
+                                playerToDamage = playerIdentifier.currentlyAlivePlayers[ran];
+                            }
+                            else
+                            {
+                                ran = Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -565,7 +588,6 @@ namespace Omega.UI
                             _playerToDamage.GetComponent<BaseVFX>().StopReticle();
                         }
                     }
-
                 }
             }
 
