@@ -325,6 +325,27 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f1880366a80db6148b5223a8552b12b1,
+        type: 3}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.7019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152425351740904569, guid: e9a0a07bc5298b949bb1527c92df62eb,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.4862745
+      objectReference: {fileID: 0}
     - target: {fileID: 7915632799456698018, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}
       propertyPath: card
