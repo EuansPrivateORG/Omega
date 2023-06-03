@@ -12,6 +12,7 @@ public class BaseVFX : MonoBehaviour
     public GameObject energyVFX;
     public GameObject overchargeVFX;
     public GameObject huntersVFX;
+    public GameObject disruptorVFX;
     public float healingVFXTime;
     public float overchargeVFXTime;
     public float timeBetweenStunFlash;
@@ -30,6 +31,7 @@ public class BaseVFX : MonoBehaviour
         overchargeVFX.GetComponent<ParticleSystem>().Stop();
         scaraficeVFX.GetComponent<ParticleSystem>().Stop();
         huntersVFX.SetActive(false);
+        disruptorVFX.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,6 +58,11 @@ public class BaseVFX : MonoBehaviour
     public void StartReticle()
     {
         huntersVFX.SetActive(true);
+    }
+
+    public void StartDisruptorVFX()
+    {
+        disruptorVFX.SetActive(true);
     }
 
     private IEnumerator HealingVFXStop()
@@ -138,5 +145,10 @@ public class BaseVFX : MonoBehaviour
     public void StopReticle()
     {
         huntersVFX.SetActive(false);
+    }
+
+    public void StopDisruptor()
+    {
+        disruptorVFX.SetActive(false);
     }
 }

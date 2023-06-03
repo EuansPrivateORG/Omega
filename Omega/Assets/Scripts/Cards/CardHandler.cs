@@ -293,6 +293,13 @@ namespace Omega.Actions
                             playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
                             playerIdentifier.speedCard = currentCard;
                             break;
+
+                        case Card.CardType.disruptor:
+
+                            playersCards.cardsPlayed.Add(currentCard);
+                            playersCards.InstantiatePlayedCards(currentCard.CardWorldPreFab);
+                            playerIdentifier.currentPlayer.GetComponent<BaseVFX>().StartDisruptorVFX(); 
+                            break;
                     }
                     break;
 

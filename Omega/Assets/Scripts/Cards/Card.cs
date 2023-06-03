@@ -57,7 +57,8 @@ namespace Omega.Actions
             lifeSteal,
             speedRound,
             huntersMark,
-            sacrafice
+            sacrafice,
+            disruptor
         }
 
         public CardType cardType;
@@ -79,6 +80,7 @@ namespace Omega.Actions
         [HideInInspector] public float huntersMarkPercentage; //For Hunters Mark Card
         [HideInInspector] public float sacraficeLoss; //For Sacrafice Card
         [HideInInspector] public float sacraficeGain; //For Sacrafice Mark Card
+        [HideInInspector] public float disruptorPerc; //For Disruptor Mark Card
 
 
         public bool effectOverTime;
@@ -140,6 +142,9 @@ namespace Omega.Actions
                     case CardType.sacrafice:
                         card.sacraficeLoss = EditorGUILayout.FloatField("Percentage of Player Dam", card.sacraficeLoss);
                         card.sacraficeGain = EditorGUILayout.FloatField("Percentage of Target Dam", card.sacraficeGain);
+                        break;
+                    case CardType.disruptor:
+                        card.disruptorPerc = EditorGUILayout.FloatField("Percentage of Dam", card.disruptorPerc);
                         break;
                 }
             }
