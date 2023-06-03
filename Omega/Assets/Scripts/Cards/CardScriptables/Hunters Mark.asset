@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
+  m_Name: Hunters Mark
+  m_EditorClassIdentifier: 
+  CardUIPreFab: {fileID: 7130426610569531309, guid: a662f0f10908fa347be072918236099e,
+    type: 3}
+  CardWorldPreFab: {fileID: 91824742423918415, guid: 0af8e2cb89c0d884d9b9835d16690043,
+    type: 3}
+  CardName: Hunters Mark
+  cardCategory: 0
+  cardWeight: 8
+  activationType: 0
+  cardType: 15
+  amountOfRounds: 0
+  damagePerTurn: 0
+  shieldPrefab: {fileID: 0}
+  healingPerTurn: 0
+  energyAmount: 0
+  rollBonusValue: 0
+  instantHealAmount: 0
+  damageReductionPercentage: 0
+  damageReductionPreFab: {fileID: 0}
+  energyPerTurn: 0
+  lifeStealPercentage: 0
+  speedRoundTime: 0
+  huntersMarkPercentage: 1.5
+  effectOverTime: 0
+  hasEffectWhenAttacked: 1

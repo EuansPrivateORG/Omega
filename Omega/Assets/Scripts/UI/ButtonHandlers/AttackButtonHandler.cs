@@ -62,6 +62,9 @@ namespace Omega.UI
 
         [HideInInspector] public bool continueWithAttack = true;
 
+        private bool hunterThisTurn = false;
+        private List<GameObject> playersWithHunter = new List<GameObject>();
+
         private void Awake()
         {
             attackButtonID = FindObjectOfType<AttackButtonID>();
@@ -386,6 +389,26 @@ namespace Omega.UI
                         health.PerformHealing((int)amountToHeal, card, playerIdentifier.currentPlayer);
                         playerIdentifier.currentPlayer.GetComponent<BaseVFX>().PerformHealing();
                     }
+
+                    if (card.cardType == Card.CardType.huntersMark)
+                    {
+                        if (playerLeft != null)
+                        {
+                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playersWithHunter.Add(playerLeft);
+                        }
+                        if (playerRight != null)
+                        {
+                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playersWithHunter.Add(playerRight);
+                        }
+
+                        recieversCards.cardsPlayedAgainst.Add(card);
+                        playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
+                        playersWithHunter.Add(playerToDamage);
+                        hunterThisTurn = true;
+                    }
                 }
             }
         }
@@ -405,7 +428,7 @@ namespace Omega.UI
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
                 continueWithAttack = false;
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerLeft, damageToDeal), attackWeapon, playerLeft, minColour, maxColour, this, 2);
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(RecieverDamage(playerLeft, damageToDeal), attackWeapon, playerLeft, minColour, maxColour, this, 2);
                 currentTarget = playerLeft;
                 playerLeft = null;
                 LookAtPlayer(attackWeapon);
@@ -420,20 +443,19 @@ namespace Omega.UI
             yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerToDamage));
             if (playerLeft != null || playerRight != null) continueWithAttack = false;
             else continueWithAttack = true;
-            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerToDamage, damageToDeal), attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
+            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(RecieverDamage(playerToDamage, damageToDeal), attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
             LookAtPlayer(attackWeapon);
             currentTarget = playerToDamage;
 
             while (!continueWithAttack)
             {
-                Debug.Log("waiting");
                 yield return null;
             }
 
             if (playerRight != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerRight));
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(ShieldDamage(playerRight, damageToDeal), attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
+                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(RecieverDamage(playerRight, damageToDeal), attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
                 currentTarget = playerRight;
                 playerRight = null;
                 LookAtPlayer(attackWeapon);
@@ -447,6 +469,8 @@ namespace Omega.UI
             scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].damageDealt += damageToDeal;
 
             physicalDiceCalculator.ClearDice();
+            hunterThisTurn = false;
+            playersWithHunter = new List<GameObject>();
         }
 
         private void LookAtPlayer(GameObject attackWeapon)
@@ -458,9 +482,10 @@ namespace Omega.UI
             }
         }
 
-        private int ShieldDamage(GameObject _playerToDamage, int damageToDeal)
+        private int RecieverDamage(GameObject _playerToDamage, int damageToDeal)
         {
-            damageToDeal = currentDamage;
+            bool canGetThrough = true;
+
             PlayerCards recieversCards = _playerToDamage.GetComponent<PlayerCards>();
 
             List<Card> cardList = new List<Card>();
@@ -468,6 +493,8 @@ namespace Omega.UI
             {
                 cardList.Add(card);
             }
+
+            cardList.AddRange(recieversCards.cardsPlayedAgainst);
 
             foreach (Card card in cardList)
             {
@@ -480,6 +507,41 @@ namespace Omega.UI
                         recieversCards.cardsPlayed.Remove(card);
                         recieversCards.RemovePlayedCards(card.CardWorldPreFab);
                         _playerToDamage.GetComponent<PlayerSetup>().DeDamageReduction();
+                    }
+
+                    if (card.cardType == Card.CardType.huntersMark)
+                    {
+                        if (hunterThisTurn)
+                        {
+                            canGetThrough = false;
+                        }
+
+                        foreach(GameObject player in playersWithHunter)
+                        {
+                            if(player == _playerToDamage)
+                            {
+                                int amountOfHunters = 0;
+                                foreach (Card _card in recieversCards.cardsPlayedAgainst)
+                                { 
+                                    if(_card == card)
+                                    {
+                                        amountOfHunters++;
+                                    }
+                                }
+                                if(amountOfHunters >= 2)
+                                {
+                                    canGetThrough = true;
+                                }
+                            } 
+                        }
+
+                        if (canGetThrough)
+                        {
+                            float newDam = damageToDeal * card.huntersMarkPercentage;
+                            damageToDeal = (int)newDam;
+                            recieversCards.cardsPlayedAgainst.Remove(card);
+                            Debug.Log(_playerToDamage.name + " Hunter Dam " + newDam);
+                        }
                     }
                 }
             }

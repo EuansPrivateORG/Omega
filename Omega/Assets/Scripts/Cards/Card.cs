@@ -55,7 +55,8 @@ namespace Omega.Actions
             damageReduction,
             eot,
             lifeSteal,
-            speedRound
+            speedRound,
+            huntersMark
         }
 
         public CardType cardType;
@@ -74,6 +75,7 @@ namespace Omega.Actions
         [HideInInspector] public int energyPerTurn; //For Energy over time
         [HideInInspector] public float lifeStealPercentage; //For Energy over time
         [HideInInspector] public int speedRoundTime; //For Energy over time
+        [HideInInspector] public float huntersMarkPercentage; //For Hunters Mark Card
 
 
         public bool effectOverTime;
@@ -128,6 +130,9 @@ namespace Omega.Actions
                         break;
                     case CardType.speedRound:
                         card.speedRoundTime = EditorGUILayout.IntField("Speed Round Time", card.speedRoundTime);
+                        break;
+                    case CardType.huntersMark:
+                        card.huntersMarkPercentage = EditorGUILayout.FloatField("Percentage of Dam", card.huntersMarkPercentage);
                         break;
                 }
             }
