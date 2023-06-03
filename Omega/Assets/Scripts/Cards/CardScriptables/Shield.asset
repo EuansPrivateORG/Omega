@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Shield
   cardCategory: 1
-  cardWeight: 1
+  cardWeight: 2
   activationType: 3
   cardType: 3
   amountOfRounds: 1

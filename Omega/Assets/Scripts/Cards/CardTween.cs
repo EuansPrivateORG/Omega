@@ -114,6 +114,7 @@ namespace Omega.UI
             originalCardScale = card.transform.localScale;
             LeanTween.scale(card, cardUpScale, cardUpTime);
             LeanTween.move(card, cardUpPos, cardUpTime);
+            cardTransitionSource.Play();
         }
 
 
@@ -121,7 +122,6 @@ namespace Omega.UI
         {
             GameObject upCardTarget = null;
             LeanTween.scale(card, originalCardScale, cardUpTime);
-            cardTransitionSource.Play();
             for (int i = 0; i < cards.Count; i++)
             {
                 if(i == cards.Count - 1)
