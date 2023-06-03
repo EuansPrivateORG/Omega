@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c5c1463fea133946ba46c656d7468cf, type: 3}
-  m_Name: Hunters Mark
+  m_Name: Sacrafice
   m_EditorClassIdentifier: 
-  CardUIPreFab: {fileID: 7130426610569531309, guid: a662f0f10908fa347be072918236099e,
+  CardUIPreFab: {fileID: 7130426610569531309, guid: f9e10fc9566850747bcab897ec287cf0,
     type: 3}
-  CardWorldPreFab: {fileID: 91824742423918415, guid: 0af8e2cb89c0d884d9b9835d16690043,
+  CardWorldPreFab: {fileID: 91824742423918415, guid: 7a6b99f9bb1c2db4f8381ee9910010e0,
     type: 3}
-  CardName: Hunters Mark
+  CardName: Sacrafice
   cardCategory: 0
-  cardWeight: 8
+  cardWeight: 1000
   activationType: 0
-  cardType: 15
+  cardType: 16
   amountOfRounds: 0
   damagePerTurn: 0
   shieldPrefab: {fileID: 0}
@@ -33,8 +33,8 @@ MonoBehaviour:
   energyPerTurn: 0
   lifeStealPercentage: 0
   speedRoundTime: 0
-  huntersMarkPercentage: 1.5
-  sacraficeLoss: 0
-  sacraficeGain: 0
+  huntersMarkPercentage: 0
+  sacraficeLoss: 1
+  sacraficeGain: 2
   effectOverTime: 0
-  hasEffectWhenAttacked: 1
+  hasEffectWhenAttacked: 0

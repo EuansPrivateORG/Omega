@@ -7,6 +7,7 @@ public class BaseVFX : MonoBehaviour
 {
     public GameObject healingVFX;
     public GameObject dotVFX;
+    public GameObject scaraficeVFX;
     public GameObject hotVFX;
     public GameObject energyVFX;
     public GameObject overchargeVFX;
@@ -27,6 +28,7 @@ public class BaseVFX : MonoBehaviour
         hotVFX.GetComponent<ParticleSystem>().Stop();
         energyVFX.GetComponent<ParticleSystem>().Stop();
         overchargeVFX.GetComponent<ParticleSystem>().Stop();
+        scaraficeVFX.GetComponent<ParticleSystem>().Stop();
         huntersVFX.SetActive(false);
     }
 
@@ -71,6 +73,18 @@ public class BaseVFX : MonoBehaviour
     {
         yield return new WaitForSeconds(overchargeVFXTime);
         overchargeVFX.GetComponent<ParticleSystem>().Stop();
+    }
+
+    public void StartSacraficeVFX()
+    {
+        scaraficeVFX.GetComponent<ParticleSystem>().Play();
+        StartCoroutine(SacraficeVFXStop());
+    }
+
+    private IEnumerator SacraficeVFXStop()
+    {
+        yield return new WaitForSeconds(overchargeVFXTime);
+        scaraficeVFX.GetComponent<ParticleSystem>().Stop();
     }
 
     public void StartDamageVFX()

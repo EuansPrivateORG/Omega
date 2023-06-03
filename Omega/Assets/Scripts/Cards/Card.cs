@@ -56,7 +56,8 @@ namespace Omega.Actions
             eot,
             lifeSteal,
             speedRound,
-            huntersMark
+            huntersMark,
+            sacrafice
         }
 
         public CardType cardType;
@@ -76,6 +77,8 @@ namespace Omega.Actions
         [HideInInspector] public float lifeStealPercentage; //For Energy over time
         [HideInInspector] public int speedRoundTime; //For Energy over time
         [HideInInspector] public float huntersMarkPercentage; //For Hunters Mark Card
+        [HideInInspector] public float sacraficeLoss; //For Sacrafice Card
+        [HideInInspector] public float sacraficeGain; //For Sacrafice Mark Card
 
 
         public bool effectOverTime;
@@ -133,6 +136,10 @@ namespace Omega.Actions
                         break;
                     case CardType.huntersMark:
                         card.huntersMarkPercentage = EditorGUILayout.FloatField("Percentage of Dam", card.huntersMarkPercentage);
+                        break;
+                    case CardType.sacrafice:
+                        card.sacraficeLoss = EditorGUILayout.FloatField("Percentage of Player Dam", card.sacraficeLoss);
+                        card.sacraficeGain = EditorGUILayout.FloatField("Percentage of Target Dam", card.sacraficeGain);
                         break;
                 }
             }

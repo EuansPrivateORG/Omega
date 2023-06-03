@@ -412,12 +412,30 @@ namespace Omega.UI
                         playerToDamage.GetComponent<BaseVFX>().StartReticle();
                         hunterThisTurn = true;
                     }
+
+                    if (card.cardType == Card.CardType.sacrafice)
+                    {
+                        //Dealing Damage to player
+                        float sacraficeDamPlayer = card.sacraficeLoss * damageToDeal;
+                        playerIdentifier.currentPlayer.GetComponent<Health>().TakeDamage(card.damagePerTurn);
+                        SpawnDamageNumbers(playerIdentifier.currentPlayer, (int)sacraficeDamPlayer - 5, (int)sacraficeDamPlayer + 5, true, (int)sacraficeDamPlayer);
+                        playerIdentifier.currentPlayer.GetComponent<DamageStateCollection>().CheckHealth();
+
+                        //Uping damage for other players
+                        float sacraficeDam = damageToDeal * card.sacraficeGain;
+                        currentDamage = (int)sacraficeDam;
+                        
+                        playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
+                        playerIdentifier.currentPlayer.GetComponent<BaseVFX>().StartSacraficeVFX();
+                    }
                 }
             }
         }
 
         private IEnumerator WaitForAttack(GameObject attackWeapon, int damageToDeal, int minColour, int maxColour)
         {
+
             continueWithAttack = true;
             int middlePlayerNum = 0;
             int rightPlayerNum = 0;
@@ -547,6 +565,7 @@ namespace Omega.UI
                             _playerToDamage.GetComponent<BaseVFX>().StopReticle();
                         }
                     }
+
                 }
             }
 

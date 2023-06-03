@@ -652,6 +652,7 @@ Transform:
   - {fileID: 5223229435621685617}
   - {fileID: 1065086084225578909}
   - {fileID: 2393962953920470937}
+  - {fileID: 4296294588141897721}
   m_Father: {fileID: 1771003932818824779}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1691,6 +1692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healingVFX: {fileID: 1387325614611362569}
   dotVFX: {fileID: 8250129871135100530}
+  scaraficeVFX: {fileID: 4234501655248901708}
   hotVFX: {fileID: 1244919601458246744}
   energyVFX: {fileID: 4926171589076936356}
   overchargeVFX: {fileID: 1124646314071664168}
@@ -2660,6 +2662,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &5757557993199118178
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2715316658499228380}
+    m_Modifications:
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441167012129026350, guid: b849109e0d8791f4199e885e937a97c8,
+        type: 3}
+      propertyPath: m_Name
+      value: Sacrafice
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b849109e0d8791f4199e885e937a97c8, type: 3}
+--- !u!1 &4234501655248901708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8441167012129026350, guid: b849109e0d8791f4199e885e937a97c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5757557993199118178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4296294588141897721 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8392868397758128283, guid: b849109e0d8791f4199e885e937a97c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5757557993199118178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5765001874981826321
 PrefabInstance:
   m_ObjectHideFlags: 0
