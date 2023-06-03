@@ -1477,6 +1477,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241657ad554132d47b47f05e41ce421f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DRUp: {fileID: 8300000, guid: b78fccca91eff3043a08f8b6f11b56e3, type: 3}
+  DRDown: {fileID: 8300000, guid: a36a8a5b6e122b54eb9175f80290933f, type: 3}
+  ShieldUp: {fileID: 8300000, guid: b6cee57e201a1b34ca4997a824b6987a, type: 3}
+  ShieldDown: {fileID: 8300000, guid: f56d40d33c1cacb49b93f350f0c0fcda, type: 3}
   playerBase: {fileID: 0}
   playerPreFab: {fileID: 0}
   playerID: 0

@@ -14,6 +14,8 @@ namespace Omega.Core
 {
     public class PlayerIdentifier : MonoBehaviour
     {
+        public AudioClip nextTurnClip;
+
         public List<GameObject> playerIndex = new List<GameObject>();
         public List<GameObject> turnOrderIndex = new List<GameObject>();
         public List<GameObject> currentlyAlivePlayersInTurn = new List<GameObject>();
@@ -148,6 +150,10 @@ namespace Omega.Core
                 {
                     SpeedRound();
                 }
+
+                AudioSource audioSource = GetComponent<CardHandler>().cardPlayedSource;
+                audioSource.clip = nextTurnClip;
+                audioSource.Play();
             }
         }
 

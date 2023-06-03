@@ -13,6 +13,14 @@ namespace Omega.Actions
 {
     public class CardHandler : MonoBehaviour
     {
+        public AudioClip attackClip;
+
+        public AudioClip utilityClip;
+
+        public AudioClip healClip;
+
+        public AudioSource cardPlayedSource;
+
         public int cardCost = 2;
 
         public int cardsToStartWith = 2;
@@ -201,6 +209,25 @@ namespace Omega.Actions
             PlayerSetup currentPlayersSetup = playerIdentifier.currentPlayer.GetComponent<PlayerSetup>();
             playersCards.cardsInHand.Remove(currentCard);
             playersCards.RemoveCardFromDeck(currentCard.CardWorldPreFab);
+
+            switch (currentCard.cardCategory)
+            {
+                case Card.CardCategory.Attack:
+                    cardPlayedSource.clip = attackClip;
+                    cardPlayedSource.Play();
+                    break;
+
+                case Card.CardCategory.Utility:
+                    cardPlayedSource.clip = utilityClip;
+                    cardPlayedSource.Play();
+                    break;
+
+                case Card.CardCategory.Heal:
+                    cardPlayedSource.clip = healClip;
+                    cardPlayedSource.Play();
+                    break;
+            }
+
 
             switch (currentCard.activationType)
             {

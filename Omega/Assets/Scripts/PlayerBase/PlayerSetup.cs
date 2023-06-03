@@ -11,6 +11,11 @@ namespace Omega.Core
 {
     public class PlayerSetup : MonoBehaviour
     {
+        public AudioClip DRUp;
+        public AudioClip DRDown;
+        public AudioClip ShieldUp;
+        public AudioClip ShieldDown;
+
         public Base playerBase;
 
         [HideInInspector] public GameObject playerPreFab;
@@ -95,21 +100,33 @@ namespace Omega.Core
 
         public void ActivateShield(GameObject shield)
         {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.clip = ShieldUp;
+            audioSource.Play();
             playerShield = Instantiate(shield, transform);
         }
 
         public void ActivateDamageReduction(GameObject shield)
         {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.clip = DRUp;
+            audioSource.Play();
             playerDamageReduction = Instantiate(shield, transform);
         }
 
         public void DeActivateShield()
         {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.clip = ShieldDown;
+            audioSource.Play();
             Destroy(playerShield);
         }
 
         public void DeDamageReduction()
         {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.clip = DRDown;
+            audioSource.Play();
             Destroy(playerDamageReduction);
         }
     }

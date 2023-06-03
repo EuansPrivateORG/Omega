@@ -31,5 +31,8 @@ MonoBehaviour:
   instantHealAmount: 0
   damageReductionPercentage: 0
   damageReductionPreFab: {fileID: 0}
+  energyPerTurn: 0
+  lifeStealPercentage: 0
+  speedRoundTime: 0
   effectOverTime: 1
   hasEffectWhenAttacked: 0
