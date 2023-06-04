@@ -77,7 +77,14 @@ namespace Omega.Combat
                 }
 
                 playerIdentifier.currentAttack.projectileIsFiring = false;
-                Destroy(transform.parent.gameObject);
+                if(attackWeapon.GetComponent<Weapon>().weaponType == Weapon.weaponClass.Heavy)
+                {
+                    transform.parent.GetComponentInChildren<HeavyAttack>().Reverse();
+                }
+                else
+                {
+                    Destroy(transform.parent.gameObject);
+                }
             }
         }
 

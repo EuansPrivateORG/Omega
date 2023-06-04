@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 122648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.819625, y: 2.819625, z: 2.819625}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_templateMaterial: {fileID: 2100000, guid: 974b33ccbd786464a825203eb88b8dab, type: 2}
   m_doNotOverwriteTemplateMaterialProperties: 0
-  m_startPos: {x: 0, y: 100, z: 0}
-  m_endPos: {x: 0, y: 0, z: 0}
+  m_startPos: {x: 0, y: 0, z: 0}
+  m_endPos: {x: 0, y: 0, z: 10}
   m_lineColor: {r: 0, g: 1, b: 1, a: 1}
-  m_lineWidth: 20
+  m_lineWidth: 1
   m_lightSaberFactor: 0.8

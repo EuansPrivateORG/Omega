@@ -661,56 +661,34 @@ namespace Omega.UI
 
                     if (availableSelection)
                     {
-                        int ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
-                        for (int i = 0; i < 10; i++)
+                        List<GameObject> playerTargets = new List<GameObject>();
+                        playerTargets.AddRange(playerIdentifier.currentlyAlivePlayers);
+                        playerTargets.Remove(playerToDamage);
+                        playerTargets.Remove(playerIdentifier.currentPlayer);
+                        if(playerLeft != null)
                         {
-                            if (playerIdentifier.currentlyAlivePlayers[ran] != playerIdentifier.currentPlayer && playerIdentifier.currentlyAlivePlayers[ran] != _playerToDamage)
-                            {
-                                if (!isPlayerLeft && !isPlayerRight)
-                                {
-                                    if (playerIdentifier.currentlyAlivePlayers[ran] != playerLeft && playerIdentifier.currentlyAlivePlayers[ran] != playerRight)
-                                    {
-                                        playerToDamage = playerIdentifier.currentlyAlivePlayers[ran];
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
-                                        i--;
-                                    }
-                                }
-                                else if (isPlayerLeft)
-                                {
-                                    if (playerIdentifier.currentlyAlivePlayers[ran] != playerToDamage && playerIdentifier.currentlyAlivePlayers[ran] != playerRight)
-                                    {
-                                        playerLeft = playerIdentifier.currentlyAlivePlayers[ran];
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
-                                        i--;
-                                    }
-                                }
-                                else if (isPlayerRight)
-                                {
-                                    if (playerIdentifier.currentlyAlivePlayers[ran] != playerToDamage && playerIdentifier.currentlyAlivePlayers[ran] != playerLeft)
-                                    {
-                                        playerRight = playerIdentifier.currentlyAlivePlayers[ran];
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
-                                        i--;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
-                                i--;
-                            }
+                            playerTargets.Remove(playerLeft);
+                        }
+                        if (playerRight != null)
+                        {
+                            playerTargets.Remove(playerRight);
+                        }
+
+                        int ran = UnityEngine.Random.Range(0, playerTargets.Count - 1);
+
+                        if (isPlayerLeft)
+                        {
+                            playerLeft = playerIdentifier.currentlyAlivePlayers[ran];
+                        }
+
+                        else if (isPlayerRight)
+                        {
+                            playerRight = playerIdentifier.currentlyAlivePlayers[ran];
+                        }
+
+                        else
+                        {
+                            playerToDamage = playerIdentifier.currentlyAlivePlayers[ran];
                         }
                     }
                     else
