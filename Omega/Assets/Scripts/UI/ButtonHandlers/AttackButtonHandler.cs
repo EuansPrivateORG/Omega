@@ -10,6 +10,7 @@ using Unity.Mathematics;
 using TMPro;
 using Omega.Combat;
 using Unity.VisualScripting;
+using JetBrains.Annotations;
 
 namespace Omega.UI
 {
@@ -64,6 +65,8 @@ namespace Omega.UI
 
         private bool hunterThisTurn = false;
         private List<GameObject> playersWithHunter = new List<GameObject>();
+
+        private bool availableSelection = true;
 
         private void Awake()
         {
@@ -429,41 +432,28 @@ namespace Omega.UI
                         playersCards.RemovePlayedCards(card.CardWorldPreFab);
                         playerIdentifier.currentPlayer.GetComponent<BaseVFX>().StartSacraficeVFX();
                     }
-
-                    if (card.cardType == Card.CardType.damageReduction)
-                    {
-                        float newDam = currentDamage * card.disruptorPerc;
-                        currentDamage = (int)newDam;
-
-
-                        recieversCards.cardsPlayed.Remove(card);
-                        recieversCards.RemovePlayedCards(card.CardWorldPreFab);
-                        playerToDamage.GetComponent<BaseVFX>().StopDisruptor();
-                        int ran = Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
-                        for (int i = 0; i < playerIdentifier.currentlyAlivePlayers.Count; i++)
-                        {
-                            if (playerIdentifier.currentlyAlivePlayers[ran] != playerIdentifier.currentPlayer)
-                            {
-                                playerToDamage = playerIdentifier.currentlyAlivePlayers[ran];
-                            }
-                            else
-                            {
-                                ran = Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
-                            }
-                        }
-                    }
                 }
             }
         }
 
         private IEnumerator WaitForAttack(GameObject attackWeapon, int damageToDeal, int minColour, int maxColour)
         {
-
             continueWithAttack = true;
             int middlePlayerNum = 0;
             int rightPlayerNum = 0;
 
-            if(playerRight != null)
+            Disruptor(playerToDamage, damageToDeal);
+
+            if (playerLeft != null)
+            {
+                Disruptor(playerLeft, damageToDeal);
+            }
+            if(playerRight != null) 
+            {
+                Disruptor(playerRight, damageToDeal);
+            }
+
+            if (playerRight != null)
             {
                 middlePlayerNum = 1;
             }
@@ -472,10 +462,18 @@ namespace Omega.UI
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerLeft));
                 continueWithAttack = false;
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(RecieverDamage(playerLeft, damageToDeal), attackWeapon, playerLeft, minColour, maxColour, this, 2);
+                ProjectileSpawner _projectileSpawner = playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>();
+                _projectileSpawner.SpawnProjectile(RecieverDamage(playerLeft, currentDamage), attackWeapon, playerLeft, minColour, maxColour, this, 2);
                 currentTarget = playerLeft;
                 playerLeft = null;
-                LookAtPlayer(attackWeapon);
+                if (_projectileSpawner.playersToStopAttack.Contains(playerLeft))
+                {
+                    _projectileSpawner.playersToStopAttack.Remove(playerLeft);
+                }
+                else
+                {
+                    LookAtPlayer(attackWeapon);
+                }
             }
             while (!continueWithAttack)
             {
@@ -483,14 +481,20 @@ namespace Omega.UI
             }
 
 
-
             yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerToDamage));
             if (playerLeft != null || playerRight != null) continueWithAttack = false;
             else continueWithAttack = true;
-            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(RecieverDamage(playerToDamage, damageToDeal), attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
-            LookAtPlayer(attackWeapon);
+            ProjectileSpawner projectileSpawner = playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>();
+            projectileSpawner.SpawnProjectile(RecieverDamage(playerToDamage, currentDamage), attackWeapon, playerToDamage, minColour, maxColour, this, middlePlayerNum);
             currentTarget = playerToDamage;
-
+            if (projectileSpawner.playersToStopAttack.Contains(playerToDamage))
+            {
+                projectileSpawner.playersToStopAttack.Remove(playerToDamage);
+            }
+            else
+            {
+                LookAtPlayer(attackWeapon);
+            }
             while (!continueWithAttack)
             {
                 yield return null;
@@ -499,10 +503,18 @@ namespace Omega.UI
             if (playerRight != null)
             {
                 yield return StartCoroutine(SlerpAttackWeapon(attackWeapon, playerRight));
-                playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().SpawnProjectile(RecieverDamage(playerRight, damageToDeal), attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
+                ProjectileSpawner __projectileSpawner = playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>();
+                __projectileSpawner.SpawnProjectile(RecieverDamage(playerRight, currentDamage), attackWeapon, playerRight, minColour, maxColour, this, rightPlayerNum);
                 currentTarget = playerRight;
                 playerRight = null;
-                LookAtPlayer(attackWeapon);
+                if (__projectileSpawner.playersToStopAttack.Contains(playerRight))
+                {
+                    __projectileSpawner.playersToStopAttack.Remove(playerRight);
+                }
+                else
+                {
+                    LookAtPlayer(attackWeapon);
+                }
                 continueWithAttack = true;
             }
 
@@ -584,14 +596,130 @@ namespace Omega.UI
                             float newDam = damageToDeal * card.huntersMarkPercentage;
                             damageToDeal = (int)newDam;
                             recieversCards.cardsPlayedAgainst.Remove(card);
-                            Debug.Log(_playerToDamage.name + " Hunter Dam " + newDam);
                             _playerToDamage.GetComponent<BaseVFX>().StopReticle();
                         }
                     }
                 }
             }
-
             return damageToDeal;
+        }
+
+        private void Disruptor(GameObject _playerToDamage, int damageToDeal)
+        {
+            PlayerCards recieversCards = _playerToDamage.GetComponent<PlayerCards>();
+
+            List<Card> cardList = new List<Card>();
+            foreach (Card card in recieversCards.cardsPlayed)
+            {
+                cardList.Add(card);
+            }
+
+            cardList.AddRange(recieversCards.cardsPlayedAgainst);
+
+            currentDamage = damageToDeal;
+            bool isPlayerLeft = false;
+            bool isPlayerRight = false;
+            if (_playerToDamage == playerLeft) isPlayerLeft = true;
+            if (_playerToDamage == playerRight) isPlayerRight = true;
+
+            foreach (Card card in cardList)
+            {
+                if (card.cardType == Card.CardType.disruptor)
+                {
+                    float newDam = damageToDeal * card.disruptorPerc;
+                    currentDamage = (int)newDam;
+
+                    recieversCards.cardsPlayed.Remove(card);
+                    recieversCards.RemovePlayedCards(card.CardWorldPreFab);
+                    playerToDamage.GetComponent<BaseVFX>().StopDisruptor();
+
+                    if (playerLeft != null && playerRight != null)
+                    {
+                        if (playerIdentifier.currentlyAlivePlayers.Count <= 4)
+                        {
+                            availableSelection = false;
+                        }
+                    }
+                    else if (playerLeft != null)
+                    {
+                        if (playerIdentifier.currentlyAlivePlayers.Count <= 3)
+                        {
+                            availableSelection = false;
+                        }
+                    }
+                    else if (playerRight != null)
+                    {
+                        if (playerIdentifier.currentlyAlivePlayers.Count <= 3)
+                        {
+                            availableSelection = false;
+                        }
+                    }
+                    else if (playerIdentifier.currentlyAlivePlayers.Count <= 2)
+                    {
+                        availableSelection = false;
+                    }
+
+                    if (availableSelection)
+                    {
+                        int ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
+                        for (int i = 0; i < 10; i++)
+                        {
+                            if (playerIdentifier.currentlyAlivePlayers[ran] != playerIdentifier.currentPlayer && playerIdentifier.currentlyAlivePlayers[ran] != _playerToDamage)
+                            {
+                                if (!isPlayerLeft && !isPlayerRight)
+                                {
+                                    if (playerIdentifier.currentlyAlivePlayers[ran] != playerLeft && playerIdentifier.currentlyAlivePlayers[ran] != playerRight)
+                                    {
+                                        playerToDamage = playerIdentifier.currentlyAlivePlayers[ran];
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
+                                        i--;
+                                    }
+                                }
+                                else if (isPlayerLeft)
+                                {
+                                    if (playerIdentifier.currentlyAlivePlayers[ran] != playerToDamage && playerIdentifier.currentlyAlivePlayers[ran] != playerRight)
+                                    {
+                                        playerLeft = playerIdentifier.currentlyAlivePlayers[ran];
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
+                                        i--;
+                                    }
+                                }
+                                else if (isPlayerRight)
+                                {
+                                    if (playerIdentifier.currentlyAlivePlayers[ran] != playerToDamage && playerIdentifier.currentlyAlivePlayers[ran] != playerLeft)
+                                    {
+                                        playerRight = playerIdentifier.currentlyAlivePlayers[ran];
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
+                                        i--;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ran = UnityEngine.Random.Range(0, playerIdentifier.currentlyAlivePlayers.Count - 1);
+                                i--;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().playersToStopAttack.Add(_playerToDamage);
+                        Debug.Log("Stopped Attack");
+                    }
+                }
+            }
         }
 
         public void RollDice(GameObject toDamage)

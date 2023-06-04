@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Disruptor
   cardCategory: 0
-  cardWeight: 4
+  cardWeight: 3
   activationType: 3
   cardType: 17
   amountOfRounds: 0

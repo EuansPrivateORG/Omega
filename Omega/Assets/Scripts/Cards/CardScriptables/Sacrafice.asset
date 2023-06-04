@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Sacrafice
   cardCategory: 0
-  cardWeight: 1000
+  cardWeight: 6
   activationType: 0
   cardType: 16
   amountOfRounds: 0
@@ -36,5 +36,6 @@ MonoBehaviour:
   huntersMarkPercentage: 0
   sacraficeLoss: 1
   sacraficeGain: 2
+  disruptorPerc: 0
   effectOverTime: 0
   hasEffectWhenAttacked: 0
