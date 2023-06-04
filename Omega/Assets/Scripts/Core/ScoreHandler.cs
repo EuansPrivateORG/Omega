@@ -155,6 +155,8 @@ namespace Omega.Core
                 }
             }
 
+            endScreen.winnerText.text = playerScoresInOrder[0].playerFaction + " claims the omega crystals";
+
             endScreen.player1FactionName.text = playerScoresInOrder[0].playerFaction;
             endScreen.totalScorePlayer1.text = playerScoresInOrder[0].placementScore.ToString();
             endScreen.killAmountPlayer1.text = playerScoresInOrder[0].playersKilled.ToString();

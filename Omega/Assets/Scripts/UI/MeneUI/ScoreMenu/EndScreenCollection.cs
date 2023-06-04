@@ -10,6 +10,8 @@ namespace Omega.UI
     {
         public Button resetButton;
 
+        public TextMeshProUGUI winnerText;
+
         [Header("First Player")]
         public Image player1Icon;
         public Image player1factionBackground; 
