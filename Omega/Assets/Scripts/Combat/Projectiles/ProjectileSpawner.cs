@@ -14,6 +14,8 @@ namespace Omega.Combat
 
         [SerializeField] public GameObject UltimateVFX;
 
+        [HideInInspector] public List<GameObject> playersToStopAttack;
+
         private void Awake()
         {
             playerIdentifier = FindObjectOfType<PlayerIdentifier>();
@@ -21,6 +23,22 @@ namespace Omega.Combat
 
         public void SpawnProjectile(int damage,GameObject attackweapon, GameObject target, int minColour, int maxColour, AttackButtonHandler attackButtonHandler, int num)
         {
+            foreach(GameObject player in playersToStopAttack)
+            {
+                if (target == player)
+                {
+                    attackButtonHandler.continueWithAttack = true;
+                    if(num == 0)
+                    {
+                        NumberRoller numberRoller = FindObjectOfType<NumberRoller>();
+                        numberRoller.TurnOffNumberRoller();
+                        CardHandler cardHandler = FindObjectOfType<CardHandler>();
+                        cardHandler.StartCoroutine(cardHandler.DelayNextTurn());
+                    }
+                    return;
+                }
+            }
+
             //Add CameraShake on shot
             CameraShake cameraShake = playerIdentifier.currentPlayer.GetComponent<PlayerCam>().playerCam.GetComponent<CameraShake>();
             Weapon weapon1 = attackweapon.GetComponent<Weapon>();

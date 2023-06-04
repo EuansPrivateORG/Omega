@@ -19,15 +19,20 @@ namespace Omega.Actions
         public int totalShieldSpawned;
         public int totalStunSpawned;
         public int totalDoubleSpawned;
+        public int totalDisruptorsSpawned;
         [Header("Medium Chance Cards")]
         public int totalAOESpawned;
+        public int totalSpeedRoundSpawned;
         public int totalInstantSpawned;
+        public int totalLifeStealSpawned;
         public int totalEOTSpawned;
         public int totalDOTSpawned;
         public int totalHOTSpawned;
+        public int totalSacrificeSpawned;
         public int totalFlipSpawned;
         [Header("High Chance Cards")]
         public int totalDamageReductionSpawned;
+        public int totalHuntersMarkSpawned;
         public int totalBonusSpawned;
         public int totalOverchargeSpawned;
         public int totalChaosSpawned;
@@ -91,6 +96,26 @@ namespace Omega.Actions
                 case Card.CardType.eot:
 
                     totalEOTSpawned++;
+                    break;
+
+                case Card.CardType.speedRound:
+
+                    totalSpeedRoundSpawned++;
+                    break;
+
+                case Card.CardType.sacrafice:
+
+                    totalSacrificeSpawned++;
+                    break;
+
+                case Card.CardType.huntersMark:
+
+                    totalHuntersMarkSpawned++;
+                    break;
+
+                case Card.CardType.disruptor:
+
+                    totalDisruptorsSpawned++;
                     break;
             }
         }
