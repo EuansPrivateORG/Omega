@@ -90,7 +90,7 @@ namespace Omega.UI
             cardOriginPositions.Add(fifthCardPos);
         }
 
-        public void DrawCard(GameObject card, bool endTurn)
+        public void DrawCard(GameObject card, bool endTurn, bool fromKill)
         {
             Debug.Log("here");
             if(card1.transform.childCount > 1)
@@ -105,21 +105,36 @@ namespace Omega.UI
 
             cards.Add(card);
 
-            StartCoroutine(PutCardDown(card, endTurn));
+            StartCoroutine(PutCardDown(card, endTurn, fromKill));
         }
 
-        private IEnumerator PutCardDown(GameObject card, bool endTurn)
+        private IEnumerator PutCardDown(GameObject card, bool endTurn, bool fromKill)
         {
+            Transform cardPosition = null;
+
             yield return new WaitForSeconds(drawnCardMoveTime + drawnCardWaitTime);
 
-            LeanTween.scale(card, originalCardScale, cardUpTime);
+            LeanTween.scale(card, originalCardScale, drawnCardMoveTime);
 
             for (int i = 0; i < cards.Count; i++)
             {
                 if (i == cards.Count - 1)
                 {
-                    card.transform.SetParent(cardPositions[i].transform);
-                    LeanTween.move(card, cardPositions[i].transform.position, cardUpTime);
+                    cardPosition = cardPositions[i].transform;
+
+                    if (!fromKill)
+                    {
+
+                        card.transform.SetParent(cardPositions[i].transform);
+                        LeanTween.move(card, cardPositions[i].transform.position, drawnCardMoveTime);
+                    }
+                    else
+                    {
+                        Debug.Log("Here");
+                        card.transform.SetParent(offScreenSpawn);
+                        LeanTween.move(card, offScreenSpawn, drawnCardMoveTime);
+                    }
+
                     if (cardPositions[i] == card1)
                     {
                         cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
@@ -133,10 +148,10 @@ namespace Omega.UI
                 yield return null;
             }
 
+            card.transform.SetParent(cardPosition);
+
             if (endTurn)
             {
-                Debug.Log("here 2");
-
                 playerIdentifier.NextPlayer();
             }
             else

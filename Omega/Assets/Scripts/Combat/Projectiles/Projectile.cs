@@ -73,11 +73,11 @@ namespace Omega.Combat
                     if(bulletNum == 0)
                     {
                         Debug.Log(playerHasDied);
-                        cardHandler.DrawCard(playerIdentifier.currentPlayer, 1, true);
+                        cardHandler.DrawCard(playerIdentifier.currentPlayer, 1, true, true);
                     }
                     else
                     {
-                        cardHandler.DrawCard(playerIdentifier.currentPlayer, 1, false);
+                        cardHandler.DrawCard(playerIdentifier.currentPlayer, 1, false, true);
                     }
 
                 }
