@@ -176,7 +176,6 @@ namespace Omega.Core
 
             foreach (GameObject player in playerIdentifier.turnOrderIndex)
             {
-                Debug.Log(player.name);
                 playersSetup = player.GetComponent<PlayerSetup>();
                 CreatIcon();
             }

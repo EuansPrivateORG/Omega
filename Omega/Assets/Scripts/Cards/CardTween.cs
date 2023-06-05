@@ -92,7 +92,6 @@ namespace Omega.UI
 
         public void DrawCard(GameObject card, bool endTurn, bool fromKill)
         {
-            Debug.Log("here");
             if(card1.transform.childCount > 1)
             {
                 originalCardScale = card1.transform.GetChild(0).localScale;
@@ -130,15 +129,8 @@ namespace Omega.UI
                     }
                     else
                     {
-                        Debug.Log("Here");
                         card.transform.SetParent(offScreenSpawn);
                         LeanTween.move(card, offScreenSpawn, drawnCardMoveTime);
-                    }
-
-                    if (cardPositions[i] == card1)
-                    {
-                        cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
-                        cardPositions[i].GetComponent<CardButtonHandler>().currentCardHighlight = card.GetComponent<CardCollection>().cardHighlight;
                     }
                 }
             }
@@ -149,6 +141,12 @@ namespace Omega.UI
             }
 
             card.transform.SetParent(cardPosition);
+
+            if(cardPosition == card1)
+            {
+                cardPosition.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                cardPosition.GetComponent<CardButtonHandler>().currentCardHighlight = card.GetComponent<CardCollection>().cardHighlight;
+            }
 
             if (endTurn)
             {
