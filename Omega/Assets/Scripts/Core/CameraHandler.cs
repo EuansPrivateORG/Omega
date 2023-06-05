@@ -10,6 +10,7 @@ namespace Omega.Core
         [HideInInspector]
         [SerializeField] List<CinemachineVirtualCamera> playerCameras;
         [SerializeField] CinemachineVirtualCamera endRoundCam;
+        [SerializeField] CinemachineVirtualCamera mainMenuCam;
 
         [HideInInspector]
         public CinemachineVirtualCamera firstPlayerCamera;
@@ -55,6 +56,11 @@ namespace Omega.Core
         public void EndRoundCam()
         {
             SwitchCamera(endRoundCam);
+        }
+
+        public void MainMenuCam()
+        {
+            SwitchCamera(mainMenuCam);
         }
     }
 }
