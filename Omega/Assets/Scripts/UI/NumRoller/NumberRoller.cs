@@ -2,6 +2,7 @@ using Omega.Core;
 using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,12 +18,20 @@ namespace Omega.Actions
         [Tooltip("The colour the text will change to for the final numbers")]
         public Color rolledNumColours;
 
-        private NumbersCollection hundredsCollection;
-        private NumbersCollection tensCollection;
-        private NumbersCollection unitsCollection;
-
         [Tooltip("the rotation speed in degrees per second")]
         public float speed = 10f;
+
+        public float hundredsDelay = 0.1f;
+        public float tensDelay = 0.15f;
+        public float unitsDelay = 0.05f;
+
+        private float hundredsTimer = 0;
+        private float tensTimer = 0;
+        private float unitsTimer = 0;
+
+        TextMeshProUGUI hundredsText;
+        TextMeshProUGUI tensText;
+        TextMeshProUGUI unitsText;
 
         private bool isRotatingHundreds = false;
         private bool isRotatingTens = false;
@@ -47,6 +56,10 @@ namespace Omega.Actions
 
         [HideInInspector] public bool isAttacking;
 
+        private int hundredsInt = 0;
+        private int tensInt = 0;
+        private int unitsInt = 0;
+
         private void Awake()
         {
             playerIdentifier = GetComponent<PlayerIdentifier>();
@@ -54,57 +67,99 @@ namespace Omega.Actions
 
         void Update()
         {
-            Vector3 camToObject = Vector3.Normalize(transform.position - Camera.main.transform.forward);
-
             // Rotate each object individually
             if (isRotatingHundreds)
             {
-                rollers.hundredsRoller.transform.Rotate(new Vector3(speed * Time.deltaTime, 0, 0));
+                hundredsTimer += Time.deltaTime;
+
+                if(hundredsTimer > hundredsDelay)
+                {
+                    hundredsText.text = hundredsInt.ToString();
+
+                    hundredsInt++;
+
+                    if (hundredsInt > 9)
+                    {
+                        hundredsInt = 0;
+                    }
+
+                    hundredsTimer = 0;
+                }
+
                 if (stoppedRotatingHundreds)
                 {
-                    var dotProduct = Vector3.Dot(hundredsCollection.numbersList[hundredsNumToStop].transform.forward, camToObject);
-
-                    if (dotProduct <= 0.94 && dotProduct > 0.939)
+                    if(hundredsInt - 1 == hundredsNumToStop)
                     {
                         isRotatingHundreds = false;
                         stoppedRotatingHundreds = false;
                         hasFinsishedHundreds = true;
-                        oldNumberColour = hundredsCollection.numbersList[hundredsNumToStop].GetComponentInChildren<TextMeshProUGUI>().color;
-                        hundredsCollection.numbersList[hundredsNumToStop].GetComponentInChildren<TextMeshProUGUI>().color = rolledNumColours;
+                        oldNumberColour = hundredsText.GetComponent<TextMeshProUGUI>().color;
+                        hundredsText.GetComponent<TextMeshProUGUI>().color = rolledNumColours;
+                        hundredsInt = 0;
                     }
                 }
             }
 
             if (isRotatingTens)
             {
-                rollers.tensRoller.transform.Rotate(new Vector3(speed * Time.deltaTime, 0, 0));
+                tensTimer += Time.deltaTime;
+
+                if (tensTimer > tensDelay)
+                {
+                    tensText.text = tensInt.ToString();
+
+                    tensInt++;
+
+                    if (tensInt > 9)
+                    {
+                        tensInt = 0;
+                    }
+
+                    tensTimer = 0;
+                }
+
                 if (stoppedRotatingTens)
                 {
-                    var dotProduct = Vector3.Dot(tensCollection.numbersList[tensNumToStop].transform.forward, camToObject);
-
-                    if (dotProduct <= 0.94 && dotProduct > 0.939)
+                    if (tensInt - 1 == tensNumToStop)
                     {
                         isRotatingTens = false;
                         stoppedRotatingTens = false;
                         hasFinishedTens = true;
-                        tensCollection.numbersList[tensNumToStop].GetComponentInChildren<TextMeshProUGUI>().color = rolledNumColours;
+                        oldNumberColour = tensText.GetComponent<TextMeshProUGUI>().color;
+                        tensText.GetComponent<TextMeshProUGUI>().color = rolledNumColours;
+                        tensInt = 0;
                     }
                 }
             }
 
             if (isRotatingUnits)
             {
-                rollers.unitsRoller.transform.Rotate(new Vector3(speed * Time.deltaTime, 0, 0));
+                unitsTimer += Time.deltaTime;
+
+                if (unitsTimer > unitsDelay)
+                {
+                    unitsText.text = unitsInt.ToString();
+
+                    unitsInt++;
+
+                    if (unitsInt > 9)
+                    {
+                        unitsInt = 0;
+                    }
+
+                    unitsTimer = 0;
+                }
+
                 if (stoppedRotatingUnits)
                 {
-                    var dotProduct = Vector3.Dot(unitsCollection.numbersList[unitsNumToStop].transform.forward, camToObject);
-
-                    if (dotProduct <= 0.94 && dotProduct > 0.939)
+                    if (unitsInt == unitsNumToStop)
                     {
                         isRotatingUnits = false;
                         stoppedRotatingUnits = false;
                         hasFinishedUnits = true;
-                        unitsCollection.numbersList[unitsNumToStop].GetComponentInChildren<TextMeshProUGUI>().color = rolledNumColours;
+                        oldNumberColour = unitsText.GetComponent<TextMeshProUGUI>().color;
+                        unitsText.GetComponent<TextMeshProUGUI>().color = rolledNumColours;
+                        unitsInt = 0;
                     }
                 }
             }
@@ -136,18 +191,17 @@ namespace Omega.Actions
         public void StartRolling()
         {
             isRotatingHundreds = true;
-            hundredsCollection = rollers.hundredsRoller.GetComponent<NumbersCollection>();
+            hundredsText = rollers.hundredsRoller.GetComponent<TextMeshProUGUI>();
 
             isRotatingTens = true;
-            tensCollection = rollers.tensRoller.GetComponent<NumbersCollection>();
+            tensText = rollers.tensRoller.GetComponent<TextMeshProUGUI>();
 
             isRotatingUnits = true;
-            unitsCollection = rollers.unitsRoller.GetComponent<NumbersCollection>();
+            unitsText = rollers.unitsRoller.GetComponent<TextMeshProUGUI>();
         }
 
         public void AddBonusNumbers(int bonus)
         {
-            bonusNumText.transform.parent.LookAt(Camera.main.transform);
             bonusNumText.text = "+" + bonus;
             bonusNumText.color = rolledNumColours;
         }
@@ -173,9 +227,9 @@ namespace Omega.Actions
 
         public void TurnOffNumberRoller()
         {
-            unitsCollection.numbersList[unitsNumToStop].GetComponentInChildren<TextMeshProUGUI>().color = oldNumberColour;
-            tensCollection.numbersList[tensNumToStop].GetComponentInChildren<TextMeshProUGUI>().color = oldNumberColour;
-            hundredsCollection.numbersList[hundredsNumToStop].GetComponentInChildren<TextMeshProUGUI>().color = oldNumberColour;
+            rollers.unitsRoller.GetComponent<TextMeshProUGUI>().color = oldNumberColour;
+            rollers.tensRoller.GetComponent<TextMeshProUGUI>().color = oldNumberColour;
+            rollers.hundredsRoller.GetComponent<TextMeshProUGUI>().color = oldNumberColour;
 
             rollers.gameObject.SetActive(false);
         }

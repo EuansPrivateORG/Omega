@@ -107,7 +107,7 @@ namespace Omega.Actions
             }
         }
 
-        public void DrawCard(GameObject player, int numOfCards, bool endTurn)
+        public void DrawCard(GameObject player, int numOfCards, bool endTurn, bool fromKill)
         {
             List<Card> cards = new List<Card>();
             PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
@@ -167,7 +167,7 @@ namespace Omega.Actions
 
                 cardProbabilityTracker.AddCardProb(card);
 
-                cardSpawner.AddCard(card, endTurn);
+                cardSpawner.AddCard(card, endTurn, fromKill);
             }
         }
 
