@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 namespace Omega.UI
@@ -169,6 +170,8 @@ namespace Omega.UI
 
         private IEnumerator StartRoundIntiate()
         {
+            FindObjectOfType<InputSystemUIInputModule>().enabled = false;
+
             FindObjectOfType<WhiteFade>().StartFade(true);
 
             while (!continueFade)

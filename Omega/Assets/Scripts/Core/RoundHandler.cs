@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Omega.UI;
 using Omega.Actions;
+using UnityEngine.InputSystem.UI;
 
 namespace Omega.Core
 {
@@ -42,6 +43,8 @@ namespace Omega.Core
 
         public void StartFirstRound(List<Base> playersToSpawn)
         {
+            FindObjectOfType<InputSystemUIInputModule>().enabled = true;
+
             players = playersToSpawn;
             spawnHandler.StartFirstRound(players);
             playerId.roundOver = false;
