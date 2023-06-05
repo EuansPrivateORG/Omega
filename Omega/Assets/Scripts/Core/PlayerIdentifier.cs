@@ -172,8 +172,7 @@ namespace Omega.Core
             Energy currentEnergy = currentPlayer.GetComponent<Energy>();
             if(currentEnergy.energy + energyGainPerTurn <= 16)
             {
-            currentEnergy.GainEnergy(energyGainPerTurn);
-
+                currentEnergy.GainEnergy(energyGainPerTurn);
             }
             else
             {

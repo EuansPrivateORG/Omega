@@ -19,6 +19,7 @@ namespace Omega.Status
         public void GainEnergy(int addition)
         {
             energy += addition;
+            Debug.Log("Energy Gained " + addition);
         }
 
         public void SpendEnergy(int loss)
