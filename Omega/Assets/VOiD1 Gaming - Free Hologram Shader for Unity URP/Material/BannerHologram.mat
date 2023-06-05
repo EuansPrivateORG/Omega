@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Disruptor
+  m_Name: BannerHologram
   m_Shader: {fileID: -6465566751694194690, guid: e88c9b44b880bea4fa0aee0f7c62be3b,
     type: 3}
   m_ValidKeywords: []
@@ -67,7 +67,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_4258C632: 0.09
+    - Vector1_4258C632: 0.05
     - Vector1_B847FAE5: 0
     - _AlphaClip: 0
     - _Blend: 0
@@ -92,10 +92,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_5A29FF9E: {r: 0, g: 0.7490196, b: 0.39943102, a: 1}
+    - Color_5A29FF9E: {r: 8.574187, g: 0, b: 0, a: 1}
     - Color_9DC7EC12: {r: 0.0047715902, g: 1, b: 0, a: 1}
-    - Color_BB588D2D: {r: 1, g: 1, b: 1, a: 1}
-    - Vector2_2181DF03: {r: 1, g: 1, b: 0, a: 0}
+    - Color_BB588D2D: {r: 29.857058, g: 0, b: 0, a: 1}
+    - Vector2_2181DF03: {r: 0.5, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
