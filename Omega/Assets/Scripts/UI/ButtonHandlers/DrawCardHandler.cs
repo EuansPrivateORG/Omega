@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 namespace Omega.UI
@@ -70,7 +72,8 @@ namespace Omega.UI
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
             if(playerEnergy.energy >= cardHandler.cardCost)
             {
-                cardHandler.DrawCard(playerIdentifier.currentPlayer, 1);
+                cardHandler.DrawCard(playerIdentifier.currentPlayer, 1 , true, false);
+                FindObjectOfType<InputSystemUIInputModule>().enabled = false;
                 playerEnergy.energy -= cardHandler.cardCost;
 
             }

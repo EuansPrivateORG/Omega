@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 namespace Omega.UI
@@ -17,7 +18,7 @@ namespace Omega.UI
         [SerializeField] TextMeshProUGUI numberOfRounds;
         [SerializeField] public Button startRoundButton;
         [SerializeField] public Button initiateButton;
-        [SerializeField] Button healButton;
+        [SerializeField] Button skipButton;
 
         [Header("Faction Icons")]
         [SerializeField] GameObject playerFactionIconPrefab;
@@ -39,6 +40,7 @@ namespace Omega.UI
 
         public List<Base> playerTypesListToSpawn = new List<Base>();
 
+        [HideInInspector] public bool continueFade = false;
 
         private void Awake()
         {
@@ -163,6 +165,20 @@ namespace Omega.UI
 
         public void StartRound()
         {
+            StartCoroutine(StartRoundIntiate());
+        }
+
+        private IEnumerator StartRoundIntiate()
+        {
+            FindObjectOfType<InputSystemUIInputModule>().enabled = false;
+
+            FindObjectOfType<WhiteFade>().StartFade(true);
+
+            while (!continueFade)
+            {
+                yield return null;
+            }
+
             roundHandler.StartFirstRound(playerTypesListToSpawn);
 
             GameHUD.alpha = 1;
@@ -171,7 +187,7 @@ namespace Omega.UI
             CanvasGroup canvas = GetComponent<CanvasGroup>();
             canvas.alpha = 0;
             canvas.interactable = false;
-            eventSystem.SetSelectedGameObject(healButton.gameObject);
+            eventSystem.SetSelectedGameObject(skipButton.gameObject);
         }
     }
 }

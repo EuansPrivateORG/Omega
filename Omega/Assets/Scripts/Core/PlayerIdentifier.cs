@@ -131,6 +131,8 @@ namespace Omega.Core
                     handler.ResetUI();
                 }
 
+                EventSystem.current.SetSelectedGameObject(drawCardHandler.skipButton.gameObject);
+
                 currentAttack = null;
                 currentHeal = null;
 

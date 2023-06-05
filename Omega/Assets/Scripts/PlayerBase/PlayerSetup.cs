@@ -64,6 +64,26 @@ namespace Omega.Core
                 }
             }
 
+            baseCollection.destroyedParent.SetActive(true);
+
+            foreach (Transform child in baseCollection.destroyedBasePiecesParent.transform)
+            {
+                if (child.TryGetComponent<Renderer>(out Renderer childRen))
+                {
+                    childRen.material = playerBase.baseMaterialVarientOverrite;
+                }
+            }
+
+            foreach (Transform child in baseCollection.destroyedRigidParent.transform)
+            {
+                if (child.TryGetComponent<Renderer>(out Renderer childRen))
+                {
+                    childRen.material = playerBase.baseMaterialVarientOverrite;
+                }
+            }
+
+            baseCollection.destroyedParent.SetActive(false);
+
             foreach (Transform child in baseCollection.emissivePiecesParent.transform)
             {
                 if (child.TryGetComponent<Renderer>(out Renderer childRen))

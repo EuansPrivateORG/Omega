@@ -8,6 +8,8 @@ namespace Omega.Actions
     {
         public Rigidbody diceRigidbody;
         public int diceValue;
+        public Renderer diceMesh;
+        public List<GameObject> emissives;
 
         public PhysicalDiceSide[] diceSides;
 

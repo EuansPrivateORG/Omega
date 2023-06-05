@@ -4,6 +4,7 @@ using Omega.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,6 +13,14 @@ namespace Omega.UI
 {
     public class CardTween : MonoBehaviour
     {
+        [Header("Card Spawning")]
+        [SerializeField] public Transform offScreenSpawn;
+        [SerializeField] public Transform drawnCardPos;
+        [SerializeField] public Vector3 drawnCardScale;
+        [SerializeField] public float drawnCardMoveTime;
+        [SerializeField] public float drawnCardWaitTime;
+
+        [Header("Card Deck")]
         [SerializeField] public GameObject card1;
         [SerializeField] public GameObject card2;
         [SerializeField] public GameObject card3;
@@ -49,8 +58,12 @@ namespace Omega.UI
 
         private DrawCardHandler drawCardHandler;
 
+        private PlayerIdentifier playerIdentifier;
+
         private void Awake()
         {
+            playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+
             cardHandler = FindObjectOfType<CardHandler>();
             cardSpawner = FindObjectOfType<CardSpawner>();
             drawCardHandler = FindObjectOfType<DrawCardHandler>();
@@ -60,8 +73,6 @@ namespace Omega.UI
             cardPositions.Add(card3);
             cardPositions.Add(card4);
             cardPositions.Add(card5);
-
-            originalCardScale = card2.transform.localScale;
         }
 
         private void Start()
@@ -77,6 +88,74 @@ namespace Omega.UI
             cardOriginPositions.Add(thirdCardPos);
             cardOriginPositions.Add(fourthCardPos);
             cardOriginPositions.Add(fifthCardPos);
+        }
+
+        public void DrawCard(GameObject card, bool endTurn, bool fromKill)
+        {
+            if(card1.transform.childCount > 1)
+            {
+                originalCardScale = card1.transform.GetChild(0).localScale;
+            }
+
+            card.transform.SetParent(drawnCardPos);
+
+            LeanTween.move(card, drawnCardPos, drawnCardMoveTime);
+            LeanTween.scale(card, drawnCardScale, drawnCardMoveTime);
+
+            cards.Add(card);
+
+            StartCoroutine(PutCardDown(card, endTurn, fromKill));
+        }
+
+        private IEnumerator PutCardDown(GameObject card, bool endTurn, bool fromKill)
+        {
+            Transform cardPosition = null;
+
+            yield return new WaitForSeconds(drawnCardMoveTime + drawnCardWaitTime);
+
+            LeanTween.scale(card, originalCardScale, drawnCardMoveTime);
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                if (i == cards.Count - 1)
+                {
+                    cardPosition = cardPositions[i].transform;
+
+                    if (!fromKill)
+                    {
+
+                        card.transform.SetParent(cardPositions[i].transform);
+                        LeanTween.move(card, cardPositions[i].transform.position, drawnCardMoveTime);
+                    }
+                    else
+                    {
+                        card.transform.SetParent(offScreenSpawn);
+                        LeanTween.move(card, offScreenSpawn, drawnCardMoveTime);
+                    }
+                }
+            }
+
+            while(card.transform.localScale != originalCardScale)
+            {
+                yield return null;
+            }
+
+            card.transform.SetParent(cardPosition);
+
+            if(cardPosition == card1)
+            {
+                cardPosition.GetComponent<CardButtonHandler>().currentCardHighlight.SetActive(false);
+                cardPosition.GetComponent<CardButtonHandler>().currentCardHighlight = card.GetComponent<CardCollection>().cardHighlight;
+            }
+
+            if (endTurn)
+            {
+                playerIdentifier.NextPlayer();
+            }
+            else
+            {
+                RefreshCardList();
+            }
         }
 
         public void RefreshCardList()

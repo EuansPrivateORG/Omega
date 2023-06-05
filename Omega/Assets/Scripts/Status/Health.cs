@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Omega.Core;
+using Omega.Visual;
 
 namespace Omega.Status
 {
     public class Health : MonoBehaviour
     {
+        public GameObject cardCountDisplay;
+
         [HideInInspector] public int currentHealth;
 
         [HideInInspector] public int maxHealth;
@@ -55,7 +58,27 @@ namespace Omega.Status
                         player.GetComponent<PlayerSetup>().UpdatePlayerID();
                     }
                 }
+
+                DestroyBase();
             }
+        }
+
+        public void DestroyBase()
+        {
+            BaseCollection baseCollection = GetComponentInChildren<BaseCollection>();
+
+            baseCollection.baseParent.SetActive(false);
+            baseCollection.destroyedParent.SetActive(true);
+
+            foreach(Transform child in baseCollection.destroyedRigidParent.transform)
+            {
+                Rigidbody childRigid = child.GetComponent<Rigidbody>();
+                childRigid.AddForce(50f, 50f, 50f, ForceMode.Impulse);
+            }
+
+            cardCountDisplay.SetActive(false);
+
+            GetComponent<BaseVFX>().PlayExplosion();
         }
 
         public void SetHealth()

@@ -66,7 +66,7 @@ namespace Omega.Actions
 
             instantiated.name = card.name;
 
-            StartCoroutine(ReappearCard(card));
+            StartCoroutine(ReappearCard(card, false));
 
             cardNumText.text = cardsInHand.Count.ToString();
         }
@@ -88,7 +88,7 @@ namespace Omega.Actions
             GameObject instantiated = Instantiate(card, spawnPos);
             playedCardInWorld.Add(instantiated);
             instantiated.name = card.name;
-            StartCoroutine(ReappearCard(card));
+            StartCoroutine(ReappearCard(card, true));
         }
 
         public void RemoveCardFromDeck(GameObject card)
@@ -149,7 +149,10 @@ namespace Omega.Actions
                 float tCanvas = 0.5f - (elapsedTime / dissolveDuration);
 
                 cardRenderer.material.SetFloat("_Dissolve", tRenderer);
-                cardCanvas.alpha = tCanvas;
+                if(!fromDeck)
+                {
+                    cardCanvas.alpha = tCanvas;
+                }
 
                 elapsedTime += Time.deltaTime;
                 yield return null;
@@ -168,7 +171,7 @@ namespace Omega.Actions
             }
         }
 
-        private IEnumerator ReappearCard(GameObject card)
+        private IEnumerator ReappearCard(GameObject card, bool isDeck)
         {
             Renderer cardRenderer = card.GetComponent<Renderer>();
             CanvasGroup cardCanvas = card.GetComponent<CardCollection3D>().cardToUse.GetComponent<CanvasGroup>();
@@ -182,14 +185,29 @@ namespace Omega.Actions
                 float tRenderer = 1f - (elapsedTime / dissolveDuration);
 
                 cardRenderer.sharedMaterial.SetFloat("_Dissolve", tRenderer);
-                cardCanvas.alpha = tCanvas;
+                if (!isDeck)
+                {
+                    cardCanvas.alpha = tCanvas;
+                }
+                else
+                {
+                    cardCanvas.alpha = 0;
+                }
 
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
             cardRenderer.sharedMaterial.SetFloat("_Dissolve", 0f);
-            cardCanvas.alpha = 1f;
+            if (!isDeck)
+            {
+                cardCanvas.alpha = 1f;
+            }
+            else
+            {
+                cardCanvas.alpha = 0f;
+            }
+
             card.GetComponent<CardCollection3D>().emissive.SetActive(true);
         }
 

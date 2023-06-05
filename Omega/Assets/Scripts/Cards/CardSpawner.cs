@@ -42,7 +42,7 @@ namespace Omega.Core
             cardsToSpawn.Clear();
         }
 
-        public void AddCard(Card card)
+        public void AddCard(Card card, bool endTurn, bool fromKill)
         {
             bool hasBeenGiven = false;
             for(int i = 0; i < cardTween.cardPositions.Count; i++)
@@ -51,7 +51,8 @@ namespace Omega.Core
                 {
                     if (i == activeCards.Count)
                     {
-                        GameObject instantiated = Instantiate(card.CardUIPreFab, cardTween.cardPositions[i].transform);
+                        GameObject instantiated = Instantiate(card.CardUIPreFab, cardTween.offScreenSpawn);
+                        cardTween.DrawCard(instantiated, endTurn, fromKill);
                         activeCards.Add(instantiated);
                         hasBeenGiven = true;
                     }
