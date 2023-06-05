@@ -14348,7 +14348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The Omega wars is over
+  m_text: The Omega wars are over
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d203176ed905be942adf4e498b4b88ac, type: 2}
   m_sharedMaterial: {fileID: 2668728968165549931, guid: d203176ed905be942adf4e498b4b88ac,
