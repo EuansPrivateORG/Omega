@@ -35,6 +35,8 @@ namespace Omega.Actions
 
         private DrawCardHandler drawCardHandler;
 
+        private CardSpawner cardSpawner;
+
         public float nextTurnDelayTime;
 
         private void Awake()
@@ -42,6 +44,8 @@ namespace Omega.Actions
             drawCardHandler = FindObjectOfType<DrawCardHandler>();
 
             playerIdentifier = GetComponent<PlayerIdentifier>();
+
+            cardSpawner = FindObjectOfType<CardSpawner>();
         }
 
         public void DrawCardNoUI(GameObject player, int numOfCards)
@@ -103,7 +107,7 @@ namespace Omega.Actions
             }
         }
 
-        public void DrawCard(GameObject player, int numOfCards)
+        public void DrawCard(GameObject player, int numOfCards, bool endTurn)
         {
             List<Card> cards = new List<Card>();
             PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
@@ -162,6 +166,8 @@ namespace Omega.Actions
                 playerCards.InstantiatedCardInDeck(card.CardWorldPreFab);
 
                 cardProbabilityTracker.AddCardProb(card);
+
+                cardSpawner.AddCard(card, endTurn);
             }
         }
 

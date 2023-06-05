@@ -33,6 +33,8 @@ namespace Omega.Combat
 
         private int bulletNum;
 
+        private bool playerHasDied = false;
+
 
         private void Awake()
         {
@@ -66,14 +68,28 @@ namespace Omega.Combat
                 attackButtonHandler.SpawnDamageNumbers(target, minColour, maxColour, false, damage);
                 if (target.GetComponent<Health>().isDead)
                 {
+                    playerHasDied = true;
                     scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
-                    cardHandler.DrawCard(playerIdentifier.currentPlayer, 1);
+                    if(bulletNum == 0)
+                    {
+                        Debug.Log(playerHasDied);
+                        cardHandler.DrawCard(playerIdentifier.currentPlayer, 1, true);
+                    }
+                    else
+                    {
+                        cardHandler.DrawCard(playerIdentifier.currentPlayer, 1, false);
+                    }
+
                 }
                 numberRoller.TurnOffNumberRoller();
                 if (bulletNum == 0)
                 {
-                    CardHandler cardHandler = FindObjectOfType<CardHandler>();
-                    cardHandler.StartCoroutine(cardHandler.DelayNextTurn());
+                    if (!playerHasDied)
+                    {
+                        Debug.Log("here");
+                        CardHandler cardHandler = FindObjectOfType<CardHandler>();
+                        cardHandler.StartCoroutine(cardHandler.DelayNextTurn());
+                    }
                 }
 
                 playerIdentifier.currentAttack.projectileIsFiring = false;

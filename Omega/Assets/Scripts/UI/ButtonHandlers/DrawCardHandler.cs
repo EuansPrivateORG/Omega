@@ -70,7 +70,7 @@ namespace Omega.UI
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
             if(playerEnergy.energy >= cardHandler.cardCost)
             {
-                cardHandler.DrawCard(playerIdentifier.currentPlayer, 1);
+                cardHandler.DrawCard(playerIdentifier.currentPlayer, 1 , true);
                 playerEnergy.energy -= cardHandler.cardCost;
 
             }
