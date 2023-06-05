@@ -19185,7 +19185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageToRotate: {fileID: 3169167806065614525}
-  rotationSpeed: 25
+  rotationSpeed: 10
   rotateCounterclockwise: 0
 --- !u!1 &6523295733273967600
 GameObject:
