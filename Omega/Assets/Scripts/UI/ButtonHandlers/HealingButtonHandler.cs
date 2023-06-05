@@ -59,6 +59,8 @@ namespace Omega.UI
         {
             if (!isHealButton)
             {
+                cancelHandler.cannotCancel = false;
+
                 Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
                 if (playerEnergy.energy < heal.cost)

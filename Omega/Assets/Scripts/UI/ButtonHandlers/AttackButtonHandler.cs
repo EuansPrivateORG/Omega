@@ -91,6 +91,8 @@ namespace Omega.UI
         {
             if (!isAttackButton)
             {
+                cancelHandler.cannotCancel = false;
+
                 Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
                 if (playerEnergy.energy < attack.cost)
@@ -448,7 +450,7 @@ namespace Omega.UI
             {
                 Disruptor(playerLeft, damageToDeal);
             }
-            if(playerRight != null) 
+            if (playerRight != null)
             {
                 Disruptor(playerRight, damageToDeal);
             }

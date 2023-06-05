@@ -46,9 +46,18 @@ namespace Omega.UI
 
         private void OnCancelPressed(InputAction.CallbackContext context)
         {
-            if (cannotCancel) return;
-            if (playerIdentifier.currentAttack != null && !playerIdentifier.currentAttack.currentlySelectingPlayer) return;
-            if (playerIdentifier.currentHeal != null && !playerIdentifier.currentHeal.currentlySelectingPlayer) return;
+            if (cannotCancel)
+            {
+                return;
+            }
+            if (playerIdentifier.currentAttack != null && !playerIdentifier.currentAttack.currentlySelectingPlayer)
+            {
+                return;
+            }
+            if (playerIdentifier.currentHeal != null && !playerIdentifier.currentHeal.currentlySelectingPlayer)
+            {
+                return;
+            }
             if (playerIdentifier.isAttacking) playerIdentifier.currentAttack = null;
             playerHUD.interactable = true;
             playerHUD.alpha = 1;
