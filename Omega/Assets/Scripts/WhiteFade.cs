@@ -1,3 +1,5 @@
+using Omega.Core;
+using Omega.UI;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +13,7 @@ public class WhiteFade : MonoBehaviour
     private Coroutine currentFadeCoroutine;
 
     // Call this function to start the fade effect
-    public void StartFade()
+    public void StartFade(bool startRound)
     {
         if (currentFadeCoroutine != null)
         {
@@ -20,11 +22,11 @@ public class WhiteFade : MonoBehaviour
         }
         else
         {
-            currentFadeCoroutine = StartCoroutine(FadeRoutine());
+            currentFadeCoroutine = StartCoroutine(FadeRoutine(startRound));
         }
     }
 
-    private IEnumerator FadeRoutine()
+    private IEnumerator FadeRoutine(bool startRound)
     {
         fadeImage.gameObject.SetActive(true);
         fadeImage.color = Color.clear;
@@ -40,6 +42,11 @@ public class WhiteFade : MonoBehaviour
         }
 
         fadeImage.color = Color.white;
+
+        if (startRound)
+        {
+            FindObjectOfType<RoundStart>().continueFade = true;
+        }
 
         // Wait for a brief duration
         yield return new WaitForSeconds(waitBetweenFadeIn);

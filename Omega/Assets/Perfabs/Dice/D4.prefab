@@ -879,6 +879,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceRigidbody: {fileID: -7887065745260068079}
   diceValue: 0
+  diceMesh: {fileID: 7110659997819485185}
+  emissives:
+  - {fileID: 6517462506991936492}
+  - {fileID: 6656118927735904069}
   diceSides:
   - {fileID: 3034481299288599036}
   - {fileID: 8398448438349380767}

@@ -104,6 +104,7 @@ namespace Omega.Actions
         {
             float dissolveDuration = Random.Range(0.7f, 1.5f);
             float elapsedTime = 0f;
+            bool emmisivesAreGone = false;
 
             while (elapsedTime < dissolveDuration)
             {
@@ -111,15 +112,28 @@ namespace Omega.Actions
 
                 foreach (GameObject dice in actionDices)
                 {
-                    dice.GetComponent<Renderer>().material.SetFloat("_Dissolve", t);
+                    dice.GetComponent<PhysicalDice>().diceMesh.material.SetFloat("_Dissolve", t);
+                }
+
+                if (t > dissolveDuration / 2 && !emmisivesAreGone)
+                {
+                    foreach (GameObject dice in actionDices)
+                    {
+                        foreach (GameObject emissive in dice.GetComponent<PhysicalDice>().emissives)
+                        {
+                            emissive.SetActive(false);
+                        }
+                        emmisivesAreGone = true;
+                    }
                 }
 
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
+
             foreach (GameObject dice in actionDices)
             {
-                dice.GetComponent<Renderer>().material.SetFloat("_Dissolve", 1f);
+                dice.GetComponent<PhysicalDice>().diceMesh.material.SetFloat("_Dissolve", 1f);
             }
         }
     }

@@ -3495,6 +3495,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceRigidbody: {fileID: 8177792480023272493}
   diceValue: 0
+  diceMesh: {fileID: 3503951415025368145}
+  emissives:
+  - {fileID: 8698350987289359002}
+  - {fileID: 2959705146008049887}
   diceSides:
   - {fileID: 509667566448159944}
   - {fileID: 6571180412788179845}
@@ -4440,9 +4444,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b06064b04251cd4f85c063f51ed34c1, type: 3}
+--- !u!1 &2959705146008049887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 706861899629629922, guid: 2b06064b04251cd4f85c063f51ed34c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2368254593027672381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3503951415025368145 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1188161120474133868, guid: 2b06064b04251cd4f85c063f51ed34c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2368254593027672381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6326192628190151337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8581219503216659348, guid: 2b06064b04251cd4f85c063f51ed34c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2368254593027672381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8698350987289359002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6371321484376734631, guid: 2b06064b04251cd4f85c063f51ed34c1,
     type: 3}
   m_PrefabInstance: {fileID: 2368254593027672381}
   m_PrefabAsset: {fileID: 0}

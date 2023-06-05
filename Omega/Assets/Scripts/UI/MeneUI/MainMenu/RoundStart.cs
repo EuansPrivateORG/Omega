@@ -39,6 +39,7 @@ namespace Omega.UI
 
         public List<Base> playerTypesListToSpawn = new List<Base>();
 
+        [HideInInspector] public bool continueFade = false;
 
         private void Awake()
         {
@@ -163,6 +164,18 @@ namespace Omega.UI
 
         public void StartRound()
         {
+            StartCoroutine(StartRoundIntiate());
+        }
+
+        private IEnumerator StartRoundIntiate()
+        {
+            FindObjectOfType<WhiteFade>().StartFade(true);
+
+            while (!continueFade)
+            {
+                yield return null;
+            }
+
             roundHandler.StartFirstRound(playerTypesListToSpawn);
 
             GameHUD.alpha = 1;
