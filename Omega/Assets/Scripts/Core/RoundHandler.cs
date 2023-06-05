@@ -73,6 +73,12 @@ namespace Omega.Core
             {
                 Destroy(player);
             }
+
+            EnergyBar energyBar = FindObjectOfType<EnergyBar>();
+            energyBar.UpdateSegments();
+
+            PlayerHealthDisplay playerHealthDisplay = FindObjectOfType<PlayerHealthDisplay>();
+            playerHealthDisplay.UpdateHealthInfo();
         }
 
         public void EndRound()
