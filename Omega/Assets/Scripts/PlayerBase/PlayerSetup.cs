@@ -74,6 +74,14 @@ namespace Omega.Core
                 }
             }
 
+            foreach (Transform child in baseCollection.destroyedRigidParent.transform)
+            {
+                if (child.TryGetComponent<Renderer>(out Renderer childRen))
+                {
+                    childRen.material = playerBase.baseMaterialVarientOverrite;
+                }
+            }
+
             baseCollection.destroyedParent.SetActive(false);
 
             foreach (Transform child in baseCollection.emissivePiecesParent.transform)
