@@ -13,6 +13,7 @@ public class BaseVFX : MonoBehaviour
     public GameObject overchargeVFX;
     public GameObject huntersVFX;
     public GameObject disruptorVFX;
+    public GameObject explosionVFX;
     public float healingVFXTime;
     public float overchargeVFXTime;
     public float timeBetweenStunFlash;
@@ -30,6 +31,7 @@ public class BaseVFX : MonoBehaviour
         energyVFX.GetComponent<ParticleSystem>().Stop();
         overchargeVFX.GetComponent<ParticleSystem>().Stop();
         scaraficeVFX.GetComponent<ParticleSystem>().Stop();
+        explosionVFX.GetComponent<ParticleSystem>().Stop();
         huntersVFX.SetActive(false);
         disruptorVFX.SetActive(false);
     }
@@ -150,5 +152,10 @@ public class BaseVFX : MonoBehaviour
     public void StopDisruptor()
     {
         disruptorVFX.SetActive(false);
+    }
+
+    public void PlayExplosion()
+    {
+        explosionVFX.GetComponent<ParticleSystem>().Play();
     }
 }
