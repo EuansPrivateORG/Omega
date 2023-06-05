@@ -43,7 +43,6 @@ namespace Omega.Core
 
         public void StartFirstRound(List<Base> playersToSpawn)
         {
-            FindObjectOfType<InputSystemUIInputModule>().enabled = true;
 
             players = playersToSpawn;
             spawnHandler.StartFirstRound(players);
@@ -54,6 +53,8 @@ namespace Omega.Core
                 Destroy(player);
             }
             scoreHandler.leaderboardPlayers.Clear();
+
+            FindObjectOfType<InputSystemUIInputModule>().enabled = true;
         }
 
         public void StartNextRound()
