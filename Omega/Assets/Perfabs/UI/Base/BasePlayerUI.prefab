@@ -8443,7 +8443,7 @@ MonoBehaviour:
   numberOfRounds: {fileID: 1572591895726966138}
   startRoundButton: {fileID: 6052576888062386244}
   initiateButton: {fileID: 7396817427335305112}
-  healButton: {fileID: 862083187091220066}
+  skipButton: {fileID: 167411343001751261}
   playerFactionIconPrefab: {fileID: 1381391798786512143, guid: 01533bb7f78bd0d45b92559954d47a9b,
     type: 3}
   iconSpawnPosition: {fileID: 8191656768286016520}
@@ -28642,7 +28642,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 2871754400278553848}
+      objectReference: {fileID: 167411343001751261}
     - target: {fileID: 2583297517073638975, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -28783,7 +28783,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 2871754400278553848}
+      objectReference: {fileID: 167411343001751261}
     - target: {fileID: 3313679879889373829, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -29147,7 +29147,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 2871754400278553848}
+      objectReference: {fileID: 167411343001751261}
     - target: {fileID: 5613276835269041646, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -29480,7 +29480,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 2871754400278553848}
+      objectReference: {fileID: 167411343001751261}
     - target: {fileID: 7620546377446187909, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -33506,7 +33506,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 862083187091220066}
+      objectReference: {fileID: 2121789025641339257}
     - target: {fileID: 2583297517073638975, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -33647,7 +33647,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 862083187091220066}
+      objectReference: {fileID: 2121789025641339257}
     - target: {fileID: 3313679879889373829, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -34011,7 +34011,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 862083187091220066}
+      objectReference: {fileID: 2121789025641339257}
     - target: {fileID: 5613276835269041646, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -34344,7 +34344,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 862083187091220066}
+      objectReference: {fileID: 2121789025641339257}
     - target: {fileID: 7620546377446187909, guid: 1ff5d9b461eadf749938f968bf780bc1,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -40986,7 +40986,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 2871754400278553848}
+      objectReference: {fileID: 167411343001751261}
     - target: {fileID: 1976905242532697231, guid: 146ca560200926b428fcb39bce3629ca,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -41423,7 +41423,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 2871754400278553848}
+      objectReference: {fileID: 167411343001751261}
     - target: {fileID: 4560074790449638116, guid: 146ca560200926b428fcb39bce3629ca,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -41686,7 +41686,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectableToFocus
       value: 
-      objectReference: {fileID: 2871754400278553848}
+      objectReference: {fileID: 862083187091220066}
     - target: {fileID: 5870241116913635637, guid: 146ca560200926b428fcb39bce3629ca,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -41843,6 +41843,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.23529412
       objectReference: {fileID: 0}
+    - target: {fileID: 6868675652858379663, guid: 146ca560200926b428fcb39bce3629ca,
+        type: 3}
+      propertyPath: selectableToFocus
+      value: 
+      objectReference: {fileID: 167411343001751261}
     - target: {fileID: 6868675652858379663, guid: 146ca560200926b428fcb39bce3629ca,
         type: 3}
       propertyPath: gameobjectToDisable
@@ -47487,22 +47492,22 @@ PrefabInstance:
     - target: {fileID: 1925391397379944815, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1925391397379944815, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1925391397379944815, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 57.125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1925391397379944815, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2956228088011019290, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
@@ -47574,22 +47579,22 @@ PrefabInstance:
     - target: {fileID: 4679216007341971162, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4679216007341971162, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4679216007341971162, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 39.875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4679216007341971162, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6001805768888441124, guid: 9746defca7e0d3544b51421a4ffdec49,
         type: 3}
