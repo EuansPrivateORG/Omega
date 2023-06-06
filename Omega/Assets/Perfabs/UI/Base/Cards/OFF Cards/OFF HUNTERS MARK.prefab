@@ -335,6 +335,11 @@ PrefabInstance:
         The next player you attack takes 50% more
         damage on their next hit'
       objectReference: {fileID: 0}
+    - target: {fileID: 5799394958868507121, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7213664628807949823, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_AnchorMax.y

@@ -332,8 +332,8 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card Description:
 
-        The next player you attack skips their next
-        turn'
+        The next player you attack is stunned untill
+        their next turn'
       objectReference: {fileID: 0}
     - target: {fileID: 7213664628807949823, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}

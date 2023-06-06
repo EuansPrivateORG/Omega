@@ -290,9 +290,9 @@ PrefabInstance:
     - target: {fileID: 5141061649257205714, guid: 492c603a5a1ff014fa4d08e3e485abdf,
         type: 3}
       propertyPath: m_text
-      value: 'Card description:
+      value: 'Card Description:
 
-        Instantly heal 30 health'
+        Instantly gain 20 health'
       objectReference: {fileID: 0}
     - target: {fileID: 5960707240242361358, guid: 492c603a5a1ff014fa4d08e3e485abdf,
         type: 3}

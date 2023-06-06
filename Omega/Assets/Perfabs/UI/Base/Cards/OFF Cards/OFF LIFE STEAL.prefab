@@ -332,8 +332,8 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Card Description:
 
-        Gain half the damage you deal on your next
-        attack back in health'
+        Gain 50% of the damage you deal on your
+        next attack back as health'
       objectReference: {fileID: 0}
     - target: {fileID: 7213664628807949823, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}

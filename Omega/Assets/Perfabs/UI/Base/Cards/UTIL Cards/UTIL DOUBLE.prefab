@@ -290,7 +290,7 @@ PrefabInstance:
     - target: {fileID: 4645743740300131877, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}
       propertyPath: m_text
-      value: 'Card description:
+      value: 'Card Description:
 
         Doubles your next dice roll total value,
         excluding bonuses'

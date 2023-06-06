@@ -260,9 +260,9 @@ PrefabInstance:
     - target: {fileID: 4645743740300131877, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}
       propertyPath: m_text
-      value: 'Card description:
+      value: 'Card Description:
 
-        Instantly grants 4 extra energy'
+        Instantly gain 4 additional energy'
       objectReference: {fileID: 0}
     - target: {fileID: 6167935476242564601, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}

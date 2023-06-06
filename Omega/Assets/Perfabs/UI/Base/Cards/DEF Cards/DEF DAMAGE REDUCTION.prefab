@@ -310,10 +310,20 @@ PrefabInstance:
     - target: {fileID: 5141061649257205714, guid: 492c603a5a1ff014fa4d08e3e485abdf,
         type: 3}
       propertyPath: m_text
-      value: 'Card description:
+      value: 'Card Description:
 
-        Next time you are attacked the damage is
-        reduced by 50%'
+        Next time you are attacked the damage recieved
+        is reduced by 50%'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141061649257205714, guid: 492c603a5a1ff014fa4d08e3e485abdf,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141061649257205714, guid: 492c603a5a1ff014fa4d08e3e485abdf,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5960707240242361358, guid: 492c603a5a1ff014fa4d08e3e485abdf,
         type: 3}
