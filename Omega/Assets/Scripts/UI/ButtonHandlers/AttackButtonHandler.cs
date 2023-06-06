@@ -393,6 +393,8 @@ namespace Omega.UI
                         float amountToHeal = damageToDeal * card.lifeStealPercentage;
                         health.PerformHealing((int)amountToHeal, card, playerIdentifier.currentPlayer);
                         playerIdentifier.currentPlayer.GetComponent<BaseVFX>().PerformHealing();
+                        playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
                     }
 
                     if (card.cardType == Card.CardType.huntersMark)
