@@ -658,6 +658,17 @@
                 },
                 {
                     "name": "",
+                    "id": "03456a2c-659f-4c32-857e-5660e4c922ea",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "82627dcc-3b13-4ba9-841d-e4b746d6553e",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
