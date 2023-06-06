@@ -77,6 +77,7 @@ namespace Omega.UI
         {
             //quitting behaviour
             Debug.Log("Quit to main menu");
+            Time.timeScale = 1f;
             pauseMenu.SetActive(false);
         }
     }
