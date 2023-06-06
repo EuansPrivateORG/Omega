@@ -25,7 +25,7 @@ namespace Omega.Combat
         {
             foreach(GameObject player in playersToStopAttack)
             {
-                if (target == player)
+                if (target == player || playerIdentifier.currentPlayer == player)
                 {
                     attackButtonHandler.continueWithAttack = true;
                     if(num == 0)
