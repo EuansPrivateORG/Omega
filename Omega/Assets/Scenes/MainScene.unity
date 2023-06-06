@@ -2309,7 +2309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rollers: {fileID: 661387618}
   bonusNumText: {fileID: 311014835}
-  rolledNumColours: {r: 0.4666666, g: 0.97594786, b: 0.99607843, a: 1}
+  rolledNumColours: {r: 0, g: 1, b: 0.9024, a: 1}
   speed: 350
   hundredsDelay: 0.06
   tensDelay: 0.05
