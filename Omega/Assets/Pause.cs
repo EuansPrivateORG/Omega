@@ -76,9 +76,10 @@ namespace Omega.UI
         public void QuitToMenu()
         {
             //quitting behaviour
-            Debug.Log("Quit to main menu");
             Time.timeScale = 1f;
             pauseMenu.SetActive(false);
+            FindObjectOfType<RoundHandler>().EndGame(null, true);
+            FindObjectOfType<RoundCompletion>().ResetGame(true);
         }
     }
 }

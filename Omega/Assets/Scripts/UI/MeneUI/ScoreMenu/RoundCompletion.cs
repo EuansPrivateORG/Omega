@@ -44,7 +44,7 @@ namespace Omega.UI
                 {
                     StartCoroutine(FadeInHUD(endScreen));
                     StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
-                    roundHandler.EndGame(endScreen.gameObject);
+                    roundHandler.EndGame(endScreen.gameObject, false);
                     EventSystem.current.SetSelectedGameObject(endScreen.GetComponent<EndScreenCollection>().resetButton.gameObject);
                 }
                 else
@@ -98,11 +98,14 @@ namespace Omega.UI
             group.alpha = 1f;
         }
 
-        public void ResetGame()
+        public void ResetGame(bool quit)
         {
             FindObjectOfType<PlayerSpawnHandler>().ResetPlayers();
 
-            StartCoroutine(FadeOutHUD(endScreen));
+            if (!quit)
+            {
+                StartCoroutine(FadeOutHUD(endScreen));
+            }
             StartCoroutine(FadeInHUD(startScreen));
             EventSystem.current.SetSelectedGameObject(startScreen.GetComponent<RoundStart>().startRoundButton.gameObject);
             FindObjectOfType<CameraHandler>().MainMenuCam();

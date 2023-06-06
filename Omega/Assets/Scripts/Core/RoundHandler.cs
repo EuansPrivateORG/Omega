@@ -101,15 +101,21 @@ namespace Omega.Core
             diceCalculator.ClearDice();
         }
 
-        public void EndGame(GameObject endScreen)
+        public void EndGame(GameObject endScreen, bool quit)
         {
             spawnHandler.EndRound();
 
-            FindObjectOfType<CameraHandler>().EndRoundCam();
+            if (!quit)
+            {
+                FindObjectOfType<CameraHandler>().EndRoundCam();
+            }
 
             playerId.roundOver = true;
 
-            scoreHandler.DisplayEndGameScores(endScreen.GetComponent<EndScreenCollection>());
+            if (!quit)
+            {
+                scoreHandler.DisplayEndGameScores(endScreen.GetComponent<EndScreenCollection>());
+            }
 
             gameHUD.alpha = 0;
             gameHUD.interactable = false;
