@@ -76,6 +76,14 @@ namespace Omega.Status
                 childRigid.AddForce(50f, 50f, 50f, ForceMode.Impulse);
             }
 
+            foreach (Transform child in baseCollection.pipeParent.transform)
+            {
+                if(child.TryGetComponent<Renderer>(out Renderer childRen))
+                {
+                    childRen.material = baseCollection.destroyedPipeMat;
+                }
+            }
+
             cardCountDisplay.SetActive(false);
 
             GetComponent<BaseVFX>().PlayExplosion();
