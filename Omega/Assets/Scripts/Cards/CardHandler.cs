@@ -115,6 +115,10 @@ namespace Omega.Actions
             if (playerCards.cardsInHand.Count + numOfCards > 5)
             {
                 Debug.Log("Player has max Cards");
+                if (endTurn)
+                {
+                    FindObjectOfType<CardHandler>().StartCoroutine(DelayNextTurn());
+                }
                 return;
             }
 
