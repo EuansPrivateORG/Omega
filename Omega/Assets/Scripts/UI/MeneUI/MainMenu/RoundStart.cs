@@ -184,6 +184,8 @@ namespace Omega.UI
             GameHUD.alpha = 1;
             GameHUD.interactable = true;
 
+            FindObjectOfType<Pause>().canPause = true;
+
             CanvasGroup canvas = GetComponent<CanvasGroup>();
             canvas.alpha = 0;
             canvas.interactable = false;

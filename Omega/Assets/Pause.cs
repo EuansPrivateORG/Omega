@@ -22,7 +22,7 @@ namespace Omega.UI
 
         private GameObject previousSelection;
 
-        private bool canPause = true;
+        public bool canPause = false;
         private void Awake()
         {
             eventSystem = FindObjectOfType<EventSystem>();

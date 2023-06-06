@@ -81,6 +81,8 @@ namespace Omega.Core
             EnergyBar energyBar = FindObjectOfType<EnergyBar>();
             energyBar.UpdateSegments();
 
+            FindObjectOfType<Pause>().canPause = true;
+
             PlayerHealthDisplay playerHealthDisplay = FindObjectOfType<PlayerHealthDisplay>();
             playerHealthDisplay.UpdateHealthInfo();
         }
@@ -99,6 +101,8 @@ namespace Omega.Core
             scoreHandler.ResetScoreThisRound();
 
             diceCalculator.ClearDice();
+
+            FindObjectOfType<Pause>().canPause = false;
 
             FindObjectOfType<SoundtrackMixer>().PlayMenu();
         }
@@ -131,6 +135,8 @@ namespace Omega.Core
             diceCalculator.ClearDice();
 
             FindObjectOfType<SoundtrackMixer>().PlayMenu();
+
+            FindObjectOfType<Pause>().canPause = false;
         }
     }
 }
