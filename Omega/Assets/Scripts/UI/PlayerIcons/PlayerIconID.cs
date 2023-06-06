@@ -7,9 +7,7 @@ namespace Omega.UI
     public class PlayerIconID : MonoBehaviour
     {
         public GameObject playerIcon;
-        public GameObject backgroundProtector;
         public GameObject iconBackground;
-        public GameObject destroyedBackgroundProtector;
         public GameObject destroyedIconBackground;
         public GameObject playerDeadText;
         [SerializeField] public float moveDownAmountY;

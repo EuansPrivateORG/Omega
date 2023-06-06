@@ -132,26 +132,26 @@ namespace Omega.Core
 
                 if (player.factionName == playerScoresInOrder[0].playerFaction)
                 {
-                    PlayerIconID iconID = player.turnOrderVarientIcon.GetComponent<PlayerIconID>();
+                    PlayerIconID iconID = player.startMenuVarientIcon.GetComponent<PlayerIconID>();
                     endScreen.player1Icon.sprite = iconID.playerIcon.GetComponent<Image>().sprite;
-                    endScreen.player1Icon.color = iconID.iconBackground.GetComponent<Image>().color;
-                    endScreen.player1factionBackground.color = iconID.iconBackground.GetComponent<Image>().color;
+                    endScreen.player1Icon.color = iconID.playerIcon.GetComponent<Image>().color;
+                    endScreen.player1factionBackground.color = iconID.playerIcon.GetComponent<Image>().color;
                 }
 
                 else if (player.factionName == playerScoresInOrder[1].playerFaction)
                 {
-                    PlayerIconID iconID = player.turnOrderVarientIcon.GetComponent<PlayerIconID>();
+                    PlayerIconID iconID = player.startMenuVarientIcon.GetComponent<PlayerIconID>();
                     endScreen.player2Icon.sprite = iconID.playerIcon.GetComponent<Image>().sprite;
-                    endScreen.player2Icon.color = iconID.iconBackground.GetComponent<Image>().color;
-                    endScreen.player2factionBackground.color = iconID.iconBackground.GetComponent<Image>().color;
+                    endScreen.player2Icon.color = iconID.playerIcon.GetComponent<Image>().color;
+                    endScreen.player2factionBackground.color = iconID.playerIcon.GetComponent<Image>().color;
                 }
 
                 else if (player.factionName == playerScoresInOrder[2].playerFaction)
                 {
-                    PlayerIconID iconID = player.turnOrderVarientIcon.GetComponent<PlayerIconID>();
+                    PlayerIconID iconID = player.startMenuVarientIcon.GetComponent<PlayerIconID>();
                     endScreen.player3Icon.sprite = iconID.playerIcon.GetComponent<Image>().sprite;
-                    endScreen.player3Icon.color = iconID.iconBackground.GetComponent<Image>().color;
-                    endScreen.player3factionBackground.color = iconID.iconBackground.GetComponent<Image>().color;
+                    endScreen.player3Icon.color = iconID.playerIcon.GetComponent<Image>().color;
+                    endScreen.player3factionBackground.color = iconID.playerIcon.GetComponent<Image>().color;
                 }
             }
 
@@ -196,8 +196,8 @@ namespace Omega.Core
                     }
                 }
 
-                leadboardCollection.factionIcon.GetComponent<Image>().sprite = currentPlayer.turnOrderVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
-                leadboardCollection.factionIcon.GetComponent<Image>().color = currentPlayer.turnOrderVarientIcon.GetComponent<PlayerIconID>().iconBackground.GetComponent<Image>().color;
+                leadboardCollection.factionIcon.GetComponent<Image>().sprite = currentPlayer.startMenuVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().sprite;
+                leadboardCollection.factionIcon.GetComponent<Image>().color = currentPlayer.startMenuVarientIcon.GetComponent<PlayerIconID>().playerIcon.GetComponent<Image>().color;
 
                 leadboardCollection.factionName.text = playerScoresInOrder[i].playerFaction;
 
