@@ -55,7 +55,7 @@ namespace Omega.Core
 
         private CardTween cardTween;
 
-        private int playerCounter;
+        private int playerCounter = 0;
 
         private void Awake()
         {
@@ -88,7 +88,7 @@ namespace Omega.Core
                 playersSetup = instantiatedPlayer.GetComponent<PlayerSetup>();
                 playersSetup.playerID = playerCounter;
                 CreatIcon();
-                GetComponent<ScoreHandler>().AddScorer(playersToSpawn[i], playerCounter);
+                GetComponent<ScoreHandler>().AddScorer(playersToSpawnIn[i], playerCounter);
                 instantiatedPlayer.transform.SetParent(players);
                 instantiatedPlayer.transform.LookAt(centerPosition);
                 instantiatedPlayer.name = ("Player " + (playerCounter)).ToString();

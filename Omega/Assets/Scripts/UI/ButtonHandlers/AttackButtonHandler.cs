@@ -393,6 +393,8 @@ namespace Omega.UI
                         float amountToHeal = damageToDeal * card.lifeStealPercentage;
                         health.PerformHealing((int)amountToHeal, card, playerIdentifier.currentPlayer);
                         playerIdentifier.currentPlayer.GetComponent<BaseVFX>().PerformHealing();
+                        playersCards.cardsPlayed.Remove(card);
+                        playersCards.RemovePlayedCards(card.CardWorldPreFab);
                     }
 
                     if (card.cardType == Card.CardType.huntersMark)
@@ -422,9 +424,13 @@ namespace Omega.UI
                     {
                         //Dealing Damage to player
                         float sacraficeDamPlayer = card.sacraficeLoss * damageToDeal;
-                        playerIdentifier.currentPlayer.GetComponent<Health>().TakeDamage(card.damagePerTurn);
+                        playerIdentifier.currentPlayer.GetComponent<Health>().TakeDamage((int)sacraficeDamPlayer);
                         SpawnDamageNumbers(playerIdentifier.currentPlayer, (int)sacraficeDamPlayer - 5, (int)sacraficeDamPlayer + 5, true, (int)sacraficeDamPlayer);
                         playerIdentifier.currentPlayer.GetComponent<DamageStateCollection>().CheckHealth();
+                        if (playerIdentifier.currentPlayer.GetComponent<Health>().isDead)
+                        {
+                            playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().playersToStopAttack.Add(playerIdentifier.currentPlayer);
+                        }
 
                         //Uping damage for other players
                         float sacraficeDam = damageToDeal * card.sacraficeGain;
