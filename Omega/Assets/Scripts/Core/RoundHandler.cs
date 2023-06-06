@@ -99,6 +99,8 @@ namespace Omega.Core
             scoreHandler.ResetScoreThisRound();
 
             diceCalculator.ClearDice();
+
+            FindObjectOfType<SoundtrackMixer>().PlayMenu();
         }
 
         public void EndGame(GameObject endScreen, bool quit)
@@ -127,6 +129,8 @@ namespace Omega.Core
             scoreHandler.playerScores.Clear();
             scoreHandler.playerScoresInOrder.Clear();
             diceCalculator.ClearDice();
+
+            FindObjectOfType<SoundtrackMixer>().PlayMenu();
         }
     }
 }
