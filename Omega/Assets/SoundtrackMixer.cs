@@ -13,7 +13,7 @@ namespace Omega.Core
         private bool playingMainMenu = true;
         private float currentSoundtrackLength = 0;
         private float currentSoundTrackTime = 0;
-
+        private int soundtrackNumber = 0;
         private void Start()
         {
             PlayMenu();
@@ -46,19 +46,23 @@ namespace Omega.Core
         public void PlayNewSoundTrack()
         {
             playingMainMenu = false;
-
-            int ran = Random.Range(0, soundtracks.Count - 1);
-
-            if (soundtrackSource.isPlaying)
+            Debug.Log(soundtrackNumber);
+            for (int i = 0; i < soundtracks.Count; i++)
             {
-
-                StartCoroutine(FadeOut(soundtrackSource, soundtracks[ran]));
+                if(i == soundtrackNumber)
+                {
+                    Debug.Log(i);
+                    soundtrackSource.clip = soundtracks[i];
+                    soundtrackNumber++;
+                    break;
+                }
             }
-            else
+            if(soundtrackNumber > soundtracks.Count)
             {
-                StartCoroutine(FadeIn(soundtrackSource, soundtracks[ran]));
+                soundtrackNumber = 0;
             }
-
+            soundtrackSource.Play();
+            soundtrackSource.volume = 1f;
             currentSoundTrackTime = 0;
         }
 
@@ -88,6 +92,7 @@ namespace Omega.Core
 
         public IEnumerator FadeIn(AudioSource audioSource, AudioClip clipToFadeIn)
         {
+            audioSource.clip = clipToFadeIn;
             float fadeDuration = 2.0f; // Duration of the fade-in in seconds
 
             // Fade in
@@ -103,6 +108,7 @@ namespace Omega.Core
         public void PlayMenu()
         {
             playingMainMenu = true;
+
 
             if (soundtrackSource.isPlaying)
             {
