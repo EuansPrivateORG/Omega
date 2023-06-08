@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Flip Turn Order
   cardCategory: 2
-  cardWeight: 7
+  cardWeight: 10000
   activationType: 3
   cardType: 9
   amountOfRounds: 0
@@ -30,5 +30,12 @@ MonoBehaviour:
   instantHealAmount: 0
   damageReductionPercentage: 0
   damageReductionPreFab: {fileID: 0}
+  energyPerTurn: 0
+  lifeStealPercentage: 0
+  speedRoundTime: 0
+  huntersMarkPercentage: 0
+  sacraficeLoss: 0
+  sacraficeGain: 0
+  disruptorPerc: 0
   effectOverTime: 0
   hasEffectWhenAttacked: 0

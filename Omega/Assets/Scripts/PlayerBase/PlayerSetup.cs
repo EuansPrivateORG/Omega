@@ -129,6 +129,7 @@ namespace Omega.Core
             audioSource.clip = ShieldUp;
             audioSource.Play();
             playerShield = Instantiate(shield, transform);
+            GetComponentInChildren<Outline>().OutlineMode = Outline.Mode.OutlineHidden;
         }
 
         public void ActivateDamageReduction(GameObject shield)
@@ -145,6 +146,7 @@ namespace Omega.Core
             audioSource.clip = ShieldDown;
             audioSource.Play();
             Destroy(playerShield);
+            GetComponentInChildren<Outline>().OutlineMode = Outline.Mode.OutlineVisible;
         }
 
         public void DeDamageReduction()

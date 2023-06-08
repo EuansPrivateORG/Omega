@@ -123,7 +123,6 @@ namespace Omega.UI
 
                     if (!fromKill)
                     {
-
                         card.transform.SetParent(cardPositions[i].transform);
                         LeanTween.move(card, cardPositions[i].transform.position, drawnCardMoveTime);
                     }
@@ -135,7 +134,7 @@ namespace Omega.UI
                 }
             }
 
-            while(card.transform.localScale != originalCardScale)
+            while(card.transform.localScale != originalCardScale && card.transform.position != cardPosition.transform.position)
             {
                 yield return null;
             }

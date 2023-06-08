@@ -48,9 +48,12 @@ namespace Omega.Core
 
         [HideInInspector] public Card speedCard;
 
+        ScoreHandler scoreHandler;
+
 
         private void Awake()
         {
+            scoreHandler = FindObjectOfType<ScoreHandler>();
             cardButtonHandler = FindObjectOfType<CardButtonHandler>();
             turnTimer = GetComponent<TurnTimer>();
             physicalDiceCalculator = GetComponent<PhysicalDiceCalculator>();
@@ -268,10 +271,16 @@ namespace Omega.Core
 
             ReverseTurnOrder(turnOrderIndex, currentPlayerIndexInOrder);
             ReverseTurnOrder(currentlyAlivePlayersInTurn, currentPlayerIndex);
+            ReverseScoreOrder(scoreHandler.playerScores, currentPlayerIndexInOrder);
 
             for (int i = 0; i < currentlyAlivePlayers.Count; i++)
             {
                 currentlyAlivePlayers[i].GetComponent<PlayerSetup>().playerID = i + 1;
+            }
+
+            for (int i = 0; i < scoreHandler.playerScores.Count; i++)
+            {
+                scoreHandler.playerScores[i].playerNumReference = i + 1;
             }
 
             currentPlayerIndex = 0;
@@ -296,6 +305,23 @@ namespace Omega.Core
             List<GameObject> tempPlayers = turnOrder.GetRange(0, newCurrentPlayerIndex);
             turnOrder.RemoveRange(0, newCurrentPlayerIndex);
             turnOrder.AddRange(tempPlayers);
+        }
+
+        public static void ReverseScoreOrder(List<ScoreHandler.ScoreValues> scoreOrder, int currentPlayerNum)
+        {
+            // Get the current player
+            ScoreHandler.ScoreValues currentPlayer = scoreOrder[currentPlayerNum];
+
+            // Reverse the order of the turnOrder list
+            scoreOrder.Reverse();
+
+            // Find the new index of the current player
+            int newCurrentPlayerIndex = scoreOrder.IndexOf(currentPlayer);
+
+            // Move the players before the current player to the end of the list
+            List<ScoreHandler.ScoreValues> tempPlayers = scoreOrder.GetRange(0, newCurrentPlayerIndex);
+            scoreOrder.RemoveRange(0, newCurrentPlayerIndex);
+            scoreOrder.AddRange(tempPlayers);
         }
 
 
