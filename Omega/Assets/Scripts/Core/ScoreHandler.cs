@@ -216,5 +216,28 @@ namespace Omega.Core
                 score.pointsGainedThisRound = 0;
             }
         }
+
+        public void ResetScoresList()
+        {
+            List<ScoreValues> newScoreList = new List<ScoreValues>();  // Create a new list to store the reordered scores
+
+            foreach (GameObject player in playerIdentifier.turnOrderIndex)
+            {
+                string factionName = player.GetComponent<PlayerSetup>().playerBase.factionName;
+
+                ScoreValues score = playerScores.Find(s => s.playerFaction == factionName);
+                if (score != null)
+                {
+                    newScoreList.Add(score);
+                }
+            }
+
+            playerScores = newScoreList;  // Assign the reordered scores to the original list
+
+            for (int i = 0; i < playerScores.Count; i++)
+            {
+                playerScores[i].playerNumReference = i + 1;
+            }
+        }
     }
 }

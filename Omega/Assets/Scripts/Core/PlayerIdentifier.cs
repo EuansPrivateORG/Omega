@@ -106,7 +106,6 @@ namespace Omega.Core
             drawCardHandler.CheckEnergy();
 
             playerWhoHasDied = playerIndex.Count + 1;
-
         }
 
         public void ResetIndex()

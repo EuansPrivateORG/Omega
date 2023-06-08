@@ -48,9 +48,10 @@ namespace Omega.Status
 
                 int placement = playerIdenti.playerIndex.Count - (playerIdenti.currentlyAlivePlayers.Count - 1);
                 
-                int playerID = playerSetup.playerID - 1;
+                int playerID = playerIdenti.turnOrderIndex.IndexOf(gameObject);
 
                 scoreHandler.CalculatePlayerPlacement(placement, playerID);
+                Debug.Log(gameObject.name);
 
                 foreach(GameObject player in playerIdenti.currentlyAlivePlayers)
                 {

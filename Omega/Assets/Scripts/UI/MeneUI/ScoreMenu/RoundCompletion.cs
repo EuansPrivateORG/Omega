@@ -50,7 +50,7 @@ namespace Omega.UI
                 else
                 {
                     StartCoroutine(FadeInHUD(roundCompletionCanvasGroup));
-                    scoreHandler.CalculatePlayerPlacement(playerIdentifier.playerIndex.Count, playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerID - 1);
+                    scoreHandler.CalculatePlayerPlacement(playerIdentifier.turnOrderIndex.Count, playerIdentifier.turnOrderIndex.IndexOf(playerIdentifier.currentlyAlivePlayers[0]));
                     winningPlayerText.text = playerIdentifier.currentlyAlivePlayers[0].GetComponent<PlayerSetup>().playerBase.factionName + " Has claimed the outpost";
                     StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
                     EventSystem.current.SetSelectedGameObject(nextRoundButton.gameObject);

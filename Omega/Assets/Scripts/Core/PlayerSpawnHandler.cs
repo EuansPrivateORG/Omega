@@ -162,6 +162,7 @@ namespace Omega.Core
             cardTween.RefreshCardList();
             cameraHandler.SetupCameras();
             StartCoroutine(turnTransition.FadeInHUD());
+            GetComponent<ScoreHandler>().ResetScoresList();
         }
 
         public void ResetPlayerIcons()
