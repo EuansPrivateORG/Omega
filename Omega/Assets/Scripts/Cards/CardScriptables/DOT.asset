@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: DOT
   cardCategory: 0
-  cardWeight: 1000
+  cardWeight: 6
   activationType: 0
   cardType: 1
   amountOfRounds: 3
