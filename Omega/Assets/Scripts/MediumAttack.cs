@@ -1,3 +1,4 @@
+using Omega.Combat;
 using Omega.Core;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class MediumAttack : MonoBehaviour
 {
     [SerializeField] GameObject mediumAttack;
+    [HideInInspector] public GameObject attackWeapon;
     public int amountOfShots;
     [HideInInspector] public GameObject target;
     public float delayBetweenShots;
@@ -32,6 +34,7 @@ public class MediumAttack : MonoBehaviour
                 bulletSpawnCounter = 0;
             }
             GameObject bullet = Instantiate(mediumAttack, bulletSpawns[bulletSpawnCounter]);
+            attackWeapon.GetComponent<Weapon>().muzzleFlash[bulletSpawnCounter].GetComponent<ParticleSystem>().Play();
             bullet.GetComponent<MediumVFX>().target = target;
             bulletSpawnCounter++;
             yield return new WaitForSeconds(delayBetweenShots);

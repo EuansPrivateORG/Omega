@@ -13,6 +13,8 @@ namespace Omega.Combat
         public float shakeOnImpact;
         public float shakOnShotLength;
         public float shakOnImpactLength;
+        public List<GameObject> muzzleFlash;
+
         [System.Serializable]
         public enum weaponClass
         {

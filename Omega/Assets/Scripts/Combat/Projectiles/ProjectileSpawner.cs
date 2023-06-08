@@ -48,7 +48,7 @@ namespace Omega.Combat
             GameObject projectileToFire = null;
             if(attackButtonHandler.weaponClass != Weapon.weaponClass.Ultimate)
             {
-                GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, attackweapon.transform);
+                GameObject projectileInstance = Instantiate(weapon1.projectilePrefab, attackweapon.transform);
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
                 if(attackButtonHandler.weaponClass == Weapon.weaponClass.Medium)
@@ -59,11 +59,11 @@ namespace Omega.Combat
             else
             {
                 GameObject targetUltimatePosition = null;
-                foreach (Weapon weapon in target.GetComponentsInChildren<Weapon>())
+                foreach (Weapon _weapon in target.GetComponentsInChildren<Weapon>())
                 {
-                    if(weapon.weaponType == Weapon.weaponClass.Ultimate)
+                    if(_weapon.weaponType == Weapon.weaponClass.Ultimate)
                     {
-                        targetUltimatePosition = weapon.gameObject;
+                        targetUltimatePosition = _weapon.gameObject;
                     }
                 }
                 GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, targetUltimatePosition.transform);
@@ -76,9 +76,17 @@ namespace Omega.Combat
             projectileToFire.transform.parent = transform;
             projectileToFire.GetComponentInChildren<Projectile>().SetTarget(target.gameObject, playerIdentifier.currentPlayer, damage, minColour, maxColour, attackButtonHandler, num, attackweapon);
 
-            if (attackweapon.GetComponent<Weapon>().weaponType == Weapon.weaponClass.Light)
+            if (weapon1.weaponType == Weapon.weaponClass.Light)
             {
                 playerIdentifier.currentAttack.continueWithAttack = true;
+                foreach(GameObject vfx in weapon1.muzzleFlash)
+                {
+                    vfx.GetComponent<ParticleSystem>().Play();
+                }
+            }
+            else if(weapon1.weaponType == Weapon.weaponClass.Medium)
+            {
+                projectileToFire.transform.parent.GetComponentInChildren<MediumAttack>().attackWeapon = attackweapon;
             }
         }
     }
