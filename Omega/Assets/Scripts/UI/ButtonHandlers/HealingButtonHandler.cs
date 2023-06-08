@@ -15,6 +15,8 @@ namespace Omega.UI
 {
     public class HealingButtonHandler : ActionButtonHandler
     {
+        public Color unselectedOutlineColor;
+
         public PlayerAction heal;
 
         private PlayerIdentifier playerIdentifier;
@@ -151,7 +153,7 @@ namespace Omega.UI
                     playerObject.GetComponent<PlayerSelectionHandler>().enabled = true;
                     playerObject.GetComponent<Selectable>().enabled = true;
                     playerObject.GetComponentInChildren<Outline>().enabled = true;
-                    playerObject.GetComponentInChildren<Outline>().OutlineColor = Color.white;
+                    playerObject.GetComponentInChildren<Outline>().OutlineColor = unselectedOutlineColor;
                     healablePlayers.Add(playerObject);
 
                     if (!foundNextPlayer)
