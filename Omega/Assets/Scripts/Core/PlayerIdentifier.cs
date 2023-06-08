@@ -31,7 +31,7 @@ namespace Omega.Core
         public int energyGainPerTurn = 2;
         public int currentPlayerIndex = 0;
         TurnTimer turnTimer;
-        private int playerWhoHasDied;
+        [SerializeField] private int playerWhoHasDied;
         [HideInInspector] public bool roundOver = false;
         [HideInInspector] public bool isAttacking = false;
 
@@ -154,7 +154,7 @@ namespace Omega.Core
                     handler.ResetUI();
                 }
 
-                EventSystem.current.SetSelectedGameObject(drawCardHandler.skipButton.gameObject);
+                EventSystem.current.SetSelectedGameObject(drawCardHandler.attackButton.gameObject);
 
                 currentAttack = null;
                 currentHeal = null;
@@ -347,6 +347,10 @@ namespace Omega.Core
 
         private void SetupCurrentlyAlivePlayerIndex()
         {
+            List<GameObject> oldCurrentlyAlivePlayers = new List<GameObject>();
+
+            oldCurrentlyAlivePlayers.AddRange(currentlyAlivePlayersInTurn);
+
             currentlyAlivePlayersInTurn.Clear();
             foreach (GameObject player in turnOrderIndex)
             {
@@ -356,11 +360,6 @@ namespace Omega.Core
                 }
             }
 
-            List<GameObject> oldCurrentlyAlivePlayers = new List<GameObject>();
-            foreach (GameObject player in currentlyAlivePlayers)
-            {
-                oldCurrentlyAlivePlayers.Add(player);
-            }
             currentlyAlivePlayers.Clear();
             foreach (GameObject player in playerIndex)
             {
@@ -369,9 +368,10 @@ namespace Omega.Core
                     currentlyAlivePlayers.Add(player);
                 }
             }
+
             for(int i = 0; i < oldCurrentlyAlivePlayers.Count; ++i) 
             {
-                if (!currentlyAlivePlayers.Contains(oldCurrentlyAlivePlayers[i]))
+                if (!currentlyAlivePlayersInTurn.Contains(oldCurrentlyAlivePlayers[i]))
                 {
                     playerWhoHasDied = i;
                 }
@@ -416,7 +416,7 @@ namespace Omega.Core
         {
             if(currentPlayerWeapons.Count > 0)
             {
-            currentPlayerWeapons.Clear();
+                currentPlayerWeapons.Clear();
             }
             foreach (Weapon weapon in currentPlayer.GetComponentsInChildren<Weapon>())
             {

@@ -23,7 +23,6 @@ public class AutoSelect : MonoBehaviour
     {
         if (focus)
         {
-            Debug.Log(currentButton);
             currentEvent.SetSelectedGameObject(currentButton);
         }
         else

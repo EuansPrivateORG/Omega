@@ -189,7 +189,7 @@ namespace Omega.UI
             CanvasGroup canvas = GetComponent<CanvasGroup>();
             canvas.alpha = 0;
             canvas.interactable = false;
-            eventSystem.SetSelectedGameObject(skipButton.gameObject);
+            eventSystem.SetSelectedGameObject(FindObjectOfType<DrawCardHandler>().attackButton.gameObject);
         }
     }
 }

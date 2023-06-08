@@ -45,24 +45,21 @@ namespace Omega.UI
         {
             // Set up the initial navigation for the Selectable component
 
-            if (playerIdentifier.flippedTurnOrder)
-            {
-                var selectable = GetComponent<Selectable>();
-                Navigation nav = selectable.navigation;
-                nav.mode = Navigation.Mode.Explicit;
-                nav.selectOnLeft = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) + 1)].GetComponent<Selectable>();
-                nav.selectOnRight = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) - 1)].GetComponent<Selectable>();
-                selectable.navigation = nav;
-            }
-            else
-            {
-                var selectable = GetComponent<Selectable>();
-                Navigation nav = selectable.navigation;
-                nav.mode = Navigation.Mode.Explicit;
-                nav.selectOnRight = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) + 1)].GetComponent<Selectable>();
-                nav.selectOnLeft = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) - 1)].GetComponent<Selectable>();
-                selectable.navigation = nav;
-            }
+            //if (playerIdentifier.flippedTurnOrder)
+            //{
+            //    var selectable = GetComponent<Selectable>();
+            //    Navigation nav = selectable.navigation;
+            //    nav.mode = Navigation.Mode.Explicit;
+            //    nav.selectOnLeft = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) + 1)].GetComponent<Selectable>();
+            //    nav.selectOnRight = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) - 1)].GetComponent<Selectable>();
+            //    selectable.navigation = nav;
+            //}
+            var selectable = GetComponent<Selectable>();
+            Navigation nav = selectable.navigation;
+            nav.mode = Navigation.Mode.Explicit;
+            nav.selectOnRight = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) + 1)].GetComponent<Selectable>();
+            nav.selectOnLeft = playersToChooseFrom[WrapIndex(GetPlaceInIndexNew(gameObject) - 1)].GetComponent<Selectable>();
+            selectable.navigation = nav;
         }
 
         void OnNavigatePerformed(InputAction.CallbackContext context)

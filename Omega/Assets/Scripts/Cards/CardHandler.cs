@@ -95,6 +95,15 @@ namespace Omega.Actions
                     }
                 }
 
+                if (playerIdentifier.currentlyAlivePlayers.Count <= 2)
+                {
+                    if (newCard.cardType == Card.CardType.flipTurn)
+                    {
+                        i--;
+                        hasCard = true;
+                    }
+                }
+
                 if (!hasCard)
                 {
                     cards.Add(newCard);
@@ -152,6 +161,15 @@ namespace Omega.Actions
                 foreach (Card card in playerCards.cardsPlayed)
                 {
                     if (card == newCard)
+                    {
+                        i--;
+                        hasCard = true;
+                    }
+                }
+
+                if(playerIdentifier.currentlyAlivePlayers.Count <= 2)
+                {
+                    if(newCard.cardType == Card.CardType.flipTurn)
                     {
                         i--;
                         hasCard = true;
