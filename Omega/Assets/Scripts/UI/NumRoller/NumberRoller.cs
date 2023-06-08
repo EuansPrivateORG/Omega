@@ -152,7 +152,7 @@ namespace Omega.Actions
 
                 if (stoppedRotatingUnits)
                 {
-                    if (unitsInt == unitsNumToStop)
+                    if (unitsInt - 1 == unitsNumToStop)
                     {
                         isRotatingUnits = false;
                         stoppedRotatingUnits = false;
