@@ -19,6 +19,8 @@ namespace Omega.Actions
 
         public AudioClip healClip;
 
+        public AudioClip takeDamageSound;
+
         public AudioSource cardPlayedSource;
 
         public int cardCost = 2;
@@ -464,6 +466,8 @@ namespace Omega.Actions
             if(atk != null)
             {
                 atk.SpawnDamageNumbers(playerIdentifier.currentPlayer, card.damagePerTurn - 5, card.damagePerTurn + 5, true, card.damagePerTurn);
+                cardPlayedSource.clip = takeDamageSound;
+                cardPlayedSource.Play();
             }
             else
             {

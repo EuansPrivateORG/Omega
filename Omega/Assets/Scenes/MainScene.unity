@@ -2168,7 +2168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPlayers: 5
-  playerStartingHealth: 10
+  playerStartingHealth: 100
   playerStartingEnergy: 0
   radius: 14.5
   players: {fileID: 1902693845}
@@ -2336,6 +2336,7 @@ MonoBehaviour:
   attackClip: {fileID: 8300000, guid: 489bff2b3e506c049af789670119ed57, type: 3}
   utilityClip: {fileID: 8300000, guid: 9ed4b5300a9be5b4a967a5b5b958208f, type: 3}
   healClip: {fileID: 8300000, guid: 63251369584eee34982f3ccf3cb9757a, type: 3}
+  takeDamageSound: {fileID: 8300000, guid: 939eb6d0ea8cab347a8785fca0ef4af7, type: 3}
   cardPlayedSource: {fileID: 2089017077}
   cardCost: 2
   cardsToStartWith: 2
@@ -6245,22 +6246,22 @@ PrefabInstance:
     - target: {fileID: 3899712853859589785, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3899712853859589785, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3899712853859589785, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 39.875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3899712853859589785, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4363902485335419522, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
@@ -7385,22 +7386,22 @@ PrefabInstance:
     - target: {fileID: 7802810990777563436, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7802810990777563436, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7802810990777563436, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 57.125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7802810990777563436, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7966100751552260211, guid: d29fc24822bfc8241a517ea8b3088b5d,
         type: 3}

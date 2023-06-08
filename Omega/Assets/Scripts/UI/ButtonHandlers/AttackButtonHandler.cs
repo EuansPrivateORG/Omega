@@ -433,6 +433,10 @@ namespace Omega.UI
                             playerIdentifier.currentPlayer.GetComponent<ProjectileSpawner>().playersToStopAttack.Add(playerIdentifier.currentPlayer);
                         }
 
+                        CardHandler cardHandler = FindObjectOfType<CardHandler>();
+                        cardHandler.cardPlayedSource.clip = cardHandler.takeDamageSound;
+                        cardHandler.cardPlayedSource.Play();
+
                         //Uping damage for other players
                         float sacraficeDam = damageToDeal * card.sacraficeGain;
                         currentDamage = (int)sacraficeDam;
