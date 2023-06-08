@@ -11,6 +11,8 @@ namespace Omega.UI
 {
     public class PlayerSelectionHandler : MonoBehaviour
     {
+        public Color outlineColor;
+
         EventSystem eventSystem;
 
         [HideInInspector] public InputAction attackAction;
@@ -84,7 +86,7 @@ namespace Omega.UI
             }
             else
             {
-                GetComponentInChildren<Outline>().OutlineColor = Color.white;
+                GetComponentInChildren<Outline>().OutlineColor = outlineColor;
             }
         }
 

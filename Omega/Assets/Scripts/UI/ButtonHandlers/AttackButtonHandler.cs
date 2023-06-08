@@ -16,6 +16,7 @@ namespace Omega.UI
 {
     public class AttackButtonHandler : ActionButtonHandler
     {
+        public Color unselectedOutlineColor;
 
         public Weapon.weaponClass weaponClass;
         public PlayerAction attack;
@@ -203,7 +204,7 @@ namespace Omega.UI
                     playerObject.GetComponent<PlayerSelectionHandler>().enabled = true;
                     playerObject.GetComponent<Selectable>().enabled = true;
                     playerObject.GetComponentInChildren<Outline>().enabled = true;
-                    playerObject.GetComponentInChildren<Outline>().OutlineColor = Color.white;
+                    playerObject.GetComponentInChildren<Outline>().OutlineColor = unselectedOutlineColor;
                     attackablePlayers.Add(playerObject);
 
                     if (!foundNextPlayer)
