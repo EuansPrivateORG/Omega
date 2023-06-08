@@ -74,8 +74,6 @@ namespace Omega.Actions
 
                 if(hundredsTimer > hundredsDelay)
                 {
-                    hundredsText.text = hundredsInt.ToString();
-
                     hundredsInt++;
 
                     if (hundredsInt > 9)
@@ -83,12 +81,14 @@ namespace Omega.Actions
                         hundredsInt = 0;
                     }
 
+                    hundredsText.text = hundredsInt.ToString();
+
                     hundredsTimer = 0;
                 }
 
                 if (stoppedRotatingHundreds)
                 {
-                    if(hundredsInt - 1 == hundredsNumToStop)
+                    if(hundredsInt == hundredsNumToStop)
                     {
                         isRotatingHundreds = false;
                         stoppedRotatingHundreds = false;
@@ -106,8 +106,6 @@ namespace Omega.Actions
 
                 if (tensTimer > tensDelay)
                 {
-                    tensText.text = tensInt.ToString();
-
                     tensInt++;
 
                     if (tensInt > 9)
@@ -115,12 +113,14 @@ namespace Omega.Actions
                         tensInt = 0;
                     }
 
+                    tensText.text = tensInt.ToString();
+
                     tensTimer = 0;
                 }
 
                 if (stoppedRotatingTens)
                 {
-                    if (tensInt - 1 == tensNumToStop)
+                    if (tensInt == tensNumToStop)
                     {
                         isRotatingTens = false;
                         stoppedRotatingTens = false;
@@ -138,8 +138,6 @@ namespace Omega.Actions
 
                 if (unitsTimer > unitsDelay)
                 {
-                    unitsText.text = unitsInt.ToString();
-
                     unitsInt++;
 
                     if (unitsInt > 9)
@@ -147,12 +145,14 @@ namespace Omega.Actions
                         unitsInt = 0;
                     }
 
+                    unitsText.text = unitsInt.ToString();
+
                     unitsTimer = 0;
                 }
 
                 if (stoppedRotatingUnits)
                 {
-                    if (unitsInt - 1 == unitsNumToStop)
+                    if (unitsInt == unitsNumToStop)
                     {
                         isRotatingUnits = false;
                         stoppedRotatingUnits = false;

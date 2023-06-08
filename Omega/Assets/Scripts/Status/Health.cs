@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Omega.Core;
 using Omega.Visual;
+using Omega.Actions;
 
 namespace Omega.Status
 {
@@ -58,6 +59,10 @@ namespace Omega.Status
                         player.GetComponent<PlayerSetup>().UpdatePlayerID();
                     }
                 }
+
+                GetComponent<BaseVFX>().StopVFX();
+
+                GetComponent<PlayerCards>().RemoveCards();
 
                 DestroyBase();
             }

@@ -30,6 +30,7 @@ namespace Omega.Combat
                     attackButtonHandler.continueWithAttack = true;
                     if(num == 0)
                     {
+                        Debug.Log("ending turn");
                         NumberRoller numberRoller = FindObjectOfType<NumberRoller>();
                         numberRoller.TurnOffNumberRoller();
                         CardHandler cardHandler = FindObjectOfType<CardHandler>();

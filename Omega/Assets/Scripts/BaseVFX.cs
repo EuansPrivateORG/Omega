@@ -158,4 +158,17 @@ public class BaseVFX : MonoBehaviour
     {
         explosionVFX.GetComponent<ParticleSystem>().Play();
     }
+
+    public void StopVFX()
+    {
+        healingVFX.GetComponent<ParticleSystem>().Stop();
+        dotVFX.GetComponent<ParticleSystem>().Stop();
+        hotVFX.GetComponent<ParticleSystem>().Stop();
+        energyVFX.GetComponent<ParticleSystem>().Stop();
+        overchargeVFX.GetComponent<ParticleSystem>().Stop();
+        scaraficeVFX.GetComponent<ParticleSystem>().Stop();
+        explosionVFX.GetComponent<ParticleSystem>().Stop();
+        huntersVFX.SetActive(false);
+        disruptorVFX.SetActive(false);
+    }
 }

@@ -264,8 +264,12 @@ namespace Omega.UI
         {
             Energy playerEnergy = playerIdentifier.currentPlayer.GetComponent<Energy>();
 
-            playerEnergy.SpendEnergy(heal.cost);
-            if (fromCard == null) playerToHealth = playerToHeal;
+            if(fromCard == null)
+            {
+                playerEnergy.SpendEnergy(heal.cost);
+
+                playerToHealth = playerToHeal;
+            }
 
             Health playerHealth = playerToHealth.GetComponent<Health>();
 

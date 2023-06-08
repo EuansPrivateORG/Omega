@@ -254,5 +254,20 @@ namespace Omega.Actions
 
             Destroy(playedCard);
         }
+
+        public void RemoveCards()
+        {
+            List<GameObject> cardsToDestroy = new List<GameObject>();
+            cardsToDestroy.AddRange(playingCardInDeck);
+            cardsToDestroy.AddRange(playedCardInWorld);
+
+            foreach (GameObject card in cardsToDestroy)
+            {
+                Destroy(card);
+            }
+
+            playingCardInDeck.Clear();
+            playedCardInWorld.Clear();
+        }
     }
 }

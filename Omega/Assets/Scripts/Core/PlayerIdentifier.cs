@@ -50,6 +50,13 @@ namespace Omega.Core
 
         ScoreHandler scoreHandler;
 
+        [Header("Energy")]
+        public int amountOfRoundsPerEnergyIncrease;
+        public int energyIncrease;
+
+        private int amountOfRoundsPassed = 0;
+        private int amountOfTurnsPassed = 0;
+
 
         private void Awake()
         {
@@ -120,6 +127,20 @@ namespace Omega.Core
         {
             if (!roundOver)
             {
+                amountOfTurnsPassed++;
+
+                if (amountOfTurnsPassed == playerIndex.Count)
+                {
+                    amountOfRoundsPassed++;
+                    amountOfTurnsPassed = 0;
+                }
+
+                if(amountOfRoundsPassed == amountOfRoundsPerEnergyIncrease)
+                {
+                    energyGainPerTurn += energyIncrease;
+                    amountOfRoundsPassed = 0;
+                }
+
                 SetupCurrentlyAlivePlayerIndex();
 
                 CalculateCurrentPlayerIndex();

@@ -46,21 +46,15 @@ namespace Omega.Core
         public void PlayNewSoundTrack()
         {
             playingMainMenu = false;
-            Debug.Log(soundtrackNumber);
-            for (int i = 0; i < soundtracks.Count; i++)
-            {
-                if(i == soundtrackNumber)
-                {
-                    Debug.Log(i);
-                    soundtrackSource.clip = soundtracks[i];
-                    soundtrackNumber++;
-                    break;
-                }
-            }
-            if(soundtrackNumber > soundtracks.Count)
+
+            soundtrackSource.clip = soundtracks[soundtrackNumber];
+            soundtrackNumber++;
+
+            if (soundtrackNumber > soundtracks.Count - 1)
             {
                 soundtrackNumber = 0;
             }
+
             soundtrackSource.Play();
             soundtrackSource.volume = 1f;
             currentSoundTrackTime = 0;
