@@ -2204,8 +2204,8 @@ MonoBehaviour:
   flippedTurnOrder: 0
   isSelectingPlayer: 0
   speedCard: {fileID: 0}
-  amountOfRoundsPerEnergyIncrease: 5
-  energyIncrease: 1
+  amountOfRoundsPerEnergyIncrease: 0
+  energyIncrease: 0
 --- !u!114 &781620685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5497,6 +5497,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[7].m_Target
       value: 
       objectReference: {fileID: 834966098}
+    - target: {fileID: 576189096, guid: d29fc24822bfc8241a517ea8b3088b5d, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 576189096, guid: d29fc24822bfc8241a517ea8b3088b5d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 576189096, guid: d29fc24822bfc8241a517ea8b3088b5d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1858670658, guid: d29fc24822bfc8241a517ea8b3088b5d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
