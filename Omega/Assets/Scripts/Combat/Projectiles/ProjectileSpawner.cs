@@ -5,6 +5,7 @@ using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Omega.Combat
 {
@@ -44,6 +45,15 @@ namespace Omega.Combat
             CameraShake cameraShake = playerIdentifier.currentPlayer.GetComponent<PlayerCam>().playerCam.GetComponent<CameraShake>();
             Weapon weapon1 = attackweapon.GetComponent<Weapon>();
             cameraShake.ShakeCamera(weapon1.shakeOnShot, weapon1.shakOnShotLength);
+            Gamepad gamepad = Gamepad.current;
+            if(weapon1.weaponType == Weapon.weaponClass.Light)
+            {
+                cameraShake.StartCoroutine(cameraShake.RumbleCoroutine(gamepad, cameraShake.intensity, 0.2f));
+            }
+            if(weapon1.weaponType == Weapon.weaponClass.Heavy)
+            {
+                cameraShake.StartCoroutine(cameraShake.RumbleCoroutine(gamepad, cameraShake.intensity*1.5f, 3f));
+            }
 
             GameObject projectileToFire = null;
             if(attackButtonHandler.weaponClass != Weapon.weaponClass.Ultimate)

@@ -307,6 +307,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -15
       objectReference: {fileID: 0}
+    - target: {fileID: 4856391938463109236, guid: c36bc16411469d740aa989e7c7f0c899,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6257523024372825422, guid: c36bc16411469d740aa989e7c7f0c899,
         type: 3}
       propertyPath: cardToUse

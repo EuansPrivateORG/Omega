@@ -1,8 +1,10 @@
 using Omega.Combat;
 using Omega.Core;
+using Omega.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MediumAttack : MonoBehaviour
 {
@@ -14,15 +16,20 @@ public class MediumAttack : MonoBehaviour
     public List<Transform> bulletSpawns;
     public float shotWaitTime;
     PlayerIdentifier playerIdentifier;
+    CameraShake cameraShake;
+    Gamepad gamepad = Gamepad.current;
 
     void Start()
     {
         playerIdentifier = FindObjectOfType<PlayerIdentifier>();
+        cameraShake = GetComponentInParent<PlayerCam>().playerCam.GetComponent<CameraShake>();
         StartCoroutine(Shoot());
     }
 
     public IEnumerator Shoot()
     {
+        attackWeapon = GetComponent<Weapon>().gameObject;
+        Debug.Log("Attack Weapon Start: " + attackWeapon);
         int bulletSpawnCounter = 0;
         yield return new WaitForSeconds(shotWaitTime);
 
@@ -35,6 +42,8 @@ public class MediumAttack : MonoBehaviour
             }
             GameObject bullet = Instantiate(mediumAttack, bulletSpawns[bulletSpawnCounter]);
             attackWeapon.GetComponent<Weapon>().muzzleFlash[bulletSpawnCounter].GetComponent<ParticleSystem>().Play();
+            Debug.Log("Attack Weapon: " + attackWeapon);
+            cameraShake.StartCoroutine(cameraShake.RumbleCoroutine(gamepad, cameraShake.intensity, 0.1f));
             bullet.GetComponent<MediumVFX>().target = target;
             bulletSpawnCounter++;
             yield return new WaitForSeconds(delayBetweenShots);

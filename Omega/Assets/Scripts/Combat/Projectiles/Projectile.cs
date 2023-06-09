@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Omega.Combat
 {
@@ -65,6 +66,15 @@ namespace Omega.Combat
                     CameraShake cameraShake = instigator.GetComponent<PlayerCam>().playerCam.GetComponent<CameraShake>();
                     Weapon weapon = attackWeapon.GetComponent<Weapon>();
                     cameraShake.ShakeCamera(weapon.shakeOnImpact, weapon.shakOnImpactLength);
+                    Gamepad gamepad = Gamepad.current;
+                    if(weapon.weaponType == Weapon.weaponClass.Ultimate)
+                    {
+                        cameraShake.StartCoroutine(cameraShake.RumbleCoroutine(gamepad, cameraShake.intensity*2f, weapon.shakOnImpactLength + 0.5f));
+                    }
+                    else if (weapon.weaponType != Weapon.weaponClass.Ultimate)
+                    {
+                        cameraShake.StartCoroutine(cameraShake.RumbleCoroutine(gamepad, cameraShake.intensity, weapon.shakOnImpactLength));
+                    }
 
                     target.GetComponent<Health>().TakeDamage(damage);
                     UnityEngine.Debug.Log(damage.ToString() + " Damage Dealt");

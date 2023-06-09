@@ -322,6 +322,7 @@ namespace Omega.UI
                         {
                             playerRight = playerIdentifier.turnOrderIndex[0];
                             if (playerRight.GetComponent<Health>().isDead || playerRight == playerIdentifier.currentPlayer) playerRight = null;
+
                         }
                         else
                         {
