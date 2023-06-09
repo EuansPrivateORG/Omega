@@ -2270,8 +2270,8 @@ MonoBehaviour:
   flippedTurnOrder: 0
   isSelectingPlayer: 0
   speedCard: {fileID: 0}
-  amountOfRoundsPerEnergyIncrease: 0
-  energyIncrease: 0
+  amountOfRoundsPerEnergyIncrease: 5
+  energyIncrease: 1
 --- !u!114 &781620685
 MonoBehaviour:
   m_ObjectHideFlags: 0

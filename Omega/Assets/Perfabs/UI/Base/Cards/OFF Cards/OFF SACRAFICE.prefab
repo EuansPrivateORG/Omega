@@ -330,10 +330,8 @@ PrefabInstance:
     - target: {fileID: 5799394958868507121, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
       propertyPath: m_text
-      value: 'Card Description:
-
-        Take the damage you roll but double the
-        damage you output'
+      value: "Card Description:\nTake the damage you roll but double the damage you
+        output. \nTHIS CARD CAN CAUSE DEATH."
       objectReference: {fileID: 0}
     - target: {fileID: 7213664628807949823, guid: 7c049cc92b47b2b4691f2b9df1bc504d,
         type: 3}
