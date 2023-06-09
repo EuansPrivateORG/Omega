@@ -64,6 +64,7 @@ namespace Omega.Combat
                 if(attackButtonHandler.weaponClass == Weapon.weaponClass.Medium)
                 {
                     projectileInstance.GetComponent<MediumAttack>().target = target;
+                    projectileInstance.transform.parent.GetComponentInChildren<MediumAttack>().attackWeapon = attackweapon;
                 }
             }
             else
@@ -93,10 +94,6 @@ namespace Omega.Combat
                 {
                     vfx.GetComponent<ParticleSystem>().Play();
                 }
-            }
-            else if(weapon1.weaponType == Weapon.weaponClass.Medium)
-            {
-                projectileToFire.transform.parent.GetComponentInChildren<MediumAttack>().attackWeapon = attackweapon;
             }
         }
     }

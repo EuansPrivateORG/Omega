@@ -2284,7 +2284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11edbd5c3998a9f478a4ef8202397fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnTimeLimit: 40
+  turnTimeLimit: 45
   timeFace: {fileID: 1260213818}
   timerText: {fileID: 162888156}
   timeOutImage: {fileID: 2039334749}
@@ -5564,8 +5564,8 @@ PrefabInstance:
         Expand
         your deck by drawing cards or eliminating players.
 
-        Place cards
-        on the playing field to create powerful combinations.'
+        Place cards on
+        the playing field to create powerful combinations.'
       objectReference: {fileID: 0}
     - target: {fileID: 66068876, guid: d29fc24822bfc8241a517ea8b3088b5d, type: 3}
       propertyPath: m_lineSpacing
