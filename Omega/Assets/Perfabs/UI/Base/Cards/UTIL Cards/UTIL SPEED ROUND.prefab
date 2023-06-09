@@ -293,7 +293,7 @@ PrefabInstance:
       value: 'Card Description:
 
         Until the start of your next turn the turn
-        timer is lowered to 10 seconds'
+        timer is lowered to 15 seconds'
       objectReference: {fileID: 0}
     - target: {fileID: 6167935476242564601, guid: e9a0a07bc5298b949bb1527c92df62eb,
         type: 3}
