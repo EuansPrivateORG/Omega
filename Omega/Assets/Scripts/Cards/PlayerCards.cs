@@ -66,7 +66,7 @@ namespace Omega.Actions
 
             instantiated.name = card.name;
 
-            StartCoroutine(ReappearCard(card, false));
+            StartCoroutine(ReappearCard(instantiated, false));
 
             cardNumText.text = cardsInHand.Count.ToString();
         }
@@ -88,7 +88,7 @@ namespace Omega.Actions
             GameObject instantiated = Instantiate(card, spawnPos);
             playedCardInWorld.Add(instantiated);
             instantiated.name = card.name;
-            StartCoroutine(ReappearCard(card, true));
+            StartCoroutine(ReappearCard(instantiated, false));
         }
 
         public void RemoveCardFromDeck(GameObject card)
