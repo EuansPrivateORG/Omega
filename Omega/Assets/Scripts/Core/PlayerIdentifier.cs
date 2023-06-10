@@ -54,8 +54,8 @@ namespace Omega.Core
         public int amountOfRoundsPerEnergyIncrease;
         public int energyIncrease;
 
-        private int amountOfRoundsPassed = 0;
-        private int amountOfTurnsPassed = 0;
+        [HideInInspector]public int amountOfRoundsPassed = 0;
+        [HideInInspector]public int amountOfTurnsPassed = 0;
 
 
         private void Awake()

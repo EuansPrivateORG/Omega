@@ -85,6 +85,8 @@ namespace Omega.Core
 
             PlayerHealthDisplay playerHealthDisplay = FindObjectOfType<PlayerHealthDisplay>();
             playerHealthDisplay.UpdateHealthInfo();
+
+            ResetEnergyGain();
         }
 
         public void EndRound()
@@ -105,7 +107,11 @@ namespace Omega.Core
             FindObjectOfType<Pause>().canPause = false;
 
             FindObjectOfType<SoundtrackMixer>().PlayMenu();
+
+            ResetEnergyGain();
         }
+
+
 
         public void EndGame(GameObject endScreen, bool quit)
         {
@@ -137,6 +143,14 @@ namespace Omega.Core
             FindObjectOfType<SoundtrackMixer>().PlayMenu();
 
             FindObjectOfType<Pause>().canPause = false;
+
+            ResetEnergyGain();
+        }
+        private void ResetEnergyGain()
+        {
+            playerId.amountOfRoundsPassed = 0;
+            playerId.amountOfTurnsPassed = 0;
+            playerId.energyGainPerTurn = 2;
         }
     }
 }
