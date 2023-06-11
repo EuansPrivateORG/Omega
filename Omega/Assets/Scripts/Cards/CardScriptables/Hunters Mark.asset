@@ -36,5 +36,6 @@ MonoBehaviour:
   huntersMarkPercentage: 1.5
   sacraficeLoss: 0
   sacraficeGain: 0
+  disruptorPerc: 0
   effectOverTime: 0
   hasEffectWhenAttacked: 1

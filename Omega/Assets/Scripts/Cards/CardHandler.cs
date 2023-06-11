@@ -21,7 +21,11 @@ namespace Omega.Actions
 
         public AudioClip takeDamageSound;
 
+        public AudioClip stunSound;
+
         public AudioSource cardPlayedSource;
+
+        public AudioSource cardPlayedSecondary;
 
         public int cardCost = 2;
 
@@ -40,6 +44,8 @@ namespace Omega.Actions
         private CardSpawner cardSpawner;
 
         public float nextTurnDelayTime;
+
+        bool stunPlayed = false;
 
         private void Awake()
         {
@@ -458,6 +464,8 @@ namespace Omega.Actions
                         playerSetup.amountOfRoundsStun--;
                         StartCoroutine(DelayNextTurn());
 
+                        stunPlayed = true;
+
                         if (playerSetup.amountOfRoundsStun <= 0)
                         {
                             playersCards.cardsPlayedAgainst.Remove(card);
@@ -474,6 +482,12 @@ namespace Omega.Actions
         public IEnumerator DelayNextTurn()
         {
             yield return new WaitForSeconds(nextTurnDelayTime);
+            if (stunPlayed)
+            {
+                cardPlayedSecondary.clip = stunSound;
+                cardPlayedSecondary.Play();
+                stunPlayed = false;
+            }
             playerIdentifier.NextPlayer();
         }
 

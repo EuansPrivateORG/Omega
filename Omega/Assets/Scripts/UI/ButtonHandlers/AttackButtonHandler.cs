@@ -377,8 +377,8 @@ namespace Omega.UI
                         }
                         if (playerRight != null)
                         {
-                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
-                            playerLeft.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
+                            playerRight.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playerRight.GetComponent<PlayerSetup>().amountOfRoundsStun = card.amountOfRounds;
                             playerToDamage.GetComponent<BaseVFX>().StartDamageVFX();
                         }
 
@@ -409,7 +409,7 @@ namespace Omega.UI
                         }
                         if (playerRight != null)
                         {
-                            playerLeft.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
+                            playerRight.GetComponent<PlayerCards>().cardsPlayedAgainst.Add(card);
                             playersWithHunter.Add(playerRight);
                             playerRight.GetComponent<BaseVFX>().StartReticle();
                         }
