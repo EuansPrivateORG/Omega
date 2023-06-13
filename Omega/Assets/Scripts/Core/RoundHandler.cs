@@ -91,6 +91,8 @@ namespace Omega.Core
 
         public void EndRound()
         {
+            ResetEnergyGain();
+
             spawnHandler.EndRound();
 
             FindObjectOfType<CameraHandler>().EndRoundCam();
@@ -107,14 +109,14 @@ namespace Omega.Core
             FindObjectOfType<Pause>().canPause = false;
 
             FindObjectOfType<SoundtrackMixer>().PlayMenu();
-
-            ResetEnergyGain();
         }
 
 
 
         public void EndGame(GameObject endScreen, bool quit)
         {
+            ResetEnergyGain();
+
             spawnHandler.EndRound();
 
             if (!quit)
@@ -143,8 +145,6 @@ namespace Omega.Core
             FindObjectOfType<SoundtrackMixer>().PlayMenu();
 
             FindObjectOfType<Pause>().canPause = false;
-
-            ResetEnergyGain();
         }
         private void ResetEnergyGain()
         {

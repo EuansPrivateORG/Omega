@@ -70,21 +70,23 @@ namespace Omega.Core
                 }
             }
 
-
             if (placement == playerIdentifier.turnOrderIndex.Count)
             {
                 playerScores[newPlayerID].placementScore += (placement - 1) + firstPlayerBonus;
                 playerScores[newPlayerID].pointsGainedThisRound += (placement - 1) + firstPlayerBonus;
+                Debug.Log(player.name + " first");
             }
             else if (placement == playerIdentifier.turnOrderIndex.Count - 1)
             {
                 playerScores[newPlayerID].placementScore += (placement - 1) + secondPlayerBonus;
                 playerScores[newPlayerID].pointsGainedThisRound += (placement - 1) + secondPlayerBonus;
+                Debug.Log(player.name + " second");
             }
             else if (placement == playerIdentifier.turnOrderIndex.Count - 2)
             {
                 playerScores[newPlayerID].placementScore += (placement - 1) + thirdPlayerBonus;
                 playerScores[newPlayerID].pointsGainedThisRound += (placement - 1) + thirdPlayerBonus;
+                Debug.Log(player.name + " third");
             }
             else
             {
@@ -125,6 +127,7 @@ namespace Omega.Core
 
         public void DisplayEndGameScores(EndScreenCollection endScreen)
         {
+            Debug.Log("Displaying Scores");
             ReOrderPlacementList();
 
             foreach (Base player in roundHandler.players)

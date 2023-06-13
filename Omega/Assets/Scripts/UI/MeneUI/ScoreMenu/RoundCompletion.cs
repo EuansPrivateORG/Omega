@@ -44,6 +44,7 @@ namespace Omega.UI
                 {
                     StartCoroutine(FadeInHUD(endScreen));
                     StartCoroutine(FadeOutHUD(playerHUDCanvasGroup));
+                    scoreHandler.CalculatePlayerPlacement(playerIdentifier.turnOrderIndex.Count, playerIdentifier.turnOrderIndex.IndexOf(playerIdentifier.currentlyAlivePlayers[0]));
                     roundHandler.EndGame(endScreen.gameObject, false);
                     EventSystem.current.SetSelectedGameObject(endScreen.GetComponent<EndScreenCollection>().resetButton.gameObject);
                 }
