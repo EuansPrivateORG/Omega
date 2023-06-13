@@ -77,7 +77,6 @@ namespace Omega.Combat
                     }
 
                     target.GetComponent<Health>().TakeDamage(damage);
-                    UnityEngine.Debug.Log(damage.ToString() + " Damage Dealt");
                     AudioSource enemySource = enemyCollider.gameObject.GetComponentInChildren<AudioSource>();
                     enemySource.Play();
 
@@ -88,7 +87,6 @@ namespace Omega.Combat
                         scoreHandler.playerScores[playerIdentifier.currentPlayerIndex].playersKilled++;
                         if (bulletNum == 0)
                         {
-                            Debug.Log(playerHasDied);
                             cardHandler.DrawCard(playerIdentifier.currentPlayer, 1, true, true);
                         }
                         else

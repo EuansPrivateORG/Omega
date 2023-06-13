@@ -219,7 +219,6 @@ namespace Omega.Core
             foreach (GameObject player in playerList)
             {
                 Destroy(player);
-                Debug.Log(player);
             }
 
             playerList.Clear();
