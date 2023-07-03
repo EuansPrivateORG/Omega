@@ -60,6 +60,8 @@ namespace Omega.Actions
         private int tensInt = 0;
         private int unitsInt = 0;
 
+        bool isDouble = false;
+
         private void Awake()
         {
             playerIdentifier = GetComponent<PlayerIdentifier>();
@@ -172,6 +174,8 @@ namespace Omega.Actions
         {
             isAttacking = isAttack;
 
+            _diceTotal = _diceTotal * 2;
+
             int hundreds = _diceTotal / 100;
             int tens = (_diceTotal / 10) % 10;
             int units = _diceTotal % 10;
@@ -188,8 +192,10 @@ namespace Omega.Actions
             stoppedRotatingUnits = true;
         }
 
-        public void StartRolling()
+        public void StartRolling(bool _double)
         {
+            isDouble = _double;
+
             isRotatingHundreds = true;
             hundredsText = rollers.hundredsRoller.GetComponent<TextMeshProUGUI>();
 
@@ -210,6 +216,11 @@ namespace Omega.Actions
         {
             if(hasFinishedTens && hasFinishedUnits && hasFinsishedHundreds)
             {
+                if (isDouble)
+                {
+                    diceTotal = diceTotal / 2;
+                }
+
                 if (isAttacking)
                 {
                     playerIdentifier.currentAttack.PerformAttack(diceTotal);

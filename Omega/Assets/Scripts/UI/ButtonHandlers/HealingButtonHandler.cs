@@ -206,6 +206,8 @@ namespace Omega.UI
         {
             int currentRollBonus = heal.rollBonus;
 
+            bool isDouble = false;
+
             PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
 
             List<Card> cardList = new List<Card>();
@@ -239,6 +241,7 @@ namespace Omega.UI
                             isDoubleRoll = true;
                             playerCards.cardsPlayed.Remove(card);
                             playerCards.RemovePlayedCards(card.CardWorldPreFab);
+                            isDouble = true;
                             break;
 
                     }
@@ -248,7 +251,7 @@ namespace Omega.UI
             rollBonus = currentRollBonus;
 
             numberRoller.rollers.gameObject.SetActive(true);
-            numberRoller.StartRolling();
+            numberRoller.StartRolling(isDouble);
 
             numberRoller.AddBonusNumbers(rollBonus);
 

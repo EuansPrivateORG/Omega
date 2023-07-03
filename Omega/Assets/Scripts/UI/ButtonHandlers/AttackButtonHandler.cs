@@ -718,6 +718,8 @@ namespace Omega.UI
         {
             int currentRollBonus = attack.rollBonus;
 
+            bool isdouble = false;
+
             PlayerCards playerCards = playerIdentifier.currentPlayer.GetComponent<PlayerCards>();
 
             List<Card> cardList = new List<Card>();
@@ -751,6 +753,7 @@ namespace Omega.UI
                             isDoubleRoll = true;
                             playerCards.cardsPlayed.Remove(card);
                             playerCards.RemovePlayedCards(card.CardWorldPreFab);
+                            isdouble = true;
                             break;
 
                     }
@@ -760,7 +763,7 @@ namespace Omega.UI
             rollBonus = currentRollBonus;
 
             numberRoller.rollers.gameObject.SetActive(true);
-            numberRoller.StartRolling();
+            numberRoller.StartRolling(isdouble);
 
             numberRoller.AddBonusNumbers(rollBonus);
 
