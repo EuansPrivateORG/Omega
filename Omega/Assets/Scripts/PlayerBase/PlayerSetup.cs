@@ -55,8 +55,14 @@ namespace Omega.Core
             playerMesh.material = playerBase.materialVarientOverrite;
 
             BaseCollection baseCollection = instantiated.GetComponent<BaseCollection>();
+            GameObject instantiatedParent = instantiated.transform.parent.gameObject;
+            DeckCounterDisplay instantiatedDCD = instantiatedParent.GetComponentInChildren<DeckCounterDisplay>();
+            foreach (Image icon in instantiatedDCD.rotatingIcons)
+            {
+                icon.color = playerBase.uiOverriteColor;
+            }
 
-            foreach(Transform child in baseCollection.basePiecesParent.transform)
+            foreach (Transform child in baseCollection.basePiecesParent.transform)
             {
                 if(child.TryGetComponent<Renderer>(out Renderer childRen))
                 {
