@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Speed Round
   cardCategory: 2
-  cardWeight: 4
+  cardWeight: 3
   activationType: 3
   cardType: 14
   amountOfRounds: 0
