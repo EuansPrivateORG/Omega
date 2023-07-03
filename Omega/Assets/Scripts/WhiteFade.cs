@@ -2,6 +2,7 @@ using Omega.Core;
 using Omega.UI;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class WhiteFade : MonoBehaviour
@@ -9,8 +10,15 @@ public class WhiteFade : MonoBehaviour
     public Image fadeImage;
     public float fadeDuration = 1f;
     public float waitBetweenFadeIn = 1f;
+    private float originalDuration;
 
     private Coroutine currentFadeCoroutine;
+
+
+    private void Start()
+    {
+        originalDuration = fadeDuration;
+    }
 
     // Call this function to start the fade effect
     public void StartFade(bool startRound)
@@ -50,6 +58,7 @@ public class WhiteFade : MonoBehaviour
 
         // Wait for a brief duration
         yield return new WaitForSeconds(waitBetweenFadeIn);
+        fadeDuration = originalDuration;
 
         // Fade out
         elapsedTime = 0f;
@@ -85,6 +94,7 @@ public class WhiteFade : MonoBehaviour
         fadeImage.color = Color.white;
         // Wait for a brief duration
         yield return new WaitForSeconds(waitBetweenFadeIn);
+        fadeDuration = originalDuration;
 
         // Fade out
         elapsedTime = 0f;
