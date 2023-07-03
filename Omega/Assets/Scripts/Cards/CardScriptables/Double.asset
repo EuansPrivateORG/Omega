@@ -18,7 +18,7 @@ MonoBehaviour:
     type: 3}
   CardName: Double
   cardCategory: 2
-  cardWeight: 2
+  cardWeight: 4
   activationType: 2
   cardType: 6
   amountOfRounds: 0
@@ -33,5 +33,9 @@ MonoBehaviour:
   energyPerTurn: 0
   lifeStealPercentage: 0
   speedRoundTime: 0
+  huntersMarkPercentage: 0
+  sacraficeLoss: 0
+  sacraficeGain: 0
+  disruptorPerc: 0
   effectOverTime: 0
   hasEffectWhenAttacked: 0

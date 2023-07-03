@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Omega.Actions
@@ -47,13 +49,31 @@ namespace Omega.Actions
 
         bool stunPlayed = false;
 
+        bool disableInput = false;
+
+        InputSystemUIInputModule inputSystemUIInputModule;
+        PlayerInput playerInput;
+
         private void Awake()
         {
+            inputSystemUIInputModule = FindObjectOfType<InputSystemUIInputModule>();
+
+            playerInput = FindObjectOfType<PlayerInput>();
+
             drawCardHandler = FindObjectOfType<DrawCardHandler>();
 
             playerIdentifier = GetComponent<PlayerIdentifier>();
 
             cardSpawner = FindObjectOfType<CardSpawner>();
+        }
+
+        private void Update()
+        {
+            if (disableInput)
+            {
+                inputSystemUIInputModule.enabled = false;
+                playerInput.enabled = false;
+            }
         }
 
         public void DrawCardNoUI(GameObject player, int numOfCards)
@@ -134,7 +154,7 @@ namespace Omega.Actions
                 Debug.Log("Player has max Cards");
                 if (endTurn)
                 {
-                    FindObjectOfType<CardHandler>().StartCoroutine(DelayNextTurn());
+                    FindObjectOfType<CardHandler>().StartCoroutine(DelayNextTurn(false));
                 }
                 return;
             }
@@ -435,6 +455,9 @@ namespace Omega.Actions
                             playerIdentifier.currentPlayer.GetComponent<BaseVFX>().HOTVFXStop();
                             playersCards.cardsPlayedAgainst.Remove(card);
                         }
+
+                        PlayerHealthDisplay playerHealthDisplay = FindObjectOfType<PlayerHealthDisplay>();
+                        playerHealthDisplay.UpdateHealthInfo();
                     }
 
                     if(card.cardType == Card.CardType.dot)
@@ -456,13 +479,15 @@ namespace Omega.Actions
                         {
                             playerIdentifier.NextPlayer();
                         }
+
+                        PlayerHealthDisplay playerHealthDisplay = FindObjectOfType<PlayerHealthDisplay>();
+                        playerHealthDisplay.UpdateHealthInfo();
                     }
 
                     if (card.cardType == Card.CardType.stun)
                     {
-
                         playerSetup.amountOfRoundsStun--;
-                        StartCoroutine(DelayNextTurn());
+                        StartCoroutine(DelayNextTurn(true));
 
                         stunPlayed = true;
 
@@ -479,9 +504,17 @@ namespace Omega.Actions
             }
         }
 
-        public IEnumerator DelayNextTurn()
+        public IEnumerator DelayNextTurn(bool _disableInput)
         {
-            yield return new WaitForSeconds(nextTurnDelayTime);
+            float waitTime = nextTurnDelayTime;
+            if (_disableInput)
+            {
+                disableInput = true;
+            }
+            yield return new WaitForSeconds(waitTime);
+
+            disableInput = false;
+
             if (stunPlayed)
             {
                 cardPlayedSecondary.clip = stunSound;

@@ -35,7 +35,7 @@ namespace Omega.Combat
                         NumberRoller numberRoller = FindObjectOfType<NumberRoller>();
                         numberRoller.TurnOffNumberRoller();
                         CardHandler cardHandler = FindObjectOfType<CardHandler>();
-                        cardHandler.StartCoroutine(cardHandler.DelayNextTurn());
+                        cardHandler.StartCoroutine(cardHandler.DelayNextTurn(false));
                     }
                     return;
                 }

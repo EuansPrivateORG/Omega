@@ -101,7 +101,7 @@ namespace Omega.Combat
                         if (!playerHasDied)
                         {
                             CardHandler cardHandler = FindObjectOfType<CardHandler>();
-                            cardHandler.StartCoroutine(cardHandler.DelayNextTurn());
+                            cardHandler.StartCoroutine(cardHandler.DelayNextTurn(false));
                         }
                     }
 
@@ -114,6 +114,13 @@ namespace Omega.Combat
                     else if (attackWeapon.GetComponent<Weapon>().weaponType == Weapon.weaponClass.Light)
                     {
                         GetComponentInChildren<LightAttack>().PlayVFX();
+                    }
+                    else if(attackWeapon.GetComponent<Weapon>().weaponType == Weapon.weaponClass.Medium)
+                    {
+                        if(playerIdentifier.currentAttack.continueWithAttack == true)
+                        {
+                            playerIdentifier.currentAttack.projectileIsFiring = false;
+                        }
                     }
                     else
                     {
