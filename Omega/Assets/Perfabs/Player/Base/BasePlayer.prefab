@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 389939687020095212}
   - component: {fileID: 805345155308597498}
   m_Layer: 0
-  m_Name: CardIcon (1)
+  m_Name: OuterRotatingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef31bc3f46d6047b29ff513e55daf05b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9384fa4ff20714b47938958b2534f26e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1709,7 +1709,7 @@ MonoBehaviour:
   explosionVFX: {fileID: 4779136913846954377}
   healingVFXTime: 1
   overchargeVFXTime: 1
-  timeBetweenStunFlash: 0.5
+  timeBetweenStunFlash: 0.2
 --- !u!1 &8153083942625156066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,6 +1934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeTimer: 10
   intensity: 1
+  rumbleDuration: 0.5
 --- !u!1001 &1170117096725032234
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2532,6 +2533,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1771003932818824779}
     m_Modifications:
+    - target: {fileID: 332600879044303027, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
+        type: 3}
+      propertyPath: m_Name
+      value: InnerRotatingIcon
+      objectReference: {fileID: 0}
     - target: {fileID: 934913933657235352, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
         type: 3}
       propertyPath: m_RootOrder
@@ -2576,7 +2582,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ef31bc3f46d6047b29ff513e55daf05b,
+      objectReference: {fileID: 21300000, guid: 9384fa4ff20714b47938958b2534f26e,
         type: 3}
     - target: {fileID: 1646182479881480546, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
         type: 3}
@@ -2703,6 +2709,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4409465911405928702}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3164337135755315612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1646182479881480546, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
+    type: 3}
+  m_PrefabInstance: {fileID: 4409465911405928702}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4155753038966978637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3587375105069072230 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 934913933657235352, guid: 61c7ff06d54e4fd41abe6164c7db5d31,
@@ -2748,6 +2766,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4409465911405928702}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9128489814113386718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261579452410674564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff3340acf6fde044a038c5639f01d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingIcons:
+  - {fileID: 3164337135755315612}
+  - {fileID: 389939687020095212}
 --- !u!1001 &4780319185825218533
 PrefabInstance:
   m_ObjectHideFlags: 0

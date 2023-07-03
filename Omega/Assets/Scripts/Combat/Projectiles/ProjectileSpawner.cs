@@ -79,7 +79,6 @@ namespace Omega.Combat
                 }
                 GameObject projectileInstance = Instantiate(attackweapon.GetComponent<Weapon>().projectilePrefab, targetUltimatePosition.transform);
                 GameObject instantiated = Instantiate(UltimateVFX, target.transform.position, Quaternion.identity);
-                Debug.Log(instantiated);
                 attackweapon.GetComponent<AudioSource>().Play();
                 projectileToFire = projectileInstance;
             }

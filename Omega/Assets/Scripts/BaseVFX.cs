@@ -44,7 +44,7 @@ public class BaseVFX : MonoBehaviour
             foreach (Transform t in currentStunImissive.transform)
             {
                 Material mat = t.GetComponent<Renderer>().material;
-                float lerpFactor = Mathf.PingPong(Time.time * timeBetweenStunFlash, 1f);
+                float lerpFactor = Mathf.PingPong(Time.time * timeBetweenStunFlash, .25f);
                 Color targetColor = Color.Lerp(Color.black / 10, originalImissiveColor * 4, lerpFactor);
                 mat.SetColor("_EmissionColor", targetColor);
             }

@@ -9,6 +9,7 @@ public class UltimateAttack : MonoBehaviour
 {
     public GameObject initialPrefab; // Prefab to be instantiated initially
     public GameObject delayedPrefab; // Prefab to be instantiated after the delay
+    public GameObject sphere;
     public int numberOfPrefabs; // Number of prefabs to be instantiated
     public float radius; // Initial radius for instantiation
     public float rotationSpeed; // Speed of rotation in degrees per second
@@ -150,7 +151,7 @@ public class UltimateAttack : MonoBehaviour
 
         Vector3 centerPosition = transform.position;
         finalLaser = Instantiate(delayedPrefab, centerPosition, Quaternion.identity);
-        FindObjectOfType<WhiteFade>().StartFade(false);
+        sphere.SetActive(true);
         StartCoroutine(DestroyAfterDelay());
     }
 
