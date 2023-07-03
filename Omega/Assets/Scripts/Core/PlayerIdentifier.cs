@@ -9,6 +9,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Omega.Actions;
 using Omega.Combat;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem;
 
 namespace Omega.Core
 {
