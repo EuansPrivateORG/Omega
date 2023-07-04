@@ -184,21 +184,6 @@ namespace Omega.UI
             {
                 GameObject playerObject = playerIdentifier.turnOrderIndex[i];
 
-                Card shieldCard = null;
-
-                foreach(Card card in playerObject.GetComponent<PlayerCards>().cardsPlayed)
-                {
-                    if(card.cardType == Card.CardType.shield)
-                    {
-                        shieldCard = card;
-                    }
-                }
-
-                if(shieldCard != null)
-                {
-                    continue;
-                }
-
                 if (playerObject != playerIdentifier.currentPlayer && !playerObject.GetComponent<Health>().isDead)
                 {
                     playerObject.GetComponent<PlayerSelectionHandler>().enabled = true;
@@ -570,6 +555,11 @@ namespace Omega.UI
             {
                 if (card.hasEffectWhenAttacked)
                 {
+                    if(card.cardType == Card.CardType.shield)
+                    {
+                        damageToDeal = 0;
+                    }
+
                     if (card.cardType == Card.CardType.damageReduction)
                     {
                         float newDam = damageToDeal * card.damageReductionPercentage;
