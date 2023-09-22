@@ -29,4 +29,4 @@ MonoBehaviour:
     type: 3}
   faction3DIcon: {fileID: 5420747052994289064, guid: 6f489d2f70bc4d440970dda90c2c3b85,
     type: 3}
-  uiOverriteColor: {r: 0.99607843, g: 0.627451, b: 0, a: 1}
+  uiOverriteColor: {r: 0, g: 0.99607843, b: 0.039987013, a: 1}
