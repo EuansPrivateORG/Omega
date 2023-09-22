@@ -21,6 +21,8 @@ namespace Omega.UI
         [SerializeField] Button skipButton;
 
         [Header("Faction Icons")]
+        [SerializeField] GameObject CurrentPlayersParent;
+        [SerializeField] GameObject SelectionTemplatePrefab;
         [SerializeField] GameObject playerFactionIconPrefab;
         [SerializeField] RectTransform iconSpawnPosition;
 
@@ -32,6 +34,7 @@ namespace Omega.UI
         [SerializeField] Button minusPlayerButton;
         [SerializeField] Button plusPlayerButton;
         public List<GameObject> iconList = new List<GameObject>();
+        public List<GameObject> currentPlayerSelectionList = new List<GameObject>();
         public CanvasGroup GameHUD;
 
         PlayerSpawnHandler playerSpawnHandler;
@@ -55,13 +58,15 @@ namespace Omega.UI
             GameHUD.interactable = false;
             for (int i = 0; i < playerSpawnHandler.numberOfPlayers; i++) 
             {
-                int ran = Random.Range(0, playerTypesList.Count);
-                GameObject instantiatedIcon = Instantiate(playerTypesList[ran].startMenuVarientIcon, iconSpawnPosition);
-                RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
-                iconRect.sizeDelta = new Vector2(50, 50);
-                playerTypesListToSpawn.Add(playerTypesList[ran]);
-                playerTypesList.RemoveAt(ran);
-                iconList.Add(instantiatedIcon);
+                int ranFaction = Random.Range(0, playerTypesList.Count);
+                GameObject newPlayer = Instantiate(SelectionTemplatePrefab, CurrentPlayersParent.transform);
+                PlayerSelectionIdentifier newPlayerIdentifier = newPlayer.GetComponent<PlayerSelectionIdentifier>();
+                newPlayerIdentifier.playerNumber.text = "P" + (i+1).ToString();
+                newPlayerIdentifier.FactionIconImage.sprite = playerTypesList[ranFaction].PlayerSelectionFactionIcon;
+                newPlayerIdentifier.FactionIconImage.color = playerTypesList[ranFaction].uiOverriteColor;
+                playerTypesListToSpawn.Add(playerTypesList[ranFaction]);
+                playerTypesList.RemoveAt(ranFaction);
+                currentPlayerSelectionList.Add(newPlayer);
             }
         }
 
@@ -127,15 +132,33 @@ namespace Omega.UI
         }
         public void addPlayer()
         {
-
             playerSpawnHandler.numberOfPlayers++;
-            int ran = Random.Range(0, playerTypesList.Count);
-            GameObject instantiatedIcon = Instantiate(playerTypesList[ran].startMenuVarientIcon, iconSpawnPosition);
-            RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
-            iconRect.sizeDelta = new Vector2(50, 50);
-            playerTypesListToSpawn.Add(playerTypesList[ran]);
-            playerTypesList.RemoveAt(ran);
-            iconList.Add(instantiatedIcon);
+            int ranFaction = Random.Range(0, playerTypesList.Count);
+            GameObject newPlayer = Instantiate(SelectionTemplatePrefab, CurrentPlayersParent.transform);
+            PlayerSelectionIdentifier newPlayerIdentifier = newPlayer.GetComponent<PlayerSelectionIdentifier>();
+            newPlayerIdentifier.playerNumber.text = "P" + playerSpawnHandler.numberOfPlayers.ToString();
+            newPlayerIdentifier.FactionIconImage.sprite = playerTypesList[ranFaction].PlayerSelectionFactionIcon;
+            newPlayerIdentifier.FactionIconImage.color = playerTypesList[ranFaction].uiOverriteColor;
+            playerTypesListToSpawn.Add(playerTypesList[ranFaction]);
+            playerTypesList.RemoveAt(ranFaction);
+            currentPlayerSelectionList.Add(newPlayer);
+
+            //GameObject instantiatedIcon = Instantiate(playerTypesList[ran].startMenuVarientIcon, iconSpawnPosition);
+            //RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
+            //iconRect.sizeDelta = new Vector2(50, 50);
+            //playerTypesListToSpawn.Add(playerTypesList[ran]);
+            //playerTypesList.RemoveAt(ran);
+            //iconList.Add(instantiatedIcon);
+
+
+            //playerSpawnHandler.numberOfPlayers++;
+            //int ran = Random.Range(0, playerTypesList.Count);
+            //GameObject instantiatedIcon = Instantiate(playerTypesList[ran].startMenuVarientIcon, iconSpawnPosition);
+            //RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
+            //iconRect.sizeDelta = new Vector2(50, 50);
+            //playerTypesListToSpawn.Add(playerTypesList[ran]);
+            //playerTypesList.RemoveAt(ran);
+            //iconList.Add(instantiatedIcon);
         }
 
         public void AddRound()
@@ -149,17 +172,27 @@ namespace Omega.UI
 
         public void removePlayer()
         {
-
             playerSpawnHandler.numberOfPlayers--;
-            if(iconList.Count > 0)
+            if(currentPlayerSelectionList.Count > 0)
             {
-                GameObject lastPlayer = iconList[iconList.Count - 1];
+                GameObject lastPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1];
 
                 playerTypesList.Add(playerTypesListToSpawn[playerTypesListToSpawn.Count - 1]);
                 playerTypesListToSpawn.RemoveAt(playerTypesListToSpawn.Count - 1);
-                iconList.Remove(lastPlayer);
+                currentPlayerSelectionList.Remove(lastPlayer);
                 Destroy(lastPlayer);
-            }   
+            } 
+
+            //playerSpawnHandler.numberOfPlayers--;
+            //if(iconList.Count > 0)
+            //{
+            //    GameObject lastPlayer = iconList[iconList.Count - 1];
+
+            //    playerTypesList.Add(playerTypesListToSpawn[playerTypesListToSpawn.Count - 1]);
+            //    playerTypesListToSpawn.RemoveAt(playerTypesListToSpawn.Count - 1);
+            //    iconList.Remove(lastPlayer);
+            //    Destroy(lastPlayer);
+            //}   
         }
 
 

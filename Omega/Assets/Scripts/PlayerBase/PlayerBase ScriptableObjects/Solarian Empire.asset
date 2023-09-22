@@ -27,6 +27,8 @@ MonoBehaviour:
     type: 3}
   startMenuVarientIcon: {fileID: 7224132306578998318, guid: baeee927b995d17468f1813ef30b36f2,
     type: 3}
+  PlayerSelectionFactionIcon: {fileID: 21300000, guid: ffa7ade6c61d8ac498bbfac0b3fba944,
+    type: 3}
   faction3DIcon: {fileID: 1575426649320557454, guid: dac379bc7870107449c1e6972de3ea58,
     type: 3}
   uiOverriteColor: {r: 1, g: 0.7176471, b: 0, a: 1}

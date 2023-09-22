@@ -16,6 +16,7 @@ namespace Omega.Core
         [SerializeField] public Material emissiveMaterialVarientOverrite;
         [SerializeField] public GameObject turnOrderVarientIcon;
         [SerializeField] public GameObject startMenuVarientIcon;
+        [SerializeField] public Sprite PlayerSelectionFactionIcon;
         [SerializeField] public GameObject faction3DIcon;
         [SerializeField] public Color uiOverriteColor;
        
