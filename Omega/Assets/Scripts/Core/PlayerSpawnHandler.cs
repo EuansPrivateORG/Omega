@@ -13,7 +13,7 @@ namespace Omega.Core
         [Header("PlayerCount")]
         [Range(3,6)]
         [Tooltip("Current number of players in game session")]
-        [SerializeField] public int numberOfPlayers ;                                     //Need to linked into the main menu where we assign the amount of players in the game
+        [SerializeField] public int numberOfPlayers = 4;                                 
 
         [Header("Stats")]
         [Tooltip("Health all players will spawn with")]

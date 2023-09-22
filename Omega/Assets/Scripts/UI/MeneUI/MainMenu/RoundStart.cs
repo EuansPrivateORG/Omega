@@ -93,7 +93,7 @@ namespace Omega.UI
             }
 
 
-            if (playerSpawnHandler.numberOfPlayers == 6)
+            if (playerSpawnHandler.numberOfPlayers == 5)
             {
                 plusPlayerButton.interactable = false;
                 return;
