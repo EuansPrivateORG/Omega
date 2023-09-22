@@ -1,6 +1,7 @@
 using Omega.Core;
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -49,6 +50,8 @@ namespace Omega.UI
 
         public List<Base> playerTypesListToSpawn = new List<Base>();
 
+        public List<Base> allFactions = new List<Base>();
+
         [HideInInspector] public bool continueFade = false;
 
         private void Awake()
@@ -56,6 +59,8 @@ namespace Omega.UI
             roundHandler = FindObjectOfType<RoundHandler>();
             eventSystem = FindObjectOfType<EventSystem>();
             playerSpawnHandler = FindObjectOfType<PlayerSpawnHandler>();
+
+            allFactions.AddRange(playerTypesList);
         }
 
         private void Start()
@@ -70,6 +75,13 @@ namespace Omega.UI
                 newPlayerIdentifier.playerNumber.text = "P" + (i+1).ToString();
                 newPlayerIdentifier.FactionIconImage.sprite = playerTypesList[ranFaction].PlayerSelectionFactionIcon;
                 newPlayerIdentifier.FactionIconImage.color = playerTypesList[ranFaction].uiOverriteColor;
+                int placeInList = 0;
+                for (int l = 0; l < allFactions.Count; l++)
+                {
+                    if (allFactions[l] == playerTypesList[ranFaction]) placeInList = l;
+                }
+                newPlayerIdentifier.placeInFactionList = placeInList;
+
                 playerTypesListToSpawn.Add(playerTypesList[ranFaction]);
                 playerTypesList.RemoveAt(ranFaction);
 
@@ -187,9 +199,15 @@ namespace Omega.UI
             newPlayerIdentifier.playerNumber.text = "P" + playerSpawnHandler.numberOfPlayers.ToString();
             newPlayerIdentifier.FactionIconImage.sprite = playerTypesList[ranFaction].PlayerSelectionFactionIcon;
             newPlayerIdentifier.FactionIconImage.color = playerTypesList[ranFaction].uiOverriteColor;
+            int placeInList = 0;
+            for (int i = 0; i < allFactions.Count; i++)
+            {
+                if (allFactions[i] == playerTypesList[ranFaction]) placeInList = i;
+            }
+            newPlayerIdentifier.placeInFactionList = placeInList;
+
             playerTypesListToSpawn.Add(playerTypesList[ranFaction]);
             playerTypesList.RemoveAt(ranFaction);
-
 
             PlayerSelectionIdentifier previousPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1].GetComponent<PlayerSelectionIdentifier>();
 
@@ -223,6 +241,89 @@ namespace Omega.UI
             ButtonNavSetup(minusPlayerButton, back, plusPlayerButton, firstPlayer.leftButton, null);
         }
 
+        //public void RefreshFactions()
+        //{
+        //    List<Base> allFactions = new List<Base>();
+        //    allFactions.AddRange(playerTypesList);
+
+        //    inactiveFactions.AddRange(allFactions);
+
+        //    for (int i = 0; i < allFactions.Count; i++)
+        //    {
+        //        if (inactiveFactions[i] == allFactions[i])
+        //        {
+        //            inactiveFactions.RemoveAt(i);
+        //        }
+        //    }
+        //}
+
+        public void UpFaction(PlayerSelectionIdentifier newPlayerIdentifier, int placeInFactionList)
+        {
+            Base newFaction = null;
+            Base oldFaction = allFactions[placeInFactionList];
+            int newPlaceInList = 0;
+
+            for (int i = placeInFactionList; i < allFactions.Count; i++)
+            {
+                if (playerTypesListToSpawn.Contains(allFactions[i]))
+                {
+                    if (i == allFactions.Count - 1) i = -1;
+                    continue;
+                }
+                else
+                {
+                    newFaction = allFactions[i];
+                    newPlaceInList = i;
+                    break;
+                }
+            }
+
+            newPlayerIdentifier.FactionIconImage.sprite = newFaction.PlayerSelectionFactionIcon;
+            newPlayerIdentifier.FactionIconImage.color = newFaction.uiOverriteColor;
+
+            playerTypesListToSpawn.Add(newFaction);
+            playerTypesList.Remove(newFaction);
+
+            playerTypesListToSpawn.Remove(oldFaction);
+            playerTypesList.Add(oldFaction);
+
+            newPlayerIdentifier.placeInFactionList = newPlaceInList;
+        }
+
+        public void DownFaction(PlayerSelectionIdentifier newPlayerIdentifier, int placeInFactionList)
+        {
+            Base newFaction = null;
+            Base oldFaction = allFactions[placeInFactionList];
+
+            int newPlaceInList = 0;
+
+            for (int i = placeInFactionList; i > -1; i--)
+            {
+                if (playerTypesListToSpawn.Contains(allFactions[i]))
+                {
+                    if (i == 0) i = allFactions.Count;
+                    continue;
+                }
+                else
+                {
+                    newFaction = allFactions[i];
+                    newPlaceInList = i;
+                    break;
+                }
+            }
+
+            newPlayerIdentifier.FactionIconImage.sprite = newFaction.PlayerSelectionFactionIcon;
+            newPlayerIdentifier.FactionIconImage.color = newFaction.uiOverriteColor;
+
+            playerTypesListToSpawn.Add(newFaction);
+            playerTypesList.Remove(newFaction);
+
+            playerTypesListToSpawn.Remove(oldFaction);
+            playerTypesList.Add(oldFaction);
+
+            newPlayerIdentifier.placeInFactionList = newPlaceInList;
+        }
+
         public void Ready()
         {
             readyPlayers++;
@@ -234,7 +335,6 @@ namespace Omega.UI
         {
             if (readyPlayers == currentPlayerSelectionList.Count)
             {
-                Debug.Log("Here");
                 PlayerSelectionIdentifier player = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1].GetComponent<PlayerSelectionIdentifier>();
                 ButtonNavSetup(player.leftButton, null, player.rightButton, confirmPlayers, player.leftButton.navigation.selectOnUp.GetComponent<Button>());
 

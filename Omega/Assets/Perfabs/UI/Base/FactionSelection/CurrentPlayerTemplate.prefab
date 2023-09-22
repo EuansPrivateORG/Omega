@@ -612,7 +612,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5091624167498917312}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 936080323308834786}
+        m_TargetAssemblyTypeName: PlayerSelectionIdentifier, Assembly-CSharp
+        m_MethodName: UpFaction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6476529013602551557
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +709,7 @@ MonoBehaviour:
   leftButton: {fileID: 151230457904916718}
   rightButton: {fileID: 4364386935332530238}
   confirmButton: {fileID: 1235524539382563089}
+  placeInFactionList: 0
 --- !u!1 &6912378859944534455
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +983,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1218002669122456152}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 936080323308834786}
+        m_TargetAssemblyTypeName: PlayerSelectionIdentifier, Assembly-CSharp
+        m_MethodName: DownFaction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9112968804829593234
 GameObject:
   m_ObjectHideFlags: 0
