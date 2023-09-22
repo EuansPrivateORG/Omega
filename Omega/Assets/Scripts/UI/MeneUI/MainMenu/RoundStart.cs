@@ -89,9 +89,9 @@ namespace Omega.UI
                 {
                     ButtonNavSetup(minusPlayerButton, back, plusPlayerButton, newPlayerIdentifier.leftButton, null);
 
-                    ButtonNavSetup(plusPlayerButton, minusPlayerButton, null, newPlayerIdentifier.rightButton, null);
+                    ButtonNavSetup(plusPlayerButton, back, null, newPlayerIdentifier.rightButton, null);
 
-                    ButtonNavSetup(newPlayerIdentifier.leftButton, null, newPlayerIdentifier.rightButton, null, minusPlayerButton);
+                    ButtonNavSetup(newPlayerIdentifier.leftButton, null, newPlayerIdentifier.rightButton, null, plusPlayerButton);
 
                     ButtonNavSetup(newPlayerIdentifier.rightButton, newPlayerIdentifier.leftButton, newPlayerIdentifier.confirmButton, null, plusPlayerButton);
 
@@ -234,11 +234,24 @@ namespace Omega.UI
             if (playerSpawnHandler.numberOfPlayers == 5)
             {
                 plusPlayerButton.interactable = false;
+                minusPlayerButton.interactable = true;
                 ButtonNavSetup(minusPlayerButton, back, null, firstPlayer.leftButton, null);
-                return;
+                ButtonNavSetup(back, null, minusPlayerButton, null, null);
+                ButtonNavSetup(firstPlayer.rightButton, firstPlayer.leftButton, firstPlayer.confirmButton, firstPlayer.rightButton.navigation.selectOnDown.GetComponent<Button>(), minusPlayerButton);
+                ButtonNavSetup(firstPlayer.confirmButton, null, firstPlayer.rightButton, firstPlayer.leftButton.navigation.selectOnDown.GetComponent<Button>(), minusPlayerButton);
+                Debug.Log("Only Minus");
             }
-            else plusPlayerButton.interactable = true;
-            ButtonNavSetup(minusPlayerButton, back, plusPlayerButton, firstPlayer.leftButton, null);
+            else
+            {
+                plusPlayerButton.interactable = true;
+                minusPlayerButton.interactable = true;
+                ButtonNavSetup(minusPlayerButton, back, plusPlayerButton, firstPlayer.leftButton, null);
+                ButtonNavSetup(plusPlayerButton, minusPlayerButton, null, firstPlayer.rightButton, null);
+                ButtonNavSetup(back, null, minusPlayerButton, null, null);
+                ButtonNavSetup(firstPlayer.rightButton, firstPlayer.leftButton, firstPlayer.confirmButton, firstPlayer.rightButton.navigation.selectOnDown.GetComponent<Button>(), plusPlayerButton);
+                ButtonNavSetup(firstPlayer.confirmButton, null, firstPlayer.rightButton, firstPlayer.leftButton.navigation.selectOnDown.GetComponent<Button>(), plusPlayerButton);
+                Debug.Log("Free");
+            }
         }
 
         //public void RefreshFactions()
@@ -384,13 +397,22 @@ namespace Omega.UI
             if (playerSpawnHandler.numberOfPlayers == 3)
             {
                 minusPlayerButton.interactable = false;
+                plusPlayerButton.interactable = true;
                 ButtonNavSetup(plusPlayerButton, back, null, firstPlayer.rightButton, null);
                 ButtonNavSetup(back, null, plusPlayerButton, null, null);
-                return;
+                ButtonNavSetup(firstPlayer.leftButton, null, firstPlayer.rightButton, firstPlayer.leftButton.navigation.selectOnDown.GetComponent<Button>(), plusPlayerButton);
+                Debug.Log("Only Plus");
             }
-            else minusPlayerButton.interactable = true;
-            ButtonNavSetup(plusPlayerButton, minusPlayerButton, null, firstPlayer.rightButton, null);
-            ButtonNavSetup(back, null, minusPlayerButton, null, null);
+            else
+            {
+                Debug.Log("Free");
+                minusPlayerButton.interactable = true;
+                plusPlayerButton.interactable = true;
+                ButtonNavSetup(plusPlayerButton, minusPlayerButton, null, firstPlayer.rightButton, null);
+                ButtonNavSetup(minusPlayerButton, back, plusPlayerButton, firstPlayer.leftButton, null);
+                ButtonNavSetup(back, null, minusPlayerButton, null, null);
+                ButtonNavSetup(firstPlayer.leftButton, null, firstPlayer.rightButton, firstPlayer.leftButton.navigation.selectOnDown.GetComponent<Button>(), minusPlayerButton);
+            }
 
             CheckReady();
         }
