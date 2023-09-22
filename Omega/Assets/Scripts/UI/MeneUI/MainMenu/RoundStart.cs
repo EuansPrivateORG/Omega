@@ -250,6 +250,7 @@ namespace Omega.UI
                 ButtonNavSetup(back, null, minusPlayerButton, null, null);
                 ButtonNavSetup(firstPlayer.rightButton, firstPlayer.leftButton, firstPlayer.confirmButton, firstPlayer.rightButton.navigation.selectOnDown.GetComponent<Button>(), plusPlayerButton);
                 ButtonNavSetup(firstPlayer.confirmButton, null, firstPlayer.rightButton, firstPlayer.leftButton.navigation.selectOnDown.GetComponent<Button>(), plusPlayerButton);
+                ButtonNavSetup(firstPlayer.leftButton, null, firstPlayer.rightButton, firstPlayer.leftButton.navigation.selectOnDown.GetComponent<Button>(), minusPlayerButton);
                 Debug.Log("Free");
             }
         }
@@ -382,7 +383,7 @@ namespace Omega.UI
             currentPlayerSelectionList.Remove(lastPlayer);
             Destroy(lastPlayer);
 
-            PlayerSelectionIdentifier previousPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 2].GetComponent<PlayerSelectionIdentifier>();
+            PlayerSelectionIdentifier previousPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1].GetComponent<PlayerSelectionIdentifier>();
 
             //previous player nav
             //previous player nav
@@ -412,6 +413,8 @@ namespace Omega.UI
                 ButtonNavSetup(minusPlayerButton, back, plusPlayerButton, firstPlayer.leftButton, null);
                 ButtonNavSetup(back, null, minusPlayerButton, null, null);
                 ButtonNavSetup(firstPlayer.leftButton, null, firstPlayer.rightButton, firstPlayer.leftButton.navigation.selectOnDown.GetComponent<Button>(), minusPlayerButton);
+                ButtonNavSetup(firstPlayer.rightButton, firstPlayer.leftButton, firstPlayer.confirmButton, firstPlayer.rightButton.navigation.selectOnDown.GetComponent<Button>(), plusPlayerButton);
+                ButtonNavSetup(firstPlayer.confirmButton, firstPlayer.rightButton, null, firstPlayer.confirmButton.navigation.selectOnDown.GetComponent<Button>(), plusPlayerButton);
             }
 
             CheckReady();
