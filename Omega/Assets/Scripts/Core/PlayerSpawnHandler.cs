@@ -96,7 +96,7 @@ namespace Omega.Core
 
                 instantiatedPlayer.GetComponent<Health>().maxHealth = playerStartingHealth;
                 instantiatedPlayer.GetComponent<Health>().SetHealth();
-                instantiatedPlayer.GetComponent<Energy>().energy = playerStartingEnergy;
+                instantiatedPlayer.GetComponent<Energy>().SetEnergy(playerStartingEnergy, true);
 
                 playersToSpawnIn.RemoveAt(i);
             }
@@ -149,7 +149,7 @@ namespace Omega.Core
 
                 instantiatedPlayer.GetComponent<Health>().maxHealth = playerStartingHealth;
                 instantiatedPlayer.GetComponent<Health>().SetHealth();
-                instantiatedPlayer.GetComponent<Energy>().energy = playerStartingEnergy;
+                instantiatedPlayer.GetComponent<Energy>().SetEnergy(playerStartingEnergy, true);
 
                 playersToSpawnIn.RemoveAt(i);
             }

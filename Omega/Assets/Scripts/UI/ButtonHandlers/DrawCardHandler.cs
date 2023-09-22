@@ -74,7 +74,7 @@ namespace Omega.UI
             {
                 cardHandler.DrawCard(playerIdentifier.currentPlayer, 1 , true, false);
                 FindObjectOfType<InputSystemUIInputModule>().enabled = false;
-                playerEnergy.energy -= cardHandler.cardCost;
+                playerEnergy.SpendEnergy(cardHandler.cardCost);
 
             }
             CheckEnergy();

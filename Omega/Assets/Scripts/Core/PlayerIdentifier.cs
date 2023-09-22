@@ -203,7 +203,7 @@ namespace Omega.Core
             }
             else
             {
-                currentEnergy.energy = 16;
+                currentEnergy.SetEnergy(16, false);
             }
             PlayerCards currentCards = currentPlayer.GetComponent<PlayerCards>();
             List<Card> cards = new List<Card>();

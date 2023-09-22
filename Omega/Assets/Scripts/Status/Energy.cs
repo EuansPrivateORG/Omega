@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Omega.UI;
 
 namespace Omega.Status
 {
     public class Energy : MonoBehaviour
     {
         [HideInInspector] public int energy;
+
+        private EnergyBar energyBar;
+
+        private void Awake()
+        {
+            energyBar = FindObjectOfType<EnergyBar>();
+        }
 
         private void Update()
         {
@@ -19,12 +27,22 @@ namespace Omega.Status
         public void GainEnergy(int addition)
         {
             energy += addition;
+            energyBar.UpdateSegments();
         }
 
         public void SpendEnergy(int loss)
         {
             energy -= loss;
-            //if (energy <= 0) energy = 0;
+            energyBar.UpdateSegments();
+        }
+
+        public void SetEnergy(int amount, bool start)
+        {
+            energy = amount;
+            if(!start)
+            {
+                energyBar.UpdateSegments();
+            }
         }
     }
 }
