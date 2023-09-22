@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222d1b9e1cdb5f845a86484607f29af1, type: 3}
+  m_Name: Vi'Kesh
+  m_EditorClassIdentifier: 
+  factionName: Vi'Kesh
+  emptyPreFab: {fileID: 2110500228181110835, guid: 4c7f15f70b033244999451164685e478,
+    type: 3}
+  baseVarientPrefabList:
+  - {fileID: 3228152141517751861, guid: 86aef477d70feea44a594f5097547689, type: 3}
+  materialVarientOverrite: {fileID: 2100000, guid: 3abb3c1b3434b454f900dd05bfe98376,
+    type: 2}
+  baseMaterialVarientOverrite: {fileID: 2100000, guid: e3bd9f8f3e9898149bfbea20f8599767,
+    type: 2}
+  emissiveMaterialVarientOverrite: {fileID: 2100000, guid: 11b3bd6c2142d964e9501ba86e9bc7c2,
+    type: 2}
+  turnOrderVarientIcon: {fileID: 559527778602787735, guid: 20e79d57194e9ab408e636b0c44354ab,
+    type: 3}
+  startMenuVarientIcon: {fileID: 7187242807098562159, guid: cd422752a8588974589c3b5797f6d36e,
+    type: 3}
+  PlayerSelectionFactionIcon: {fileID: 21300000, guid: 828316d2f4816884e9bcf6038068a8a7,
+    type: 3}
+  faction3DIcon: {fileID: 3310829835645795688, guid: 810d94158a585fa41bcdf54cb2ff1d47,
+    type: 3}
+  uiOverriteColor: {r: 0.8584906, g: 0.58648515, b: 0, a: 0}
