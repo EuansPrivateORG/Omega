@@ -11,9 +11,9 @@ namespace Omega.Core
     public class PlayerSpawnHandler : MonoBehaviour
     {
         [Header("PlayerCount")]
-        [Range(3,6)]
+        [Range(3,5)]
         [Tooltip("Current number of players in game session")]
-        [SerializeField] public int numberOfPlayers = 4;                                 
+        [SerializeField] public int numberOfPlayers = 3;                                 
 
         [Header("Stats")]
         [Tooltip("Health all players will spawn with")]

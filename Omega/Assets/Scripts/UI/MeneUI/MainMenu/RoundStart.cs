@@ -33,13 +33,19 @@ namespace Omega.UI
         [Header("PlayerCounter Buttons")]
         [SerializeField] Button minusPlayerButton;
         [SerializeField] Button plusPlayerButton;
+        [SerializeField] Button confirmPlayers;
+        [SerializeField] Button back;
         public List<GameObject> iconList = new List<GameObject>();
         public List<GameObject> currentPlayerSelectionList = new List<GameObject>();
         public CanvasGroup GameHUD;
 
+        PlayerSelectionIdentifier firstPlayer;
+
         PlayerSpawnHandler playerSpawnHandler;
         EventSystem eventSystem;
         RoundHandler roundHandler;
+
+        int readyPlayers = 0;
 
         public List<Base> playerTypesListToSpawn = new List<Base>();
 
@@ -66,8 +72,67 @@ namespace Omega.UI
                 newPlayerIdentifier.FactionIconImage.color = playerTypesList[ranFaction].uiOverriteColor;
                 playerTypesListToSpawn.Add(playerTypesList[ranFaction]);
                 playerTypesList.RemoveAt(ranFaction);
+
+                if (currentPlayerSelectionList.Count == 0)
+                {
+                    ButtonNavSetup(minusPlayerButton, back, plusPlayerButton, newPlayerIdentifier.leftButton, null);
+
+                    ButtonNavSetup(plusPlayerButton, minusPlayerButton, null, newPlayerIdentifier.rightButton, null);
+
+                    ButtonNavSetup(newPlayerIdentifier.leftButton, null, newPlayerIdentifier.rightButton, null, minusPlayerButton);
+
+                    ButtonNavSetup(newPlayerIdentifier.rightButton, newPlayerIdentifier.leftButton, newPlayerIdentifier.confirmButton, null, plusPlayerButton);
+
+                    ButtonNavSetup(newPlayerIdentifier.confirmButton, newPlayerIdentifier.rightButton, null, null, plusPlayerButton);
+
+                    firstPlayer = newPlayerIdentifier;
+                }
+                else
+                {
+                    PlayerSelectionIdentifier previousPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1].GetComponent<PlayerSelectionIdentifier>();
+
+                    //new player nav
+                    if (currentPlayerSelectionList.Count == 2)
+                    {
+                        ButtonNavSetup(newPlayerIdentifier.leftButton, null, newPlayerIdentifier.rightButton, null, previousPlayer.leftButton);
+
+                        ButtonNavSetup(newPlayerIdentifier.rightButton, newPlayerIdentifier.leftButton, newPlayerIdentifier.confirmButton, null, previousPlayer.rightButton);
+
+                        ButtonNavSetup(newPlayerIdentifier.confirmButton, newPlayerIdentifier.rightButton, null, null, previousPlayer.confirmButton);
+
+                        ButtonNavSetup(confirmPlayers, minusPlayerButton, plusPlayerButton, null, newPlayerIdentifier.confirmButton);
+                    }
+                    else
+                    {
+                        ButtonNavSetup(newPlayerIdentifier.leftButton, null, newPlayerIdentifier.rightButton, null, previousPlayer.leftButton);
+
+                        ButtonNavSetup(newPlayerIdentifier.rightButton, newPlayerIdentifier.leftButton, newPlayerIdentifier.confirmButton, null, previousPlayer.rightButton);
+
+                        ButtonNavSetup(newPlayerIdentifier.confirmButton, newPlayerIdentifier.rightButton, null, null, previousPlayer.confirmButton);
+                    }
+
+
+                    //previous player nav
+                    ButtonNavSetup(previousPlayer.leftButton, null, previousPlayer.rightButton, newPlayerIdentifier.leftButton, previousPlayer.leftButton.navigation.selectOnUp.GetComponent<Button>());
+
+                    ButtonNavSetup(previousPlayer.rightButton, previousPlayer.leftButton, previousPlayer.confirmButton, newPlayerIdentifier.rightButton, previousPlayer.rightButton.navigation.selectOnUp.GetComponent<Button>());
+
+                    ButtonNavSetup(previousPlayer.confirmButton, previousPlayer.rightButton, null, newPlayerIdentifier.confirmButton, previousPlayer.confirmButton.navigation.selectOnUp.GetComponent<Button>());
+                }
+
                 currentPlayerSelectionList.Add(newPlayer);
             }
+        }
+
+        private void ButtonNavSetup(Button button, Button onSelectLeft, Button onSelectRight, Button onSelectDown, Button onSelectUp)
+        {
+            Navigation buttonNav = new Navigation();
+            buttonNav.mode = Navigation.Mode.Explicit;
+            if(onSelectLeft != null) buttonNav.selectOnLeft = onSelectLeft;
+            if (onSelectRight != null) buttonNav.selectOnRight = onSelectRight;
+            if (onSelectDown != null) buttonNav.selectOnDown = onSelectDown;
+            if (onSelectUp != null) buttonNav.selectOnUp = onSelectUp;
+            button.navigation = buttonNav;
         }
 
         private void Update()
@@ -98,23 +163,6 @@ namespace Omega.UI
             }
 
 
-            if (playerSpawnHandler.numberOfPlayers == 5)
-            {
-                plusPlayerButton.interactable = false;
-                return;
-            }
-            else plusPlayerButton.interactable = true;
-
-            if (playerSpawnHandler.numberOfPlayers == 3)
-            {
-                minusPlayerButton.interactable = false;
-
-                return;
-            }
-            else minusPlayerButton.interactable = true;
-
-
-
             if (roundHandler.numOfRounds == 9)
             {
                 plusRoundsButton.interactable = false;
@@ -141,24 +189,64 @@ namespace Omega.UI
             newPlayerIdentifier.FactionIconImage.color = playerTypesList[ranFaction].uiOverriteColor;
             playerTypesListToSpawn.Add(playerTypesList[ranFaction]);
             playerTypesList.RemoveAt(ranFaction);
+
+
+            PlayerSelectionIdentifier previousPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1].GetComponent<PlayerSelectionIdentifier>();
+
+            //new player nav
+            ButtonNavSetup(newPlayerIdentifier.leftButton, null, newPlayerIdentifier.rightButton, null, previousPlayer.leftButton);
+
+            ButtonNavSetup(newPlayerIdentifier.rightButton, newPlayerIdentifier.leftButton, newPlayerIdentifier.confirmButton, null, previousPlayer.rightButton);
+
+            ButtonNavSetup(newPlayerIdentifier.confirmButton, newPlayerIdentifier.rightButton, null, null, previousPlayer.confirmButton);
+
+            ButtonNavSetup(confirmPlayers, minusPlayerButton, plusPlayerButton, null, newPlayerIdentifier.confirmButton);
+
+
+
+            //previous player nav
+            ButtonNavSetup(previousPlayer.leftButton, null, previousPlayer.rightButton, newPlayerIdentifier.leftButton, previousPlayer.leftButton.navigation.selectOnUp.GetComponent<Button>());
+
+            ButtonNavSetup(previousPlayer.rightButton, previousPlayer.leftButton, previousPlayer.confirmButton, newPlayerIdentifier.rightButton, previousPlayer.rightButton.navigation.selectOnUp.GetComponent<Button>());
+
+            ButtonNavSetup(previousPlayer.confirmButton, previousPlayer.rightButton, null, newPlayerIdentifier.confirmButton, previousPlayer.confirmButton.navigation.selectOnUp.GetComponent<Button>());
+
             currentPlayerSelectionList.Add(newPlayer);
 
-            //GameObject instantiatedIcon = Instantiate(playerTypesList[ran].startMenuVarientIcon, iconSpawnPosition);
-            //RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
-            //iconRect.sizeDelta = new Vector2(50, 50);
-            //playerTypesListToSpawn.Add(playerTypesList[ran]);
-            //playerTypesList.RemoveAt(ran);
-            //iconList.Add(instantiatedIcon);
+            if (playerSpawnHandler.numberOfPlayers == 5)
+            {
+                plusPlayerButton.interactable = false;
+                ButtonNavSetup(minusPlayerButton, back, null, firstPlayer.leftButton, null);
+                return;
+            }
+            else plusPlayerButton.interactable = true;
+            ButtonNavSetup(minusPlayerButton, back, plusPlayerButton, firstPlayer.leftButton, null);
+        }
 
+        public void Ready()
+        {
+            readyPlayers++;
 
-            //playerSpawnHandler.numberOfPlayers++;
-            //int ran = Random.Range(0, playerTypesList.Count);
-            //GameObject instantiatedIcon = Instantiate(playerTypesList[ran].startMenuVarientIcon, iconSpawnPosition);
-            //RectTransform iconRect = instantiatedIcon.GetComponent<RectTransform>();
-            //iconRect.sizeDelta = new Vector2(50, 50);
-            //playerTypesListToSpawn.Add(playerTypesList[ran]);
-            //playerTypesList.RemoveAt(ran);
-            //iconList.Add(instantiatedIcon);
+            CheckReady();
+        }
+
+        public void CheckReady()
+        {
+            if (readyPlayers == currentPlayerSelectionList.Count)
+            {
+                Debug.Log("Here");
+                PlayerSelectionIdentifier player = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1].GetComponent<PlayerSelectionIdentifier>();
+                ButtonNavSetup(player.leftButton, null, player.rightButton, confirmPlayers, player.leftButton.navigation.selectOnUp.GetComponent<Button>());
+
+                ButtonNavSetup(player.rightButton, player.leftButton, player.confirmButton, confirmPlayers, player.rightButton.navigation.selectOnUp.GetComponent<Button>());
+
+                ButtonNavSetup(player.confirmButton, player.rightButton, null, confirmPlayers, player.confirmButton.navigation.selectOnUp.GetComponent<Button>());
+            }
+        }
+
+        public void UnReady()
+        {
+            readyPlayers--;
         }
 
         public void AddRound()
@@ -173,26 +261,38 @@ namespace Omega.UI
         public void removePlayer()
         {
             playerSpawnHandler.numberOfPlayers--;
-            if(currentPlayerSelectionList.Count > 0)
+
+            GameObject lastPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1];
+
+            playerTypesList.Add(playerTypesListToSpawn[playerTypesListToSpawn.Count - 1]);
+            playerTypesListToSpawn.RemoveAt(playerTypesListToSpawn.Count - 1);
+            currentPlayerSelectionList.Remove(lastPlayer);
+            Destroy(lastPlayer);
+
+            PlayerSelectionIdentifier previousPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 2].GetComponent<PlayerSelectionIdentifier>();
+
+            //previous player nav
+            //previous player nav
+            ButtonNavSetup(previousPlayer.leftButton, null, previousPlayer.rightButton, null, previousPlayer.leftButton.navigation.selectOnUp.GetComponent<Button>());
+
+            ButtonNavSetup(previousPlayer.rightButton, previousPlayer.leftButton, previousPlayer.confirmButton, null, previousPlayer.rightButton.navigation.selectOnUp.GetComponent<Button>());
+
+            ButtonNavSetup(previousPlayer.confirmButton, previousPlayer.rightButton, null, null, previousPlayer.confirmButton.navigation.selectOnUp.GetComponent<Button>());
+
+            ButtonNavSetup(confirmPlayers, minusPlayerButton, plusPlayerButton, null, previousPlayer.confirmButton);
+
+            if (playerSpawnHandler.numberOfPlayers == 3)
             {
-                GameObject lastPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1];
+                minusPlayerButton.interactable = false;
+                ButtonNavSetup(plusPlayerButton, back, null, firstPlayer.rightButton, null);
+                ButtonNavSetup(back, null, plusPlayerButton, null, null);
+                return;
+            }
+            else minusPlayerButton.interactable = true;
+            ButtonNavSetup(plusPlayerButton, minusPlayerButton, null, firstPlayer.rightButton, null);
+            ButtonNavSetup(back, null, minusPlayerButton, null, null);
 
-                playerTypesList.Add(playerTypesListToSpawn[playerTypesListToSpawn.Count - 1]);
-                playerTypesListToSpawn.RemoveAt(playerTypesListToSpawn.Count - 1);
-                currentPlayerSelectionList.Remove(lastPlayer);
-                Destroy(lastPlayer);
-            } 
-
-            //playerSpawnHandler.numberOfPlayers--;
-            //if(iconList.Count > 0)
-            //{
-            //    GameObject lastPlayer = iconList[iconList.Count - 1];
-
-            //    playerTypesList.Add(playerTypesListToSpawn[playerTypesListToSpawn.Count - 1]);
-            //    playerTypesListToSpawn.RemoveAt(playerTypesListToSpawn.Count - 1);
-            //    iconList.Remove(lastPlayer);
-            //    Destroy(lastPlayer);
-            //}   
+            CheckReady();
         }
 
 
