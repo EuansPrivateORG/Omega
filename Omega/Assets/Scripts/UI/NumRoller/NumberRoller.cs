@@ -174,7 +174,10 @@ namespace Omega.Actions
         {
             isAttacking = isAttack;
 
-            _diceTotal = _diceTotal * 2;
+            if (isDouble)
+            {
+                _diceTotal = _diceTotal * 2;
+            }
 
             int hundreds = _diceTotal / 100;
             int tens = (_diceTotal / 10) % 10;
@@ -216,11 +219,6 @@ namespace Omega.Actions
         {
             if(hasFinishedTens && hasFinishedUnits && hasFinsishedHundreds)
             {
-                if (isDouble)
-                {
-                    diceTotal = diceTotal / 2;
-                }
-
                 if (isAttacking)
                 {
                     playerIdentifier.currentAttack.PerformAttack(diceTotal);

@@ -45,8 +45,6 @@ namespace Omega.UI
 
         private NumberRoller numberRoller;
 
-        [HideInInspector] public bool isDoubleRoll = false;
-
         PhysicalDiceCalculator physicalDiceCalculator;
 
         private GameObject playerLeft = null;
@@ -242,10 +240,6 @@ namespace Omega.UI
         public void PerformAttack(int damageToDeal)
         {
             playerIdentifier.SetupCurrentPlayerWeapons(playerIdentifier.currentPlayer);
-
-            if (isDoubleRoll) damageToDeal *= 2;
-
-            isDoubleRoll = false;
 
             damageToDeal += rollBonus;
 
@@ -740,7 +734,6 @@ namespace Omega.UI
 
                         case Card.CardType.doubleRoll:
 
-                            isDoubleRoll = true;
                             playerCards.cardsPlayed.Remove(card);
                             playerCards.RemovePlayedCards(card.CardWorldPreFab);
                             isdouble = true;
