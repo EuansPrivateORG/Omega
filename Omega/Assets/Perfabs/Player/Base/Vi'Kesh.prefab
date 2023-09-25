@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 271503825513251456, guid: e94698817926d2343a600094da61fe88,
+        type: 3}
+      propertyPath: playerBase
+      value: 
+      objectReference: {fileID: 11400000, guid: b28f3030208988147915bf6d75fad4e1,
+        type: 2}
     - target: {fileID: 1771003932818824779, guid: e94698817926d2343a600094da61fe88,
         type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 8134083268925729400, guid: e94698817926d2343a600094da61fe88,
         type: 3}
       propertyPath: m_Name
-      value: BasePlayer
+      value: Vi'Kesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e94698817926d2343a600094da61fe88, type: 3}
