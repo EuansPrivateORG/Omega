@@ -265,6 +265,8 @@ namespace Omega.UI
                 ButtonNavSetup(firstPlayer.leftButton, null, firstPlayer.rightButton, firstPlayer.leftButton.navigation.selectOnDown.GetComponent<Button>(), minusPlayerButton);
                 Debug.Log("Free");
             }
+
+            CheckReady();
         }
 
         //public void RefreshFactions()
@@ -452,6 +454,11 @@ namespace Omega.UI
             playerSpawnHandler.numberOfPlayers--;
 
             GameObject lastPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1];
+
+            if (lastPlayer.GetComponentInChildren<ReadyButton>().isReady)
+            {
+                readyPlayers--;
+            }
 
             Base oldFaction = allFactions[lastPlayer.GetComponent<PlayerSelectionIdentifier>().placeInFactionList];
 

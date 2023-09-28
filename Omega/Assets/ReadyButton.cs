@@ -8,7 +8,7 @@ public class ReadyButton : MonoBehaviour
 {
     [SerializeField] GameObject check;
 
-    bool isReady = false;
+    public bool isReady = false;
     RoundStart roundStart;
 
     private void Awake()
