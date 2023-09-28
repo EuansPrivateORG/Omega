@@ -110,6 +110,7 @@ namespace Omega.UI
             StartCoroutine(FadeInHUD(startScreen));
             EventSystem.current.SetSelectedGameObject(startScreen.GetComponent<RoundStart>().startRoundButton.gameObject);
             FindObjectOfType<CameraHandler>().MainMenuCam();
+            FindObjectOfType<RoundStart>().StartGame();
         }
 
     }

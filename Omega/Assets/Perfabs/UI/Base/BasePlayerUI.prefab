@@ -8291,6 +8291,8 @@ MonoBehaviour:
   iconSpawnPosition: {fileID: 0}
   minusRoundsButton: {fileID: 156864204792185318}
   plusRoundsButton: {fileID: 5935002575880120021}
+  returnButton: {fileID: 4927638599958906985}
+  startGameButton: {fileID: 6052576888062386244}
   minusPlayerButton: {fileID: 8267723485251351661}
   plusPlayerButton: {fileID: 1886590967159886710}
   confirmPlayers: {fileID: 2155977835371451340}
@@ -22033,6 +22035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a2fa8f0685a2842a2572a8a40ada83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canLerp: 1
 --- !u!1 &6982911767172986383
 GameObject:
   m_ObjectHideFlags: 0

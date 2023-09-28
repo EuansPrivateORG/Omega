@@ -33,4 +33,11 @@ public class ReadyButton : MonoBehaviour
             roundStart.UnReady();
         }
     }
+
+    public void UnReady()
+    {
+        isReady = false;
+        check.SetActive(false);
+        roundStart.UnReady();
+    }
 }

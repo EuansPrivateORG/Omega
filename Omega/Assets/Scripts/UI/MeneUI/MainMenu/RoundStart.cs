@@ -30,6 +30,8 @@ namespace Omega.UI
         [Header("RoundCounter Buttons")]
         [SerializeField] Button minusRoundsButton;
         [SerializeField] Button plusRoundsButton;
+        [SerializeField] Button returnButton;
+        [SerializeField] Button startGameButton;
 
         [Header("PlayerCounter Buttons")]
         [SerializeField] Button minusPlayerButton;
@@ -65,14 +67,40 @@ namespace Omega.UI
 
         private void Start()
         {
+            StartGame();
+        }
+
+        public void StartGame()
+        {
+            playerTypesList.Clear();
+            playerTypesListToSpawn.Clear();
+
+            playerTypesList.AddRange(allFactions);
+
+            confirmPlayers.interactable = false;
+
+            readyPlayers = 0;
+
+            if (currentPlayerSelectionList.Count > 0)
+            {
+                List<GameObject> players = new List<GameObject>();
+                players.AddRange(currentPlayerSelectionList);
+                for (int i = 0; i < players.Count; i++)
+                {
+                    Destroy(currentPlayerSelectionList[i]);
+                }
+
+                currentPlayerSelectionList.Clear();
+            }
+
             GameHUD.alpha = 0;
             GameHUD.interactable = false;
-            for (int i = 0; i < playerSpawnHandler.numberOfPlayers; i++) 
+            for (int i = 0; i < playerSpawnHandler.numberOfPlayers; i++)
             {
                 int ranFaction = Random.Range(0, playerTypesList.Count);
                 GameObject newPlayer = Instantiate(SelectionTemplatePrefab, CurrentPlayersParent.transform);
                 PlayerSelectionIdentifier newPlayerIdentifier = newPlayer.GetComponent<PlayerSelectionIdentifier>();
-                newPlayerIdentifier.playerNumber.text = "P" + (i+1).ToString();
+                newPlayerIdentifier.playerNumber.text = "P" + (i + 1).ToString();
                 newPlayerIdentifier.FactionIconImage.sprite = playerTypesList[ranFaction].PlayerSelectionFactionIcon;
                 newPlayerIdentifier.FactionIconImage.color = playerTypesList[ranFaction].uiOverriteColor;
                 int placeInList = 0;
@@ -173,22 +201,6 @@ namespace Omega.UI
                 }
                 else eventSystem.SetSelectedGameObject(initiateButton.gameObject);
             }
-
-
-            if (roundHandler.numOfRounds == 9)
-            {
-                plusRoundsButton.interactable = false;
-                return;
-            }
-            else plusRoundsButton.interactable = true;
-
-            if (roundHandler.numOfRounds == 1)
-            {
-                minusRoundsButton.interactable = false;
-
-                return;
-            }
-            else minusRoundsButton.interactable = true;
         }
         public void addPlayer()
         {
@@ -345,6 +357,14 @@ namespace Omega.UI
             CheckReady();
         }
 
+        public void UnReadyAll()
+        {
+            for (int i = 0; i < currentPlayerSelectionList.Count; i++)
+            {
+                currentPlayerSelectionList[i].GetComponentInChildren<ReadyButton>().UnReady();
+            }
+        }
+
         public void CheckReady()
         {
             PlayerSelectionIdentifier player = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1].GetComponent<PlayerSelectionIdentifier>();
@@ -381,10 +401,50 @@ namespace Omega.UI
         public void AddRound()
         {
             roundHandler.numOfRounds++;
+
+            if (roundHandler.numOfRounds == 9)
+            {
+                plusRoundsButton.interactable = false;
+                minusRoundsButton.interactable = true;
+
+                eventSystem.SetSelectedGameObject(minusRoundsButton.gameObject);
+
+                ButtonNavSetup(minusPlayerButton, returnButton, null, startGameButton, null);
+                ButtonNavSetup(startGameButton, returnButton, null, null, minusRoundsButton);
+            }
+            else
+            {
+                plusRoundsButton.interactable = true;
+                minusRoundsButton.interactable = true;
+
+                ButtonNavSetup(plusRoundsButton, minusRoundsButton, null, startGameButton, null);
+                ButtonNavSetup(minusRoundsButton, returnButton, plusRoundsButton, startGameButton, null);
+                ButtonNavSetup(returnButton, null, minusRoundsButton, startGameButton, null);
+            }
         }
         public void RemoveRound()
         {
             roundHandler.numOfRounds--;
+
+            if (roundHandler.numOfRounds == 1)
+            {
+                minusRoundsButton.interactable = false;
+                plusRoundsButton.interactable = true;
+
+                eventSystem.SetSelectedGameObject(plusRoundsButton.gameObject);
+
+                ButtonNavSetup(plusRoundsButton, returnButton, null, startGameButton, null);
+                ButtonNavSetup(returnButton, null, plusRoundsButton, startGameButton, null);
+            }
+            else
+            {
+                plusRoundsButton.interactable = true;
+                minusRoundsButton.interactable = true;
+
+                ButtonNavSetup(plusRoundsButton, minusRoundsButton, null, startGameButton, null);
+                ButtonNavSetup(minusRoundsButton, returnButton, plusRoundsButton, startGameButton, null);
+                ButtonNavSetup(startGameButton, returnButton, null, null, plusRoundsButton);
+            }
         }
 
         public void removePlayer()
