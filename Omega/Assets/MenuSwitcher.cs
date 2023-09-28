@@ -25,5 +25,11 @@ namespace Omega.UI
             LeanTween.alphaCanvas(group, 0, fadeTime);
             group.interactable = false;
         }
+
+        public void TitleShift(GameObject TitleObject)
+        {
+            LeanTween.moveLocalY(TitleObject, 245, 1.5f);
+            LeanTween.scale(TitleObject, new Vector3(1.1f,1.1f,1.1f), 1.5f);
+        }
     }
 }
