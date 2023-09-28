@@ -453,8 +453,10 @@ namespace Omega.UI
 
             GameObject lastPlayer = currentPlayerSelectionList[currentPlayerSelectionList.Count - 1];
 
-            playerTypesList.Add(playerTypesListToSpawn[playerTypesListToSpawn.Count - 1]);
-            playerTypesListToSpawn.RemoveAt(playerTypesListToSpawn.Count - 1);
+            Base oldFaction = allFactions[lastPlayer.GetComponent<PlayerSelectionIdentifier>().placeInFactionList];
+
+            playerTypesList.Add(oldFaction);
+            playerTypesListToSpawn.Remove(oldFaction);
             currentPlayerSelectionList.Remove(lastPlayer);
             Destroy(lastPlayer);
 
