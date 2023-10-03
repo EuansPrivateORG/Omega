@@ -180,7 +180,22 @@ namespace Omega.UI
 
             for (int i = 0; i < playerIdentifier.turnOrderIndex.Count; i++)
             {
+                bool hasShield = false;
+
                 GameObject playerObject = playerIdentifier.turnOrderIndex[i];
+
+                foreach (Card card in playerObject.GetComponent<PlayerCards>().cardsPlayed)
+                {
+                    if(card.cardType == Card.CardType.shield)
+                    {
+                        hasShield = true;
+                    }
+                }
+
+                if (hasShield)
+                {
+                    continue;
+                }
 
                 if (playerObject != playerIdentifier.currentPlayer && !playerObject.GetComponent<Health>().isDead)
                 {
@@ -300,24 +315,71 @@ namespace Omega.UI
                         if (targetsIndex + 1 > playerIdentifier.turnOrderIndex.Count - 1)
                         {
                             playerRight = playerIdentifier.turnOrderIndex[0];
-                            if (playerRight.GetComponent<Health>().isDead || playerRight == playerIdentifier.currentPlayer) playerRight = null;
+
+                            bool hasShield = false;
+
+                            foreach (Card card1 in playerRight.GetComponent<PlayerCards>().cardsPlayed)
+                            {
+                                if (card1.cardType == Card.CardType.shield)
+                                {
+                                    hasShield = true;
+                                }
+                            }
+
+
+                            if (playerRight.GetComponent<Health>().isDead || playerRight == playerIdentifier.currentPlayer || hasShield) playerRight = null;
 
                         }
                         else
                         {
                             playerRight = playerIdentifier.turnOrderIndex[targetsIndex + 1];
-                            if (playerRight.GetComponent<Health>().isDead || playerRight == playerIdentifier.currentPlayer) playerRight = null;
+
+                            bool hasShield = false;
+
+                            foreach (Card card1 in playerRight.GetComponent<PlayerCards>().cardsPlayed)
+                            {
+                                if (card1.cardType == Card.CardType.shield)
+                                {
+                                    hasShield = true;
+                                }
+                            }
+
+                            Debug.Log(hasShield);
+
+                            if (playerRight.GetComponent<Health>().isDead || playerRight == playerIdentifier.currentPlayer || hasShield) playerRight = null;
                         }
 
                         if (targetsIndex - 1 < 0)
                         {
                             playerLeft = playerIdentifier.turnOrderIndex[playerIdentifier.turnOrderIndex.Count - 1];
-                            if (playerLeft.GetComponent<Health>().isDead || playerLeft == playerIdentifier.currentPlayer) playerLeft = null;
+
+                            bool hasShield = false;
+
+                            foreach (Card card1 in playerLeft.GetComponent<PlayerCards>().cardsPlayed)
+                            {
+                                if (card1.cardType == Card.CardType.shield)
+                                {
+                                    hasShield = true;
+                                }
+                            }
+
+                            if (playerLeft.GetComponent<Health>().isDead || playerLeft == playerIdentifier.currentPlayer || hasShield) playerLeft = null;
                         }
                         else
                         {
                             playerLeft = playerIdentifier.turnOrderIndex[targetsIndex - 1];
-                            if (playerLeft.GetComponent<Health>().isDead || playerLeft == playerIdentifier.currentPlayer) playerLeft = null;
+
+                            bool hasShield = false;
+
+                            foreach (Card card1 in playerLeft.GetComponent<PlayerCards>().cardsPlayed)
+                            {
+                                if (card1.cardType == Card.CardType.shield)
+                                {
+                                    hasShield = true;
+                                }
+                            }
+
+                            if (playerLeft.GetComponent<Health>().isDead || playerLeft == playerIdentifier.currentPlayer || hasShield) playerLeft = null;
                         }
 
                         playersCards.cardsPlayed.Remove(card);
