@@ -80,6 +80,7 @@ namespace Omega.UI
             pauseMenu.SetActive(false);
             FindObjectOfType<RoundHandler>().EndGame(null, true);
             FindObjectOfType<RoundCompletion>().ResetGame(true);
+            FindObjectOfType<RoundStart>().StartGame();
         }
     }
 }

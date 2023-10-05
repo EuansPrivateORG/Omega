@@ -5790,7 +5790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 576189097, guid: d29fc24822bfc8241a517ea8b3088b5d, type: 3}
       propertyPath: m_text
-      value: 'Created by: Euan Wynne-Jones, Jackson Hole, Camilie Bird & Lilly Morton'
+      value: 'Created by: Euan Wynne-Jones, Jackson Hole, Millie Bird'
       objectReference: {fileID: 0}
     - target: {fileID: 1858670658, guid: d29fc24822bfc8241a517ea8b3088b5d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
